@@ -7,14 +7,45 @@
     "threshold": 0.5
   },
   "features": [
-    {"name": "Pclass", "kind": "categorical", "description": "Passenger ticket class"},
-    {"name": "Sex", "kind": "categorical", "description": "Recorded passenger sex"},
-    {"name": "Age", "kind": "numeric", "description": "Age in years; may be missing"},
-    {"name": "SibSp", "kind": "numeric", "description": "Siblings/spouses aboard"},
-    {"name": "Parch", "kind": "numeric", "description": "Parents/children aboard"},
-    {"name": "Fare", "kind": "numeric", "description": "Ticket fare"},
-    {"name": "Embarked", "kind": "categorical", "description": "Embarkation port"}
+    {
+      "name": "Pclass",
+      "kind": "categorical",
+      "description": "Passenger ticket class"
+    },
+    {
+      "name": "Sex",
+      "kind": "categorical",
+      "description": "Recorded passenger sex"
+    },
+    {
+      "name": "Age",
+      "kind": "numeric",
+      "description": "Age in years; may be missing"
+    },
+    {
+      "name": "SibSp",
+      "kind": "numeric",
+      "description": "Siblings/spouses aboard"
+    },
+    {
+      "name": "Parch",
+      "kind": "numeric",
+      "description": "Parents/children aboard"
+    },
+    {
+      "name": "Fare",
+      "kind": "numeric",
+      "description": "Ticket fare"
+    },
+    {
+      "name": "Embarked",
+      "kind": "categorical",
+      "description": "Embarkation port"
+    }
   ],
-  "budget": {"iterations": 10, "max_parameters": 4096, "max_seconds": 1800},
+  "budget": {
+    "iterations": 10,
+    "max_parameters": 4096
+  },
   "seed": 42
 }

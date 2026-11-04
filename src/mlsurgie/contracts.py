@@ -78,6 +78,12 @@ class Goal:
         return asdict(self)
 
 
+OPTIONAL_LIMITS = frozenset({"max_seconds", "max_editor_tokens"})
+# Hang guards, not spend limits: they stop a stuck call, never a working run.
+TURN_HANG_GUARD_SECONDS = 3600
+EVALUATION_HANG_GUARD_SECONDS = 300
+
+
 @dataclass(frozen=True)
 class Budget:
     iterations: int = 10
@@ -85,8 +91,9 @@ class Budget:
     max_width: int = 64
     max_hidden_layers: int = 2
     max_evaluated_rows: int = 100_000
-    max_seconds: float = 600
-    max_editor_tokens: int = 100_000
+    # Spend limits are opt-in: None means unlimited. Set them only when you want a cap.
+    max_seconds: float | None = None
+    max_editor_tokens: int | None = None
     max_output_tokens: int = 8192
     support_examples: int = 64
     diagnostic_examples: int = 8
@@ -95,6 +102,8 @@ class Budget:
 
     def __post_init__(self):
         for key, value in asdict(self).items():
+            if value is None and key in OPTIONAL_LIMITS:
+                continue
             if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or value <= 0:
                 raise ValueError(f"Budget {key} must be positive and finite")
             if key not in {"max_seconds", "max_abs_weight"} and not isinstance(value, int):

@@ -93,7 +93,7 @@ mlsurgie bench --editor agent --model openrouter/VENDOR/MODEL --names anonymized
 
 Each run writes `results.md` (mean ± sd across seeds), `results.json`, and a full protocol run directory per task and seed. Use `--seeds 0` and `--iterations 2` for a quick check.
 
-Live agent runs cost money. Each cell is bounded by its `max_editor_tokens` budget (400k in the shipped tasks), so the worst case is roughly 6 tasks × 3 seeds × 400k tokens. Start with one task and one seed.
+Spend limits are **opt-in**. By default a run has no token or wall-time cap: the agent gets the task's full iteration count (8 feedback rounds) and can stop early with `finish_run`. To cap spending, pass `--max-editor-tokens N` to `bench`, or set `max_editor_tokens` / `max_seconds` in a task's `budget`. Only hang guards remain: one hour per turn, five minutes per evaluation, and five minutes per sandbox execution. Provider-side key limits still apply; a key that hits its limit fails the run with HTTP 402. For reference, the shipped GPT-6 Astra runs cost about $1 per 140k tokens with prompt caching.
 
 ## Adding a task
 

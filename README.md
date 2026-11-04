@@ -77,7 +77,7 @@ mlsurgie bench --editor random-search --output runs/bench-search   # non-LLM con
 | `segments` | clustering | Find 4 customer segments without labels; scored by ARI against hidden ground truth |
 | `segments_repair` | repair | Diagnose and patch a deployed network with two planted faults |
 
-Each run writes `results.md`: the agent against every baseline, mean ± sd over seeds, with model size in stored numbers. Live runs cost provider tokens, bounded per cell by the task budget. Start with `--seeds 0` and a single-task suite. [Protocol, tracks, controls and how to read results →](docs/benchmark.md)
+Each run writes `results.md`: the agent against every baseline, mean ± sd over seeds, with model size in stored numbers. Runs have no token or time cap by default; each task gets its full iteration count. Add `--max-editor-tokens N` if you want a cap, and use your provider account's spending controls. [Protocol, tracks, controls and how to read results →](docs/benchmark.md)
 
 For the lightweight path without a coding agent, `mlsurgie build --config benchmarks/tasks/wine.json --openrouter-model VENDOR/MODEL --output runs/x` asks a JSON-only LLM for weight programs directly. Ollama is also supported. There is **no default model**. [Providers →](docs/providers.md)
 

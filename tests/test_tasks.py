@@ -234,3 +234,25 @@ def test_published_v1_artifacts_still_verify():
     if not (run / "iterations").exists():
         pytest.skip("published run directory has no iteration records")
     assert replay(run).fingerprint() == json.loads((run / "selection.json").read_text())["state_hash"]
+
+
+def test_spend_limits_are_opt_in_and_unlimited_by_default(tmp_path):
+    budget = Budget()
+    assert budget.max_editor_tokens is None and budget.max_seconds is None
+    rows = [{"x": float(i - 50), "label": str(int(i >= 50))} for i in range(100)]
+    seen = []
+    class Costly(ScriptedEditor):
+        def propose(self, context, timeout):
+            seen.append(context["remaining"])
+            reply = super().propose(context, timeout)
+            reply.usage = {"input_tokens": 5_000_000, "output_tokens": 1_000_000}
+            return reply
+    result = build(table=Table(rows, [Feature("x")], Goal("Sign", "label")),
+                   editor=Costly([program([], [])] * 3), output=tmp_path / "r", budget=Budget(iterations=3))
+    assert [h["status"] for h in result.report["history"]] == ["evaluated"] * 3
+    assert result.report["cost"]["editor_tokens"] == 18_000_000
+    assert seen[0]["editor_tokens"] == "unlimited" and seen[0]["seconds"] == "unlimited"
+    for task in sorted((ROOT / "benchmarks" / "tasks").glob("*.json")):
+        config = json.loads(task.read_text())
+        if isinstance(config, dict) and "budget" in config:
+            assert not {"max_editor_tokens", "max_seconds"} & set(config["budget"]), task.name

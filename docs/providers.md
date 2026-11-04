@@ -102,7 +102,7 @@ See the [complete build example](reference.md#python-api).
 
 Live editors receive support examples, support preprocessing statistics, current best weights, and bounded development diagnostics. Hosted OpenRouter calls send that context to OpenRouter and its serving provider. Final-test examples are excluded from serialized editor contexts. Custom Python editors remain trusted in-process extensions.
 
-Run budgets constrain submitted iterations, output tokens, reported total tokens, evaluated rows, and construction runtime. A single request can overshoot a total-token budget; subsequent work stops. Token usage is recorded, while monetary totals remain unknown and there is no currency budget enforcement. Use provider-side spending controls for paid inference.
+Run budgets constrain submitted iterations, output tokens per response, and evaluated rows. Total-token (`max_editor_tokens`) and runtime (`max_seconds`) budgets are optional and unset by default. When set, a single request can overshoot a total-token budget; subsequent work stops. Token usage is recorded, while monetary totals remain unknown and there is no currency budget enforcement. Use provider-side spending controls for paid inference.
 
 ## Other integrations
 

@@ -20,7 +20,7 @@ import torch
 
 from . import tasks
 from .artifacts import BuildResult, Predictor, save_diff, save_model, save_report, write_json
-from .contracts import METRICS, Budget, improves, reaches
+from .contracts import EVALUATION_HANG_GUARD_SECONDS, METRICS, TURN_HANG_GUARD_SECONDS, Budget, improves, reaches
 from .data import Preprocessor, split_table
 from .metrics import objective
 from .network import apply_program, program_guide, rebase_numeric_program
@@ -185,6 +185,17 @@ def build(*, table, editor, output, budget=None, seed=42, dynamic_architecture=F
     stop_reason = "iteration_budget"
     started = time.monotonic()
 
+    def seconds_left():
+        return None if budget.max_seconds is None else budget.max_seconds - (time.monotonic() - started)
+
+    def evaluation_timeout():
+        left = seconds_left()
+        return EVALUATION_HANG_GUARD_SECONDS if left is None else max(.1, left)
+
+    def over_budget():
+        return ((budget.max_seconds is not None and time.monotonic() - started > budget.max_seconds) or
+                (budget.max_editor_tokens is not None and tokens_used > budget.max_editor_tokens))
+
     def run_inference(model, x, deadline):
         if isolated_evaluation:
             from . import evaluator
@@ -194,7 +205,7 @@ def build(*, table, editor, output, budget=None, seed=42, dynamic_architecture=F
     def evaluate_candidate(candidate, folder, base, iteration):
         nonlocal rows_used, revealed, frozen
         rows_used += dev_count
-        raw = run_inference(candidate, xd, max(.1, budget.max_seconds - (time.monotonic() - started)))
+        raw = run_inference(candidate, xd, evaluation_timeout())
         metrics = tasks.evaluate(goal, yd, raw, xd)
         value = objective(metrics, metric)
         delta = save_diff(folder, candidate, base)
@@ -231,11 +242,11 @@ def build(*, table, editor, output, budget=None, seed=42, dynamic_architecture=F
         write_json(folder / "result.json", record)
 
     for iteration in range(1, budget.iterations + 1):
-        remaining = budget.max_seconds - (time.monotonic() - started)
-        if remaining <= 0:
+        remaining = seconds_left()
+        if remaining is not None and remaining <= 0:
             stop_reason = "time_budget"
             break
-        if tokens_used >= budget.max_editor_tokens:
+        if budget.max_editor_tokens is not None and tokens_used >= budget.max_editor_tokens:
             stop_reason = "editor_token_budget"
             break
         if rows_used + dev_count + test_count > budget.max_evaluated_rows:
@@ -249,13 +260,16 @@ def build(*, table, editor, output, budget=None, seed=42, dynamic_architecture=F
                    "best_metrics": deepcopy(state["metrics"]),
                    "last_feedback": deepcopy(last_feedback),
                    "frozen_hidden_sizes": None if dynamic_architecture else frozen,
-                   "output_token_limit": min(budget.max_output_tokens, budget.max_editor_tokens - tokens_used),
-                   "remaining": {"iterations": budget.iterations - iteration + 1, "seconds": remaining,
-                                 "editor_tokens": budget.max_editor_tokens - tokens_used}}
+                   "output_token_limit": (budget.max_output_tokens if budget.max_editor_tokens is None
+                                          else min(budget.max_output_tokens, budget.max_editor_tokens - tokens_used)),
+                   "remaining": {"iterations": budget.iterations - iteration + 1,
+                                 "seconds": "unlimited" if remaining is None else remaining,
+                                 "editor_tokens": ("unlimited" if budget.max_editor_tokens is None
+                                                   else budget.max_editor_tokens - tokens_used)}}
         write_json(folder / "context.json", context)
         record = {"iteration": iteration, "selected": False}
         try:
-            reply = editor.propose(deepcopy(context), timeout=remaining)
+            reply = editor.propose(deepcopy(context), timeout=TURN_HANG_GUARD_SECONDS if remaining is None else remaining)
         except StopIteration:
             stop_reason = "editor_exhausted"
             break
@@ -293,7 +307,7 @@ def build(*, table, editor, output, budget=None, seed=42, dynamic_architecture=F
             if len(serialized.encode()) > 2_000_000:
                 raise ValueError("Program exceeds 2 MB")
             write_json(folder / "proposal.json", reply.program)
-            if time.monotonic() - started > budget.max_seconds or tokens_used > budget.max_editor_tokens:
+            if over_budget():
                 record.update(status="budget_exceeded", error="Editor response exceeded runtime/token budget")
                 history.append(record)
                 write_json(folder / "result.json", record)
@@ -334,7 +348,7 @@ def build(*, table, editor, output, budget=None, seed=42, dynamic_architecture=F
         test_rows = [table.rows[int(i)] for i in splits["test"]]
         xt = pre.transform(test_rows)
         try:
-            raw = run_inference(best, xt, max(30., budget.max_seconds))
+            raw = run_inference(best, xt, max(30., budget.max_seconds or EVALUATION_HANG_GUARD_SECONDS))
             final_metrics = tasks.evaluate(goal, table.labels(splits["test"]), raw, xt)
             rows_used += len(test_rows)
         except (ValueError, RuntimeError, OSError, subprocess.TimeoutExpired) as exc:

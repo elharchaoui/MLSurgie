@@ -281,12 +281,14 @@ Development and final-test rows are not available here. Write `/workspace/candid
                 if time.monotonic() >= editor.deadline:
                     editor.preflight_stop = "editor_time_preflight"
                     raise RequestBudgetExceeded("Construction deadline reached before provider request")
+                limit = editor.context["limits"]["max_editor_tokens"]
+                if limit is None:  # no spend limit declared: never block a request
+                    return super().completion(messages, tools=tools,
+                                              add_security_risk_prediction=add_security_risk_prediction, **kwargs)
                 usage = self.metrics.accumulated_token_usage
                 count = self.get_token_count(messages, tools, add_security_risk_prediction)
-                check = estimate_request_budget(
-                    editor.context["limits"]["max_editor_tokens"],
-                    usage.prompt_tokens + usage.completion_tokens,
-                    count, self.max_output_tokens)
+                check = estimate_request_budget(limit, usage.prompt_tokens + usage.completion_tokens,
+                                                count, self.max_output_tokens)
                 editor.preflight_checks.append(check)
                 if not check["allowed"]:
                     editor.preflight_stop = "editor_token_preflight"
@@ -311,8 +313,9 @@ Development and final-test rows are not available here. Write `/workspace/candid
         if self.conversation is None or self.llm is None:
             return
         usage = self.llm.metrics.accumulated_token_usage
+        limit = self.context["limits"]["max_editor_tokens"]
         if (time.monotonic() >= self.deadline or
-                usage.prompt_tokens + usage.completion_tokens >= self.context["limits"]["max_editor_tokens"]):
+                (limit is not None and usage.prompt_tokens + usage.completion_tokens >= limit)):
             self.conversation.pause()
         else:
             self.llm.timeout = max(1, math.ceil(self.deadline - time.monotonic()))

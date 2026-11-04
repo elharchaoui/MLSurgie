@@ -56,8 +56,6 @@
     "max_parameters": 65536,
     "max_width": 256,
     "max_hidden_layers": 4,
-    "max_seconds": 3600,
-    "max_editor_tokens": 400000,
     "max_output_tokens": 16384
   }
 }
