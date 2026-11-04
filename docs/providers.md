@@ -2,7 +2,7 @@
 
 [← Overview](../README.md) · [Getting started](quickstart.md) · [Technical reference](reference.md)
 
-MLSurgie supports **Ollama** and **OpenRouter** as built-in live editors. The user always chooses an explicit model. The same evaluator, JSON weight language, budgets, and final-test protocol apply to both. No extra provider SDK is needed.
+MLSurgie supports **Ollama** and **OpenRouter** as built-in live editors. The user always chooses an explicit model. The same evaluator, JSON weight language, budgets, and final-test protocol apply to both. No extra provider SDK is needed for `build`. The optional [`agent` harness](agent-harness.md) uses OpenHands SDK and its LiteLLM provider integration; its model argument uses `provider/model` notation.
 
 ## Which model runs?
 
@@ -11,6 +11,7 @@ MLSurgie supports **Ollama** and **OpenRouter** as built-in live editors. The us
 | `mlsurgie demo` | No LLM. Deterministic scripted proposals for a known threshold rule. |
 | `build --programs proposals.json` | No LLM. User-supplied JSON proposals, labeled as a scripted fixture. |
 | `build --ollama-model MODEL` | The exact installed Ollama model name supplied by the user. |
+| `agent --model openrouter/VENDOR/MODEL` | OpenHands harness using its LiteLLM/OpenRouter integration, with containerized construction. |
 | `build --openrouter-model VENDOR/MODEL` | The explicit OpenRouter model ID supplied by the user; OpenRouter routes to its serving providers. |
 | Published Titanic experiment | An interactive assistant submitting programs through a file bridge; this is separate from the packaged live adapters. |
 
@@ -105,4 +106,4 @@ Run budgets constrain submitted iterations, output tokens, reported total tokens
 
 ## Other integrations
 
-LiteLLM and direct vendor SDKs are not built in. OpenRouter supplies the requested hosted-provider option without adding a provider SDK dependency. New trusted editors can implement `identity` and `propose(context, timeout) -> Reply`; see [contributing](../CONTRIBUTING.md#adding-an-editor).
+The lightweight `build` command has no LiteLLM adapter or direct vendor SDK. The optional `agent` command uses LiteLLM through OpenHands SDK. OpenRouter remains available as a direct JSON editor without that optional dependency. New trusted editors can implement `identity` and `propose(context, timeout) -> Reply`; see [contributing](../CONTRIBUTING.md#adding-an-editor).

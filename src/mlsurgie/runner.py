@@ -3,6 +3,7 @@ from dataclasses import asdict
 import json
 from pathlib import Path
 import platform
+import subprocess
 import time
 
 import numpy as np
@@ -15,7 +16,8 @@ from .metrics import objective, score
 from .network import PROGRAM_GUIDE, apply_program
 
 
-def build(*, table, editor, output, budget=None, seed=42):
+def build(*, table, editor, output, budget=None, seed=42,
+          dynamic_architecture=False, isolated_evaluation=False):
     """Construct a binary MLP by direct proposals; no numerical weight fitting.
 
     The built-in editor sees only JSON contexts. Custom in-process editors are
@@ -46,6 +48,8 @@ def build(*, table, editor, output, budget=None, seed=42):
         "split_indices": {k: v.tolist() for k, v in splits.items()}, "group_column": table.group_column,
         "versions": {"python": platform.python_version(), "numpy": np.__version__, "torch": str(torch.__version__), "mlsurgie": "0.1.0"},
         "protocol": "direct_weight_programming; support-only preprocessing; final test isolated from editor",
+        "dynamic_architecture": dynamic_architecture,
+        "isolated_evaluation": isolated_evaluation,
     }
     write_json(output / "manifest.json", manifest)
     support_examples = []
@@ -84,7 +88,7 @@ def build(*, table, editor, output, budget=None, seed=42):
         folder.mkdir()
         context = {**deepcopy(context_base), "iteration": iteration,
                    "best": best.snapshot() if best else None, "last_feedback": deepcopy(feedback),
-                   "frozen_hidden_sizes": frozen,
+                   "frozen_hidden_sizes": None if dynamic_architecture else frozen,
                    "output_token_limit": min(budget.max_output_tokens, budget.max_editor_tokens - tokens_used)}
         write_json(folder / "context.json", context)
         record = {"iteration": iteration, "selected": False}
@@ -106,6 +110,12 @@ def build(*, table, editor, output, budget=None, seed=42):
         record["usage"] = usage
         if reply.raw is not None:
             (folder / "reply.txt").write_text(reply.raw)
+        if reply.stop and reply.program is None:
+            record.update(status="editor_stopped")
+            history.append(record)
+            write_json(folder / "result.json", record)
+            stop_reason = "editor_finished"
+            break
         try:
             serialized = json.dumps(reply.program, allow_nan=False)
             if len(serialized.encode()) > 2_000_000:
@@ -117,9 +127,14 @@ def build(*, table, editor, output, budget=None, seed=42):
                 write_json(folder / "result.json", record)
                 stop_reason = "editor_budget_exceeded"
                 break
-            candidate = apply_program(reply.program, len(pre.names), budget, best, frozen)
+            candidate = apply_program(reply.program, len(pre.names), budget, best,
+                                      None if dynamic_architecture else frozen)
             rows_used += len(yd)
-            probabilities = candidate.probabilities(xd)
+            if isolated_evaluation:
+                from .evaluator import evaluate
+                probabilities = evaluate(candidate, xd, max(.1, budget.max_seconds - (time.monotonic() - started)))
+            else:
+                probabilities = candidate.probabilities(xd)
             metrics = score(yd, probabilities, table.goal.threshold)
             value = objective(metrics, table.goal.primary_metric)
             delta = save_diff(folder, candidate, best if reply.program["base"] == "best" else None)
@@ -134,11 +149,14 @@ def build(*, table, editor, output, budget=None, seed=42):
             record.update(status="evaluated", selected=selected, state_hash=candidate.fingerprint(), metrics=metrics, diff=delta)
             feedback = {"status": "evaluated", "metrics": metrics, "selected": selected,
                         "largest_probability_errors": diagnostics}
-        except (ValueError, TypeError, KeyError, RuntimeError, OverflowError) as exc:
+        except (ValueError, TypeError, KeyError, RuntimeError, OverflowError, subprocess.TimeoutExpired) as exc:
             record.update(status="invalid", error=f"{type(exc).__name__}: {exc}")
             feedback = {"status": "invalid", "error": record["error"]}
         history.append(record)
         write_json(folder / "result.json", record)
+        if reply.stop:
+            stop_reason = "editor_finished"
+            break
         if best_metrics and table.goal.target_score is not None:
             target = table.goal.target_score
             reached = best_metrics[table.goal.primary_metric] <= target if table.goal.primary_metric in {"log_loss", "brier"} else best_metrics[table.goal.primary_metric] >= target
@@ -146,14 +164,22 @@ def build(*, table, editor, output, budget=None, seed=42):
                 stop_reason = "development_target_reached"
                 break
     final_metrics = None
+    final_evaluation_error = None
     predictor = None
     if best is not None:
         # No more editor calls occur after this point. Freeze before opening test data.
         write_json(output / "selection.json", {"iteration": best_iteration, "state_hash": best.fingerprint(), "primary_metric": table.goal.primary_metric})
         test_rows = [table.rows[int(i)] for i in splits["test"]]
-        probabilities = best.probabilities(pre.transform(test_rows))
-        final_metrics = score(table.labels(splits["test"]), probabilities, table.goal.threshold)
-        rows_used += len(test_rows)
+        try:
+            if isolated_evaluation:
+                from .evaluator import evaluate
+                probabilities = evaluate(best, pre.transform(test_rows), max(30., budget.max_seconds))
+            else:
+                probabilities = best.probabilities(pre.transform(test_rows))
+            final_metrics = score(table.labels(splits["test"]), probabilities, table.goal.threshold)
+            rows_used += len(test_rows)
+        except (ValueError, RuntimeError, OSError, subprocess.TimeoutExpired) as exc:
+            final_evaluation_error = f"{type(exc).__name__}: {exc}"
         save_model(output, best, pre, classes, table.goal.threshold, budget)
         predictor = Predictor(best, pre, classes, table.goal.threshold)
     target_met = None
@@ -161,8 +187,10 @@ def build(*, table, editor, output, budget=None, seed=42):
         metric, target = table.goal.primary_metric, table.goal.target_score
         target_met = final_metrics[metric] <= target if metric in {"log_loss", "brier"} else final_metrics[metric] >= target
     report = {
-        "status": "no_valid_model" if best is None else "target_not_met" if target_met is False else "completed",
+        "status": "no_valid_model" if best is None else "final_evaluation_error" if final_evaluation_error else "target_not_met" if target_met is False else "completed",
+        "final_evaluation_error": final_evaluation_error,
         "editor": identity, "stop_reason": stop_reason, "selected_iteration": best_iteration,
+        "assurance": identity.get("assurance", "validated JSON operations; editor derivation is unverified"),
         "development": best_metrics, "final_test": final_metrics, "final_target_met": target_met,
         "history": history, "cost": {"evaluated_rows": rows_used, "editor_tokens": tokens_used,
                                     "wall_seconds": time.monotonic() - started, "currency_cost": None},

@@ -83,9 +83,10 @@ class OpenRouterEditor:
 
 @dataclass
 class Reply:
-    program: dict
+    program: dict | None
     usage: dict = field(default_factory=dict)
     raw: str | None = None
+    stop: bool = False
 
 
 class ScriptedEditor:

@@ -6,14 +6,14 @@
 
 - Goal: natural-language description, target, positive label, selection metric, fixed decision threshold, optional target score.
 - Dataset: binary labels; explicitly selected numeric/categorical inputs. Numeric blanks use support medians and a missing flag; values are standardized using support statistics. Categories have explicit missing/unknown bins.
-- Architecture: zero, one, or two hidden Linear/ReLU layers by default; one output logit interpreted through sigmoid. The first valid candidate freezes the architecture.
+- Architecture: zero, one, or two hidden Linear/ReLU layers by default; one output logit interpreted through sigmoid. In JSON-only `build`, the first valid candidate freezes the architecture. The optional [agent harness](agent-harness.md) permits topology changes between candidates.
 - Budget: maximum submitted iterations, parameters, widths, wall time, reported editor tokens, output tokens per response, and evaluated rows. Input-token usage can cause a single call to overshoot its token allowance; subsequent work stops and the overshoot is recorded. Final evaluation is reserved separately in the row budget and may add runtime after the editing deadline.
 
 Default split: support/development/test = 60/20/20, stratified by class. Grouped splits are disjoint and approximately follow these proportions by group count. All three must contain both classes. At least five examples per class are needed even to attempt the IID split; that minimum is not enough for reliable generalization estimates.
 
 Preprocessing estimates distribution statistics, not neural weights. Its state is disclosed in the artifact. Numeric validation and split creation use the supplied table; only support rows determine preprocessing. Final-test predictions are computed only after selection.
 
-The current version supports binary classification only. Regression, multiclass, custom preservation constraints, activations as feedback, user-supplied separate test sets, architecture changes during a run, and hosted adapters beyond OpenRouter are future extensions. Selection currently uses one primary metric, not an arbitrary natural-language acceptance condition.
+The current version supports binary classification only. Regression, multiclass, custom preservation constraints, activations as feedback, user-supplied separate test sets, arbitrary custom layers and additional direct hosted adapters are future extensions. Selection currently uses one primary metric, not an arbitrary natural-language acceptance condition.
 
 ## Weight programs
 
@@ -33,7 +33,7 @@ Editors submit JSON, never Python. Each submission specifies its base, architect
 
 This particular example requires two encoded input features. `layers.N.bias` is also editable. Supported operations are `fill`, `set`, `set_entries`, and `add_entries`. An entry has `index` and `value`. A patch can use `base: "best"` with the exact `base_hash` provided in the context. Stale bases, unknown operations/tensors, invalid shapes/indices, architecture changes, and nonfinite or excessive weights are rejected.
 
-There is no expression evaluation, code execution, optimizer API, or fitting fallback in the construction language. This enforces the local operation surface; it does not prove how a remote LLM internally derived a numeric constant. Custom Python editor plugins are trusted extensions and do not constitute an adversarial sandbox.
+There is no expression evaluation, code execution, optimizer API, or fitting fallback in the JSON construction language. The optional [agent harness](agent-harness.md) separately executes Python in a construction container to produce these JSON artifacts. This enforces the local operation surface; it does not prove how a remote LLM internally derived a numeric constant. Custom Python editor plugins are trusted extensions and do not constitute an adversarial sandbox.
 
 One submitted candidate counts as one iteration, including invalid proposals. Each valid candidate receives one full development evaluation and a bounded list of largest probability errors. There are no hidden extra probes or retries. Provider errors stop the run and are recorded. The best eligible candidate is frozen before the final test; an unsuccessful target score is reported as such.
 

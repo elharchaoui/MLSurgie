@@ -119,7 +119,8 @@ def replay(path):
         if record["status"] != "evaluated":
             continue
         program = read_json(path / "iterations" / f"{record['iteration']:03d}" / "proposal.json")
-        candidate = apply_program(program, manifest["input_size"], budget, best, architecture)
+        candidate = apply_program(program, manifest["input_size"], budget, best,
+                                  None if manifest.get("dynamic_architecture", False) else architecture)
         architecture = candidate.hidden_sizes
         if candidate.fingerprint() != record["state_hash"]:
             raise ValueError("Replay candidate hash mismatch")
@@ -170,6 +171,7 @@ def save_report(path, report):
         f'<p class="tag">MLSurgie / {html.escape(subtitle)}</p><h1>Weight-space programming run</h1>'
         f'<div class="summary"><strong>{cell(report["status"])}</strong> · selected iteration '
         f'{cell(report["selected_iteration"])}<br>Stop reason: {cell(report["stop_reason"])}</div>'
+        f'<p>Construction assurance: {cell(report.get("assurance", "Editor derivation unverified"))}</p>'
         '<h2>Prediction quality</h2><p>Development feedback selected the checkpoint. '
         'Final test predictions were computed only after selection.</p>'
         '<table><thead><tr><th>Metric</th><th>Development</th><th>Final test</th></tr></thead>'

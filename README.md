@@ -11,13 +11,13 @@
 [![PyTorch](https://img.shields.io/badge/built_with-PyTorch-EE4C2C?logo=pytorch&logoColor=white)](https://pytorch.org/)
 [![Status: research prototype](https://img.shields.io/badge/status-research_prototype-0F766E)](#current-scope)
 
-[Quickstart](docs/quickstart.md) · [LLM providers](docs/providers.md) · [Technical reference](docs/reference.md) · [Titanic experiment](experiments/titanic/RESULTS.md) · [Contribute](CONTRIBUTING.md)
+[Quickstart](docs/quickstart.md) · [LLM providers](docs/providers.md) · [Agent harness](docs/agent-harness.md) · [Technical reference](docs/reference.md) · [Titanic experiment](experiments/titanic/RESULTS.md) · [Contribute](CONTRIBUTING.md)
 
 </div>
 
 ![MLSurgie workflow: goal and support data, LLM weight programs, validation and development feedback, then a frozen network with final test metrics.](docs/assets/weight-space-loop.svg)
 
-MLSurgie is a Python framework for **LLM-driven weight-space programming**: constructing small neural networks through explicit assignments to their weights and biases. Supply a goal, labeled tabular data, and an iteration budget. An editor proposes weight programs; MLSurgie checks them, measures development performance, and returns bounded feedback. The best network is frozen before final-test evaluation.
+MLSurgie is a Python framework for **LLM-driven weight-space programming**: constructing small neural networks through explicit assignments to their weights and biases. Supply a goal, labeled tabular data, and an iteration budget. An editor or coding harness proposes weight programs; MLSurgie checks them, measures development performance, and returns bounded feedback. The best network is frozen before final-test evaluation.
 
 The construction loop uses direct tensor operations without backpropagation, gradient descent, or conventional estimator fitting. Evaluation-guided revisions are still adaptive optimization. Once exported, the network predicts without an LLM.
 
@@ -26,6 +26,7 @@ The construction loop uses direct tensor operations without backpropagation, gra
 | Your goal | Start with |
 |---|---|
 | Try the pipeline without a model or credentials | [Offline demo below](#quickstart) |
+| Let an agent write Python and revise network topology | [OpenHands harness](docs/agent-harness.md) |
 | Choose a local or hosted LLM | [Provider setup](docs/providers.md) |
 | Build a classifier using a local LLM | [Live-editor quickstart](docs/quickstart.md#build-with-a-local-llm) |
 | Understand the weight language and artifacts | [Technical reference](docs/reference.md) |
@@ -50,6 +51,25 @@ mlsurgie replay runs/first-demo
 Windows PowerShell activation: `.venv\Scripts\Activate.ps1`. Use a new output directory for every run.
 
 The demo is a **scripted known-rule fixture** for `x > 0`. It checks the complete proposal → selection → export → replay path without downloading an LLM. The CLI prints the selected iteration and test metrics. Open `runs/first-demo/report.html` for the full report; replay prints the verified checkpoint hash.
+
+## Agentic construction with OpenHands
+
+The optional coding harness lets the agent run Python construction programs in Docker, repair failures, change depth and width between candidates, and iterate on independent development feedback. The final test is evaluated after selection, outside the agent's container.
+
+```bash
+python -m pip install -e '.[harness]'  # Python 3.12+
+docker build -f containers/Dockerfile.constructor -t mlsurgie-constructor:local .
+export OPENROUTER_API_KEY="YOUR_API_KEY"
+mlsurgie agent \
+  --config examples/titanic-agent.json \
+  --dataset data/titanic-seaborn.csv \
+  --model openrouter/YOUR_VENDOR/YOUR_MODEL \
+  --output runs/agent-titanic
+```
+
+Requires a running Docker engine and an explicit tool-capable model. [Complete setup, data download, execution boundaries, and limitations →](docs/agent-harness.md)
+
+The first milestone retains feed-forward Linear/ReLU exports and binary classification. It removes architecture freezing in harness mode; arbitrary custom layers are not yet supported. Construction source is recorded, but arbitrary Python's compliance with the no-fitting policy is not mechanically proven. This new harness has not yet produced a live LLM benchmark result.
 
 ## Choose your LLM provider
 
@@ -79,7 +99,7 @@ Follow the [copyable Titanic walkthrough](docs/quickstart.md) for both provider 
 
 1. **Specify behavior.** Declare the goal, target, input semantics, selection metric, and budget. MLSurgie creates support, development, and test partitions.
 2. **Construct weights.** The editor sees support examples, preprocessing, constraints, and development feedback. It returns JSON operations on neural weights and biases.
-3. **Measure and revise.** MLSurgie rejects invalid programs, scores valid candidates, and retains the best eligible network. The first valid architecture stays fixed throughout the run.
+3. **Measure and revise.** MLSurgie rejects invalid programs, scores valid candidates, and retains the best eligible network. JSON-only `build` freezes the first valid architecture; `agent` can revise topology between candidates.
 4. **Freeze and deliver.** Final-test evaluation follows selection. Export includes weights, preprocessing, proposal history, checksums, and metrics.
 
 ```json
@@ -114,12 +134,12 @@ This is **one public dataset and one split**. Titanic may be present in the edit
 |---|---|
 | Binary tabular classification | Numeric and categorical features; explicit feature allowlist |
 | Small feed-forward networks | Linear/ReLU hidden layers and one sigmoid output; zero to two hidden layers by default |
-| Editors | Ollama local JSON chat, OpenRouter hosted JSON chat, scripted fixtures, trusted Python editor extensions |
+| Editors / harness | Ollama and OpenRouter JSON editors; optional OpenHands coding harness with SDK/LiteLLM providers; scripted fixtures |
 | Evaluation | Log loss, Brier, ROC-AUC, accuracy, balanced accuracy, precision, recall, F1, confusion matrix |
 | Reproducibility | Saved programs, tensor diffs, dataset fingerprints, split indices, checksum-verified loading and replay |
 | Inference | Python API and CSV CLI; no editor required |
 
-Regression, multiclass classification, changing architecture during a run, and separate user-supplied test sets are future extensions. Run folders contain exposed data examples; review them before sharing. [Full constraints and trust model →](docs/reference.md#inputs-and-supported-scope)
+Regression, multiclass classification, custom layers, and separate user-supplied test sets are future extensions. Architecture changes during a run are supported by the optional harness. Run folders contain exposed data examples; review them before sharing. [Full constraints and trust model →](docs/reference.md#inputs-and-supported-scope)
 
 ## Use the exported network
 
@@ -144,7 +164,7 @@ mlsurgie predict runs/my-classifier --dataset data/new-rows.csv --output predict
 
 **What inputs do I need?** A natural-language goal, a labeled binary dataset, an explicit list of prediction-time features, and evaluation limits. The goal and examples guide the editor; the selected numeric metric determines the winner.
 
-**Does an LLM generate every weight?** The editor supplies explicit parameter operations starting from zero or the best checkpoint. A program may leave parameters at zero. MLSurgie validates and applies the program; it has no weight-fitting fallback.
+**Does an LLM generate every weight?** The editor supplies explicit parameter operations, directly or through a construction program, starting from zero or the best checkpoint. A program may leave parameters at zero. MLSurgie validates and applies the program; it has no weight-fitting fallback.
 
 **Is this training-free?** It uses no gradients or conventional target-model fitting. It does use labeled support data, support-only preprocessing statistics, and repeated development feedback. Those revisions are adaptive optimization.
 

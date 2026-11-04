@@ -27,6 +27,10 @@ mlsurgie replay runs/first-demo
 
 Expected behavior: candidate 2 is selected, a final-test report is printed, and replay returns `verified_state_hash`. Open `runs/first-demo/report.html` in your browser. This is a deterministic scripted fixture for a known threshold function, not an LLM performance test.
 
+## Let an agent construct and revise the network
+
+For a coding agent that writes Python, repairs construction failures, changes topology, and iterates on evaluation feedback, use the [OpenHands harness walkthrough](agent-harness.md). It requires Python 3.12+, Docker, and an explicit tool-capable model. The `build` paths below remain JSON-only editor loops with fixed topology after the first valid proposal.
+
 ## Choose a provider
 
 | Path | Provider / model | Key needed? |
