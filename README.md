@@ -11,7 +11,7 @@
 [![PyTorch](https://img.shields.io/badge/built_with-PyTorch-EE4C2C?logo=pytorch&logoColor=white)](https://pytorch.org/)
 [![Status: research prototype](https://img.shields.io/badge/status-research_prototype-0F766E)](#current-scope)
 
-[Quickstart](docs/quickstart.md) · [Technical reference](docs/reference.md) · [Titanic experiment](experiments/titanic/RESULTS.md) · [Contribute](CONTRIBUTING.md)
+[Quickstart](docs/quickstart.md) · [LLM providers](docs/providers.md) · [Technical reference](docs/reference.md) · [Titanic experiment](experiments/titanic/RESULTS.md) · [Contribute](CONTRIBUTING.md)
 
 </div>
 
@@ -26,6 +26,7 @@ The construction loop uses direct tensor operations without backpropagation, gra
 | Your goal | Start with |
 |---|---|
 | Try the pipeline without a model or credentials | [Offline demo below](#quickstart) |
+| Choose a local or hosted LLM | [Provider setup](docs/providers.md) |
 | Build a classifier using a local LLM | [Live-editor quickstart](docs/quickstart.md#build-with-a-local-llm) |
 | Understand the weight language and artifacts | [Technical reference](docs/reference.md) |
 | Inspect an actual LLM construction experiment | [Titanic protocol and results](experiments/titanic/RESULTS.md) |
@@ -50,7 +51,30 @@ Windows PowerShell activation: `.venv\Scripts\Activate.ps1`. Use a new output di
 
 The demo is a **scripted known-rule fixture** for `x > 0`. It checks the complete proposal → selection → export → replay path without downloading an LLM. The CLI prints the selected iteration and test metrics. Open `runs/first-demo/report.html` for the full report; replay prints the verified checkpoint hash.
 
-**Ready for an LLM?** Follow the [copyable Titanic walkthrough](docs/quickstart.md#build-with-a-local-llm), including data download, matching configuration, local editor setup, and prediction.
+## Choose your LLM provider
+
+There is **no default LLM or model**. Select one provider and an explicit model for each live build:
+
+| Path | LLM used | Configuration |
+|---|---|---|
+| Offline `mlsurgie demo` | None; scripted known-rule proposals | No provider or key |
+| Ollama | Your installed local model | `--ollama-model MODEL_ID`, optional `--ollama-url` |
+| OpenRouter | Your chosen hosted model | `--openrouter-model VENDOR/MODEL`, `OPENROUTER_API_KEY` environment variable |
+
+OpenRouter is built in; no extra SDK is required. After downloading the data in the [quickstart](docs/quickstart.md):
+
+```bash
+export OPENROUTER_API_KEY="YOUR_API_KEY"
+mlsurgie build \
+  --config examples/titanic-seaborn.json \
+  --dataset data/titanic-seaborn.csv \
+  --openrouter-model YOUR_VENDOR/YOUR_MODEL \
+  --output runs/openrouter-classifier
+```
+
+Replace the placeholders with your key and an exact [OpenRouter model ID](https://openrouter.ai/models) supporting JSON output. No specific hosted or Ollama model has yet been benchmarked through these packaged adapters. The reported Titanic experiment used a separate interactive assistant bridge. LiteLLM is not a built-in adapter.
+
+Follow the [copyable Titanic walkthrough](docs/quickstart.md) for both provider paths, or read the [provider configuration reference](docs/providers.md).
 
 ## How weight-space programming works
 
@@ -91,7 +115,7 @@ This is **one public dataset and one split**. Titanic may be present in the edit
 |---|---|
 | Binary tabular classification | Numeric and categorical features; explicit feature allowlist |
 | Small feed-forward networks | Linear/ReLU hidden layers and one sigmoid output; zero to two hidden layers by default |
-| Editors | Ollama JSON chat, scripted fixtures, trusted Python editor extensions |
+| Editors | Ollama local JSON chat, OpenRouter hosted JSON chat, scripted fixtures, trusted Python editor extensions |
 | Evaluation | Log loss, Brier, ROC-AUC, accuracy, balanced accuracy, precision, recall, F1, confusion matrix |
 | Reproducibility | Saved programs, tensor diffs, dataset fingerprints, split indices, checksum-verified loading and replay |
 | Inference | Python API and CSV CLI; no editor required |

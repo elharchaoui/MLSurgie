@@ -2,7 +2,7 @@
 
 [← Project overview](../README.md) · [Technical reference](reference.md)
 
-This guide takes you from source installation to an exported neural network. The offline path checks the framework; the live path asks a local LLM to write weights.
+This guide takes you from source installation to an exported neural network. The offline path checks the framework; live builds use your chosen Ollama or OpenRouter model to write weights. **No default LLM is selected.**
 
 ## Install
 
@@ -26,6 +26,16 @@ mlsurgie replay runs/first-demo
 ```
 
 Expected behavior: candidate 2 is selected, a final-test report is printed, and replay returns `verified_state_hash`. Open `runs/first-demo/report.html` in your browser. This is a deterministic scripted fixture for a known threshold function, not an LLM performance test.
+
+## Choose a provider
+
+| Path | Provider / model | Key needed? |
+|---|---|---|
+| `mlsurgie demo` | None; scripted fixture | No |
+| Local build | Ollama, exact installed model name | No for the built-in local setup |
+| Hosted build | OpenRouter, exact `vendor/model` ID | `OPENROUTER_API_KEY` |
+
+The CLI accepts exactly one of `--ollama-model`, `--openrouter-model`, or `--programs`. There is no automatic fallback to another model. Adapter support has been tested with mocked responses; we have not benchmarked a particular Ollama or OpenRouter model for weight construction. The reported Titanic experiment used an interactive assistant bridge. [Full provider settings](providers.md).
 
 ## Build with a local LLM
 
@@ -91,6 +101,37 @@ print(predictor.predict_proba(rows))
 print(predictor.predict(rows))
 ```
 
+## Build with OpenRouter
+
+Use the same installation, labeled CSV, and configuration from the walkthrough above. Ollama is unnecessary for this path.
+
+1. Create a key in your [OpenRouter account](https://openrouter.ai/settings/keys).
+2. Select an exact [model ID](https://openrouter.ai/models) with JSON-output support; replace `YOUR_VENDOR/YOUR_MODEL` below. Model availability, pricing, and ability to write useful weights vary.
+3. Set the key in your shell and run:
+
+```bash
+export OPENROUTER_API_KEY="YOUR_API_KEY"
+mlsurgie build \
+  --config examples/titanic-seaborn.json \
+  --dataset data/titanic-seaborn.csv \
+  --openrouter-model YOUR_VENDOR/YOUR_MODEL \
+  --output runs/openrouter-classifier
+```
+
+PowerShell key setup: `$env:OPENROUTER_API_KEY = "YOUR_API_KEY"`. Do not put the key in the dataset configuration or commit it. `.env` files are not automatically loaded. To use another environment variable, pass its **name** via `--openrouter-api-key-env MY_KEY_VARIABLE`.
+
+OpenRouter receives the support examples, preprocessing, current weights, and development diagnostics and routes the request to a model provider. Final-test examples stay outside the request. Requests may incur provider charges; MLSurgie records token counts but does not enforce a currency spending limit. Set spending controls in your provider account.
+
+The built-in adapter requests JSON mode and requires a route supporting the supplied parameters. It makes one non-streaming request per proposal with no application-level retries. Invalid weight JSON consumes an iteration; provider errors stop the run. OpenRouter may route between hosts serving the chosen model according to its own settings.
+
+After completion, inspect `runs/openrouter-classifier/report.html` and run:
+
+```bash
+mlsurgie replay runs/openrouter-classifier
+```
+
+See [provider setup and Python examples](providers.md) for details. The source API is documented in [OpenRouter's chat-completion reference](https://openrouter.ai/docs/api/api-reference/chat/create-a-chat-completion).
+
 ## Bring your own dataset
 
 Copy the example configuration and change `goal.target`, `positive_label`, the description, and `features`. Select only features available at prediction time. The current task must have exactly two nonmissing target labels. Feature kinds are `numeric` or `categorical`; target and optional group identifiers must be excluded from the feature list. Add `group_column` when related records should remain together.
@@ -103,6 +144,7 @@ Choose a primary metric (`log_loss`, `brier`, `roc_auc`, `accuracy`, or `balance
 |---|---|
 | Output directory already exists | Choose a fresh run path; existing artifacts are preserved. |
 | Missing CSV column or incorrect target | Match the configuration to the exact CSV headers and positive-label string. |
+| OpenRouter key or HTTP error | Set the key environment variable, check account access/credits and the exact model ID; inspect the recorded HTTP status. |
 | Ollama connection error | Check the server, installed model name, and `--ollama-url`. |
 | No model exported | Read `report.json` and iteration results for invalid proposals, timeouts, or exhausted budget. |
 | Final metrics are weak | Inspect development errors and support coverage; compare against a simple baseline and report failures. |

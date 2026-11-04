@@ -7,7 +7,7 @@ from .artifacts import load, read_json, replay
 from .contracts import Budget, Feature, Goal
 from .data import Table
 from .demo import demo
-from .editors import OllamaEditor, ScriptedEditor
+from .editors import OllamaEditor, OpenRouterEditor, ScriptedEditor
 from .runner import build
 
 
@@ -22,8 +22,11 @@ def main():
     b.add_argument("--output", required=True)
     editors = b.add_mutually_exclusive_group(required=True)
     editors.add_argument("--ollama-model")
+    editors.add_argument("--openrouter-model", help="Explicit OpenRouter model ID; key read from environment")
     editors.add_argument("--programs", help="JSON array of scripted proposals, not a live LLM")
     b.add_argument("--ollama-url", default="http://localhost:11434")
+    b.add_argument("--openrouter-api-key-env", default="OPENROUTER_API_KEY",
+                   help="Environment variable holding the OpenRouter key (never pass the key itself)")
     r = sub.add_parser("replay", help="Reconstruct and verify the exported network from programs")
     r.add_argument("run")
     p = sub.add_parser("predict", help="Predict using a saved network; no editor required")
@@ -42,7 +45,12 @@ def main():
             goal = Goal(**config["goal"])
             features = [Feature(**f) for f in config["features"]]
             table = Table.from_csv(args.dataset, features, goal, config.get("group_column"))
-            editor = OllamaEditor(args.ollama_model, args.ollama_url) if args.ollama_model else ScriptedEditor(read_json(args.programs))
+            if args.ollama_model:
+                editor = OllamaEditor(args.ollama_model, args.ollama_url)
+            elif args.openrouter_model:
+                editor = OpenRouterEditor(args.openrouter_model, args.openrouter_api_key_env)
+            else:
+                editor = ScriptedEditor(read_json(args.programs))
             result = build(table=table, editor=editor, output=args.output,
                            budget=Budget(**config.get("budget", {})), seed=config.get("seed", 42))
         elif args.command == "replay":

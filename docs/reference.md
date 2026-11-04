@@ -1,6 +1,6 @@
 # MLSurgie technical reference
 
-[← Back to the project](../README.md) · [Quickstart](quickstart.md)
+[← Back to the project](../README.md) · [Quickstart](quickstart.md) · [LLM providers](providers.md)
 
 ## Inputs and supported scope
 
@@ -13,7 +13,7 @@ Default split: support/development/test = 60/20/20, stratified by class. Grouped
 
 Preprocessing estimates distribution statistics, not neural weights. Its state is disclosed in the artifact. Numeric validation and split creation use the supplied table; only support rows determine preprocessing. Final-test predictions are computed only after selection.
 
-The current version supports binary classification only. Regression, multiclass, custom preservation constraints, activations as feedback, user-supplied separate test sets, architecture changes during a run, and other hosted-provider adapters are future extensions. Selection currently uses one primary metric, not an arbitrary natural-language acceptance condition.
+The current version supports binary classification only. Regression, multiclass, custom preservation constraints, activations as feedback, user-supplied separate test sets, architecture changes during a run, and hosted adapters beyond OpenRouter are future extensions. Selection currently uses one primary metric, not an arbitrary natural-language acceptance condition.
 
 ## Weight programs
 
