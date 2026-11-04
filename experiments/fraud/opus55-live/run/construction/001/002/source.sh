@@ -1,0 +1,1 @@
+head -c 3000 /inputs/README.md; cat /skills/rare-events.md /skills/binary-evidence.md /skills/network-ir.md /skills/policy.md; head -3 /inputs/data/support.csv

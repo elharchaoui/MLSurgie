@@ -1,0 +1,286 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>MLSurgie run</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{max-width:960px;margin:48px auto;padding:0 24px;font:16px/1.6 system-ui;color:#1b2937;}h1{font-size:36px;letter-spacing:-1px}h2{margin-top:36px}p{max-width:780px}.tag{font-size:13px;text-transform:uppercase;letter-spacing:1px;color:#146b64}.summary{background:#edf5f3;border-left:4px solid #146b64;padding:16px 24px}table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}th,td{text-align:left;padding:10px;border-bottom:1px solid #dce4e8}thead{background:#f1f4f6}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f4f5f7;padding:24px}details{margin-top:32px}summary{cursor:pointer}li{margin:8px 0}</style><p class="tag">MLSurgie / Live editor run · direct weight programming</p><h1>Weight-space programming run</h1><div class="summary"><strong>completed</strong> · selected iteration 1<br>Stop reason: editor_token_preflight</div><p>Construction assurance: source-recorded and statically audited; no-fitting policy is not mechanically proven</p><h2>Prediction quality</h2><p>Development feedback selected the checkpoint. Final test predictions were computed only after selection.</p><table><thead><tr><th>Metric</th><th>Development</th><th>Final test</th></tr></thead><tbody><tr><th>n</th><td>2400</td><td>2401</td></tr><tr><th>log_loss</th><td>0.0317183</td><td>0.0365169</td></tr><tr><th>brier</th><td>0.00535243</td><td>0.00619249</td></tr><tr><th>roc_auc</th><td>0.90611</td><td>0.886423</td></tr><tr><th>average_precision</th><td>0.741421</td><td>0.745823</td></tr><tr><th>accuracy</th><td>0.994583</td><td>0.993753</td></tr><tr><th>balanced_accuracy</th><td>0.88733</td><td>0.859787</td></tr><tr><th>precision</th><td>0.95</td><td>0.972973</td></tr><tr><th>recall</th><td>0.77551</td><td>0.72</td></tr><tr><th>f1</th><td>0.853933</td><td>0.827586</td></tr></tbody></table><h2>Candidate history</h2><p>“Selected” means the candidate became best at that iteration. Changed values are relative to each proposal’s declared base.</p><table><thead><tr><th>Iteration</th><th>Status</th><th>average_precision</th><th>Changed values</th><th>Selected</th></tr></thead><tbody><tr><td>1</td><td>evaluated</td><td>0.741421</td><td>41</td><td>Yes</td></tr><tr><td>2</td><td>editor_stopped</td><td>—</td><td>—</td><td>No</td></tr></tbody></table><h2>Compute</h2><p>4801 evaluated rows · 370888 editor tokens · 225.814 seconds. Monetary cost is not estimated.</p><h2>Interpretation limits</h2><ul><li>Adaptive development evaluation can overfit.</li><li>Accuracy interval is Wilson 95%, assumes independent observations; other metrics have no interval here.</li><li>Custom Python editor plugins are trusted; isolation is enforced through built-in JSON editor contexts, not an OS sandbox.</li><li>Token limits stop subsequent work; one provider request can overshoot due to input token usage.</li><li>Scripted fixtures demonstrate the protocol, not autonomous LLM performance.</li></ul><details><summary>Full metrics, confusion matrices, intervals, and run record</summary><pre>{
+  &quot;status&quot;: &quot;completed&quot;,
+  &quot;task&quot;: &quot;binary&quot;,
+  &quot;selection_metric&quot;: &quot;average_precision&quot;,
+  &quot;final_evaluation_error&quot;: null,
+  &quot;editor&quot;: {
+    &quot;kind&quot;: &quot;openhands&quot;,
+    &quot;model&quot;: &quot;openrouter/anthropic/claude-opus-5.5&quot;,
+    &quot;base_url&quot;: null,
+    &quot;image&quot;: &quot;mlsurgie-constructor:local&quot;,
+    &quot;max_agent_steps&quot;: 24,
+    &quot;assurance&quot;: &quot;source-recorded and statically audited; no-fitting policy is not mechanically proven&quot;
+  },
+  &quot;stop_reason&quot;: &quot;editor_token_preflight&quot;,
+  &quot;selected_iteration&quot;: 1,
+  &quot;assurance&quot;: &quot;source-recorded and statically audited; no-fitting policy is not mechanically proven&quot;,
+  &quot;track&quot;: {
+    &quot;names&quot;: &quot;semantic&quot;,
+    &quot;policy&quot;: &quot;strict&quot;
+  },
+  &quot;development&quot;: {
+    &quot;n&quot;: 2400,
+    &quot;positive_count&quot;: 49,
+    &quot;threshold&quot;: 0.5,
+    &quot;log_loss&quot;: 0.03171834242648788,
+    &quot;brier&quot;: 0.005352426897168136,
+    &quot;roc_auc&quot;: 0.9061102960963203,
+    &quot;average_precision&quot;: 0.7414212565159958,
+    &quot;accuracy&quot;: 0.9945833333333334,
+    &quot;balanced_accuracy&quot;: 0.8873297511263118,
+    &quot;precision&quot;: 0.95,
+    &quot;recall&quot;: 0.7755102040816326,
+    &quot;f1&quot;: 0.8539325842696629,
+    &quot;confusion_matrix&quot;: [
+      [
+        2349,
+        2
+      ],
+      [
+        11,
+        38
+      ]
+    ],
+    &quot;accuracy_wilson_95&quot;: [
+      0.9907541426532906,
+      0.9968317282293833
+    ]
+  },
+  &quot;final_test&quot;: {
+    &quot;n&quot;: 2401,
+    &quot;positive_count&quot;: 50,
+    &quot;threshold&quot;: 0.5,
+    &quot;log_loss&quot;: 0.03651691585075914,
+    &quot;brier&quot;: 0.006192488399522352,
+    &quot;roc_auc&quot;: 0.8864227988090174,
+    &quot;average_precision&quot;: 0.7458234999621058,
+    &quot;accuracy&quot;: 0.9937526030820492,
+    &quot;balanced_accuracy&quot;: 0.8597873245427478,
+    &quot;precision&quot;: 0.972972972972973,
+    &quot;recall&quot;: 0.72,
+    &quot;f1&quot;: 0.8275862068965517,
+    &quot;confusion_matrix&quot;: [
+      [
+        2350,
+        1
+      ],
+      [
+        14,
+        36
+      ]
+    ],
+    &quot;accuracy_wilson_95&quot;: [
+      0.9897173807627462,
+      0.9962103410464573
+    ]
+  },
+  &quot;final_target_met&quot;: null,
+  &quot;parameters&quot;: 265,
+  &quot;architecture&quot;: {
+    &quot;hidden_sizes&quot;: [
+      8,
+      4
+    ],
+    &quot;activations&quot;: [
+      &quot;sigmoid&quot;,
+      &quot;relu&quot;
+    ],
+    &quot;output_size&quot;: 1
+  },
+  &quot;history&quot;: [
+    {
+      &quot;iteration&quot;: 1,
+      &quot;selected&quot;: true,
+      &quot;usage&quot;: {
+        &quot;input_tokens&quot;: 322329,
+        &quot;output_tokens&quot;: 15253,
+        &quot;request_preflight&quot;: [
+          {
+            &quot;remaining_tokens&quot;: 400000,
+            &quot;estimated_input_tokens&quot;: 892,
+            &quot;reserved_tokens&quot;: 17494,
+            &quot;allowed&quot;: true
+          },
+          {
+            &quot;remaining_tokens&quot;: 398073,
+            &quot;estimated_input_tokens&quot;: 3100,
+            &quot;reserved_tokens&quot;: 19922,
+            &quot;allowed&quot;: true
+          },
+          {
+            &quot;remaining_tokens&quot;: 392757,
+            &quot;estimated_input_tokens&quot;: 5117,
+            &quot;reserved_tokens&quot;: 22141,
+            &quot;allowed&quot;: true
+          },
+          {
+            &quot;remaining_tokens&quot;: 384138,
+            &quot;estimated_input_tokens&quot;: 7438,
+            &quot;reserved_tokens&quot;: 24694,
+            &quot;allowed&quot;: true
+          },
+          {
+            &quot;remaining_tokens&quot;: 372818,
+            &quot;estimated_input_tokens&quot;: 7777,
+            &quot;reserved_tokens&quot;: 25067,
+            &quot;allowed&quot;: true
+          },
+          {
+            &quot;remaining_tokens&quot;: 360970,
+            &quot;estimated_input_tokens&quot;: 9291,
+            &quot;reserved_tokens&quot;: 26733,
+            &quot;allowed&quot;: true
+          },
+          {
+            &quot;remaining_tokens&quot;: 347432,
+            &quot;estimated_input_tokens&quot;: 10674,
+            &quot;reserved_tokens&quot;: 28254,
+            &quot;allowed&quot;: true
+          },
+          {
+            &quot;remaining_tokens&quot;: 332761,
+            &quot;estimated_input_tokens&quot;: 13846,
+            &quot;reserved_tokens&quot;: 31743,
+            &quot;allowed&quot;: true
+          },
+          {
+            &quot;remaining_tokens&quot;: 314790,
+            &quot;estimated_input_tokens&quot;: 16250,
+            &quot;reserved_tokens&quot;: 34387,
+            &quot;allowed&quot;: true
+          },
+          {
+            &quot;remaining_tokens&quot;: 294229,
+            &quot;estimated_input_tokens&quot;: 18475,
+            &quot;reserved_tokens&quot;: 36835,
+            &quot;allowed&quot;: true
+          },
+          {
+            &quot;remaining_tokens&quot;: 271409,
+            &quot;estimated_input_tokens&quot;: 20066,
+            &quot;reserved_tokens&quot;: 38585,
+            &quot;allowed&quot;: true
+          },
+          {
+            &quot;remaining_tokens&quot;: 245914,
+            &quot;estimated_input_tokens&quot;: 22302,
+            &quot;reserved_tokens&quot;: 41045,
+            &quot;allowed&quot;: true
+          },
+          {
+            &quot;remaining_tokens&quot;: 216793,
+            &quot;estimated_input_tokens&quot;: 23295,
+            &quot;reserved_tokens&quot;: 42137,
+            &quot;allowed&quot;: true
+          },
+          {
+            &quot;remaining_tokens&quot;: 185998,
+            &quot;estimated_input_tokens&quot;: 24744,
+            &quot;reserved_tokens&quot;: 43731,
+            &quot;allowed&quot;: true
+          },
+          {
+            &quot;remaining_tokens&quot;: 156014,
+            &quot;estimated_input_tokens&quot;: 25189,
+            &quot;reserved_tokens&quot;: 44220,
+            &quot;allowed&quot;: true
+          },
+          {
+            &quot;remaining_tokens&quot;: 125531,
+            &quot;estimated_input_tokens&quot;: 25657,
+            &quot;reserved_tokens&quot;: 44735,
+            &quot;allowed&quot;: true
+          },
+          {
+            &quot;remaining_tokens&quot;: 94582,
+            &quot;estimated_input_tokens&quot;: 26312,
+            &quot;reserved_tokens&quot;: 45456,
+            &quot;allowed&quot;: true
+          }
+        ],
+        &quot;tool_calls&quot;: 16
+      },
+      &quot;audit&quot;: {
+        &quot;scanned_files&quot;: 19,
+        &quot;violations&quot;: []
+      },
+      &quot;status&quot;: &quot;evaluated&quot;,
+      &quot;state_hash&quot;: &quot;1766a4d18997d7b263306ecef7a48540cea72ae8737c73bc13be99424cb18ff6&quot;,
+      &quot;metrics&quot;: {
+        &quot;n&quot;: 2400,
+        &quot;positive_count&quot;: 49,
+        &quot;threshold&quot;: 0.5,
+        &quot;log_loss&quot;: 0.03171834242648788,
+        &quot;brier&quot;: 0.005352426897168136,
+        &quot;roc_auc&quot;: 0.9061102960963203,
+        &quot;average_precision&quot;: 0.7414212565159958,
+        &quot;accuracy&quot;: 0.9945833333333334,
+        &quot;balanced_accuracy&quot;: 0.8873297511263118,
+        &quot;precision&quot;: 0.95,
+        &quot;recall&quot;: 0.7755102040816326,
+        &quot;f1&quot;: 0.8539325842696629,
+        &quot;confusion_matrix&quot;: [
+          [
+            2349,
+            2
+          ],
+          [
+            11,
+            38
+          ]
+        ],
+        &quot;accuracy_wilson_95&quot;: [
+          0.9907541426532906,
+          0.9968317282293833
+        ]
+      },
+      &quot;diff&quot;: {
+        &quot;changed_values&quot;: 41,
+        &quot;l2_change&quot;: 1027.124017647066,
+        &quot;base_hash&quot;: &quot;zero&quot;
+      }
+    },
+    {
+      &quot;iteration&quot;: 2,
+      &quot;selected&quot;: false,
+      &quot;usage&quot;: {
+        &quot;input_tokens&quot;: 33158,
+        &quot;output_tokens&quot;: 148,
+        &quot;request_preflight&quot;: [
+          {
+            &quot;remaining_tokens&quot;: 62418,
+            &quot;estimated_input_tokens&quot;: 27763,
+            &quot;reserved_tokens&quot;: 47052,
+            &quot;allowed&quot;: true
+          },
+          {
+            &quot;remaining_tokens&quot;: 29112,
+            &quot;estimated_input_tokens&quot;: 29326,
+            &quot;reserved_tokens&quot;: 48771,
+            &quot;allowed&quot;: false
+          }
+        ],
+        &quot;tool_calls&quot;: 1
+      },
+      &quot;audit&quot;: {
+        &quot;scanned_files&quot;: 4,
+        &quot;violations&quot;: []
+      },
+      &quot;status&quot;: &quot;editor_stopped&quot;
+    }
+  ],
+  &quot;cost&quot;: {
+    &quot;evaluated_rows&quot;: 4801,
+    &quot;editor_tokens&quot;: 370888,
+    &quot;revealed_development_labels&quot;: 8,
+    &quot;wall_seconds&quot;: 225.813988082984,
+    &quot;currency_cost&quot;: null
+  },
+  &quot;limitations&quot;: [
+    &quot;Adaptive development evaluation can overfit.&quot;,
+    &quot;Accuracy interval is Wilson 95%, assumes independent observations; other metrics have no interval here.&quot;,
+    &quot;Custom Python editor plugins are trusted; isolation is enforced through built-in JSON editor contexts, not an OS sandbox.&quot;,
+    &quot;Token limits stop subsequent work; one provider request can overshoot due to input token usage.&quot;,
+    &quot;Scripted fixtures demonstrate the protocol, not autonomous LLM performance.&quot;
+  ]
+}</pre></details></html>

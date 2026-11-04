@@ -1,0 +1,286 @@
+{
+  "architecture": {
+    "activations": [
+      "sigmoid",
+      "relu"
+    ],
+    "hidden_sizes": [
+      8,
+      4
+    ],
+    "output_size": 1
+  },
+  "assurance": "source-recorded and statically audited; no-fitting policy is not mechanically proven",
+  "cost": {
+    "currency_cost": null,
+    "editor_tokens": 370888,
+    "evaluated_rows": 4801,
+    "revealed_development_labels": 8,
+    "wall_seconds": 225.813988082984
+  },
+  "development": {
+    "accuracy": 0.9945833333333334,
+    "accuracy_wilson_95": [
+      0.9907541426532906,
+      0.9968317282293833
+    ],
+    "average_precision": 0.7414212565159958,
+    "balanced_accuracy": 0.8873297511263118,
+    "brier": 0.005352426897168136,
+    "confusion_matrix": [
+      [
+        2349,
+        2
+      ],
+      [
+        11,
+        38
+      ]
+    ],
+    "f1": 0.8539325842696629,
+    "log_loss": 0.03171834242648788,
+    "n": 2400,
+    "positive_count": 49,
+    "precision": 0.95,
+    "recall": 0.7755102040816326,
+    "roc_auc": 0.9061102960963203,
+    "threshold": 0.5
+  },
+  "editor": {
+    "assurance": "source-recorded and statically audited; no-fitting policy is not mechanically proven",
+    "base_url": null,
+    "image": "mlsurgie-constructor:local",
+    "kind": "openhands",
+    "max_agent_steps": 24,
+    "model": "openrouter/anthropic/claude-opus-5.5"
+  },
+  "final_evaluation_error": null,
+  "final_target_met": null,
+  "final_test": {
+    "accuracy": 0.9937526030820492,
+    "accuracy_wilson_95": [
+      0.9897173807627462,
+      0.9962103410464573
+    ],
+    "average_precision": 0.7458234999621058,
+    "balanced_accuracy": 0.8597873245427478,
+    "brier": 0.006192488399522352,
+    "confusion_matrix": [
+      [
+        2350,
+        1
+      ],
+      [
+        14,
+        36
+      ]
+    ],
+    "f1": 0.8275862068965517,
+    "log_loss": 0.03651691585075914,
+    "n": 2401,
+    "positive_count": 50,
+    "precision": 0.972972972972973,
+    "recall": 0.72,
+    "roc_auc": 0.8864227988090174,
+    "threshold": 0.5
+  },
+  "history": [
+    {
+      "audit": {
+        "scanned_files": 19,
+        "violations": []
+      },
+      "diff": {
+        "base_hash": "zero",
+        "changed_values": 41,
+        "l2_change": 1027.124017647066
+      },
+      "iteration": 1,
+      "metrics": {
+        "accuracy": 0.9945833333333334,
+        "accuracy_wilson_95": [
+          0.9907541426532906,
+          0.9968317282293833
+        ],
+        "average_precision": 0.7414212565159958,
+        "balanced_accuracy": 0.8873297511263118,
+        "brier": 0.005352426897168136,
+        "confusion_matrix": [
+          [
+            2349,
+            2
+          ],
+          [
+            11,
+            38
+          ]
+        ],
+        "f1": 0.8539325842696629,
+        "log_loss": 0.03171834242648788,
+        "n": 2400,
+        "positive_count": 49,
+        "precision": 0.95,
+        "recall": 0.7755102040816326,
+        "roc_auc": 0.9061102960963203,
+        "threshold": 0.5
+      },
+      "selected": true,
+      "state_hash": "1766a4d18997d7b263306ecef7a48540cea72ae8737c73bc13be99424cb18ff6",
+      "status": "evaluated",
+      "usage": {
+        "input_tokens": 322329,
+        "output_tokens": 15253,
+        "request_preflight": [
+          {
+            "allowed": true,
+            "estimated_input_tokens": 892,
+            "remaining_tokens": 400000,
+            "reserved_tokens": 17494
+          },
+          {
+            "allowed": true,
+            "estimated_input_tokens": 3100,
+            "remaining_tokens": 398073,
+            "reserved_tokens": 19922
+          },
+          {
+            "allowed": true,
+            "estimated_input_tokens": 5117,
+            "remaining_tokens": 392757,
+            "reserved_tokens": 22141
+          },
+          {
+            "allowed": true,
+            "estimated_input_tokens": 7438,
+            "remaining_tokens": 384138,
+            "reserved_tokens": 24694
+          },
+          {
+            "allowed": true,
+            "estimated_input_tokens": 7777,
+            "remaining_tokens": 372818,
+            "reserved_tokens": 25067
+          },
+          {
+            "allowed": true,
+            "estimated_input_tokens": 9291,
+            "remaining_tokens": 360970,
+            "reserved_tokens": 26733
+          },
+          {
+            "allowed": true,
+            "estimated_input_tokens": 10674,
+            "remaining_tokens": 347432,
+            "reserved_tokens": 28254
+          },
+          {
+            "allowed": true,
+            "estimated_input_tokens": 13846,
+            "remaining_tokens": 332761,
+            "reserved_tokens": 31743
+          },
+          {
+            "allowed": true,
+            "estimated_input_tokens": 16250,
+            "remaining_tokens": 314790,
+            "reserved_tokens": 34387
+          },
+          {
+            "allowed": true,
+            "estimated_input_tokens": 18475,
+            "remaining_tokens": 294229,
+            "reserved_tokens": 36835
+          },
+          {
+            "allowed": true,
+            "estimated_input_tokens": 20066,
+            "remaining_tokens": 271409,
+            "reserved_tokens": 38585
+          },
+          {
+            "allowed": true,
+            "estimated_input_tokens": 22302,
+            "remaining_tokens": 245914,
+            "reserved_tokens": 41045
+          },
+          {
+            "allowed": true,
+            "estimated_input_tokens": 23295,
+            "remaining_tokens": 216793,
+            "reserved_tokens": 42137
+          },
+          {
+            "allowed": true,
+            "estimated_input_tokens": 24744,
+            "remaining_tokens": 185998,
+            "reserved_tokens": 43731
+          },
+          {
+            "allowed": true,
+            "estimated_input_tokens": 25189,
+            "remaining_tokens": 156014,
+            "reserved_tokens": 44220
+          },
+          {
+            "allowed": true,
+            "estimated_input_tokens": 25657,
+            "remaining_tokens": 125531,
+            "reserved_tokens": 44735
+          },
+          {
+            "allowed": true,
+            "estimated_input_tokens": 26312,
+            "remaining_tokens": 94582,
+            "reserved_tokens": 45456
+          }
+        ],
+        "tool_calls": 16
+      }
+    },
+    {
+      "audit": {
+        "scanned_files": 4,
+        "violations": []
+      },
+      "iteration": 2,
+      "selected": false,
+      "status": "editor_stopped",
+      "usage": {
+        "input_tokens": 33158,
+        "output_tokens": 148,
+        "request_preflight": [
+          {
+            "allowed": true,
+            "estimated_input_tokens": 27763,
+            "remaining_tokens": 62418,
+            "reserved_tokens": 47052
+          },
+          {
+            "allowed": false,
+            "estimated_input_tokens": 29326,
+            "remaining_tokens": 29112,
+            "reserved_tokens": 48771
+          }
+        ],
+        "tool_calls": 1
+      }
+    }
+  ],
+  "limitations": [
+    "Adaptive development evaluation can overfit.",
+    "Accuracy interval is Wilson 95%, assumes independent observations; other metrics have no interval here.",
+    "Custom Python editor plugins are trusted; isolation is enforced through built-in JSON editor contexts, not an OS sandbox.",
+    "Token limits stop subsequent work; one provider request can overshoot due to input token usage.",
+    "Scripted fixtures demonstrate the protocol, not autonomous LLM performance."
+  ],
+  "parameters": 265,
+  "selected_iteration": 1,
+  "selection_metric": "average_precision",
+  "status": "completed",
+  "stop_reason": "editor_token_preflight",
+  "task": "binary",
+  "track": {
+    "names": "semantic",
+    "policy": "strict"
+  }
+}

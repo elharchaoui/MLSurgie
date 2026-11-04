@@ -1,0 +1,1 @@
+cd /workspace && sed -i "s/2,2.6),('A4',\['new','cnp','risky','big'\],3,3.4)/2,1.5),('A4',['new','cnp','risky','big'],3,5.5)/" build.py && python build.py 2>/dev/null; python -c "import json;c=json.load(open('/workspace/candidate.json'));print(c['rationale'])"

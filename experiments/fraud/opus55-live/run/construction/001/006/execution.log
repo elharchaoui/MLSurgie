@@ -1,0 +1,61 @@
+velo 46 37 0.804
+far 57 34 0.596
+new 292 49 0.168
+big 309 55 0.178
+small 746 37 0.05
+night 654 43 0.066
+cnp 2209 127 0.057
+risky 1347 96 0.071
+cm 402 31 0.077
+velo  far  new  big  small  night  cnp  risky  cm
+0     0    1    1    0      0      1    1      0     38
+1     0    0    0    1      0      1    1      0     30
+0     1    0    0    0      1      1    0      1     19
+      0    0    0    0      0      0    0      0     12
+      1    0    1    0      1      1    0      1      8
+      0    0    0    0      0      0    1      0      6
+           1    0    0      0      1    1      0      5
+           0    0    0      0      1    0      0      4
+1     0    0    0    1      1      1    1      0      2
+                            0      1    0      0      2
+0     1    0    0    0      1      1    0      0      2
+      0    1    1    0      1      1    1      0      2
+1     0    1    0    1      0      1    1      0      2
+0     0    0    0    0      0      1    1      0      2
+           1    0    0      1      1    1      0      1
+           0    1    0      0      1    1      0      1
+                                        0      0      1
+                                   0    0      0      1
+      1    0    0    0      1      1    1      0      1
+                                               1      1
+                1    0      1      1    0      0      1
+      0    0    0    0      1      1    0      0      1
+      1    0    1    0      1      1    1      0      1
+                                               1      1
+      0    0    0    0      1      0    1      0      1
+                                        0      0      1
+1     0    0    0    1      0      1    1      1      1
+0     0    1    1    0      1      1    1      1      1
+Name: count, dtype: int64
+rest 7096 77
+new big 56 41 0.732
+new small 19 0 0.0
+new night 24 4 0.167
+new cnp 127 47 0.37
+new risky 86 47 0.547
+new cm 11 1 0.091
+big small 0 0 nan
+big night 22 3 0.136
+big cnp 121 43 0.355
+big risky 123 42 0.341
+big cm 14 1 0.071
+small night 59 0 0.0
+small cnp 198 0 0.0
+small risky 87 0 0.0
+small cm 36 0 0.0
+night cnp 204 5 0.025
+night risky 102 5 0.049
+night cm 29 1 0.034
+cnp risky 407 50 0.123
+cnp cm 102 1 0.01
+risky cm 68 1 0.015

@@ -6,10 +6,9 @@ average precision (PR-AUC), recall at a precision, or log loss.
 - **Start from the base rate:** bias = log(p/(1-p)) ≈ -3.5 to -4.5. A network that only knows the base
   rate is the right "zero" for a fraud model.
 - **Hunt for signatures.** Profile positives separately: which conditions are many times more
-  common among positives than negatives? Lift = P(condition | fraud) / P(condition | legit).
-  Ratios of 5–50x are typical for real fraud signals (new account + high amount, card-not-present +
-  foreign, bursts of transactions, unusual hours, unusual merchant types).
-- **Encode signatures as AND units.** Fraud is often conjunctive: one condition alone is weak, the
+  common among positives than negatives? Lift = P(condition | positive) / P(condition | negative).
+  Let the data name the signatures; do not assume a particular pattern.
+- **Encode signatures as AND units.** Rare events are often conjunctive: one condition alone is weak, the
   combination is strong. Use `ReLU(sum(conditions) - (n - 1))` and give it a large positive output
   weight ≈ log(lift of the combination).
 - **Soft thresholds on amounts/velocity.** Use hinges on standardized amount or counts rather than hard

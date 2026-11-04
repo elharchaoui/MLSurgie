@@ -1,0 +1,14 @@
+<string>:25: RuntimeWarning: overflow encountered in exp
+/workspace/build.py:43: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+  print(pd.DataFrame({'p':p,'y':y}).groupby(bins).agg(['mean','count']))
+AP 0.8136861489728064 LL 0.029131310653266365 meanp 0.020818373854029577 0.020558410890401446
+                      p               y      
+                   mean count      mean count
+(0.0, 0.005]   0.004497  6980  0.004155  6980
+(0.005, 0.01]  0.007911     7  0.000000     7
+(0.01, 0.03]   0.018753     6  0.000000     6
+(0.03, 0.1]    0.060393    85  0.011765    85
+(0.1, 0.3]     0.267144     1  0.000000     1
+(0.3, 0.6]          NaN     0       NaN     0
+(0.6, 0.9]     0.867360    14  1.000000    14
+(0.9, 1.0]     0.950694   106  0.981132   106

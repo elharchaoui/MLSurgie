@@ -103,7 +103,22 @@ For the lightweight path without a coding agent, `mlsurgie build --config benchm
 
 Editors can `fill`, `set`, `set_entries` or `add_entries`, and can patch the current best by its exact hash. [Weight-program semantics →](docs/reference.md#weight-programs)
 
-## Evidence so far: Titanic
+## Evidence so far
+
+### Fraud benchmark: live Opus 5.5 agent
+
+With the free-agent harness, `anthropic/claude-opus-5.5` profiled the support data, wrote its own tools, and built a 265-parameter network of soft-step detectors and AND units encoding three fraud signatures. That was one candidate on seed 0, with no audit flags. [Full record and caveats →](experiments/fraud/opus55-live/README.md)
+
+| Final test (2,401 txns) | Avg. precision ↑ | ROC-AUC ↑ | Log loss ↓ | Stored numbers |
+|---|---:|---:|---:|---:|
+| **Opus 5.5 agent, written weights** | 0.746 | 0.886 | **0.037** | 265 |
+| Logistic regression | 0.668 | **0.897** | 0.051 | 28 |
+| Random forest | **0.780** | 0.875 | 0.049 | 129,708 |
+| RBF SVM | 0.721 | 0.817 | 0.046 | 8,961 |
+
+Caveat: a skill file available during this run hinted at fraud patterns that overlap with the planted scenarios. It has since been neutralized; a clean multi-seed rerun and the anonymized track are the next step.
+
+### Titanic
 
 Two LLM-constructed networks, each frozen before the test set was opened, compared with trained baselines on the **same seed-42 split and the same 22 encoded inputs** (179 test passengers):
 

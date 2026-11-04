@@ -1,0 +1,1 @@
+cat /inputs/README.md; cat /inputs/task.json; cat /inputs/state.json; ls -la /inputs/data; cat /skills/README.md

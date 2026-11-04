@@ -1,0 +1,1 @@
+cd /workspace && sed -i "s/('A3',\['new','cnp','risky','big'\],2,2.7)/('A3',['new','cnp','risky','big'],2,1.2)/; s/('A4',\['new','cnp','risky','big'\],3,3.0)/('A4',['new','cnp','risky','big'],3,4.5)/" build.py && python build.py 2>/dev/null

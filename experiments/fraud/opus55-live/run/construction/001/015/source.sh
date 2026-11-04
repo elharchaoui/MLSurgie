@@ -1,0 +1,1 @@
+cd /workspace && sed -i "s/2,1.2),('A4',\['new','cnp','risky','big'\],3,4.5)/2,2.6),('A4',['new','cnp','risky','big'],3,3.4)/" build.py && grep A4 build.py | head -2 && python build.py 2>/dev/null
