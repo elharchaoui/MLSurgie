@@ -1,0 +1,20 @@
+{
+  "goal": {
+    "description": "Construct a small neural network predicting passenger survival from the supplied pre-outcome attributes. Write all weights directly. Investigate development errors and revise weights without fitting or gradient methods.",
+    "target": "Survived",
+    "positive_label": "1",
+    "primary_metric": "log_loss",
+    "threshold": 0.5
+  },
+  "features": [
+    {"name": "Pclass", "kind": "categorical", "description": "Passenger ticket class"},
+    {"name": "Sex", "kind": "categorical", "description": "Recorded passenger sex"},
+    {"name": "Age", "kind": "numeric", "description": "Age in years; may be missing"},
+    {"name": "SibSp", "kind": "numeric", "description": "Siblings/spouses aboard"},
+    {"name": "Parch", "kind": "numeric", "description": "Parents/children aboard"},
+    {"name": "Fare", "kind": "numeric", "description": "Ticket fare"},
+    {"name": "Embarked", "kind": "categorical", "description": "Embarkation port"}
+  ],
+  "budget": {"iterations": 10, "max_parameters": 4096, "max_seconds": 1800},
+  "seed": 42
+}

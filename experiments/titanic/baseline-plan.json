@@ -1,0 +1,7 @@
+{
+  "timing": "Declared before final test was opened",
+  "baselines": {
+    "support_prevalence": "Constant probability equal to support positive fraction",
+    "sex_rule": "Probability 0.75 for female, 0.20 otherwise; fixed threshold 0.5"
+  }
+}

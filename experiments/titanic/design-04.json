@@ -1,0 +1,22 @@
+{
+  "group_logits": {
+    "female1": 2.5,
+    "female2": 1.9,
+    "female3": 0.45,
+    "male1": -0.7,
+    "male2": -1.8,
+    "male3": -1.7
+  },
+  "family_bonus": 0.15,
+  "large_family_penalty": 0.6,
+  "male_child_bonus": 2.7,
+  "female_child_bonus": 0.0,
+  "missing_age": -0.05,
+  "port_c": 0.15,
+  "male_port_q": -0.25,
+  "older_age_penalty": 0.15,
+  "low_fare_penalty": 0.0,
+  "rationale": "Ablate the low-fare penalty: the largest development probability errors are low-fare male survivors and the new term worsened their confidence. Keep all other candidate-3 constants fixed to identify whether the family/child changes account for its small improvement.",
+  "female3_family_penalty": 0.4,
+  "male2_child_extra": 1.2
+}
