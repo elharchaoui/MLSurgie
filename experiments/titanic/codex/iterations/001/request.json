@@ -1,0 +1,1404 @@
+{
+  "best": null,
+  "classes": [
+    "0",
+    "1"
+  ],
+  "encoded_features": [
+    "pclass='1'",
+    "pclass='2'",
+    "pclass='3'",
+    "pclass:missing",
+    "pclass:unknown",
+    "sex='female'",
+    "sex='male'",
+    "sex:missing",
+    "sex:unknown",
+    "age:standardized",
+    "age:missing",
+    "sibsp:standardized",
+    "sibsp:missing",
+    "parch:standardized",
+    "parch:missing",
+    "fare:standardized",
+    "fare:missing",
+    "embarked='C'",
+    "embarked='Q'",
+    "embarked='S'",
+    "embarked:missing",
+    "embarked:unknown"
+  ],
+  "feedback_role": "development, used adaptively; final test is inaccessible",
+  "frozen_hidden_sizes": null,
+  "goal": {
+    "description": "Construct a neural network predicting Titanic passenger survival by directly programming weights. Optimize development log loss; report accuracy at a fixed 0.5 threshold. No fitting, optimizer, gradients, or test-data inspection.",
+    "positive_label": "1",
+    "primary_metric": "log_loss",
+    "target": "survived",
+    "target_score": null,
+    "threshold": 0.5
+  },
+  "iteration": 1,
+  "last_feedback": null,
+  "limits": {
+    "diagnostic_examples": 12,
+    "iterations": 8,
+    "max_abs_weight": 10000,
+    "max_editor_tokens": 100000,
+    "max_evaluated_rows": 2000,
+    "max_hidden_layers": 2,
+    "max_input_features": 256,
+    "max_output_tokens": 8192,
+    "max_parameters": 4096,
+    "max_seconds": 3600,
+    "max_width": 64,
+    "support_examples": 32
+  },
+  "output_token_limit": 8192,
+  "preprocessing": [
+    {
+      "categories": [
+        "1",
+        "2",
+        "3"
+      ],
+      "description": "Ticket class, 1 highest",
+      "kind": "categorical",
+      "name": "pclass"
+    },
+    {
+      "categories": [
+        "female",
+        "male"
+      ],
+      "description": "Recorded sex",
+      "kind": "categorical",
+      "name": "sex"
+    },
+    {
+      "description": "Age in years",
+      "kind": "numeric",
+      "mean": 29.277322097378278,
+      "median": 28.0,
+      "name": "age",
+      "scale": 13.090667092482944
+    },
+    {
+      "description": "Siblings/spouses aboard",
+      "kind": "numeric",
+      "mean": 0.5711610486891385,
+      "median": 0.0,
+      "name": "sibsp",
+      "scale": 1.2199925401547984
+    },
+    {
+      "description": "Parents/children aboard",
+      "kind": "numeric",
+      "mean": 0.3895131086142322,
+      "median": 0.0,
+      "name": "parch",
+      "scale": 0.7967411073556212
+    },
+    {
+      "description": "Ticket fare",
+      "kind": "numeric",
+      "mean": 31.623477715355804,
+      "median": 14.4271,
+      "name": "fare",
+      "scale": 46.01792717052976
+    },
+    {
+      "categories": [
+        "C",
+        "Q",
+        "S"
+      ],
+      "description": "Embarkation port",
+      "kind": "categorical",
+      "name": "embarked"
+    }
+  ],
+  "program_format": "Return a JSON object, no code or markdown:\n{\"base\":\"zero\", \"hidden_sizes\":[8], \"rationale\":\"mechanism hypothesis\", \"operations\":[]}\nhidden_sizes is a list of hidden layer widths (empty means a linear logit).\nAll layers are Linear, with ReLU between layers, and a sigmoid probability output.\nEvery tensor starts at zero when base=zero; unassigned entries remain zero.\nTensors are layers.0.weight, layers.0.bias, ...; weights have shape [out,in].\nAllowed operations:\n{\"op\":\"fill\",\"tensor\":\"layers.0.bias\",\"value\":0}\n{\"op\":\"set\",\"tensor\":\"layers.0.weight\",\"value\":[[1,2],[3,4]]}\n{\"op\":\"set_entries\",\"tensor\":\"layers.0.weight\",\"entries\":[{\"index\":[0,1],\"value\":2}]}\n{\"op\":\"add_entries\",\"tensor\":\"layers.0.bias\",\"entries\":[{\"index\":[0],\"value\":0.2}]}\nUse base=best with base_hash equal to the supplied best hash to patch that checkpoint.\nAfter the first valid submission hidden_sizes is frozen. You can restart its weights with base=zero.\nDesign weight values directly by reasoning. No fitting, optimizers, gradient steps,\npretrained target weights, executable code, or requests for final-test data.\n",
+  "support_count": 534,
+  "support_examples": [
+    {
+      "encoded": [
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.055205583572387695,
+        0.0,
+        0.3515094816684723,
+        0.0,
+        -0.4888828992843628,
+        0.0,
+        -0.1656632125377655,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "30.0",
+        "embarked": "C",
+        "fare": "24.0",
+        "parch": "0",
+        "pclass": "2",
+        "sex": "male",
+        "sibsp": "1"
+      },
+      "label": 0
+    },
+    {
+      "encoded": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -0.8614780306816101,
+        0.0,
+        0.3515094816684723,
+        0.0,
+        0.7662299275398254,
+        0.0,
+        -0.24796809256076813,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "18.0",
+        "embarked": "S",
+        "fare": "20.2125",
+        "parch": "1",
+        "pclass": "3",
+        "sex": "male",
+        "sibsp": "1"
+      },
+      "label": 0
+    },
+    {
+      "encoded": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -0.09757501631975174,
+        1.0,
+        -0.46816766262054443,
+        0.0,
+        -0.4888828992843628,
+        0.0,
+        -0.5301038026809692,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "",
+        "embarked": "C",
+        "fare": "7.2292",
+        "parch": "0",
+        "pclass": "3",
+        "sex": "male",
+        "sibsp": "0"
+      },
+      "label": 0
+    },
+    {
+      "encoded": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        -0.9378683567047119,
+        0.0,
+        0.3515094816684723,
+        0.0,
+        -0.4888828992843628,
+        0.0,
+        1.6792699098587036,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "17.0",
+        "embarked": "C",
+        "fare": "108.9",
+        "parch": "0",
+        "pclass": "1",
+        "sex": "female",
+        "sibsp": "1"
+      },
+      "label": 1
+    },
+    {
+      "encoded": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -0.25035563111305237,
+        0.0,
+        -0.46816766262054443,
+        0.0,
+        -0.4888828992843628,
+        0.0,
+        -0.5157985091209412,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "26.0",
+        "embarked": "S",
+        "fare": "7.8875",
+        "parch": "0",
+        "pclass": "3",
+        "sex": "male",
+        "sibsp": "0"
+      },
+      "label": 0
+    },
+    {
+      "encoded": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        2.041353464126587,
+        0.0,
+        -0.46816766262054443,
+        0.0,
+        -0.4888828992843628,
+        0.0,
+        -0.020159050822257996,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "56.0",
+        "embarked": "C",
+        "fare": "30.6958",
+        "parch": "0",
+        "pclass": "1",
+        "sex": "male",
+        "sibsp": "0"
+      },
+      "label": 0
+    },
+    {
+      "encoded": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -0.09757501631975174,
+        1.0,
+        -0.46816766262054443,
+        0.0,
+        -0.4888828992843628,
+        0.0,
+        -0.5187864899635315,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "",
+        "embarked": "Q",
+        "fare": "7.75",
+        "parch": "0",
+        "pclass": "3",
+        "sex": "male",
+        "sibsp": "0"
+      },
+      "label": 0
+    },
+    {
+      "encoded": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.5135473608970642,
+        0.0,
+        0.3515094816684723,
+        0.0,
+        -0.4888828992843628,
+        0.0,
+        -0.3492873013019562,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "36.0",
+        "embarked": "S",
+        "fare": "15.55",
+        "parch": "0",
+        "pclass": "3",
+        "sex": "male",
+        "sibsp": "1"
+      },
+      "label": 0
+    },
+    {
+      "encoded": [
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.778161644935608,
+        0.0,
+        -0.46816766262054443,
+        0.0,
+        0.7662299275398254,
+        0.0,
+        0.029912739992141724,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "6.0",
+        "embarked": "S",
+        "fare": "33.0",
+        "parch": "1",
+        "pclass": "2",
+        "sex": "female",
+        "sibsp": "0"
+      },
+      "label": 1
+    },
+    {
+      "encoded": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -1.778161644935608,
+        0.0,
+        -0.46816766262054443,
+        0.0,
+        0.7662299275398254,
+        0.0,
+        -0.4161090850830078,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "6.0",
+        "embarked": "S",
+        "fare": "12.475",
+        "parch": "1",
+        "pclass": "3",
+        "sex": "male",
+        "sibsp": "0"
+      },
+      "label": 1
+    },
+    {
+      "encoded": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.2010600566864014,
+        0.0,
+        -0.46816766262054443,
+        0.0,
+        -0.4888828992843628,
+        0.0,
+        0.08423939347267151,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "45.0",
+        "embarked": "S",
+        "fare": "35.5",
+        "parch": "0",
+        "pclass": "1",
+        "sex": "male",
+        "sibsp": "0"
+      },
+      "label": 0
+    },
+    {
+      "encoded": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -0.4031362235546112,
+        0.0,
+        -0.46816766262054443,
+        0.0,
+        -0.4888828992843628,
+        0.0,
+        1.0338692665100098,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "24.0",
+        "embarked": "C",
+        "fare": "79.2",
+        "parch": "0",
+        "pclass": "1",
+        "sex": "male",
+        "sibsp": "0"
+      },
+      "label": 0
+    },
+    {
+      "encoded": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -0.09757501631975174,
+        0.0,
+        -0.46816766262054443,
+        0.0,
+        -0.4888828992843628,
+        0.0,
+        -0.11025002598762512,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "28.0",
+        "embarked": "S",
+        "fare": "26.55",
+        "parch": "0",
+        "pclass": "1",
+        "sex": "male",
+        "sibsp": "0"
+      },
+      "label": 1
+    },
+    {
+      "encoded": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        -2.179210662841797,
+        0.0,
+        1.1711866855621338,
+        0.0,
+        0.7662299275398254,
+        0.0,
+        -0.26870349049568176,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "0.75",
+        "embarked": "C",
+        "fare": "19.2583",
+        "parch": "1",
+        "pclass": "3",
+        "sex": "female",
+        "sibsp": "2"
+      },
+      "label": 1
+    },
+    {
+      "encoded": [
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -0.09757501631975174,
+        1.0,
+        -0.46816766262054443,
+        0.0,
+        -0.4888828992843628,
+        0.0,
+        -0.6871991157531738,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "",
+        "embarked": "S",
+        "fare": "0.0",
+        "parch": "0",
+        "pclass": "2",
+        "sex": "male",
+        "sibsp": "0"
+      },
+      "label": 0
+    },
+    {
+      "encoded": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -0.09757501631975174,
+        1.0,
+        -0.46816766262054443,
+        0.0,
+        -0.4888828992843628,
+        0.0,
+        -0.5301950573921204,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "",
+        "embarked": "C",
+        "fare": "7.225",
+        "parch": "0",
+        "pclass": "3",
+        "sex": "male",
+        "sibsp": "0"
+      },
+      "label": 0
+    },
+    {
+      "encoded": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.5135473608970642,
+        0.0,
+        -0.46816766262054443,
+        0.0,
+        -0.4888828992843628,
+        0.0,
+        0.1847437024116516,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "36.0",
+        "embarked": "C",
+        "fare": "40.125",
+        "parch": "0",
+        "pclass": "1",
+        "sex": "male",
+        "sibsp": "0"
+      },
+      "label": 0
+    },
+    {
+      "encoded": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        3.874720573425293,
+        0.0,
+        -0.46816766262054443,
+        0.0,
+        -0.4888828992843628,
+        0.0,
+        -0.03527924418449402,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "80.0",
+        "embarked": "S",
+        "fare": "30.0",
+        "parch": "0",
+        "pclass": "1",
+        "sex": "male",
+        "sibsp": "0"
+      },
+      "label": 1
+    },
+    {
+      "encoded": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.5489907264709473,
+        0.0,
+        2.8105409145355225,
+        0.0,
+        2.0213427543640137,
+        0.0,
+        -0.007572651375085115,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "9.0",
+        "embarked": "S",
+        "fare": "31.275",
+        "parch": "2",
+        "pclass": "3",
+        "sex": "female",
+        "sibsp": "4"
+      },
+      "label": 0
+    },
+    {
+      "encoded": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.8954988718032837,
+        0.0,
+        -0.46816766262054443,
+        0.0,
+        -0.4888828992843628,
+        0.0,
+        2.235574960708618,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "41.0",
+        "embarked": "C",
+        "fare": "134.5",
+        "parch": "0",
+        "pclass": "1",
+        "sex": "female",
+        "sibsp": "0"
+      },
+      "label": 1
+    },
+    {
+      "encoded": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -1.3962101936340332,
+        0.0,
+        0.3515094816684723,
+        0.0,
+        2.0213427543640137,
+        0.0,
+        1.9204802513122559,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "11.0",
+        "embarked": "S",
+        "fare": "120.0",
+        "parch": "2",
+        "pclass": "1",
+        "sex": "male",
+        "sibsp": "1"
+      },
+      "label": 1
+    },
+    {
+      "encoded": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -0.09757501631975174,
+        1.0,
+        -0.46816766262054443,
+        0.0,
+        -0.4888828992843628,
+        0.0,
+        0.4427953064441681,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "",
+        "embarked": "S",
+        "fare": "52.0",
+        "parch": "0",
+        "pclass": "1",
+        "sex": "male",
+        "sibsp": "0"
+      },
+      "label": 0
+    },
+    {
+      "encoded": [
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        -0.4031362235546112,
+        0.0,
+        -0.46816766262054443,
+        0.0,
+        2.0213427543640137,
+        0.0,
+        -0.3721044957637787,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "24.0",
+        "embarked": "S",
+        "fare": "14.5",
+        "parch": "2",
+        "pclass": "2",
+        "sex": "female",
+        "sibsp": "0"
+      },
+      "label": 1
+    },
+    {
+      "encoded": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.13159587979316711,
+        0.0,
+        0.3515094816684723,
+        0.0,
+        0.7662299275398254,
+        0.0,
+        -0.2411772608757019,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "31.0",
+        "embarked": "S",
+        "fare": "20.525",
+        "parch": "1",
+        "pclass": "3",
+        "sex": "female",
+        "sibsp": "1"
+      },
+      "label": 1
+    },
+    {
+      "encoded": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        -0.09757501631975174,
+        1.0,
+        0.3515094816684723,
+        0.0,
+        -0.4888828992843628,
+        0.0,
+        -0.3373354375362396,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "",
+        "embarked": "S",
+        "fare": "16.1",
+        "parch": "0",
+        "pclass": "3",
+        "sex": "female",
+        "sibsp": "1"
+      },
+      "label": 1
+    },
+    {
+      "encoded": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.7427182793617249,
+        0.0,
+        -0.46816766262054443,
+        0.0,
+        5.786681175231934,
+        0.0,
+        -0.05429357290267944,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "39.0",
+        "embarked": "Q",
+        "fare": "29.125",
+        "parch": "5",
+        "pclass": "3",
+        "sex": "female",
+        "sibsp": "0"
+      },
+      "label": 0
+    },
+    {
+      "encoded": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        -0.5559168457984924,
+        0.0,
+        -0.46816766262054443,
+        0.0,
+        -0.4888828992843628,
+        0.0,
+        -0.5187864899635315,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "22.0",
+        "embarked": "Q",
+        "fare": "7.75",
+        "parch": "0",
+        "pclass": "3",
+        "sex": "female",
+        "sibsp": "0"
+      },
+      "label": 1
+    },
+    {
+      "encoded": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -0.09757501631975174,
+        1.0,
+        -0.46816766262054443,
+        0.0,
+        -0.4888828992843628,
+        0.0,
+        0.08423939347267151,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "",
+        "embarked": "S",
+        "fare": "35.5",
+        "parch": "0",
+        "pclass": "1",
+        "sex": "male",
+        "sibsp": "0"
+      },
+      "label": 1
+    },
+    {
+      "encoded": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.28437647223472595,
+        0.0,
+        -0.46816766262054443,
+        0.0,
+        -0.4888828992843628,
+        0.0,
+        -0.5156181454658508,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "33.0",
+        "embarked": "C",
+        "fare": "7.8958",
+        "parch": "0",
+        "pclass": "3",
+        "sex": "male",
+        "sibsp": "0"
+      },
+      "label": 0
+    },
+    {
+      "encoded": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -0.3267459273338318,
+        0.0,
+        -0.46816766262054443,
+        0.0,
+        -0.4888828992843628,
+        0.0,
+        -0.5339979529380798,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "25.0",
+        "embarked": "S",
+        "fare": "7.05",
+        "parch": "0",
+        "pclass": "3",
+        "sex": "male",
+        "sibsp": "0"
+      },
+      "label": 0
+    },
+    {
+      "encoded": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -0.8614780306816101,
+        0.0,
+        -0.46816766262054443,
+        0.0,
+        -0.4888828992843628,
+        0.0,
+        -0.5187864899635315,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "18.0",
+        "embarked": "S",
+        "fare": "7.75",
+        "parch": "0",
+        "pclass": "3",
+        "sex": "male",
+        "sibsp": "0"
+      },
+      "label": 0
+    },
+    {
+      "encoded": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        -0.25035563111305237,
+        0.0,
+        -0.46816766262054443,
+        0.0,
+        -0.4888828992843628,
+        0.0,
+        -0.514983594417572,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "features": {
+        "age": "26.0",
+        "embarked": "S",
+        "fare": "7.925",
+        "parch": "0",
+        "pclass": "3",
+        "sex": "female",
+        "sibsp": "0"
+      },
+      "label": 1
+    }
+  ],
+  "support_positive_fraction": 0.3838951310861423,
+  "support_summaries": {
+    "sex_age": {
+      "female/12to17": {
+        "n": 15,
+        "survived": 11
+      },
+      "female/18to49": {
+        "n": 114,
+        "survived": 88
+      },
+      "female/50plus": {
+        "n": 13,
+        "survived": 11
+      },
+      "female/missing": {
+        "n": 35,
+        "survived": 25
+      },
+      "female/under12": {
+        "n": 20,
+        "survived": 13
+      },
+      "male/12to17": {
+        "n": 12,
+        "survived": 1
+      },
+      "male/18to49": {
+        "n": 200,
+        "survived": 31
+      },
+      "male/50plus": {
+        "n": 34,
+        "survived": 5
+      },
+      "male/missing": {
+        "n": 70,
+        "survived": 9
+      },
+      "male/under12": {
+        "n": 21,
+        "survived": 11
+      }
+    },
+    "sex_class": {
+      "female/class1": {
+        "n": 62,
+        "survived": 59
+      },
+      "female/class2": {
+        "n": 47,
+        "survived": 45
+      },
+      "female/class3": {
+        "n": 88,
+        "survived": 44
+      },
+      "male/class1": {
+        "n": 67,
+        "survived": 24
+      },
+      "male/class2": {
+        "n": 65,
+        "survived": 9
+      },
+      "male/class3": {
+        "n": 205,
+        "survived": 24
+      }
+    },
+    "sex_family": {
+      "female/alone": {
+        "n": 73,
+        "survived": 57
+      },
+      "female/large4plus": {
+        "n": 21,
+        "survived": 6
+      },
+      "female/small1to3": {
+        "n": 103,
+        "survived": 85
+      },
+      "male/alone": {
+        "n": 248,
+        "survived": 33
+      },
+      "male/large4plus": {
+        "n": 18,
+        "survived": 1
+      },
+      "male/small1to3": {
+        "n": 71,
+        "survived": 23
+      }
+    },
+    "sex_port": {
+      "female/C": {
+        "n": 46,
+        "survived": 41
+      },
+      "female/Q": {
+        "n": 20,
+        "survived": 15
+      },
+      "female/S": {
+        "n": 129,
+        "survived": 90
+      },
+      "female/missing": {
+        "n": 2,
+        "survived": 2
+      },
+      "male/C": {
+        "n": 59,
+        "survived": 19
+      },
+      "male/Q": {
+        "n": 23,
+        "survived": 1
+      },
+      "male/S": {
+        "n": 255,
+        "survived": 37
+      }
+    }
+  }
+}

@@ -1,0 +1,1 @@
+{"id":"d665aa71-ec9c-4d2d-ac48-70aa80b24516","timestamp":"2026-11-04T21:47:12.133770","source":"environment","parent_id":"9caf14ae-0b2d-4aa6-bda0-da61ba5efded","code":"RequestBudgetExceeded","detail":"Estimated input plus output reserve exceeds remaining token budget","classification":{"kind":"unknown","retryable":false,"user_action":"none"},"kind":"ConversationErrorEvent"}

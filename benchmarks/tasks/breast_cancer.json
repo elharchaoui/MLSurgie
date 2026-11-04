@@ -1,0 +1,173 @@
+{
+  "name": "breast_cancer",
+  "dataset": "../data/breast_cancer.csv",
+  "notes": "UCI Wisconsin diagnostic breast cancer (scikit-learn bundled copy). Binary.",
+  "goal": {
+    "task": "binary",
+    "description": "Diagnose malignant versus benign breast masses from cell-nucleus measurements of fine-needle aspirates.",
+    "target": "diagnosis",
+    "positive_label": "malignant",
+    "primary_metric": "log_loss"
+  },
+  "features": [
+    {
+      "name": "mean_radius",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "mean_texture",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "mean_perimeter",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "mean_area",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "mean_smoothness",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "mean_compactness",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "mean_concavity",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "mean_concave_points",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "mean_symmetry",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "mean_fractal_dimension",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "radius_error",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "texture_error",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "perimeter_error",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "area_error",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "smoothness_error",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "compactness_error",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "concavity_error",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "concave_points_error",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "symmetry_error",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "fractal_dimension_error",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "worst_radius",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "worst_texture",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "worst_perimeter",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "worst_area",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "worst_smoothness",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "worst_compactness",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "worst_concavity",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "worst_concave_points",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "worst_symmetry",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "worst_fractal_dimension",
+      "kind": "numeric",
+      "description": ""
+    }
+  ],
+  "budget": {
+    "iterations": 8,
+    "max_parameters": 65536,
+    "max_width": 256,
+    "max_hidden_layers": 4,
+    "max_seconds": 3600,
+    "max_editor_tokens": 400000,
+    "max_output_tokens": 16384
+  }
+}

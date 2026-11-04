@@ -1,0 +1,121 @@
+/exec/source.py:11: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+  print(d.groupby(q,dropna=False).label.agg(['mean','sum','count']))
+/exec/source.py:11: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+  print(d.groupby(q,dropna=False).label.agg(['mean','sum','count']))
+/exec/source.py:11: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+  print(d.groupby(q,dropna=False).label.agg(['mean','sum','count']))
+/exec/source.py:11: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+  print(d.groupby(q,dropna=False).label.agg(['mean','sum','count']))
+                        count unique      top  ...    50%     75%     max
+amount                 7199.0    NaN      NaN  ...  42.55  88.365  2391.3
+hour                   7199.0    NaN      NaN  ...   14.0    17.0    23.0
+account_age_days       7199.0    NaN      NaN  ...  611.0  1227.5  7115.0
+txn_last_24h           7199.0    NaN      NaN  ...    1.0     2.0    19.0
+merchant_category        7199      7  grocery  ...    NaN     NaN     NaN
+card_present             7199      2      yes  ...    NaN     NaN     NaN
+country_mismatch         7199      2       no  ...    NaN     NaN     NaN
+distance_from_home_km  6835.0    NaN      NaN  ...    7.5    16.4  3805.8
+label                  7199.0    NaN      NaN  ...    0.0     0.0     1.0
+
+[9 rows x 11 columns]
+0.020558410890401446 148
+amount                   0.000000
+hour                     0.000000
+account_age_days         0.000000
+txn_last_24h             0.000000
+merchant_category        0.000000
+card_present             0.000000
+country_mismatch         0.000000
+distance_from_home_km    0.050563
+label                    0.000000
+dtype: float64
+                       mean  sum  count
+merchant_category                      
+electronics        0.045455   24    528
+gaming             0.058376   23    394
+gift_cards         0.115294   49    425
+grocery            0.007737   16   2068
+restaurants        0.009479   14   1477
+retail             0.010747   19   1768
+travel             0.005566    3    539
+                  mean  sum  count
+card_present                      
+no            0.057492  127   2209
+yes           0.004208   21   4990
+                      mean  sum  count
+country_mismatch                      
+no                0.017213  117   6797
+yes               0.077114   31    402
+                       mean  sum  count
+amount                                 
+(0.879, 10.718]    0.051389   37    720
+(10.718, 17.626]   0.001389    1    720
+(17.626, 24.748]   0.002778    2    720
+(24.748, 33.116]   0.006944    5    720
+(33.116, 42.55]    0.008333    6    720
+(42.55, 55.756]    0.009736    7    719
+(55.756, 75.05]    0.005548    4    721
+(75.05, 108.078]   0.011127    8    719
+(108.078, 179.67]  0.016667   12    720
+(179.67, 2391.3]   0.091667   66    720
+          mean  sum  count
+hour                      
+0     0.116279   10     86
+1     0.025316    2     79
+2     0.082474    8     97
+3     0.055556    6    108
+4     0.039062    5    128
+5     0.076923   12    156
+6     0.007246    1    138
+7     0.026738    5    187
+8     0.015810    4    253
+9     0.012384    4    323
+10    0.021798    8    367
+11    0.012739    6    471
+12    0.014388    8    556
+13    0.007812    5    640
+14    0.021016   12    571
+15    0.017986   10    556
+16    0.009398    5    532
+17    0.008715    4    459
+18    0.009662    4    414
+19    0.035928   12    334
+20    0.025180    7    278
+21    0.019481    3    154
+22    0.027523    3    109
+23    0.019704    4    203
+                      mean  sum  count
+account_age_days                      
+(-0.001, 88.0]    0.081492   59    724
+(88.0, 193.0]     0.006974    5    717
+(193.0, 309.0]    0.013850   10    722
+(309.0, 450.2]    0.022315   16    717
+(450.2, 611.0]    0.008287    6    724
+(611.0, 819.8]    0.006993    5    715
+(819.8, 1077.0]   0.012483    9    721
+(1077.0, 1423.4]  0.015299   11    719
+(1423.4, 2075.2]  0.020833   15    720
+(2075.2, 7115.0]  0.016667   12    720
+                   mean  sum  count
+txn_last_24h                       
+(-0.001, 1.0]  0.015064   60   3983
+(1.0, 2.0]     0.017837   32   1794
+(2.0, 3.0]     0.013468   12    891
+(3.0, 19.0]    0.082863   44    531
+                           mean  sum  count
+distance_from_home_km                      
+(0.099, 1.6]           0.016238   12    739
+(1.6, 2.7]             0.015361   10    651
+(2.7, 4.0]             0.018233   13    713
+(4.0, 5.5]             0.004587    3    654
+(5.5, 7.5]             0.019006   13    684
+(7.5, 10.4]            0.026588   18    677
+(10.4, 13.88]          0.013514    9    666
+(13.88, 20.0]          0.010219    7    685
+(20.0, 33.86]          0.010264    7    682
+(33.86, 3805.8]        0.071637   49    684
+NaN                    0.019231    7    364
+                           mean  sum  count
+distance_from_home_km                      
+False                  0.020629  141   6835
+True                   0.019231    7    364

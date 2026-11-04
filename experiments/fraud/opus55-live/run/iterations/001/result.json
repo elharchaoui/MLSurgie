@@ -1,0 +1,152 @@
+{
+  "audit": {
+    "scanned_files": 19,
+    "violations": []
+  },
+  "diff": {
+    "base_hash": "zero",
+    "changed_values": 41,
+    "l2_change": 1027.124017647066
+  },
+  "iteration": 1,
+  "metrics": {
+    "accuracy": 0.9945833333333334,
+    "accuracy_wilson_95": [
+      0.9907541426532906,
+      0.9968317282293833
+    ],
+    "average_precision": 0.7414212565159958,
+    "balanced_accuracy": 0.8873297511263118,
+    "brier": 0.005352426897168136,
+    "confusion_matrix": [
+      [
+        2349,
+        2
+      ],
+      [
+        11,
+        38
+      ]
+    ],
+    "f1": 0.8539325842696629,
+    "log_loss": 0.03171834242648788,
+    "n": 2400,
+    "positive_count": 49,
+    "precision": 0.95,
+    "recall": 0.7755102040816326,
+    "roc_auc": 0.9061102960963203,
+    "threshold": 0.5
+  },
+  "selected": true,
+  "state_hash": "1766a4d18997d7b263306ecef7a48540cea72ae8737c73bc13be99424cb18ff6",
+  "status": "evaluated",
+  "usage": {
+    "input_tokens": 322329,
+    "output_tokens": 15253,
+    "request_preflight": [
+      {
+        "allowed": true,
+        "estimated_input_tokens": 892,
+        "remaining_tokens": 400000,
+        "reserved_tokens": 17494
+      },
+      {
+        "allowed": true,
+        "estimated_input_tokens": 3100,
+        "remaining_tokens": 398073,
+        "reserved_tokens": 19922
+      },
+      {
+        "allowed": true,
+        "estimated_input_tokens": 5117,
+        "remaining_tokens": 392757,
+        "reserved_tokens": 22141
+      },
+      {
+        "allowed": true,
+        "estimated_input_tokens": 7438,
+        "remaining_tokens": 384138,
+        "reserved_tokens": 24694
+      },
+      {
+        "allowed": true,
+        "estimated_input_tokens": 7777,
+        "remaining_tokens": 372818,
+        "reserved_tokens": 25067
+      },
+      {
+        "allowed": true,
+        "estimated_input_tokens": 9291,
+        "remaining_tokens": 360970,
+        "reserved_tokens": 26733
+      },
+      {
+        "allowed": true,
+        "estimated_input_tokens": 10674,
+        "remaining_tokens": 347432,
+        "reserved_tokens": 28254
+      },
+      {
+        "allowed": true,
+        "estimated_input_tokens": 13846,
+        "remaining_tokens": 332761,
+        "reserved_tokens": 31743
+      },
+      {
+        "allowed": true,
+        "estimated_input_tokens": 16250,
+        "remaining_tokens": 314790,
+        "reserved_tokens": 34387
+      },
+      {
+        "allowed": true,
+        "estimated_input_tokens": 18475,
+        "remaining_tokens": 294229,
+        "reserved_tokens": 36835
+      },
+      {
+        "allowed": true,
+        "estimated_input_tokens": 20066,
+        "remaining_tokens": 271409,
+        "reserved_tokens": 38585
+      },
+      {
+        "allowed": true,
+        "estimated_input_tokens": 22302,
+        "remaining_tokens": 245914,
+        "reserved_tokens": 41045
+      },
+      {
+        "allowed": true,
+        "estimated_input_tokens": 23295,
+        "remaining_tokens": 216793,
+        "reserved_tokens": 42137
+      },
+      {
+        "allowed": true,
+        "estimated_input_tokens": 24744,
+        "remaining_tokens": 185998,
+        "reserved_tokens": 43731
+      },
+      {
+        "allowed": true,
+        "estimated_input_tokens": 25189,
+        "remaining_tokens": 156014,
+        "reserved_tokens": 44220
+      },
+      {
+        "allowed": true,
+        "estimated_input_tokens": 25657,
+        "remaining_tokens": 125531,
+        "reserved_tokens": 44735
+      },
+      {
+        "allowed": true,
+        "estimated_input_tokens": 26312,
+        "remaining_tokens": 94582,
+        "reserved_tokens": 45456
+      }
+    ],
+    "tool_calls": 16
+  }
+}

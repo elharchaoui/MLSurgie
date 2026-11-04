@@ -1,0 +1,43 @@
+{
+  "diff": {
+    "base_hash": "zero",
+    "changed_values": 102,
+    "l2_change": 109.8418231877688
+  },
+  "iteration": 3,
+  "metrics": {
+    "accuracy": 0.8089887640449438,
+    "accuracy_wilson_95": [
+      0.7449533180599053,
+      0.8599687679754133
+    ],
+    "balanced_accuracy": 0.7808823529411765,
+    "brier": 0.13971162966321374,
+    "confusion_matrix": [
+      [
+        99,
+        11
+      ],
+      [
+        23,
+        45
+      ]
+    ],
+    "f1": 0.7258064516129032,
+    "log_loss": 0.442641568340452,
+    "n": 178,
+    "positive_count": 68,
+    "precision": 0.8035714285714286,
+    "recall": 0.6617647058823529,
+    "roc_auc": 0.8383021390374331,
+    "threshold": 0.5
+  },
+  "selected": true,
+  "state_hash": "a8bad3642b01ee8fd849f256f41e7dbf631ca0b57c4e38b5c85ed40d1e3fc604",
+  "status": "evaluated",
+  "usage": {
+    "input_tokens": 0,
+    "measurement": "unavailable",
+    "output_tokens": 0
+  }
+}

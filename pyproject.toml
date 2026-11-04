@@ -4,15 +4,16 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mlsurgie"
-version = "0.1.0"
-description = "Construct neural networks through explicit, evaluated weight-space programs"
+version = "0.2.0"
+description = "Weight-space programming: agents write neural-network weights; benchmarked against classical ML"
 readme = "README.md"
-keywords = ["weight-space-programming", "neural-networks", "llm", "pytorch", "tabular-classification"]
+keywords = ["weight-space-programming", "neural-networks", "llm", "agents", "benchmark", "pytorch", "tabular"]
 requires-python = ">=3.11"
 dependencies = ["numpy>=1.26,<3", "torch>=2.2,<3"]
 
 [project.optional-dependencies]
-dev = ["pytest>=8,<10"]
+dev = ["pytest>=8,<10", "ruff>=0.6", "scikit-learn>=1.4,<2"]
+baselines = ["scikit-learn>=1.4,<2"]
 harness = ["openhands-sdk==1.59.0"]
 
 [project.urls]
@@ -27,6 +28,18 @@ mlsurgie = "mlsurgie.cli:main"
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.setuptools.package-data]
+mlsurgie = ["skills/*.md"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 140
+src = ["src", "tests"]
+extend-exclude = ["experiments"]  # recorded experiment sources are evidence; never reformat them
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B"]
+ignore = ["E501", "E731", "B008", "B905", "B023"]

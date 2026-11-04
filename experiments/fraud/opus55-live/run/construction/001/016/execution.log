@@ -1,0 +1,12 @@
+AP 0.8052335380633276 LL 0.0287604163870082 meanp 0.02032689235310737 0.020558410890401446
+                      p               y      
+                   mean count      mean count
+(0.0, 0.005]   0.004497  6981  0.004154  6981
+(0.005, 0.01]  0.007964    10  0.000000    10
+(0.01, 0.03]   0.019188    87  0.011494    87
+(0.03, 0.1]         NaN     0       NaN     0
+(0.1, 0.3]     0.139011     1  0.000000     1
+(0.3, 0.6]          NaN     0       NaN     0
+(0.6, 0.9]     0.867360    14  1.000000    14
+(0.9, 1.0]     0.952000   106  0.981132   106
+L1 sigmoid soft-step detectors: new, cnp, risky, big, velo, small, night, far. L2 ReLU AND units: A3=relu(sum['new', 'cnp', 'risky', 'big']-2) w=1.5; A4=relu(sum['new', 'cnp', 'risky', 'big']-3) w=5.5; B3=relu(sum['velo', 'small', 'cnp']-2) w=8.4; C3=relu(sum['night', 'far', 'cnp']-2) w=8.4. Output bias -5.4=log-odds of residual fraud rate (~0.45%) outside the three signatures (new account+CNP+risky merchant+big amount; card-testing burst: >=7 txns/24h + tiny amount + CNP; night + >250km from home + CNP). Weights = log-odds of each signature cell rate (~95%, shrunk) minus base.

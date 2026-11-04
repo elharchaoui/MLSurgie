@@ -1,0 +1,60 @@
+A 49 47
+B 35 35
+C 34 34
+7081 32
+      amount  hour  account_age_days  txn_last_24h merchant_category card_present country_mismatch  distance_from_home_km
+130   303.86    23               677             2            retail          yes               no                   11.9
+531   117.12    18               570             1        gift_cards          yes               no                   44.7
+632    27.05    13              2169             1       restaurants          yes               no                   14.3
+854    33.52    11              2247             0       restaurants          yes               no                   42.0
+1085   36.05    13              1860             1            retail          yes               no                   18.9
+1175   29.77     5              2209             2       restaurants          yes               no                    7.4
+1198   18.30    20              1242             2       electronics           no               no                    8.1
+1273   74.67    19               272             1           grocery           no               no                    1.5
+1310  107.70     2               153             4       restaurants           no               no                    3.3
+1374   78.23    20               613             1           grocery          yes               no                    3.8
+1449   53.36    23               314             1       restaurants          yes               no                   27.0
+1889  611.96    12              1156             1            travel           no               no                    6.1
+2091   18.72     8               384             1        gift_cards          yes               no                   19.1
+2596   59.20    15               928             2            retail           no               no                    2.6
+2631  538.79    17               608             5       electronics           no               no                    8.1
+2715   54.49    16              1080             1       electronics          yes               no                    6.2
+3348    6.96    14              3676             7            retail           no               no                   36.4
+3521  195.13    21               923             1       electronics          yes               no                   31.7
+3569  172.06    10              1130             2           grocery          yes               no                    6.7
+3695   29.66    22                84             2            gaming           no               no                   39.4
+3839   64.75    15                49             3           grocery          yes               no                    8.1
+4283  149.02    13              2166             1       electronics          yes               no                    7.8
+4411   29.75    17              1340             3            retail          yes               no                    8.7
+4570   13.44    20              1080             1       restaurants          yes               no                    0.2
+4721   42.93    11               308             1            gaming          yes               no                    8.6
+4871   42.51     0               361             1        gift_cards          yes               no                    1.2
+5092   44.51    19               392             1            retail           no               no                   85.4
+5774    5.91     8               294            15            retail           no               no                    2.2
+5901  112.93    22                95             1           grocery           no               no                    5.7
+6201   80.10    12               380             2            retail          yes               no                    6.4
+6459   53.85    18              1382             1            retail          yes               no                    1.6
+7179   39.76    10              3254             0       restaurants          yes               no                   35.1
+label            0           1      
+amount       False True  False True 
+txn_last_24h                        
+0               77     5    13     0
+1              117     6    12     0
+2               80     9    18     0
+3               34     2     8     0
+4               17     1     1     0
+5                9     0     2     0
+6                2     0     0     0
+7                0     0     0     2
+8                0     0     0     3
+9                0     0     0     1
+10               0     0     0     4
+11               0     0     0     2
+12               0     0     0     2
+13               0     0     0     1
+14               0     0     0     4
+15               0     0     0     3
+16               0     0     0     1
+17               0     0     0     5
+18               0     0     0     5
+19               0     0     0     2

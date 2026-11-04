@@ -1,0 +1,20 @@
+{
+  "group_logits": {
+    "female1": 2.7,
+    "female2": 2.4,
+    "female3": 0.1,
+    "male1": -0.7,
+    "male2": -2.1,
+    "male3": -2.2
+  },
+  "family_bonus": 0.2,
+  "large_family_penalty": 0.5,
+  "male_child_bonus": 2.5,
+  "female_child_bonus": 0.0,
+  "missing_age": -0.15,
+  "port_c": 0.15,
+  "male_port_q": -0.25,
+  "older_age_penalty": 0.35,
+  "low_fare_penalty": 0.0,
+  "rationale": "Program six sex/class conjunctions with conservative manually chosen logits informed by support counts. Add a bounded male-child benefit, modest small-family benefit, capped large-family penalty, and weak missing-age/port/older-age corrections. No coefficient fitting."
+}

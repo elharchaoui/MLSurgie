@@ -1,0 +1,161 @@
+      amount          txn_last_24h    
+         min      max          min max
+label                                 
+0       8.29  2391.30            6   8
+1       1.66     9.86            7  19
+card_present               no                                                      yes                                                    
+merchant_category electronics gaming gift_cards grocery restaurants retail electronics gaming gift_cards grocery restaurants retail travel
+label                                                                                                                                     
+0                           1      0          1       5           3      1           3      3          3       7           5      5      2
+1                           0     20         15       0           0      2           0      0          0       0           0      0      0
+      amount  hour  account_age_days  txn_last_24h merchant_category card_present country_mismatch  distance_from_home_km  label
+2097    8.29    17               145             6           grocery          yes               no                    4.0      0
+4170    9.46    16               240             6            gaming          yes               no                    0.5      0
+1844    9.94    20               180             6        gift_cards          yes               no                    4.2      0
+4465   11.14    22              2141             6            retail           no               no                   19.7      0
+3730   11.93    12               859             6       restaurants          yes               no                   16.7      0
+5911   11.94    14               378             6           grocery          yes               no                   18.5      0
+4774   12.07    23              1345             6           grocery           no               no                   16.7      0
+3776   12.08     8              1083             6            gaming          yes               no                    0.5      0
+79     15.48     7               271             6       restaurants           no               no                    9.6      0
+16     16.79     1               127             6            retail          yes               no                    0.8      0
+6905   18.08    15              2623             8            retail          yes               no                    0.8      0
+668    19.12    18               901             6           grocery          yes               no                  175.8      0
+1984   20.20    10               247             6       restaurants           no               no                   11.1      0
+1395   25.42     8                43             8            travel          yes               no                    1.2      0
+1580   27.09    21               596             6            gaming          yes               no                   53.6      0
+      amount  hour  account_age_days  txn_last_24h merchant_category card_present country_mismatch  distance_from_home_km  label
+259    14.27    15                54             3            gaming          yes               no                  627.9      0
+1618   20.54     9               516             0            retail          yes               no                  366.8      0
+2109   39.61    13              4501             0       restaurants           no               no                  319.3      0
+2395   28.91    17               357             1            retail           no               no                  352.3      0
+2686   27.86    23              1557             0            retail          yes               no                  381.0      0
+3528  154.67    13                84             0        gift_cards          yes               no                  560.6      0
+4424   38.21     9               957             1        gift_cards           no               no                  475.9      0
+4713   15.92     8               519             0        gift_cards           no               no                  367.6      0
+5561   51.63    11               199             1       restaurants          yes               no                  374.4      0
+5939   47.82     7               184             1            retail           no               no                  352.7      0
+6588   72.53    18              2559             1       electronics          yes               no                  471.2      0
+6607   10.51     6                 9             1       restaurants           no               no                  322.4      0
+country_mismatch no     yes
+card_present     no yes  no
+label                      
+0                 6   6   0
+1                 5   0  29
+merchant_category
+grocery        11
+retail         10
+restaurants     7
+travel          2
+electronics     2
+gift_cards      1
+gaming          1
+Name: count, dtype: int64
+       count        mean         std   min       25%     50%      75%      max
+label                                                                         
+0      326.0   78.301196   95.588584  2.75   24.6375   45.35   88.545   618.28
+1       50.0  565.022600  363.343826  7.24  350.8375  459.96  700.735  1992.26
+card_present               no                                                             yes                                                    
+merchant_category electronics gaming gift_cards grocery restaurants retail travel electronics gaming gift_cards grocery restaurants retail travel
+label                                                                                                                                            
+0                           8      2         10      30          21     25      8          12     16         11      71          38     59     15
+1                          18      1         31       0           0      0      0           0      0          0       0           0      0      0
+card_present         no         yes      
+merchant_category False True  False True 
+label                                    
+0                     8     4    21    12
+1                     0    48     0     0
+       amount  account_age_days merchant_category card_present  label
+7106   151.93                16           grocery          yes      0
+912    153.20                20       restaurants          yes      0
+4834   154.06                37       restaurants          yes      0
+3127   156.30                40            retail          yes      0
+7157   159.38                16       restaurants          yes      0
+2535   162.90                 1       restaurants          yes      0
+2374   166.62                37            retail           no      0
+6332   168.68                24        gift_cards          yes      0
+3510   171.49                38            retail           no      0
+5568   181.72                11       restaurants           no      0
+5224   186.88                12            travel          yes      0
+3601   193.33                 6            travel           no      0
+3513   193.33                25            travel          yes      0
+4975   197.01                 3            travel          yes      0
+2743   199.04                31           grocery          yes      0
+1857   202.45                31           grocery          yes      0
+7183   204.70                33           grocery           no      0
+6152   205.57                 1        gift_cards          yes      0
+7156   213.55                20            gaming          yes      0
+2380   216.21                24            retail          yes      0
+2701   217.16                32            travel          yes      0
+6322   222.36                16       electronics           no      1
+5816   226.69                15        gift_cards           no      1
+3778   227.08                 5           grocery          yes      0
+5746   232.03                17            gaming          yes      0
+6125   232.09                 5        gift_cards           no      1
+248    234.14                 7        gift_cards           no      1
+4873   237.44                36        gift_cards           no      0
+4090   241.27                22        gift_cards           no      1
+7149   246.22                35       electronics          yes      0
+5275   287.45                 3       electronics           no      1
+6491   288.44                29            retail          yes      0
+3193   293.13                19       electronics          yes      0
+777    304.31                18           grocery          yes      0
+2015   310.77                28       electronics           no      1
+2002   312.40                29       electronics           no      0
+2642   317.74                18       electronics          yes      0
+512    318.66                18            gaming          yes      0
+1445   322.67                26       restaurants           no      0
+5704   324.92                14            travel          yes      0
+1812   335.58                 3        gift_cards           no      1
+4449   338.38                16        gift_cards           no      1
+4104   344.90                27       electronics           no      1
+2714   346.55                 9        gift_cards           no      1
+1038   362.03                26            retail          yes      0
+1448   362.77                28       electronics           no      0
+1724   363.49                 1            travel          yes      0
+125    363.70                11       electronics           no      1
+1402   369.21                29        gift_cards           no      1
+1480   373.16                28       electronics          yes      0
+5576   375.35                10       electronics           no      1
+5482   378.66                27            travel          yes      0
+5262   378.89                40       electronics           no      0
+1840   397.17                10        gift_cards           no      1
+3215   399.02                 8       electronics           no      1
+4461   401.50                39            travel           no      0
+6231   406.99                26        gift_cards           no      1
+1506   407.18                11       electronics          yes      0
+2845   413.40                 7       electronics           no      1
+1786   413.93                 3        gift_cards           no      1
+4255   419.90                 4       electronics           no      1
+6365   434.85                11        gift_cards           no      1
+4737   439.55                17        gift_cards           no      1
+7051   458.60                 9        gift_cards           no      1
+1053   461.32                25       electronics           no      1
+6991   463.57                 1        gift_cards           no      1
+2133   496.97                 9           grocery          yes      0
+3551   506.54                 9           grocery           no      0
+2770   512.73                 5        gift_cards           no      1
+6598   526.94                25       electronics           no      1
+526    561.28                17       electronics           no      1
+1098   571.95                 4       electronics          yes      0
+5308   588.38                12       electronics           no      1
+2369   618.28                36       electronics          yes      0
+2620   646.92                 5        gift_cards           no      1
+2358   661.71                17        gift_cards           no      1
+2562   662.32                19        gift_cards           no      1
+761    668.46                18        gift_cards           no      1
+4455   668.70                19       electronics           no      1
+3671   695.56                17        gift_cards           no      1
+6329   702.46                11        gift_cards           no      1
+1131   711.99                 5        gift_cards           no      1
+1848   734.04                27       electronics           no      1
+2075   743.99                23        gift_cards           no      1
+1709   763.93                 4       electronics           no      1
+2308   764.84                 2        gift_cards           no      1
+6123   810.16                 1        gift_cards           no      1
+6180   847.34                16        gift_cards           no      1
+3432   947.09                12        gift_cards           no      1
+3969  1104.90                10        gift_cards           no      1
+4909  1339.55                28        gift_cards           no      1
+1877  1641.86                22       electronics           no      1
+4196  1992.26                33       electronics           no      1

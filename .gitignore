@@ -7,6 +7,7 @@ build/
 dist/
 runs/
 data/
+!benchmarks/data/
 .env
 .env.*
 !.env.example

@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-04",
+  "excluded_columns": [
+    "alive",
+    "class",
+    "who",
+    "adult_male",
+    "deck",
+    "embark_town",
+    "alone"
+  ],
+  "source_sha256": "81787d320d7f7b03df935e91de8bd19e11d45c5bbcab86ef4d4a76dc91b7d4f2",
+  "url": "https://raw.githubusercontent.com/mwaskom/seaborn-data/master/titanic.csv"
+}

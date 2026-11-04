@@ -1,0 +1,28 @@
+{
+  "audit": {
+    "scanned_files": 4,
+    "violations": []
+  },
+  "iteration": 2,
+  "selected": false,
+  "status": "editor_stopped",
+  "usage": {
+    "input_tokens": 33158,
+    "output_tokens": 148,
+    "request_preflight": [
+      {
+        "allowed": true,
+        "estimated_input_tokens": 27763,
+        "remaining_tokens": 62418,
+        "reserved_tokens": 47052
+      },
+      {
+        "allowed": false,
+        "estimated_input_tokens": 29326,
+        "remaining_tokens": 29112,
+        "reserved_tokens": 48771
+      }
+    ],
+    "tool_calls": 1
+  }
+}

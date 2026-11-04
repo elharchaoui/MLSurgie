@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/exec/source.py", line 3, in <module>
+    f=d[d.label==1]
+      ^
+NameError: name 'd' is not defined. Did you mean: 'id'?

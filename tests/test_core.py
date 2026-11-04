@@ -45,7 +45,7 @@ def test_editor_never_sees_test_data_and_preprocessing_uses_support(tmp_path):
             self.contexts.append(deepcopy(context))
             for row in context["support_examples"]:
                 assert row["features"]["x"] not in held_out
-            for row in (context["last_feedback"] or {}).get("largest_probability_errors", []):
+            for row in (context["last_feedback"] or {}).get("largest_errors", []):
                 assert row["features"]["x"] not in held_out
             assert "test" not in context
             return super().propose(context, timeout)

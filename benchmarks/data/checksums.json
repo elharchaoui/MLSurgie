@@ -1,0 +1,7 @@
+{
+  "breast_cancer.csv": "df8105f5eceb050f7a74e324a1bdebfafa8303b04ecccad3992f02d68625b5cb",
+  "diabetes.csv": "861964c468642a32978c7053ff452a64b79977dba1d00c3d4349dbf4ef9d2090",
+  "fraud.csv": "40e62819de3815aedaf02a2e8e868060b2ab25dc99bfba60b2613c0ff5d5f5dd",
+  "segments.csv": "4319b014ffce46d2650e3266948f77cdb631147522f452eb0092ea80b976eaac",
+  "wine.csv": "9416880792dd50ad526519389f07a6501245cac60c7bef0f3fc750ec3652dff3"
+}
