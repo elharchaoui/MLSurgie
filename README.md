@@ -57,7 +57,6 @@ There is **no default LLM or model**. Select one provider and an explicit model 
 
 | Path | LLM used | Configuration |
 |---|---|---|
-| Offline `mlsurgie demo` | None; scripted known-rule proposals | No provider or key |
 | Ollama | Your installed local model | `--ollama-model MODEL_ID`, optional `--ollama-url` |
 | OpenRouter | Your chosen hosted model | `--openrouter-model VENDOR/MODEL`, `OPENROUTER_API_KEY` environment variable |
 
@@ -99,7 +98,7 @@ This example expects two **encoded** inputs; unassigned parameters stay zero. Ed
 
 ## Evidence: Titanic classifier
 
-In an interactive Codex experiment, the assistant designed a 769-parameter neural network through eight proposals. Development log loss selected candidate 7 before opening the 179-passenger test set.
+These are measured results from an actual interactive LLM experiment, separate from the scripted offline demo. In the Codex conversation, the assistant designed a 769-parameter neural network through eight proposals; a deterministic materializer converted the assistant's circuit constants into weight tensors. Development log loss selected candidate 7 before opening the 179-passenger test set. This was an interactive assistant workflow, not an autonomous run of the packaged Ollama or OpenRouter adapters.
 
 | Predictor | Held-out accuracy | ROC-AUC | Log loss ↓ |
 |---|---:|---:|---:|
