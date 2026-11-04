@@ -1,0 +1,659 @@
+
+--- /inputs/README.md ---
+# Inputs (read-only)
+
+- `task.json`: goal, task type (binary), classes, output size, feature declarations,
+  preprocessing state, encoded feature names, budgets, track, and the weight-program format.
+- `state.json`: refreshed every turn: iteration, remaining budgets, best network (weights and hash),
+  best development metrics, and last development feedback.
+- `data/support.csv`: 341 labeled support rows with raw feature values. `label` is 1 for the positive class, 0 otherwise.
+- `data/support_encoded.csv`: the same rows as the network actually sees them
+  (columns in `encoded_features` order), plus the same label column.
+
+The network input is exactly the encoded vector. Encoding (from support rows only):
+numeric `x` -> `x:standardized` = (x_or_median - mean) / scale, and `x:missing` in {0,1};
+categorical `c` -> one-hot `c='value'` columns, plus `c:missing` and `c:unknown`.
+Preprocessing statistics are in task.json `preprocessing` (mean, scale, median, categories).
+To express a raw threshold t on numeric x, use (t - mean) / scale on `x:standardized`.
+
+Development and final-test rows are not available here. Write `/workspace/candidate.json`.
+
+--- /inputs/task.json ---
+{
+  "goal": {
+    "description": "Diagnose malignant versus benign breast masses from cell-nucleus measurements of fine-needle aspirates.",
+    "target": "diagnosis",
+    "positive_label": "malignant",
+    "primary_metric": "log_loss",
+    "threshold": 0.5,
+    "target_score": null,
+    "task": "binary",
+    "n_clusters": null,
+    "reference_column": null
+  },
+  "task": "binary",
+  "classes": [
+    "benign",
+    "malignant"
+  ],
+  "output_size": 1,
+  "features": [
+    {
+      "name": "mean_radius",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "mean_texture",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "mean_perimeter",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "mean_area",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "mean_smoothness",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "mean_compactness",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "mean_concavity",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "mean_concave_points",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "mean_symmetry",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "mean_fractal_dimension",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "radius_error",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "texture_error",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "perimeter_error",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "area_error",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "smoothness_error",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "compactness_error",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "concavity_error",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "concave_points_error",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "symmetry_error",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "fractal_dimension_error",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "worst_radius",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "worst_texture",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "worst_perimeter",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "worst_area",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "worst_smoothness",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "worst_compactness",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "worst_concavity",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "worst_concave_points",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "worst_symmetry",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "worst_fractal_dimension",
+      "kind": "numeric",
+      "description": ""
+    }
+  ],
+  "preprocessing": [
+    {
+      "name": "mean_radius",
+      "kind": "numeric",
+      "description": "",
+      "median": 13.2,
+      "mean": 14.0596715542522,
+      "scale": 3.636996252353131
+    },
+    {
+      "name": "mean_texture",
+      "kind": "numeric",
+      "description": "",
+      "median": 18.59,
+      "mean": 19.184516129032257,
+      "scale": 4.142209819072873
+    },
+    {
+      "name": "mean_perimeter",
+      "kind": "numeric",
+      "description": "",
+      "median": 85.48,
+      "mean": 91.60123167155426,
+      "scale": 25.12635519069971
+    },
+    {
+      "name": "mean_area",
+      "kind": "numeric",
+      "description": "",
+      "median": 537.9,
+      "mean": 652.074486803519,
+      "scale": 369.62759481746366
+    },
+    {
+      "name": "mean_smoothness",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.09723,
+      "mean": 0.09707988269794722,
+      "scale": 0.013311674301661417
+    },
+    {
+      "name": "mean_compactness",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.09486,
+      "mean": 0.10561894428152492,
+      "scale": 0.053022749547340015
+    },
+    {
+      "name": "mean_concavity",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.06181,
+      "mean": 0.09017132844574781,
+      "scale": 0.07956131864474321
+    },
+    {
+      "name": "mean_concave_points",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.03384,
+      "mean": 0.04959539002932551,
+      "scale": 0.03953027399174638
+    },
+    {
+      "name": "mean_symmetry",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.1782,
+      "mean": 0.18108035190615834,
+      "scale": 0.02660711866235286
+    },
+    {
+      "name": "mean_fractal_dimension",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.06214,
+      "mean": 0.06325721407624633,
+      "scale": 0.0068076878340779905
+    },
+    {
+      "name": "radius_error",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.3106,
+      "mean": 0.40923343108504395,
+      "scale": 0.29758784818396294
+    },
+    {
+      "name": "texture_error",
+      "kind": "numeric",
+      "description": "",
+      "median": 1.139,
+      "mean": 1.222021994134897,
+      "scale": 0.5548516156427417
+    },
+    {
+      "name": "perimeter_error",
+      "kind": "numeric",
+      "description": "",
+      "median": 2.222,
+      "mean": 2.8962624633431084,
+      "scale": 2.171374057056602
+    },
+    {
+      "name": "area_error",
+      "kind": "numeric",
+      "description": "",
+      "median": 23.52,
+      "mean": 41.368645161290324,
+      "scale": 51.37188536458647
+    },
+    {
+      "name": "smoothness_error",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.00647,
+      "mean": 0.007116850439882699,
+      "scale": 0.002996494138866175
+    },
+    {
+      "name": "compactness_error",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.02003,
+      "mean": 0.02529509970674487,
+      "scale": 0.017748441362042115
+    },
+    {
+      "name": "concavity_error",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.02645,
+      "mean": 0.03175467448680352,
+      "scale": 0.027964249028061265
+    },
+    {
+      "name": "concave_points_error",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.0111,
+      "mean": 0.01180849853372434,
+      "scale": 0.006084300552877035
+    },
+    {
+      "name": "symmetry_error",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.0187,
+      "mean": 0.02053874486803519,
+      "scale": 0.00801949189320809
+    },
+    {
+      "name": "fractal_dimension_error",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.003299,
+      "mean": 0.0038353812316715545,
+      "scale": 0.0024318432616811103
+    },
+    {
+      "name": "worst_radius",
+      "kind": "numeric",
+      "description": "",
+      "median": 14.84,
+      "mean": 16.247126099706747,
+      "scale": 5.060177452632867
+    },
+    {
+      "name": "worst_texture",
+      "kind": "numeric",
+      "description": "",
+      "median": 25.26,
+      "mean": 25.592697947214077,
+      "scale": 5.925243159910996
+    },
+    {
+      "name": "worst_perimeter",
+      "kind": "numeric",
+      "description": "",
+      "median": 96.74,
+      "mean": 107.11970674486804,
+      "scale": 34.914581118696816
+    },
+    {
+      "name": "worst_area",
+      "kind": "numeric",
+      "description": "",
+      "median": 675.2,
+      "mean": 886.7560117302053,
+      "scale": 613.0084098588703
+    },
+    {
+      "name": "worst_smoothness",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.134,
+      "mean": 0.13371642228739003,
+      "scale": 0.022284755045424588
+    },
+    {
+      "name": "worst_compactness",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.2156,
+      "mean": 0.2563689149560117,
+      "scale": 0.1571855834865508
+    },
+    {
+      "name": "worst_concavity",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.2365,
+      "mean": 0.2757175601173021,
+      "scale": 0.21081545092058715
+    },
+    {
+      "name": "worst_concave_points",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.1047,
+      "mean": 0.11628112023460409,
+      "scale": 0.0676309913632382
+    },
+    {
+      "name": "worst_symmetry",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.2826,
+      "mean": 0.29029970674486805,
+      "scale": 0.060792099684730615
+    },
+    {
+      "name": "worst_fractal_dimension",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.08075,
+      "mean": 0.08508736070381231,
+      "scale": 0.018254429938756082
+    }
+  ],
+  "encoded_features": [
+    "mean_radius:standardized",
+    "mean_radius:missing",
+    "mean_texture:standardized",
+    "mean_texture:missing",
+    "mean_perimeter:standardized",
+    "mean_perimeter:missing",
+    "mean_area:standardized",
+    "mean_area:missing",
+    "mean_smoothness:standardized",
+    "mean_smoothness:missing",
+    "mean_compactness:standardized",
+    "mean_compactness:missing",
+    "mean_concavity:standardized",
+    "mean_concavity:missing",
+    "mean_concave_points:standardized",
+    "mean_concave_points:missing",
+    "mean_symmetry:standardized",
+    "mean_symmetry:missing",
+    "mean_fractal_dimension:standardized",
+    "mean_fractal_dimension:missing",
+    "radius_error:standardized",
+    "radius_error:missing",
+    "texture_error:standardized",
+    "texture_error:missing",
+    "perimeter_error:standardized",
+    "perimeter_error:missing",
+    "area_error:standardized",
+    "area_error:missing",
+    "smoothness_error:standardized",
+    "smoothness_error:missing",
+    "compactness_error:standardized",
+    "compactness_error:missing",
+    "concavity_error:standardized",
+    "concavity_error:missing",
+    "concave_points_error:standardized",
+    "concave_points_error:missing",
+    "symmetry_error:standardized",
+    "symmetry_error:missing",
+    "fractal_dimension_error:standardized",
+    "fractal_dimension_error:missing",
+    "worst_radius:standardized",
+    "worst_radius:missing",
+    "worst_texture:standardized",
+    "worst_texture:missing",
+    "worst_perimeter:standardized",
+    "worst_perimeter:missing",
+    "worst_area:standardized",
+    "worst_area:missing",
+    "worst_smoothness:standardized",
+    "worst_smoothness:missing",
+    "worst_compactness:standardized",
+    "worst_compactness:missing",
+    "worst_concavity:standardized",
+    "worst_concavity:missing",
+    "worst_concave_points:standardized",
+    "worst_concave_points:missing",
+    "worst_symmetry:standardized",
+    "worst_symmetry:missing",
+    "worst_fractal_dimension:standardized",
+    "worst_fractal_dimension:missing"
+  ],
+  "limits": {
+    "iterations": 8,
+    "max_parameters": 65536,
+    "max_width": 256,
+    "max_hidden_layers": 4,
+    "max_evaluated_rows": 100000,
+    "max_seconds": 3600,
+    "max_editor_tokens": 140000,
+    "max_output_tokens": 16384,
+    "support_examples": 64,
+    "diagnostic_examples": 8,
+    "max_input_features": 256,
+    "max_abs_weight": 10000
+  },
+  "track": {
+    "names": "semantic",
+    "policy": "strict"
+  },
+  "protocol": {
+    "feedback": {
+      "error_rows": null,
+      "max_revealed_labels": null
+    },
+    "selection": {
+      "metric": "log_loss",
+      "min_delta": 0.0
+    },
+    "track": {
+      "names": "semantic",
+      "policy": "strict"
+    },
+    "initial_program": false
+  },
+  "program_format": "Return a JSON object, no code or markdown:\n{\"base\":\"zero\", \"hidden_sizes\":[8], \"activations\":[\"relu\"], \"rationale\":\"mechanism hypothesis\", \"operations\":[]}\nhidden_sizes is a list of hidden layer widths (empty means a direct linear output).\nactivations is optional: one of relu, tanh, sigmoid, identity per hidden layer (default relu).\nOutput head: output_size is 1: a logit; probability = sigmoid(logit), class = probability >= threshold.\nEvery tensor starts at zero when base=zero; unassigned entries remain zero.\nTensors are layers.0.weight, layers.0.bias, ...; weights have shape [out,in].\nAllowed operations:\n{\"op\":\"fill\",\"tensor\":\"layers.0.bias\",\"value\":0}\n{\"op\":\"set\",\"tensor\":\"layers.0.weight\",\"value\":[[1,2],[3,4]]}\n{\"op\":\"set_entries\",\"tensor\":\"layers.0.weight\",\"entries\":[{\"index\":[0,1],\"value\":2}]}\n{\"op\":\"add_entries\",\"tensor\":\"layers.0.bias\",\"entries\":[{\"index\":[0],\"value\":0.2}]}\nUse base=best with base_hash equal to the supplied best hash to patch that checkpoint.\nArchitecture can change on any base=zero candidate. base=best requires matching architecture and hash.\nDesign weight values directly by reasoning. No fitting, optimizers, gradient steps,\npretrained target weights, executable code, or requests for final-test data.\n",
+  "support_rows": 341
+}
+--- /inputs/state.json ---
+{
+  "iteration": 1,
+  "remaining": {
+    "iterations": 8,
+    "seconds": 3599.999995041988,
+    "editor_tokens": 140000
+  },
+  "best": null,
+  "best_metrics": null,
+  "last_feedback": null,
+  "output_token_limit": 16384
+}
+--- /skills/network-ir.md ---
+# Network IR: what you are writing
+
+A feed-forward network: `x -> [Linear -> activation]* -> Linear -> head`.
+
+```json
+{"base": "zero", "hidden_sizes": [16, 8], "activations": ["relu", "relu"],
+ "rationale": "unit ledger: ...", "operations": [ ... ]}
+```
+
+- `hidden_sizes`: widths; `[]` means the output is a linear function of the inputs.
+- `activations`: per hidden layer, one of `relu`, `tanh`, `sigmoid`, `identity` (default relu).
+- Tensors: `layers.{i}.weight` with shape `[out, in]`, `layers.{i}.bias` with shape `[out]`.
+  Layer 0 reads the encoded inputs (`len(encoded_features)` columns, in that order).
+- Every entry starts at zero for `base: "zero"`. Unassigned entries stay zero.
+- Operations: `fill` (scalar), `set` (full tensor), `set_entries` / `add_entries` (sparse
+  `{"index": [row, col], "value": v}`).
+- `base: "best"` + `base_hash` (from state.json `best.hash`) patches the current best; the
+  architecture must match exactly.
+- Limits in task.json: `max_parameters`, `max_width`, `max_hidden_layers`, `max_abs_weight`.
+
+## Output heads (task.json `task`, `output_size`)
+
+| Task | Outputs | Interpretation |
+|---|---|---|
+| binary | 1 | logit z; P(positive) = 1/(1+e^-z); class = P >= threshold |
+| multiclass | number of classes | softmax over outputs, ordered as task.json `classes` |
+| regression | 1 | the prediction in the target's original units |
+| clustering | n_clusters | one score per cluster; assignment = argmax |
+
+## Encoding (exact)
+
+- numeric `x`: `x:standardized = (value_or_median - mean) / scale`; `x:missing` is 1 when blank.
+- categorical `c`: one-hot `c='v'` per support category, plus `c:missing`, `c:unknown`.
+- A raw threshold t on `x` is the standardized threshold `(t - mean) / scale`.
+- A raw-unit slope a on `x` is weight `a * scale` on `x:standardized`.
+
+Your NumPy forward pass must reproduce this exactly; float32 rounding is the only difference.
+
+--- /skills/policy.md ---
+# Policy: reasoning versus fitting
+
+Weight-space programming means the weights come from *your reasoning*. Data analysis is
+encouraged; parameter estimation by optimization is not.
+
+## Allowed
+- Descriptive statistics: counts, rates, means, medians, quantiles, variances, histograms,
+  cross-tabulations, conditional rates in bins, correlations.
+- Analytic formulas you derive and can explain: log-odds of a rate, a midpoint between two class
+  means, a slope read from two segment means, a centroid you chose from a density plot of bins.
+- Computing your own candidate's metric on support rows (or a held-out support slice) to check it.
+- Revising a mechanism after reading development feedback, one idea at a time.
+
+## Not allowed
+- Optimizers, gradient steps, autodiff, learning libraries (sklearn, torch, statsmodels, ...).
+- Solvers that estimate parameters from data: `lstsq`, `solve`, `inv`, `pinv`, `polyfit`,
+  `curve_fit`, `scipy.optimize`, iterative k-means/EM updates.
+- Search loops that score many weight settings against labels and keep the best
+  (grid search, random search, coordinate descent) — that is fitting with extra steps.
+- Loading pretrained weights for the target.
+
+## Enforcement
+Every executed source and every file in `/workspace` is statically audited each turn.
+On the strict track a flagged candidate is rejected (it still costs an iteration); delete or
+rewrite the flagged code. On the open track the result is labeled. Transcripts are retained.
+
+--- /skills/binary-evidence.md ---
+# Binary classification: building log-odds by hand
+
+Target: a logit z(x) such that sigmoid(z) is a calibrated probability.
+
+1. **Prior.** Output bias b0 = log(p / (1 - p)) with p the support positive rate.
+2. **Additive evidence.** For a one-hot category value v: weight = log-odds(rate | v) - log-odds(p),
+   shrunk toward 0 when the cell is small (e.g. add a pseudo-count of a few prior-rate examples).
+   This is a "weight of evidence" reading of the data, done by you.
+3. **Numeric features.** Bin into quantiles, read the rate per bin, and choose a shape: linear
+   slope (difference of bin log-odds per standardized unit), hinge, or step (see circuits.md).
+4. **Correlated evidence.** Adding independent-looking evidence from correlated features double-counts.
+   Shrink overlapping weights (e.g. multiply by 0.5–0.7) or encode the joint cell with an AND unit.
+5. **Interactions.** When a rate table by (A, B) is not additive in log-odds, add an AND unit for the
+   anomalous cell with output weight equal to the residual log-odds of that cell.
+6. **Calibration check.** Compare mean predicted probability with observed rate in deciles of your
+   score on support. Over-confident? Scale all output weights by a factor < 1.
+
+Metrics: log loss rewards calibration; ROC-AUC only ranking; accuracy depends on the threshold.
+
+--- /skills/circuits.md ---
+# Circuit cookbook (ReLU unless stated)
+
+Write s = standardized input, t = standardized threshold. ReLU(u) = max(0, u).
+
+| Shape | Construction |
+|---|---|
+| Linear evidence | output weight w on the input directly (no hidden unit needed) |
+| Step at t (soft) | unit `ReLU(k(s - t)) - ReLU(k(s - t) - 1)` → 0 below t, 1 above t + 1/k (two units) |
+| Hinge (effect only above t) | `ReLU(s - t)`; slope = output weight |
+| Hinge below t | `ReLU(t - s)` (weight -1, bias t) |
+| Interval / bump [a, b] | step at a minus step at b (four units), or `ReLU(1 - k|s - c|)` via two units |
+| Absolute value | `|s - c| = ReLU(s - c) + ReLU(c - s)` |
+| AND of binary features (one-hot) | `ReLU(f1 + f2 - 1)` → 1 only when both are 1 |
+| AND of n conditions | `ReLU(sum(f_i) - (n - 1))` |
+| OR (saturating) | `min(1, f1 + f2) = (f1 + f2) - ReLU(f1 + f2 - 1)` |
+| Condition AND threshold | `ReLU(k(s - t) + M(f - 1))` with large M: active only if f = 1 and s > t |
+| Min / max | `min(a,b) = a - ReLU(a - b)`; `max(a,b) = b + ReLU(a - b)` |
+| Piecewise-linear f(s) | knots t_j: f(s) = f(t_0) + slope_0 (s - t_0) + Σ_j Δslope_j ReLU(s - t_j) |
+
+Tips
+- Identity pass-through in a hidden layer: `ReLU(s) - ReLU(-s) = s` (two units).
+- Keep magnitudes moderate (|w| < ~20) unless you need hard gates; large weights make probabilities
+  overconfident and log loss explodes on mistakes.
+- Two hidden layers let layer 1 compute conditions and layer 2 combine them (AND of ORs).
+- `tanh`/`sigmoid` hidden layers give smooth saturating gates when you want bounded evidence.
+total 312
+-rw-r--r-- 1 501 dialout  73188 Nov  4 21:25 support.csv
+-rw-r--r-- 1 501 dialout 245508 Nov  4 21:25 support_encoded.csv

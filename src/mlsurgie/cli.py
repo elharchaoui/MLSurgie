@@ -64,6 +64,7 @@ def main():
                    help="none = baselines only")
     s.add_argument("--seeds", type=int, nargs="+", help="Override the suite's seeds")
     s.add_argument("--iterations", type=int, help="Override each task's iteration budget")
+    s.add_argument("--max-editor-tokens", type=int, help="Override each task's editor token budget (cost control)")
     s.add_argument("--names", choices=["semantic", "anonymized"], default="semantic")
     s.add_argument("--policy", choices=["strict", "open"], default="strict")
     s.add_argument("--ollama-model")
@@ -136,8 +137,9 @@ def bench(args):
     from .suite import run_suite
     track = Track(args.names, args.policy)
     options = {}
-    if args.iterations:
-        options["budget_overrides"] = {"iterations": args.iterations}
+    overrides = {k: v for k, v in (("iterations", args.iterations), ("max_editor_tokens", args.max_editor_tokens)) if v}
+    if overrides:
+        options["budget_overrides"] = overrides
     if args.editor == "none":
         make = None
     elif args.editor == "random-search":

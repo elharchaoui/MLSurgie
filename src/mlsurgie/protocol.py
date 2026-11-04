@@ -357,7 +357,9 @@ def build(*, table, editor, output, budget=None, seed=42, dynamic_architecture=F
         "architecture": None if best is None else best.architecture(),
         "history": history, "cost": {"evaluated_rows": rows_used, "editor_tokens": tokens_used,
                                     "revealed_development_labels": revealed,
-                                    "wall_seconds": time.monotonic() - started, "currency_cost": None},
+                                    "wall_seconds": time.monotonic() - started,
+                                    "currency_cost": (round(sum(h.get("usage", {}).get("cost_usd", 0) for h in history), 6)
+                                                      if any("cost_usd" in h.get("usage", {}) for h in history) else None)},
         "limitations": list(LIMITATIONS),
     }
     save_report(output, report)

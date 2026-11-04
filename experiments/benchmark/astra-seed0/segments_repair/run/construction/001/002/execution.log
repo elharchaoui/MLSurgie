@@ -1,0 +1,260 @@
+# Inputs (read-only)
+
+- `task.json`: goal, task type (clustering), classes, output size, feature declarations,
+  preprocessing state, encoded feature names, budgets, track, and the weight-program format.
+- `state.json`: refreshed every turn: iteration, remaining budgets, best network (weights and hash),
+  best development metrics, and last development feedback.
+- `data/support.csv`: 960 labeled support rows with raw feature values. There are no labels: this is unsupervised.
+- `data/support_encoded.csv`: the same rows as the network actually sees them
+  (columns in `encoded_features` order), plus the same label column.
+
+The network input is exactly the encoded vector. Encoding (from support rows only):
+numeric `x` -> `x:standardized` = (x_or_median - mean) / scale, and `x:missing` in {0,1};
+categorical `c` -> one-hot `c='value'` columns, plus `c:missing` and `c:unknown`.
+Preprocessing statistics are in task.json `preprocessing` (mean, scale, median, categories).
+To express a raw threshold t on numeric x, use (t - mean) / scale on `x:standardized`.
+
+Development and final-test rows are not available here. Write `/workspace/candidate.json`.
+{
+  "goal": {
+    "description": "A deployed customer-segmentation network (4 segments) has degraded after a faulty manual edit. Diagnose and repair it.",
+    "target": null,
+    "positive_label": "1",
+    "primary_metric": "silhouette",
+    "threshold": 0.5,
+    "target_score": null,
+    "task": "clustering",
+    "n_clusters": 4,
+    "reference_column": "hidden"
+  },
+  "task": "clustering",
+  "classes": null,
+  "output_size": 4,
+  "features": [
+    {
+      "name": "annual_spend",
+      "kind": "numeric",
+      "description": "Annual spend in USD"
+    },
+    {
+      "name": "visits_per_month",
+      "kind": "numeric",
+      "description": "Store or site visits per month"
+    },
+    {
+      "name": "avg_basket",
+      "kind": "numeric",
+      "description": "Average basket value in USD"
+    },
+    {
+      "name": "days_since_last_visit",
+      "kind": "numeric",
+      "description": "Recency in days"
+    },
+    {
+      "name": "online_share",
+      "kind": "numeric",
+      "description": "Share of purchases made online, 0-1"
+    },
+    {
+      "name": "age",
+      "kind": "numeric",
+      "description": "Customer age in years"
+    }
+  ],
+  "preprocessing": [
+    {
+      "name": "annual_spend",
+      "kind": "numeric",
+      "description": "Annual spend in USD",
+      "median": 2945.0550000000003,
+      "mean": 3141.79321875,
+      "scale": 1713.0668554440583
+    },
+    {
+      "name": "visits_per_month",
+      "kind": "numeric",
+      "description": "Store or site visits per month",
+      "median": 4.69,
+      "mean": 6.000447916666667,
+      "scale": 4.372827711584804
+    },
+    {
+      "name": "avg_basket",
+      "kind": "numeric",
+      "description": "Average basket value in USD",
+      "median": 35.2,
+      "mean": 67.53596875,
+      "scale": 75.91075789550423
+    },
+    {
+      "name": "days_since_last_visit",
+      "kind": "numeric",
+      "description": "Recency in days",
+      "median": 10.0,
+      "mean": 13.75,
+      "scale": 13.663439659665984
+    },
+    {
+      "name": "online_share",
+      "kind": "numeric",
+      "description": "Share of purchases made online, 0-1",
+      "median": 0.1875,
+      "mean": 0.30676249999999994,
+      "scale": 0.30523249309952244
+    },
+    {
+      "name": "age",
+      "kind": "numeric",
+      "description": "Customer age in years",
+      "median": 42.0,
+      "mean": 41.79895833333333,
+      "scale": 12.341503443594863
+    }
+  ],
+  "encoded_features": [
+    "annual_spend:standardized",
+    "annual_spend:missing",
+    "visits_per_month:standardized",
+    "visits_per_month:missing",
+    "avg_basket:standardized",
+    "avg_basket:missing",
+    "days_since_last_visit:standardized",
+    "days_since_last_visit:missing",
+    "online_share:standardized",
+    "online_share:missing",
+    "age:standardized",
+    "age:missing"
+  ],
+  "limits": {
+    "iterations": 8,
+    "max_parameters": 65536,
+    "max_width": 256,
+    "max_hidden_layers": 4,
+    "max_evaluated_rows": 100000,
+    "max_seconds": 3600,
+    "max_editor_tokens": 140000,
+    "max_output_tokens": 16384,
+    "support_examples": 64,
+    "diagnostic_examples": 8,
+    "max_input_features": 256,
+    "max_abs_weight": 10000
+  },
+  "track": {
+    "names": "semantic",
+    "policy": "strict"
+  },
+  "protocol": {
+    "feedback": {
+      "error_rows": null,
+      "max_revealed_labels": null
+    },
+    "selection": {
+      "metric": "silhouette",
+      "min_delta": 0.0
+    },
+    "track": {
+      "names": "semantic",
+      "policy": "strict"
+    },
+    "initial_program": true
+  },
+  "program_format": "Return a JSON object, no code or markdown:\n{\"base\":\"zero\", \"hidden_sizes\":[8], \"activations\":[\"relu\"], \"rationale\":\"mechanism hypothesis\", \"operations\":[]}\nhidden_sizes is a list of hidden layer widths (empty means a direct linear output).\nactivations is optional: one of relu, tanh, sigmoid, identity per hidden layer (default relu).\nOutput head: output_size equals n_clusters: one score per cluster; assignment = argmax. A nearest-centroid layer is score_k = 2*c_k.x - |c_k|^2 (weights 2*c_k, bias -|c_k|^2).\nEvery tensor starts at zero when base=zero; unassigned entries remain zero.\nTensors are layers.0.weight, layers.0.bias, ...; weights have shape [out,in].\nAllowed operations:\n{\"op\":\"fill\",\"tensor\":\"layers.0.bias\",\"value\":0}\n{\"op\":\"set\",\"tensor\":\"layers.0.weight\",\"value\":[[1,2],[3,4]]}\n{\"op\":\"set_entries\",\"tensor\":\"layers.0.weight\",\"entries\":[{\"index\":[0,1],\"value\":2}]}\n{\"op\":\"add_entries\",\"tensor\":\"layers.0.bias\",\"entries\":[{\"index\":[0],\"value\":0.2}]}\nUse base=best with base_hash equal to the supplied best hash to patch that checkpoint.\nArchitecture can change on any base=zero candidate. base=best requires matching architecture and hash.\nDesign weight values directly by reasoning. No fitting, optimizers, gradient steps,\npretrained target weights, executable code, or requests for final-test data.\n",
+  "support_rows": 960
+}# Network IR: what you are writing
+
+A feed-forward network: `x -> [Linear -> activation]* -> Linear -> head`.
+
+```json
+{"base": "zero", "hidden_sizes": [16, 8], "activations": ["relu", "relu"],
+ "rationale": "unit ledger: ...", "operations": [ ... ]}
+```
+
+- `hidden_sizes`: widths; `[]` means the output is a linear function of the inputs.
+- `activations`: per hidden layer, one of `relu`, `tanh`, `sigmoid`, `identity` (default relu).
+- Tensors: `layers.{i}.weight` with shape `[out, in]`, `layers.{i}.bias` with shape `[out]`.
+  Layer 0 reads the encoded inputs (`len(encoded_features)` columns, in that order).
+- Every entry starts at zero for `base: "zero"`. Unassigned entries stay zero.
+- Operations: `fill` (scalar), `set` (full tensor), `set_entries` / `add_entries` (sparse
+  `{"index": [row, col], "value": v}`).
+- `base: "best"` + `base_hash` (from state.json `best.hash`) patches the current best; the
+  architecture must match exactly.
+- Limits in task.json: `max_parameters`, `max_width`, `max_hidden_layers`, `max_abs_weight`.
+
+## Output heads (task.json `task`, `output_size`)
+
+| Task | Outputs | Interpretation |
+|---|---|---|
+| binary | 1 | logit z; P(positive) = 1/(1+e^-z); class = P >= threshold |
+| multiclass | number of classes | softmax over outputs, ordered as task.json `classes` |
+| regression | 1 | the prediction in the target's original units |
+| clustering | n_clusters | one score per cluster; assignment = argmax |
+
+## Encoding (exact)
+
+- numeric `x`: `x:standardized = (value_or_median - mean) / scale`; `x:missing` is 1 when blank.
+- categorical `c`: one-hot `c='v'` per support category, plus `c:missing`, `c:unknown`.
+- A raw threshold t on `x` is the standardized threshold `(t - mean) / scale`.
+- A raw-unit slope a on `x` is weight `a * scale` on `x:standardized`.
+
+Your NumPy forward pass must reproduce this exactly; float32 rounding is the only difference.
+# Policy: reasoning versus fitting
+
+Weight-space programming means the weights come from *your reasoning*. Data analysis is
+encouraged; parameter estimation by optimization is not.
+
+## Allowed
+- Descriptive statistics: counts, rates, means, medians, quantiles, variances, histograms,
+  cross-tabulations, conditional rates in bins, correlations.
+- Analytic formulas you derive and can explain: log-odds of a rate, a midpoint between two class
+  means, a slope read from two segment means, a centroid you chose from a density plot of bins.
+- Computing your own candidate's metric on support rows (or a held-out support slice) to check it.
+- Revising a mechanism after reading development feedback, one idea at a time.
+
+## Not allowed
+- Optimizers, gradient steps, autodiff, learning libraries (sklearn, torch, statsmodels, ...).
+- Solvers that estimate parameters from data: `lstsq`, `solve`, `inv`, `pinv`, `polyfit`,
+  `curve_fit`, `scipy.optimize`, iterative k-means/EM updates.
+- Search loops that score many weight settings against labels and keep the best
+  (grid search, random search, coordinate descent) — that is fitting with extra steps.
+- Loading pretrained weights for the target.
+
+## Enforcement
+Every executed source and every file in `/workspace` is statically audited each turn.
+On the strict track a flagged candidate is rejected (it still costs an iteration); delete or
+rewrite the flagged code. On the open track the result is labeled. Transcripts are retained.
+# Clustering
+
+No labels. Outputs: one score per cluster; assignment = argmax. Selection metric: silhouette
+on development rows (higher is better). Reference labels, if any, are used only in the final report.
+
+## Nearest-centroid layer (exact)
+argmin_k |x - c_k|² = argmax_k (2 c_k · x - |c_k|²), so a single linear layer with
+weight row 2 c_k and bias -|c_k|² implements nearest-centroid assignment in encoded space.
+Per-feature emphasis: scale both weights and centroid coordinates by w_j (Mahalanobis-diagonal).
+
+## Choosing centroids by reasoning
+- Inspect 1-D histograms of each standardized feature: multimodality reveals segment structure.
+- Cross-tabulate two informative features in coarse bins to see joint modes.
+- Place each centroid at a mode you identified (bin centers, or the mean of rows inside a region you
+  defined by explicit thresholds). Describe each cluster in the rationale ("high spend, low visits").
+- Features with no structure add noise to distances: give them weight 0.
+- Iterating "assign then recompute means" is k-means fitting — not allowed on the strict track.
+  Defining regions by your own thresholds and taking their means once is analysis.
+
+## Check
+Cluster sizes (avoid empty or tiny clusters), silhouette on support, and whether clusters are
+interpretable. Use exactly `n_clusters` outputs.
+# Repairing a provided network
+
+state.json `best` holds the starting network (weights, architecture, hash) and its development
+metrics. Your job is to find what is wrong and fix it with a minimal, explained patch.
+
+1. **Reproduce.** Load the weights into your NumPy forward pass and score them on support.
+2. **Localize.** Inspect each unit: its input weights (which features), bias, and output weights.
+   Compute each unit's activation statistics on support. Look for units with implausible
+   magnitudes, wrong signs, dead units, or outputs that dominate.
+3. **Attribute errors.** Group support errors by which unit/cluster/class they involve.
+4. **Patch.** Use `base: "best"` with the exact `base_hash` and `set_entries` on the faulty entries.
+   Smaller patches are better evidence of understanding than rebuilding from zero.
+5. **Explain.** The rationale names the fault and why the patch fixes it.

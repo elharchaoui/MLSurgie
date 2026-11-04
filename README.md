@@ -118,6 +118,20 @@ With the free-agent harness, `anthropic/claude-opus-5.5` profiled the support da
 
 Caveat: a skill file available during this run hinted at fraud patterns that overlap with the planted scenarios. It has since been neutralized; a clean multi-seed rerun and the anonymized track are the next step.
 
+### Five more tasks: live GPT-6 Astra agent
+
+`openai/gpt-6-astra` ran on every other suite task: seed 0, strict track, 140k tokens per task, $3.72 in total, no audit flags. [Full record and caveats →](experiments/benchmark/astra-seed0/README.md)
+
+| Task (final test) | Metric | Astra network | Best trained baseline | Outcome |
+|---|---|---:|---:|---|
+| breast_cancer | log loss ↓ | 0.137 | LR 0.080 | Loses to LR and SVM; ties random forest |
+| wine | log loss ↓ | **0.0075** | LR 0.026 | Best; one feedback-driven revision |
+| diabetes | RMSE ↓ | 57.85 | RF 54.15 | Behind trained models (ridge 56.87) |
+| segments | ARI ↑ | 0.981 | GMM 1.000 | Ties k-means |
+| segments_repair | ARI ↑ | 0.383 → 0.981 | GMM 1.000 | Found 2 of 3 planted faults; 2-value patch |
+
+Written weights are **competitive but not dominant**. They win where explicit prototypes fit (wine log loss) and lose where a learned smooth boundary helps (breast cancer, diabetes). Most tasks got one candidate per budget, on one seed and on familiar public data, so this is a first measurement, not a ranking.
+
 ### Titanic
 
 Two LLM-constructed networks, each frozen before the test set was opened, compared with trained baselines on the **same seed-42 split and the same 22 encoded inputs** (179 test passengers):

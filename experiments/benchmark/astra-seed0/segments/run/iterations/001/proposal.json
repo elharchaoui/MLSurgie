@@ -1,0 +1,80 @@
+{
+  "activations": [],
+  "base": "zero",
+  "hidden_sizes": [],
+  "operations": [
+    {
+      "op": "set",
+      "tensor": "layers.0.weight",
+      "value": [
+        [
+          -2.083533733591388,
+          0.0,
+          -0.3642743650866863,
+          0.0,
+          -1.2242974867128302,
+          0.0,
+          -0.46533566259659165,
+          0.0,
+          -0.9853882924453801,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0914808180055735,
+          0.0,
+          2.475032691234271,
+          0.0,
+          -0.8768021400980776,
+          0.0,
+          -1.4757961276980531,
+          0.0,
+          -1.3264440976306053,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.48527834597265435,
+          0.0,
+          -1.565912887312117,
+          0.0,
+          0.009070370486006145,
+          0.0,
+          0.12232853722359453,
+          0.0,
+          3.6153198548725674,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          2.7718044415320438,
+          0.0,
+          -2.0943013886882835,
+          0.0,
+          4.335443847799954,
+          0.0,
+          3.832344942050029,
+          0.0,
+          -0.42044415863227635,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "op": "set",
+      "tensor": "layers.0.bias",
+      "value": [
+        -1.7900600834541405,
+        -3.0058318365751706,
+        -3.943290609848986,
+        -11.43217814289234
+      ]
+    }
+  ],
+  "rationale": "Four interpretable density-mode prototypes in the five standardized purchasing-behavior features. Support histograms reveal an online-share gap at 0.50-0.60, a large-basket trough near USD100, and a spend trough near USD2250 among low-online small-basket customers. Define disjoint seed regions once: online_share>0.55 -> digital-first; otherwise avg_basket>100 -> occasional premium; otherwise annual_spend>2250 -> frequent loyal; remainder -> budget regulars. Take each region mean once, without reassignment or iterative fitting. Output order is budget regulars, frequent loyal, digital-first, occasional premium. Raw purchasing-feature means respectively are approximately (1357,5.20,21.07,10.57,0.156), (4077,11.41,34.26,3.67,0.104), (2726,2.58,67.88,14.59,0.859), (5516,1.42,232.09,39.93,0.243). Age has near-zero correlation with all behavior and similar means in the four regions, so its weights are zero; missing indicators are also zero. Linear output row k is 2*c_k and bias is -sum(c_k^2), an exact nearest-prototype circuit with no hidden layers. Weights are derived only from explicit threshold-region means and geometry."
+}

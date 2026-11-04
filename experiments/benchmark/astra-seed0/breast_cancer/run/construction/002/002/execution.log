@@ -1,0 +1,24 @@
+Feedback keys dict_keys(['status', 'metrics', 'selected', 'largest_errors', 'revealed_development_labels'])
+Error rows field largest_errors 8
+label 1 p 0.1157 {'worst_radius': 19.18, 'worst_concave_points': 0.08737, 'worst_texture': 26.56, 'radius_error': 0.2473}
+label 1 p 0.3873 {'worst_radius': 19.96, 'worst_concave_points': 0.1294, 'worst_texture': 24.3, 'radius_error': 0.3283}
+label 1 p 0.4721 {'worst_radius': 15.79, 'worst_concave_points': 0.1359, 'worst_texture': 31.71, 'radius_error': 0.4157}
+label 1 p 0.5137 {'worst_radius': 19.19, 'worst_concave_points': 0.09975, 'worst_texture': 33.88, 'radius_error': 0.3795}
+label 1 p 0.5487 {'worst_radius': 16.33, 'worst_concave_points': 0.1565, 'worst_texture': 30.86, 'radius_error': 0.2895}
+label 1 p 0.5818 {'worst_radius': 15.89, 'worst_concave_points': 0.1447, 'worst_texture': 30.36, 'radius_error': 0.286}
+label 1 p 0.6281 {'worst_radius': 19.8, 'worst_concave_points': 0.1096, 'worst_texture': 25.05, 'radius_error': 0.5858}
+label 1 p 0.6946 {'worst_radius': 16.99, 'worst_concave_points': 0.1184, 'worst_texture': 35.27, 'radius_error': 0.4565}
+Worst build rows
+171 y 1 z -4.798 {'worst_radius': 13.36, 'worst_concave_points': 0.0716, 'worst_texture': 23.39, 'radius_error': 0.645}
+320 y 1 z -4.239 {'worst_radius': 14.99, 'worst_concave_points': 0.029, 'worst_texture': 25.2, 'radius_error': 1.214}
+75 y 1 z -2.878 {'worst_radius': 15.93, 'worst_concave_points': 0.1112, 'worst_texture': 30.25, 'radius_error': 0.2385}
+72 y 1 z -1.794 {'worst_radius': 16.57, 'worst_concave_points': 0.1383, 'worst_texture': 20.86, 'radius_error': 0.2787}
+266 y 1 z -1.639 {'worst_radius': 15.29, 'worst_concave_points': 0.1362, 'worst_texture': 34.27, 'radius_error': 0.2027}
+296 y 1 z -1.368 {'worst_radius': 17.58, 'worst_concave_points': 0.112, 'worst_texture': 28.06, 'radius_error': 0.386}
+100 y 1 z -1.34 {'worst_radius': 16.84, 'worst_concave_points': 0.1119, 'worst_texture': 27.66, 'radius_error': 0.4033}
+32 y 1 z -0.97 {'worst_radius': 17.77, 'worst_concave_points': 0.1252, 'worst_texture': 20.24, 'radius_error': 0.2711}
+136 y 1 z -0.471 {'worst_radius': 17.26, 'worst_concave_points': 0.0658, 'worst_texture': 36.91, 'radius_error': 0.4681}
+117 y 1 z -0.435 {'worst_radius': 18.07, 'worst_concave_points': 0.1099, 'worst_texture': 28.07, 'radius_error': 0.5296}
+Scalar distribution quantiles
+0 158 [-13.28  -10.521  -9.728  -8.113  -5.923  -3.716  -1.89   -1.54    0.677]
+1 98 [-4.428 -0.955  0.358  3.07   5.634  8.741 11.004 12.234 17.15 ]

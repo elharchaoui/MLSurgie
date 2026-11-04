@@ -1,0 +1,1 @@
+cat /inputs/README.md

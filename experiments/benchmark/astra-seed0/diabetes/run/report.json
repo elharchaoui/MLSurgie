@@ -1,0 +1,109 @@
+{
+  "architecture": {
+    "activations": [],
+    "hidden_sizes": [],
+    "output_size": 1
+  },
+  "assurance": "source-recorded and statically audited; no-fitting policy is not mechanically proven",
+  "cost": {
+    "currency_cost": 0.0,
+    "editor_tokens": 141509,
+    "evaluated_rows": 177,
+    "revealed_development_labels": 8,
+    "wall_seconds": 173.94762983400142
+  },
+  "development": {
+    "mae": 40.92091655731201,
+    "n": 88,
+    "r2": 0.5699063848863686,
+    "rmse": 51.711270646011435,
+    "target_mean": 153.72727272727272,
+    "target_std": 78.85036566363695
+  },
+  "editor": {
+    "assurance": "source-recorded and statically audited; no-fitting policy is not mechanically proven",
+    "base_url": null,
+    "image": "mlsurgie-constructor:local",
+    "kind": "openhands",
+    "max_agent_steps": 24,
+    "model": "openrouter/openai/gpt-6-astra"
+  },
+  "final_evaluation_error": null,
+  "final_target_met": null,
+  "final_test": {
+    "mae": 46.29349294941077,
+    "n": 89,
+    "r2": 0.3263949282498543,
+    "rmse": 57.84869365077532,
+    "target_mean": 151.52808988764045,
+    "target_std": 70.48405507593172
+  },
+  "history": [
+    {
+      "audit": {
+        "scanned_files": 12,
+        "violations": []
+      },
+      "diff": {
+        "base_hash": "zero",
+        "changed_values": 6,
+        "l2_change": 171.87142407383715
+      },
+      "iteration": 1,
+      "metrics": {
+        "mae": 40.92091655731201,
+        "n": 88,
+        "r2": 0.5699063848863686,
+        "rmse": 51.711270646011435,
+        "target_mean": 153.72727272727272,
+        "target_std": 78.85036566363695
+      },
+      "selected": true,
+      "state_hash": "84f4261e545143fb8737471d0ac45be4755bc7ef3806cd75c6074fb1f63ad34a",
+      "status": "evaluated",
+      "usage": {
+        "cache_read_tokens": 57466,
+        "cost_usd": 0.0,
+        "input_tokens": 75237,
+        "output_tokens": 5757,
+        "request_preflight": [],
+        "tool_calls": 9
+      }
+    },
+    {
+      "audit": {
+        "scanned_files": 7,
+        "violations": []
+      },
+      "error": "Editor response exceeded runtime/token budget",
+      "iteration": 2,
+      "selected": false,
+      "status": "budget_exceeded",
+      "usage": {
+        "cache_read_tokens": 52876,
+        "cost_usd": 0.0,
+        "input_tokens": 58334,
+        "output_tokens": 2181,
+        "request_preflight": [],
+        "tool_calls": 3
+      }
+    }
+  ],
+  "limitations": [
+    "Adaptive development evaluation can overfit.",
+    "Accuracy interval is Wilson 95%, assumes independent observations; other metrics have no interval here.",
+    "Custom Python editor plugins are trusted; isolation is enforced through built-in JSON editor contexts, not an OS sandbox.",
+    "Token limits stop subsequent work; one provider request can overshoot due to input token usage.",
+    "Scripted fixtures demonstrate the protocol, not autonomous LLM performance."
+  ],
+  "parameters": 23,
+  "selected_iteration": 1,
+  "selection_metric": "rmse",
+  "status": "completed",
+  "stop_reason": "editor_budget_exceeded",
+  "task": "regression",
+  "track": {
+    "names": "semantic",
+    "policy": "strict"
+  }
+}

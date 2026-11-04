@@ -1,0 +1,388 @@
+# Inputs (read-only)
+
+- `task.json`: goal, task type (multiclass), classes, output size, feature declarations,
+  preprocessing state, encoded feature names, budgets, track, and the weight-program format.
+- `state.json`: refreshed every turn: iteration, remaining budgets, best network (weights and hash),
+  best development metrics, and last development feedback.
+- `data/support.csv`: 105 labeled support rows with raw feature values. `label` is the class index into task.json `classes`.
+- `data/support_encoded.csv`: the same rows as the network actually sees them
+  (columns in `encoded_features` order), plus the same label column.
+
+The network input is exactly the encoded vector. Encoding (from support rows only):
+numeric `x` -> `x:standardized` = (x_or_median - mean) / scale, and `x:missing` in {0,1};
+categorical `c` -> one-hot `c='value'` columns, plus `c:missing` and `c:unknown`.
+Preprocessing statistics are in task.json `preprocessing` (mean, scale, median, categories).
+To express a raw threshold t on numeric x, use (t - mean) / scale on `x:standardized`.
+
+Development and final-test rows are not available here. Write `/workspace/candidate.json`.
+{
+  "goal": {
+    "description": "Identify which of three cultivars a wine comes from, using its chemical analysis.",
+    "target": "cultivar",
+    "positive_label": "1",
+    "primary_metric": "log_loss",
+    "threshold": 0.5,
+    "target_score": null,
+    "task": "multiclass",
+    "n_clusters": null,
+    "reference_column": null
+  },
+  "task": "multiclass",
+  "classes": [
+    "cultivar_1",
+    "cultivar_2",
+    "cultivar_3"
+  ],
+  "output_size": 3,
+  "features": [
+    {
+      "name": "alcohol",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "malic_acid",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "ash",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "alcalinity_of_ash",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "magnesium",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "total_phenols",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "flavanoids",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "nonflavanoid_phenols",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "proanthocyanins",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "color_intensity",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "hue",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "od280_od315_of_diluted_wines",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "proline",
+      "kind": "numeric",
+      "description": ""
+    }
+  ],
+  "preprocessing": [
+    {
+      "name": "alcohol",
+      "kind": "numeric",
+      "description": "",
+      "median": 13.05,
+      "mean": 13.014857142857142,
+      "scale": 0.8157253439330507
+    },
+    {
+      "name": "malic_acid",
+      "kind": "numeric",
+      "description": "",
+      "median": 1.87,
+      "mean": 2.3285714285714287,
+      "scale": 1.1024608219549474
+    },
+    {
+      "name": "ash",
+      "kind": "numeric",
+      "description": "",
+      "median": 2.4,
+      "mean": 2.388571428571429,
+      "scale": 0.2935283828944415
+    },
+    {
+      "name": "alcalinity_of_ash",
+      "kind": "numeric",
+      "description": "",
+      "median": 20.0,
+      "mean": 19.823809523809523,
+      "scale": 3.4702140405929347
+    },
+    {
+      "name": "magnesium",
+      "kind": "numeric",
+      "description": "",
+      "median": 97.0,
+      "mean": 98.65714285714286,
+      "scale": 12.797937759043592
+    },
+    {
+      "name": "total_phenols",
+      "kind": "numeric",
+      "description": "",
+      "median": 2.2,
+      "mean": 2.2624761904761903,
+      "scale": 0.6377397303907143
+    },
+    {
+      "name": "flavanoids",
+      "kind": "numeric",
+      "description": "",
+      "median": 2.03,
+      "mean": 2.0014285714285713,
+      "scale": 0.9934292972866681
+    },
+    {
+      "name": "nonflavanoid_phenols",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.32,
+      "mean": 0.3547619047619048,
+      "scale": 0.12560781927506962
+    },
+    {
+      "name": "proanthocyanins",
+      "kind": "numeric",
+      "description": "",
+      "median": 1.46,
+      "mean": 1.513238095238095,
+      "scale": 0.5429452225954557
+    },
+    {
+      "name": "color_intensity",
+      "kind": "numeric",
+      "description": "",
+      "median": 4.6,
+      "mean": 4.908952380952382,
+      "scale": 2.1009063458238453
+    },
+    {
+      "name": "hue",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.97,
+      "mean": 0.9584380952380952,
+      "scale": 0.21222539338253538
+    },
+    {
+      "name": "od280_od315_of_diluted_wines",
+      "kind": "numeric",
+      "description": "",
+      "median": 2.75,
+      "mean": 2.5899047619047617,
+      "scale": 0.732890552782799
+    },
+    {
+      "name": "proline",
+      "kind": "numeric",
+      "description": "",
+      "median": 630.0,
+      "mean": 732.0190476190476,
+      "scale": 303.0559584019138
+    }
+  ],
+  "encoded_features": [
+    "alcohol:standardized",
+    "alcohol:missing",
+    "malic_acid:standardized",
+    "malic_acid:missing",
+    "ash:standardized",
+    "ash:missing",
+    "alcalinity_of_ash:standardized",
+    "alcalinity_of_ash:missing",
+    "magnesium:standardized",
+    "magnesium:missing",
+    "total_phenols:standardized",
+    "total_phenols:missing",
+    "flavanoids:standardized",
+    "flavanoids:missing",
+    "nonflavanoid_phenols:standardized",
+    "nonflavanoid_phenols:missing",
+    "proanthocyanins:standardized",
+    "proanthocyanins:missing",
+    "color_intensity:standardized",
+    "color_intensity:missing",
+    "hue:standardized",
+    "hue:missing",
+    "od280_od315_of_diluted_wines:standardized",
+    "od280_od315_of_diluted_wines:missing",
+    "proline:standardized",
+    "proline:missing"
+  ],
+  "limits": {
+    "iterations": 8,
+    "max_parameters": 65536,
+    "max_width": 256,
+    "max_hidden_layers": 4,
+    "max_evaluated_rows": 100000,
+    "max_seconds": 3600,
+    "max_editor_tokens": 140000,
+    "max_output_tokens": 16384,
+    "support_examples": 64,
+    "diagnostic_examples": 8,
+    "max_input_features": 256,
+    "max_abs_weight": 10000
+  },
+  "track": {
+    "names": "semantic",
+    "policy": "strict"
+  },
+  "protocol": {
+    "feedback": {
+      "error_rows": null,
+      "max_revealed_labels": null
+    },
+    "selection": {
+      "metric": "log_loss",
+      "min_delta": 0.0
+    },
+    "track": {
+      "names": "semantic",
+      "policy": "strict"
+    },
+    "initial_program": false
+  },
+  "program_format": "Return a JSON object, no code or markdown:\n{\"base\":\"zero\", \"hidden_sizes\":[8], \"activations\":[\"relu\"], \"rationale\":\"mechanism hypothesis\", \"operations\":[]}\nhidden_sizes is a list of hidden layer widths (empty means a direct linear output).\nactivations is optional: one of relu, tanh, sigmoid, identity per hidden layer (default relu).\nOutput head: output_size equals the number of classes (in the order of `classes`); probabilities = softmax(outputs).\nEvery tensor starts at zero when base=zero; unassigned entries remain zero.\nTensors are layers.0.weight, layers.0.bias, ...; weights have shape [out,in].\nAllowed operations:\n{\"op\":\"fill\",\"tensor\":\"layers.0.bias\",\"value\":0}\n{\"op\":\"set\",\"tensor\":\"layers.0.weight\",\"value\":[[1,2],[3,4]]}\n{\"op\":\"set_entries\",\"tensor\":\"layers.0.weight\",\"entries\":[{\"index\":[0,1],\"value\":2}]}\n{\"op\":\"add_entries\",\"tensor\":\"layers.0.bias\",\"entries\":[{\"index\":[0],\"value\":0.2}]}\nUse base=best with base_hash equal to the supplied best hash to patch that checkpoint.\nArchitecture can change on any base=zero candidate. base=best requires matching architecture and hash.\nDesign weight values directly by reasoning. No fitting, optimizers, gradient steps,\npretrained target weights, executable code, or requests for final-test data.\n",
+  "support_rows": 105
+}{
+  "iteration": 1,
+  "remaining": {
+    "iterations": 8,
+    "seconds": 3599.9999962080037,
+    "editor_tokens": 140000
+  },
+  "best": null,
+  "best_metrics": null,
+  "last_feedback": null,
+  "output_token_limit": 16384
+}# Network IR: what you are writing
+
+A feed-forward network: `x -> [Linear -> activation]* -> Linear -> head`.
+
+```json
+{"base": "zero", "hidden_sizes": [16, 8], "activations": ["relu", "relu"],
+ "rationale": "unit ledger: ...", "operations": [ ... ]}
+```
+
+- `hidden_sizes`: widths; `[]` means the output is a linear function of the inputs.
+- `activations`: per hidden layer, one of `relu`, `tanh`, `sigmoid`, `identity` (default relu).
+- Tensors: `layers.{i}.weight` with shape `[out, in]`, `layers.{i}.bias` with shape `[out]`.
+  Layer 0 reads the encoded inputs (`len(encoded_features)` columns, in that order).
+- Every entry starts at zero for `base: "zero"`. Unassigned entries stay zero.
+- Operations: `fill` (scalar), `set` (full tensor), `set_entries` / `add_entries` (sparse
+  `{"index": [row, col], "value": v}`).
+- `base: "best"` + `base_hash` (from state.json `best.hash`) patches the current best; the
+  architecture must match exactly.
+- Limits in task.json: `max_parameters`, `max_width`, `max_hidden_layers`, `max_abs_weight`.
+
+## Output heads (task.json `task`, `output_size`)
+
+| Task | Outputs | Interpretation |
+|---|---|---|
+| binary | 1 | logit z; P(positive) = 1/(1+e^-z); class = P >= threshold |
+| multiclass | number of classes | softmax over outputs, ordered as task.json `classes` |
+| regression | 1 | the prediction in the target's original units |
+| clustering | n_clusters | one score per cluster; assignment = argmax |
+
+## Encoding (exact)
+
+- numeric `x`: `x:standardized = (value_or_median - mean) / scale`; `x:missing` is 1 when blank.
+- categorical `c`: one-hot `c='v'` per support category, plus `c:missing`, `c:unknown`.
+- A raw threshold t on `x` is the standardized threshold `(t - mean) / scale`.
+- A raw-unit slope a on `x` is weight `a * scale` on `x:standardized`.
+
+Your NumPy forward pass must reproduce this exactly; float32 rounding is the only difference.
+# Policy: reasoning versus fitting
+
+Weight-space programming means the weights come from *your reasoning*. Data analysis is
+encouraged; parameter estimation by optimization is not.
+
+## Allowed
+- Descriptive statistics: counts, rates, means, medians, quantiles, variances, histograms,
+  cross-tabulations, conditional rates in bins, correlations.
+- Analytic formulas you derive and can explain: log-odds of a rate, a midpoint between two class
+  means, a slope read from two segment means, a centroid you chose from a density plot of bins.
+- Computing your own candidate's metric on support rows (or a held-out support slice) to check it.
+- Revising a mechanism after reading development feedback, one idea at a time.
+
+## Not allowed
+- Optimizers, gradient steps, autodiff, learning libraries (sklearn, torch, statsmodels, ...).
+- Solvers that estimate parameters from data: `lstsq`, `solve`, `inv`, `pinv`, `polyfit`,
+  `curve_fit`, `scipy.optimize`, iterative k-means/EM updates.
+- Search loops that score many weight settings against labels and keep the best
+  (grid search, random search, coordinate descent) — that is fitting with extra steps.
+- Loading pretrained weights for the target.
+
+## Enforcement
+Every executed source and every file in `/workspace` is statically audited each turn.
+On the strict track a flagged candidate is rejected (it still costs an iteration); delete or
+rewrite the flagged code. On the open track the result is labeled. Transcripts are retained.
+# Multiclass classification
+
+Outputs: one logit per class in task.json `classes` order; prediction = softmax.
+
+- **Priors:** output bias_k = log(prior_k) (differences matter, not the absolute level).
+- **Class evidence:** for each informative feature, read the class-conditional mean (numeric) or
+  rate (categorical). Logit contributions can be read as log P(feature region | class).
+- **Prototype construction (Gaussian-like classes):** with class means m_k and a shared scale,
+  logit_k = (m_k · x) / σ² - |m_k|² / (2σ²) + log prior_k. That is a linear layer: weight m_k/σ²,
+  bias -|m_k|²/(2σ²) + log prior_k. Use features where classes separate; zero the others.
+  Choose σ² from the within-class spread you measured (larger σ² = softer probabilities).
+- **One-vs-rest rules:** when one class is defined by a threshold (e.g. a feature very high), add a hidden
+  unit for that condition feeding a positive weight to that class and negative weights to others.
+- Check per-class recall on support; confusion between two classes points to the feature that
+  separates exactly those two.
+# Circuit cookbook (ReLU unless stated)
+
+Write s = standardized input, t = standardized threshold. ReLU(u) = max(0, u).
+
+| Shape | Construction |
+|---|---|
+| Linear evidence | output weight w on the input directly (no hidden unit needed) |
+| Step at t (soft) | unit `ReLU(k(s - t)) - ReLU(k(s - t) - 1)` → 0 below t, 1 above t + 1/k (two units) |
+| Hinge (effect only above t) | `ReLU(s - t)`; slope = output weight |
+| Hinge below t | `ReLU(t - s)` (weight -1, bias t) |
+| Interval / bump [a, b] | step at a minus step at b (four units), or `ReLU(1 - k|s - c|)` via two units |
+| Absolute value | `|s - c| = ReLU(s - c) + ReLU(c - s)` |
+| AND of binary features (one-hot) | `ReLU(f1 + f2 - 1)` → 1 only when both are 1 |
+| AND of n conditions | `ReLU(sum(f_i) - (n - 1))` |
+| OR (saturating) | `min(1, f1 + f2) = (f1 + f2) - ReLU(f1 + f2 - 1)` |
+| Condition AND threshold | `ReLU(k(s - t) + M(f - 1))` with large M: active only if f = 1 and s > t |
+| Min / max | `min(a,b) = a - ReLU(a - b)`; `max(a,b) = b + ReLU(a - b)` |
+| Piecewise-linear f(s) | knots t_j: f(s) = f(t_0) + slope_0 (s - t_0) + Σ_j Δslope_j ReLU(s - t_j) |
+
+Tips
+- Identity pass-through in a hidden layer: `ReLU(s) - ReLU(-s) = s` (two units).
+- Keep magnitudes moderate (|w| < ~20) unless you need hard gates; large weights make probabilities
+  overconfident and log loss explodes on mistakes.
+- Two hidden layers let layer 1 compute conditions and layer 2 combine them (AND of ORs).
+- `tanh`/`sigmoid` hidden layers give smooth saturating gates when you want bounded evidence.
+total 44
+-rw-r--r-- 1 501 dialout  7405 Nov  4 21:28 support.csv
+-rw-r--r-- 1 501 dialout 33172 Nov  4 21:28 support_encoded.csv

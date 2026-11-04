@@ -1,0 +1,1 @@
+cat /inputs/README.md; cat /inputs/task.json; cat /inputs/state.json; cat /skills/network-ir.md; cat /skills/policy.md; cat /skills/multiclass.md; cat /skills/circuits.md; ls -l /inputs/data

@@ -1,0 +1,173 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>MLSurgie run</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{max-width:960px;margin:48px auto;padding:0 24px;font:16px/1.6 system-ui;color:#1b2937;}h1{font-size:36px;letter-spacing:-1px}h2{margin-top:36px}p{max-width:780px}.tag{font-size:13px;text-transform:uppercase;letter-spacing:1px;color:#146b64}.summary{background:#edf5f3;border-left:4px solid #146b64;padding:16px 24px}table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}th,td{text-align:left;padding:10px;border-bottom:1px solid #dce4e8}thead{background:#f1f4f6}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f4f5f7;padding:24px}details{margin-top:32px}summary{cursor:pointer}li{margin:8px 0}</style><p class="tag">MLSurgie / Live editor run · direct weight programming</p><h1>Weight-space programming run</h1><div class="summary"><strong>completed</strong> · selected iteration 1<br>Stop reason: editor_budget_exceeded</div><p>Construction assurance: source-recorded and statically audited; no-fitting policy is not mechanically proven</p><h2>Prediction quality</h2><p>Development feedback selected the checkpoint. Final test predictions were computed only after selection.</p><table><thead><tr><th>Metric</th><th>Development</th><th>Final test</th></tr></thead><tbody><tr><th>n</th><td>113</td><td>115</td></tr><tr><th>log_loss</th><td>0.0745652</td><td>0.136961</td></tr><tr><th>brier</th><td>0.0224577</td><td>0.0419523</td></tr><tr><th>roc_auc</th><td>0.999329</td><td>0.992571</td></tr><tr><th>average_precision</th><td>0.998918</td><td>0.989407</td></tr><tr><th>accuracy</th><td>0.973451</td><td>0.93913</td></tr><tr><th>balanced_accuracy</th><td>0.964286</td><td>0.918605</td></tr><tr><th>precision</th><td>1</td><td>1</td></tr><tr><th>recall</th><td>0.928571</td><td>0.837209</td></tr><tr><th>f1</th><td>0.962963</td><td>0.911392</td></tr></tbody></table><h2>Candidate history</h2><p>“Selected” means the candidate became best at that iteration. Changed values are relative to each proposal’s declared base.</p><table><thead><tr><th>Iteration</th><th>Status</th><th>log_loss</th><th>Changed values</th><th>Selected</th></tr></thead><tbody><tr><td>1</td><td>evaluated</td><td>0.0745652</td><td>204</td><td>Yes</td></tr><tr><td>2</td><td>budget_exceeded</td><td>—</td><td>—</td><td>No</td></tr></tbody></table><h2>Compute</h2><p>228 evaluated rows · 155015 editor tokens · 214.474 seconds. Monetary cost is not estimated.</p><h2>Interpretation limits</h2><ul><li>Adaptive development evaluation can overfit.</li><li>Accuracy interval is Wilson 95%, assumes independent observations; other metrics have no interval here.</li><li>Custom Python editor plugins are trusted; isolation is enforced through built-in JSON editor contexts, not an OS sandbox.</li><li>Token limits stop subsequent work; one provider request can overshoot due to input token usage.</li><li>Scripted fixtures demonstrate the protocol, not autonomous LLM performance.</li></ul><details><summary>Full metrics, confusion matrices, intervals, and run record</summary><pre>{
+  &quot;status&quot;: &quot;completed&quot;,
+  &quot;task&quot;: &quot;binary&quot;,
+  &quot;selection_metric&quot;: &quot;log_loss&quot;,
+  &quot;final_evaluation_error&quot;: null,
+  &quot;editor&quot;: {
+    &quot;kind&quot;: &quot;openhands&quot;,
+    &quot;model&quot;: &quot;openrouter/openai/gpt-6-astra&quot;,
+    &quot;base_url&quot;: null,
+    &quot;image&quot;: &quot;mlsurgie-constructor:local&quot;,
+    &quot;max_agent_steps&quot;: 24,
+    &quot;assurance&quot;: &quot;source-recorded and statically audited; no-fitting policy is not mechanically proven&quot;
+  },
+  &quot;stop_reason&quot;: &quot;editor_budget_exceeded&quot;,
+  &quot;selected_iteration&quot;: 1,
+  &quot;assurance&quot;: &quot;source-recorded and statically audited; no-fitting policy is not mechanically proven&quot;,
+  &quot;track&quot;: {
+    &quot;names&quot;: &quot;semantic&quot;,
+    &quot;policy&quot;: &quot;strict&quot;
+  },
+  &quot;development&quot;: {
+    &quot;n&quot;: 113,
+    &quot;positive_count&quot;: 42,
+    &quot;threshold&quot;: 0.5,
+    &quot;log_loss&quot;: 0.07456524280193308,
+    &quot;brier&quot;: 0.0224577448759267,
+    &quot;roc_auc&quot;: 0.9993293091884641,
+    &quot;average_precision&quot;: 0.9989177489177489,
+    &quot;accuracy&quot;: 0.9734513274336283,
+    &quot;balanced_accuracy&quot;: 0.9642857142857143,
+    &quot;precision&quot;: 1.0,
+    &quot;recall&quot;: 0.9285714285714286,
+    &quot;f1&quot;: 0.9629629629629629,
+    &quot;confusion_matrix&quot;: [
+      [
+        71,
+        0
+      ],
+      [
+        3,
+        39
+      ]
+    ],
+    &quot;accuracy_wilson_95&quot;: [
+      0.9248390354028831,
+      0.9909306904481835
+    ]
+  },
+  &quot;final_test&quot;: {
+    &quot;n&quot;: 115,
+    &quot;positive_count&quot;: 43,
+    &quot;threshold&quot;: 0.5,
+    &quot;log_loss&quot;: 0.13696124004818402,
+    &quot;brier&quot;: 0.04195231761081285,
+    &quot;roc_auc&quot;: 0.9925710594315246,
+    &quot;average_precision&quot;: 0.9894071211748914,
+    &quot;accuracy&quot;: 0.9391304347826087,
+    &quot;balanced_accuracy&quot;: 0.9186046511627908,
+    &quot;precision&quot;: 1.0,
+    &quot;recall&quot;: 0.8372093023255814,
+    &quot;f1&quot;: 0.9113924050632911,
+    &quot;confusion_matrix&quot;: [
+      [
+        72,
+        0
+      ],
+      [
+        7,
+        36
+      ]
+    ],
+    &quot;accuracy_wilson_95&quot;: [
+      0.8796654890506387,
+      0.970205263278512
+    ]
+  },
+  &quot;final_target_met&quot;: null,
+  &quot;parameters&quot;: 4403,
+  &quot;architecture&quot;: {
+    &quot;hidden_sizes&quot;: [
+      71
+    ],
+    &quot;activations&quot;: [
+      &quot;relu&quot;
+    ],
+    &quot;output_size&quot;: 1
+  },
+  &quot;history&quot;: [
+    {
+      &quot;iteration&quot;: 1,
+      &quot;selected&quot;: true,
+      &quot;usage&quot;: {
+        &quot;input_tokens&quot;: 106780,
+        &quot;output_tokens&quot;: 8064,
+        &quot;request_preflight&quot;: [],
+        &quot;cache_read_tokens&quot;: 87561,
+        &quot;cost_usd&quot;: 0.0,
+        &quot;tool_calls&quot;: 12
+      },
+      &quot;audit&quot;: {
+        &quot;scanned_files&quot;: 14,
+        &quot;violations&quot;: []
+      },
+      &quot;status&quot;: &quot;evaluated&quot;,
+      &quot;state_hash&quot;: &quot;8cc516c875851e9604adce88f8ce77115e8533417c20d0f97078c46a2bda4609&quot;,
+      &quot;metrics&quot;: {
+        &quot;n&quot;: 113,
+        &quot;positive_count&quot;: 42,
+        &quot;threshold&quot;: 0.5,
+        &quot;log_loss&quot;: 0.07456524280193308,
+        &quot;brier&quot;: 0.0224577448759267,
+        &quot;roc_auc&quot;: 0.9993293091884641,
+        &quot;average_precision&quot;: 0.9989177489177489,
+        &quot;accuracy&quot;: 0.9734513274336283,
+        &quot;balanced_accuracy&quot;: 0.9642857142857143,
+        &quot;precision&quot;: 1.0,
+        &quot;recall&quot;: 0.9285714285714286,
+        &quot;f1&quot;: 0.9629629629629629,
+        &quot;confusion_matrix&quot;: [
+          [
+            71,
+            0
+          ],
+          [
+            3,
+            39
+          ]
+        ],
+        &quot;accuracy_wilson_95&quot;: [
+          0.9248390354028831,
+          0.9909306904481835
+        ]
+      },
+      &quot;diff&quot;: {
+        &quot;changed_values&quot;: 204,
+        &quot;l2_change&quot;: 75.55701238100302,
+        &quot;base_hash&quot;: &quot;zero&quot;
+      }
+    },
+    {
+      &quot;iteration&quot;: 2,
+      &quot;selected&quot;: false,
+      &quot;usage&quot;: {
+        &quot;input_tokens&quot;: 39188,
+        &quot;output_tokens&quot;: 983,
+        &quot;request_preflight&quot;: [],
+        &quot;cache_read_tokens&quot;: 37099,
+        &quot;cost_usd&quot;: 0.0,
+        &quot;tool_calls&quot;: 2
+      },
+      &quot;audit&quot;: {
+        &quot;scanned_files&quot;: 4,
+        &quot;violations&quot;: []
+      },
+      &quot;status&quot;: &quot;budget_exceeded&quot;,
+      &quot;error&quot;: &quot;Editor response exceeded runtime/token budget&quot;
+    }
+  ],
+  &quot;cost&quot;: {
+    &quot;evaluated_rows&quot;: 228,
+    &quot;editor_tokens&quot;: 155015,
+    &quot;revealed_development_labels&quot;: 8,
+    &quot;wall_seconds&quot;: 214.4736228749971,
+    &quot;currency_cost&quot;: 0.0
+  },
+  &quot;limitations&quot;: [
+    &quot;Adaptive development evaluation can overfit.&quot;,
+    &quot;Accuracy interval is Wilson 95%, assumes independent observations; other metrics have no interval here.&quot;,
+    &quot;Custom Python editor plugins are trusted; isolation is enforced through built-in JSON editor contexts, not an OS sandbox.&quot;,
+    &quot;Token limits stop subsequent work; one provider request can overshoot due to input token usage.&quot;,
+    &quot;Scripted fixtures demonstrate the protocol, not autonomous LLM performance.&quot;
+  ]
+}</pre></details></html>

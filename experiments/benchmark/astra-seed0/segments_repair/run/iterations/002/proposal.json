@@ -1,0 +1,80 @@
+{
+  "activations": [],
+  "base": "zero",
+  "hidden_sizes": [],
+  "operations": [
+    {
+      "op": "set",
+      "tensor": "layers.0.weight",
+      "value": [
+        [
+          -2.041314843164128,
+          0.0,
+          -0.3164747288942954,
+          0.0,
+          -1.2143805644884231,
+          0.0,
+          -0.48178223379335966,
+          0.0,
+          -0.9905037125483582,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.1661995368793905,
+          0.0,
+          2.5309750769415804,
+          0.0,
+          -0.8743589151522209,
+          0.0,
+          -1.4963162716991942,
+          0.0,
+          -1.3338419319226824,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.48527834597265435,
+          0.0,
+          -1.565912887312117,
+          0.0,
+          0.009070370486006141,
+          0.0,
+          0.12232853722359453,
+          0.0,
+          3.6153198548725674,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          2.7718044415320438,
+          0.0,
+          -2.0943013886882835,
+          0.0,
+          4.335443847799954,
+          0.0,
+          3.832344942050029,
+          0.0,
+          -0.42044415863227635,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "op": "set",
+      "tensor": "layers.0.bias",
+      "value": [
+        -1.738763605932282,
+        -3.1371140991825803,
+        -3.943290609848986,
+        -11.43217814289234
+      ]
+    }
+  ],
+  "rationale": "After the two-entry repair recovered development silhouette 0.42795, align all four prototypes with current encoded-space density modes. Define explicit regions once, independently of all network assignments: digital has online_share>0.6 (a near-empty 0.5-0.7 gap); premium has online_share<=0.6 and basket>90 USD; the remaining store customers are frequent if spend>=2500 USD, otherwise budget. The offline low-basket spend histogram has a low-density valley at 2000-2500 USD between the roughly 1400 and 4000 USD modes, and the high-spend side has mean recency 3.53 days versus 10.46 days below 2500. Take one arithmetic mean of standardized behavioral features inside each fixed region; there are 314,290,210,146 rows. Use exactly W_k=2*c_k and b_k=-||c_k||^2 to implement Euclidean nearest-prototype assignments. Set age coordinates to zero because age is uncorrelated with behavior and has nearly equal regional means; missing flags are zero throughout support. This removes residual mismatches in the original prototypes and biases, including a positive online-share coordinate in the premium prototype despite that region being below the overall online-share mean. No optimizer, centroid reassignment, repeated means, or parameter search; a single summary of human-specified density regions."
+}

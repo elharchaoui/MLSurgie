@@ -1,0 +1,34 @@
+{
+  "base": "best",
+  "base_hash": "4c09df3dd461169d6eb7e1629d819a93d2c21cb492bd9d1d89a457064992bf09",
+  "hidden_sizes": [],
+  "activations": [],
+  "rationale": "Repair two inconsistent entries in the existing nearest-centroid head, leaving all other coefficients unchanged. Cluster 1 has the frequent-visitor/low-basket prototype, but its +2.90794 intercept creates a large unconditional bonus and swallows 615/960 support rows. Set that intercept to -||W_1/2||^2 = -3.3164059893080036, the exact analytic intercept for its unchanged prototype. Cluster 3 combines high annual spend, very few visits, and long recency with an impossible negative basket prototype (W_3,4/2=-2.214 standardized, about -100.5 USD, versus observed minimum 9.61 USD). Reverse only this standardized basket coefficient to +4.42806482315, restoring a roughly 235.6 USD large-basket prototype. The descriptive basket/visit histogram has 131 of 142 baskets above 140 USD at <=2 visits/month, confirming the sign. Keep the existing small-spend and online-dominant centroids, all remaining biases, and zero age weights. No optimization or iterative centroid updates; only sign diagnosis and the nearest-centroid norm identity.",
+  "operations": [
+    {
+      "op": "set_entries",
+      "tensor": "layers.0.bias",
+      "entries": [
+        {
+          "index": [
+            1
+          ],
+          "value": -3.3164059893080036
+        }
+      ]
+    },
+    {
+      "op": "set_entries",
+      "tensor": "layers.0.weight",
+      "entries": [
+        {
+          "index": [
+            3,
+            4
+          ],
+          "value": 4.428064823150635
+        }
+      ]
+    }
+  ]
+}

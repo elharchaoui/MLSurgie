@@ -1,0 +1,18 @@
+{
+  "audit": {
+    "scanned_files": 4,
+    "violations": []
+  },
+  "error": "Editor response exceeded runtime/token budget",
+  "iteration": 2,
+  "selected": false,
+  "status": "budget_exceeded",
+  "usage": {
+    "cache_read_tokens": 37099,
+    "cost_usd": 0.0,
+    "input_tokens": 39188,
+    "output_tokens": 983,
+    "request_preflight": [],
+    "tool_calls": 2
+  }
+}

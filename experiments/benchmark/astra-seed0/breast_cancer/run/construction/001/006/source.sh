@@ -1,0 +1,1 @@
+head -70 /inputs/task.json; cat /skills/policy.md; cat /skills/network-ir.md

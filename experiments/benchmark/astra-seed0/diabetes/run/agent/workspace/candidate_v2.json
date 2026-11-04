@@ -1,0 +1,91 @@
+{
+  "base": "zero",
+  "hidden_sizes": [
+    2
+  ],
+  "activations": [
+    "relu"
+  ],
+  "rationale": "Centered additive metabolic-risk circuit. Support mean is the baseline. Within strata of the other major risk factors, upper-minus-lower half mean contrasts give target-unit slopes per input SD of BMI 32.4, log-triglycerides 35.1, BP 13.9, and HDL -13.0. BMI and log-TG contrast groups still differ in HDL and other risk markers, so shared evidence is discounted to 28 and 30; BP is rounded to 14. HDL is adjusted to -15 because the high-HDL group is enriched for sex 1. The stratified sex-2-minus-sex-1 target contrast -8.4 still contains higher BMI, BP and lower HDL risk, motivating -26 after subtracting those positive risks. Sex is centered at its support frequency; numeric inputs are already centered. Age, glucose, and redundant cholesterol measures are omitted to avoid noisy duplicate evidence. Weights are rounded from descriptive contrasts and nuisance imbalances, not optimized. New mechanism: attenuate the low-score extrapolation. The lowest score decile has mean prediction 51.9 but target 72.1, whereas the decile around prediction 101.1 has target 98.7. The implied low-risk response slope is about 0.54, rounded to 0.5, with the identity response retained above score 100. Two ReLUs encode p_new=100+ReLU(p-100)-0.5*ReLU(100-p). Thus the favorable-risk tail is shrunk toward a nonzero disease baseline, without altering moderate/high predictions or any feature effect.",
+  "operations": [
+    {
+      "op": "set",
+      "tensor": "layers.0.weight",
+      "value": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          -26.0,
+          0.0,
+          0.0,
+          28.0,
+          0.0,
+          14.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -15.0,
+          0.0,
+          0.0,
+          0.0,
+          30.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.0,
+          -0.0,
+          -0.0,
+          26.0,
+          -0.0,
+          -0.0,
+          -28.0,
+          -0.0,
+          -14.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          15.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -30.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ]
+      ]
+    },
+    {
+      "op": "set",
+      "tensor": "layers.0.bias",
+      "value": [
+        63.581132075471714,
+        -63.581132075471714
+      ]
+    },
+    {
+      "op": "set",
+      "tensor": "layers.1.weight",
+      "value": [
+        [
+          1.0,
+          -0.5
+        ]
+      ]
+    },
+    {
+      "op": "set",
+      "tensor": "layers.1.bias",
+      "value": [
+        100.0
+      ]
+    }
+  ]
+}

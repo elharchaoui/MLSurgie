@@ -1,0 +1,149 @@
+{
+  "architecture": {
+    "activations": [],
+    "hidden_sizes": [],
+    "output_size": 4
+  },
+  "assurance": "source-recorded and statically audited; no-fitting policy is not mechanically proven",
+  "cost": {
+    "currency_cost": 0.0,
+    "editor_tokens": 147404,
+    "evaluated_rows": 960,
+    "revealed_development_labels": 0,
+    "wall_seconds": 188.96003875002498
+  },
+  "development": {
+    "adjusted_rand": null,
+    "cluster_sizes": [
+      91,
+      96,
+      84,
+      49
+    ],
+    "clusters_used": 4,
+    "inertia": 1.8034946519057882,
+    "n": 320,
+    "silhouette": 0.42795334520104705
+  },
+  "editor": {
+    "assurance": "source-recorded and statically audited; no-fitting policy is not mechanically proven",
+    "base_url": null,
+    "image": "mlsurgie-constructor:local",
+    "kind": "openhands",
+    "max_agent_steps": 24,
+    "model": "openrouter/openai/gpt-6-astra"
+  },
+  "final_evaluation_error": null,
+  "final_target_met": null,
+  "final_test": {
+    "adjusted_rand": 0.9812017476808458,
+    "cluster_sizes": [
+      103,
+      83,
+      79,
+      55
+    ],
+    "clusters_used": 4,
+    "inertia": 2.131292601709737,
+    "n": 320,
+    "silhouette": 0.41980855955175933
+  },
+  "history": [
+    {
+      "diff": {
+        "base_hash": "zero",
+        "changed_values": 40,
+        "l2_change": 15.468641486931807
+      },
+      "initial": true,
+      "iteration": 0,
+      "metrics": {
+        "adjusted_rand": null,
+        "cluster_sizes": [
+          19,
+          190,
+          100,
+          11
+        ],
+        "clusters_used": 4,
+        "inertia": 3.835459688104513,
+        "n": 320,
+        "silhouette": 0.05856394822482538
+      },
+      "selected": true,
+      "state_hash": "4c09df3dd461169d6eb7e1629d819a93d2c21cb492bd9d1d89a457064992bf09",
+      "status": "evaluated"
+    },
+    {
+      "audit": {
+        "scanned_files": 13,
+        "violations": []
+      },
+      "diff": {
+        "base_hash": "4c09df3dd461169d6eb7e1629d819a93d2c21cb492bd9d1d89a457064992bf09",
+        "changed_values": 2,
+        "l2_change": 10.824671701380407
+      },
+      "iteration": 1,
+      "metrics": {
+        "adjusted_rand": null,
+        "cluster_sizes": [
+          91,
+          96,
+          84,
+          49
+        ],
+        "clusters_used": 4,
+        "inertia": 1.8034946519057882,
+        "n": 320,
+        "silhouette": 0.42795334520104705
+      },
+      "selected": true,
+      "state_hash": "ead7b55301422fce336920e3bbdad44dad475080b2dfd840dd15a976e83e5ad2",
+      "status": "evaluated",
+      "usage": {
+        "cache_read_tokens": 71207,
+        "cost_usd": 0.0,
+        "input_tokens": 86472,
+        "output_tokens": 4859,
+        "request_preflight": [],
+        "tool_calls": 11
+      }
+    },
+    {
+      "audit": {
+        "scanned_files": 7,
+        "violations": []
+      },
+      "error": "Editor response exceeded runtime/token budget",
+      "iteration": 2,
+      "selected": false,
+      "status": "budget_exceeded",
+      "usage": {
+        "cache_read_tokens": 48440,
+        "cost_usd": 0.0,
+        "input_tokens": 52766,
+        "output_tokens": 3307,
+        "request_preflight": [],
+        "tool_calls": 3
+      }
+    }
+  ],
+  "limitations": [
+    "Adaptive development evaluation can overfit.",
+    "Accuracy interval is Wilson 95%, assumes independent observations; other metrics have no interval here.",
+    "Custom Python editor plugins are trusted; isolation is enforced through built-in JSON editor contexts, not an OS sandbox.",
+    "Token limits stop subsequent work; one provider request can overshoot due to input token usage.",
+    "Scripted fixtures demonstrate the protocol, not autonomous LLM performance."
+  ],
+  "parameters": 52,
+  "selected_iteration": 1,
+  "selection_metric": "silhouette",
+  "status": "completed",
+  "stop_reason": "editor_budget_exceeded",
+  "task": "clustering",
+  "track": {
+    "names": "semantic",
+    "policy": "strict"
+  }
+}

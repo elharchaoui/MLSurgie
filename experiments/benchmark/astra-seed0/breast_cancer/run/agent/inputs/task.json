@@ -1,0 +1,510 @@
+{
+  "goal": {
+    "description": "Diagnose malignant versus benign breast masses from cell-nucleus measurements of fine-needle aspirates.",
+    "target": "diagnosis",
+    "positive_label": "malignant",
+    "primary_metric": "log_loss",
+    "threshold": 0.5,
+    "target_score": null,
+    "task": "binary",
+    "n_clusters": null,
+    "reference_column": null
+  },
+  "task": "binary",
+  "classes": [
+    "benign",
+    "malignant"
+  ],
+  "output_size": 1,
+  "features": [
+    {
+      "name": "mean_radius",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "mean_texture",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "mean_perimeter",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "mean_area",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "mean_smoothness",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "mean_compactness",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "mean_concavity",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "mean_concave_points",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "mean_symmetry",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "mean_fractal_dimension",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "radius_error",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "texture_error",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "perimeter_error",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "area_error",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "smoothness_error",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "compactness_error",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "concavity_error",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "concave_points_error",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "symmetry_error",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "fractal_dimension_error",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "worst_radius",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "worst_texture",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "worst_perimeter",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "worst_area",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "worst_smoothness",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "worst_compactness",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "worst_concavity",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "worst_concave_points",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "worst_symmetry",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "worst_fractal_dimension",
+      "kind": "numeric",
+      "description": ""
+    }
+  ],
+  "preprocessing": [
+    {
+      "name": "mean_radius",
+      "kind": "numeric",
+      "description": "",
+      "median": 13.2,
+      "mean": 14.0596715542522,
+      "scale": 3.636996252353131
+    },
+    {
+      "name": "mean_texture",
+      "kind": "numeric",
+      "description": "",
+      "median": 18.59,
+      "mean": 19.184516129032257,
+      "scale": 4.142209819072873
+    },
+    {
+      "name": "mean_perimeter",
+      "kind": "numeric",
+      "description": "",
+      "median": 85.48,
+      "mean": 91.60123167155426,
+      "scale": 25.12635519069971
+    },
+    {
+      "name": "mean_area",
+      "kind": "numeric",
+      "description": "",
+      "median": 537.9,
+      "mean": 652.074486803519,
+      "scale": 369.62759481746366
+    },
+    {
+      "name": "mean_smoothness",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.09723,
+      "mean": 0.09707988269794722,
+      "scale": 0.013311674301661417
+    },
+    {
+      "name": "mean_compactness",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.09486,
+      "mean": 0.10561894428152492,
+      "scale": 0.053022749547340015
+    },
+    {
+      "name": "mean_concavity",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.06181,
+      "mean": 0.09017132844574781,
+      "scale": 0.07956131864474321
+    },
+    {
+      "name": "mean_concave_points",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.03384,
+      "mean": 0.04959539002932551,
+      "scale": 0.03953027399174638
+    },
+    {
+      "name": "mean_symmetry",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.1782,
+      "mean": 0.18108035190615834,
+      "scale": 0.02660711866235286
+    },
+    {
+      "name": "mean_fractal_dimension",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.06214,
+      "mean": 0.06325721407624633,
+      "scale": 0.0068076878340779905
+    },
+    {
+      "name": "radius_error",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.3106,
+      "mean": 0.40923343108504395,
+      "scale": 0.29758784818396294
+    },
+    {
+      "name": "texture_error",
+      "kind": "numeric",
+      "description": "",
+      "median": 1.139,
+      "mean": 1.222021994134897,
+      "scale": 0.5548516156427417
+    },
+    {
+      "name": "perimeter_error",
+      "kind": "numeric",
+      "description": "",
+      "median": 2.222,
+      "mean": 2.8962624633431084,
+      "scale": 2.171374057056602
+    },
+    {
+      "name": "area_error",
+      "kind": "numeric",
+      "description": "",
+      "median": 23.52,
+      "mean": 41.368645161290324,
+      "scale": 51.37188536458647
+    },
+    {
+      "name": "smoothness_error",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.00647,
+      "mean": 0.007116850439882699,
+      "scale": 0.002996494138866175
+    },
+    {
+      "name": "compactness_error",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.02003,
+      "mean": 0.02529509970674487,
+      "scale": 0.017748441362042115
+    },
+    {
+      "name": "concavity_error",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.02645,
+      "mean": 0.03175467448680352,
+      "scale": 0.027964249028061265
+    },
+    {
+      "name": "concave_points_error",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.0111,
+      "mean": 0.01180849853372434,
+      "scale": 0.006084300552877035
+    },
+    {
+      "name": "symmetry_error",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.0187,
+      "mean": 0.02053874486803519,
+      "scale": 0.00801949189320809
+    },
+    {
+      "name": "fractal_dimension_error",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.003299,
+      "mean": 0.0038353812316715545,
+      "scale": 0.0024318432616811103
+    },
+    {
+      "name": "worst_radius",
+      "kind": "numeric",
+      "description": "",
+      "median": 14.84,
+      "mean": 16.247126099706747,
+      "scale": 5.060177452632867
+    },
+    {
+      "name": "worst_texture",
+      "kind": "numeric",
+      "description": "",
+      "median": 25.26,
+      "mean": 25.592697947214077,
+      "scale": 5.925243159910996
+    },
+    {
+      "name": "worst_perimeter",
+      "kind": "numeric",
+      "description": "",
+      "median": 96.74,
+      "mean": 107.11970674486804,
+      "scale": 34.914581118696816
+    },
+    {
+      "name": "worst_area",
+      "kind": "numeric",
+      "description": "",
+      "median": 675.2,
+      "mean": 886.7560117302053,
+      "scale": 613.0084098588703
+    },
+    {
+      "name": "worst_smoothness",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.134,
+      "mean": 0.13371642228739003,
+      "scale": 0.022284755045424588
+    },
+    {
+      "name": "worst_compactness",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.2156,
+      "mean": 0.2563689149560117,
+      "scale": 0.1571855834865508
+    },
+    {
+      "name": "worst_concavity",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.2365,
+      "mean": 0.2757175601173021,
+      "scale": 0.21081545092058715
+    },
+    {
+      "name": "worst_concave_points",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.1047,
+      "mean": 0.11628112023460409,
+      "scale": 0.0676309913632382
+    },
+    {
+      "name": "worst_symmetry",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.2826,
+      "mean": 0.29029970674486805,
+      "scale": 0.060792099684730615
+    },
+    {
+      "name": "worst_fractal_dimension",
+      "kind": "numeric",
+      "description": "",
+      "median": 0.08075,
+      "mean": 0.08508736070381231,
+      "scale": 0.018254429938756082
+    }
+  ],
+  "encoded_features": [
+    "mean_radius:standardized",
+    "mean_radius:missing",
+    "mean_texture:standardized",
+    "mean_texture:missing",
+    "mean_perimeter:standardized",
+    "mean_perimeter:missing",
+    "mean_area:standardized",
+    "mean_area:missing",
+    "mean_smoothness:standardized",
+    "mean_smoothness:missing",
+    "mean_compactness:standardized",
+    "mean_compactness:missing",
+    "mean_concavity:standardized",
+    "mean_concavity:missing",
+    "mean_concave_points:standardized",
+    "mean_concave_points:missing",
+    "mean_symmetry:standardized",
+    "mean_symmetry:missing",
+    "mean_fractal_dimension:standardized",
+    "mean_fractal_dimension:missing",
+    "radius_error:standardized",
+    "radius_error:missing",
+    "texture_error:standardized",
+    "texture_error:missing",
+    "perimeter_error:standardized",
+    "perimeter_error:missing",
+    "area_error:standardized",
+    "area_error:missing",
+    "smoothness_error:standardized",
+    "smoothness_error:missing",
+    "compactness_error:standardized",
+    "compactness_error:missing",
+    "concavity_error:standardized",
+    "concavity_error:missing",
+    "concave_points_error:standardized",
+    "concave_points_error:missing",
+    "symmetry_error:standardized",
+    "symmetry_error:missing",
+    "fractal_dimension_error:standardized",
+    "fractal_dimension_error:missing",
+    "worst_radius:standardized",
+    "worst_radius:missing",
+    "worst_texture:standardized",
+    "worst_texture:missing",
+    "worst_perimeter:standardized",
+    "worst_perimeter:missing",
+    "worst_area:standardized",
+    "worst_area:missing",
+    "worst_smoothness:standardized",
+    "worst_smoothness:missing",
+    "worst_compactness:standardized",
+    "worst_compactness:missing",
+    "worst_concavity:standardized",
+    "worst_concavity:missing",
+    "worst_concave_points:standardized",
+    "worst_concave_points:missing",
+    "worst_symmetry:standardized",
+    "worst_symmetry:missing",
+    "worst_fractal_dimension:standardized",
+    "worst_fractal_dimension:missing"
+  ],
+  "limits": {
+    "iterations": 8,
+    "max_parameters": 65536,
+    "max_width": 256,
+    "max_hidden_layers": 4,
+    "max_evaluated_rows": 100000,
+    "max_seconds": 3600,
+    "max_editor_tokens": 140000,
+    "max_output_tokens": 16384,
+    "support_examples": 64,
+    "diagnostic_examples": 8,
+    "max_input_features": 256,
+    "max_abs_weight": 10000
+  },
+  "track": {
+    "names": "semantic",
+    "policy": "strict"
+  },
+  "protocol": {
+    "feedback": {
+      "error_rows": null,
+      "max_revealed_labels": null
+    },
+    "selection": {
+      "metric": "log_loss",
+      "min_delta": 0.0
+    },
+    "track": {
+      "names": "semantic",
+      "policy": "strict"
+    },
+    "initial_program": false
+  },
+  "program_format": "Return a JSON object, no code or markdown:\n{\"base\":\"zero\", \"hidden_sizes\":[8], \"activations\":[\"relu\"], \"rationale\":\"mechanism hypothesis\", \"operations\":[]}\nhidden_sizes is a list of hidden layer widths (empty means a direct linear output).\nactivations is optional: one of relu, tanh, sigmoid, identity per hidden layer (default relu).\nOutput head: output_size is 1: a logit; probability = sigmoid(logit), class = probability >= threshold.\nEvery tensor starts at zero when base=zero; unassigned entries remain zero.\nTensors are layers.0.weight, layers.0.bias, ...; weights have shape [out,in].\nAllowed operations:\n{\"op\":\"fill\",\"tensor\":\"layers.0.bias\",\"value\":0}\n{\"op\":\"set\",\"tensor\":\"layers.0.weight\",\"value\":[[1,2],[3,4]]}\n{\"op\":\"set_entries\",\"tensor\":\"layers.0.weight\",\"entries\":[{\"index\":[0,1],\"value\":2}]}\n{\"op\":\"add_entries\",\"tensor\":\"layers.0.bias\",\"entries\":[{\"index\":[0],\"value\":0.2}]}\nUse base=best with base_hash equal to the supplied best hash to patch that checkpoint.\nArchitecture can change on any base=zero candidate. base=best requires matching architecture and hash.\nDesign weight values directly by reasoning. No fitting, optimizers, gradient steps,\npretrained target weights, executable code, or requests for final-test data.\n",
+  "support_rows": 341
+}

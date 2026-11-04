@@ -1,0 +1,340 @@
+# Inputs (read-only)
+
+- `task.json`: goal, task type (regression), classes, output size, feature declarations,
+  preprocessing state, encoded feature names, budgets, track, and the weight-program format.
+- `state.json`: refreshed every turn: iteration, remaining budgets, best network (weights and hash),
+  best development metrics, and last development feedback.
+- `data/support.csv`: 265 labeled support rows with raw feature values. `target` is the numeric target in original units.
+- `data/support_encoded.csv`: the same rows as the network actually sees them
+  (columns in `encoded_features` order), plus the same label column.
+
+The network input is exactly the encoded vector. Encoding (from support rows only):
+numeric `x` -> `x:standardized` = (x_or_median - mean) / scale, and `x:missing` in {0,1};
+categorical `c` -> one-hot `c='value'` columns, plus `c:missing` and `c:unknown`.
+Preprocessing statistics are in task.json `preprocessing` (mean, scale, median, categories).
+To express a raw threshold t on numeric x, use (t - mean) / scale on `x:standardized`.
+
+Development and final-test rows are not available here. Write `/workspace/candidate.json`.
+{
+  "goal": {
+    "description": "Predict a quantitative measure of diabetes disease progression one year after baseline.",
+    "target": "progression",
+    "positive_label": "1",
+    "primary_metric": "rmse",
+    "threshold": 0.5,
+    "target_score": null,
+    "task": "regression",
+    "n_clusters": null,
+    "reference_column": null
+  },
+  "task": "regression",
+  "classes": null,
+  "output_size": 1,
+  "features": [
+    {
+      "name": "age",
+      "kind": "numeric",
+      "description": "Age in years"
+    },
+    {
+      "name": "sex",
+      "kind": "categorical",
+      "description": "Sex, coded 1 or 2"
+    },
+    {
+      "name": "bmi",
+      "kind": "numeric",
+      "description": "Body mass index"
+    },
+    {
+      "name": "bp",
+      "kind": "numeric",
+      "description": "Average blood pressure"
+    },
+    {
+      "name": "s1",
+      "kind": "numeric",
+      "description": "Total serum cholesterol"
+    },
+    {
+      "name": "s2",
+      "kind": "numeric",
+      "description": "Low-density lipoproteins"
+    },
+    {
+      "name": "s3",
+      "kind": "numeric",
+      "description": "High-density lipoproteins"
+    },
+    {
+      "name": "s4",
+      "kind": "numeric",
+      "description": "Total cholesterol / HDL"
+    },
+    {
+      "name": "s5",
+      "kind": "numeric",
+      "description": "Log of serum triglycerides"
+    },
+    {
+      "name": "s6",
+      "kind": "numeric",
+      "description": "Blood sugar level"
+    }
+  ],
+  "preprocessing": [
+    {
+      "name": "age",
+      "kind": "numeric",
+      "description": "Age in years",
+      "median": 49.0,
+      "mean": 47.841509433962266,
+      "scale": 13.125711969365364
+    },
+    {
+      "name": "sex",
+      "kind": "categorical",
+      "description": "Sex, coded 1 or 2",
+      "categories": [
+        "1.0",
+        "2.0"
+      ]
+    },
+    {
+      "name": "bmi",
+      "kind": "numeric",
+      "description": "Body mass index",
+      "median": 25.6,
+      "mean": 26.575849056603776,
+      "scale": 4.683896714280352
+    },
+    {
+      "name": "bp",
+      "kind": "numeric",
+      "description": "Average blood pressure",
+      "median": 93.0,
+      "mean": 94.52569811320754,
+      "scale": 14.3335107150446
+    },
+    {
+      "name": "s1",
+      "kind": "numeric",
+      "description": "Total serum cholesterol",
+      "median": 186.0,
+      "mean": 188.76603773584907,
+      "scale": 34.34571706234822
+    },
+    {
+      "name": "s2",
+      "kind": "numeric",
+      "description": "Low-density lipoproteins",
+      "median": 110.8,
+      "mean": 115.7611320754717,
+      "scale": 30.630090622598455
+    },
+    {
+      "name": "s3",
+      "kind": "numeric",
+      "description": "High-density lipoproteins",
+      "median": 47.0,
+      "mean": 49.60943396226415,
+      "scale": 12.391084198088947
+    },
+    {
+      "name": "s4",
+      "kind": "numeric",
+      "description": "Total cholesterol / HDL",
+      "median": 4.0,
+      "mean": 4.081056603773585,
+      "scale": 1.3692315764703793
+    },
+    {
+      "name": "s5",
+      "kind": "numeric",
+      "description": "Log of serum triglycerides",
+      "median": 4.5747,
+      "mean": 4.628213207547169,
+      "scale": 0.509406689823447
+    },
+    {
+      "name": "s6",
+      "kind": "numeric",
+      "description": "Blood sugar level",
+      "median": 91.0,
+      "mean": 91.00754716981132,
+      "scale": 11.679038617978273
+    }
+  ],
+  "encoded_features": [
+    "age:standardized",
+    "age:missing",
+    "sex='1.0'",
+    "sex='2.0'",
+    "sex:missing",
+    "sex:unknown",
+    "bmi:standardized",
+    "bmi:missing",
+    "bp:standardized",
+    "bp:missing",
+    "s1:standardized",
+    "s1:missing",
+    "s2:standardized",
+    "s2:missing",
+    "s3:standardized",
+    "s3:missing",
+    "s4:standardized",
+    "s4:missing",
+    "s5:standardized",
+    "s5:missing",
+    "s6:standardized",
+    "s6:missing"
+  ],
+  "limits": {
+    "iterations": 8,
+    "max_parameters": 65536,
+    "max_width": 256,
+    "max_hidden_layers": 4,
+    "max_evaluated_rows": 100000,
+    "max_seconds": 3600,
+    "max_editor_tokens": 140000,
+    "max_output_tokens": 16384,
+    "support_examples": 64,
+    "diagnostic_examples": 8,
+    "max_input_features": 256,
+    "max_abs_weight": 10000
+  },
+  "track": {
+    "names": "semantic",
+    "policy": "strict"
+  },
+  "protocol": {
+    "feedback": {
+      "error_rows": null,
+      "max_revealed_labels": null
+    },
+    "selection": {
+      "metric": "rmse",
+      "min_delta": 0.0
+    },
+    "track": {
+      "names": "semantic",
+      "policy": "strict"
+    },
+    "initial_program": false
+  },
+  "program_format": "Return a JSON object, no code or markdown:\n{\"base\":\"zero\", \"hidden_sizes\":[8], \"activations\":[\"relu\"], \"rationale\":\"mechanism hypothesis\", \"operations\":[]}\nhidden_sizes is a list of hidden layer widths (empty means a direct linear output).\nactivations is optional: one of relu, tanh, sigmoid, identity per hidden layer (default relu).\nOutput head: output_size is 1: the prediction itself, in the target's original units.\nEvery tensor starts at zero when base=zero; unassigned entries remain zero.\nTensors are layers.0.weight, layers.0.bias, ...; weights have shape [out,in].\nAllowed operations:\n{\"op\":\"fill\",\"tensor\":\"layers.0.bias\",\"value\":0}\n{\"op\":\"set\",\"tensor\":\"layers.0.weight\",\"value\":[[1,2],[3,4]]}\n{\"op\":\"set_entries\",\"tensor\":\"layers.0.weight\",\"entries\":[{\"index\":[0,1],\"value\":2}]}\n{\"op\":\"add_entries\",\"tensor\":\"layers.0.bias\",\"entries\":[{\"index\":[0],\"value\":0.2}]}\nUse base=best with base_hash equal to the supplied best hash to patch that checkpoint.\nArchitecture can change on any base=zero candidate. base=best requires matching architecture and hash.\nDesign weight values directly by reasoning. No fitting, optimizers, gradient steps,\npretrained target weights, executable code, or requests for final-test data.\n",
+  "support_rows": 265
+}{
+  "iteration": 1,
+  "remaining": {
+    "iterations": 8,
+    "seconds": 3599.9999963750015,
+    "editor_tokens": 140000
+  },
+  "best": null,
+  "best_metrics": null,
+  "last_feedback": null,
+  "output_token_limit": 16384
+}# Network IR: what you are writing
+
+A feed-forward network: `x -> [Linear -> activation]* -> Linear -> head`.
+
+```json
+{"base": "zero", "hidden_sizes": [16, 8], "activations": ["relu", "relu"],
+ "rationale": "unit ledger: ...", "operations": [ ... ]}
+```
+
+- `hidden_sizes`: widths; `[]` means the output is a linear function of the inputs.
+- `activations`: per hidden layer, one of `relu`, `tanh`, `sigmoid`, `identity` (default relu).
+- Tensors: `layers.{i}.weight` with shape `[out, in]`, `layers.{i}.bias` with shape `[out]`.
+  Layer 0 reads the encoded inputs (`len(encoded_features)` columns, in that order).
+- Every entry starts at zero for `base: "zero"`. Unassigned entries stay zero.
+- Operations: `fill` (scalar), `set` (full tensor), `set_entries` / `add_entries` (sparse
+  `{"index": [row, col], "value": v}`).
+- `base: "best"` + `base_hash` (from state.json `best.hash`) patches the current best; the
+  architecture must match exactly.
+- Limits in task.json: `max_parameters`, `max_width`, `max_hidden_layers`, `max_abs_weight`.
+
+## Output heads (task.json `task`, `output_size`)
+
+| Task | Outputs | Interpretation |
+|---|---|---|
+| binary | 1 | logit z; P(positive) = 1/(1+e^-z); class = P >= threshold |
+| multiclass | number of classes | softmax over outputs, ordered as task.json `classes` |
+| regression | 1 | the prediction in the target's original units |
+| clustering | n_clusters | one score per cluster; assignment = argmax |
+
+## Encoding (exact)
+
+- numeric `x`: `x:standardized = (value_or_median - mean) / scale`; `x:missing` is 1 when blank.
+- categorical `c`: one-hot `c='v'` per support category, plus `c:missing`, `c:unknown`.
+- A raw threshold t on `x` is the standardized threshold `(t - mean) / scale`.
+- A raw-unit slope a on `x` is weight `a * scale` on `x:standardized`.
+
+Your NumPy forward pass must reproduce this exactly; float32 rounding is the only difference.
+# Policy: reasoning versus fitting
+
+Weight-space programming means the weights come from *your reasoning*. Data analysis is
+encouraged; parameter estimation by optimization is not.
+
+## Allowed
+- Descriptive statistics: counts, rates, means, medians, quantiles, variances, histograms,
+  cross-tabulations, conditional rates in bins, correlations.
+- Analytic formulas you derive and can explain: log-odds of a rate, a midpoint between two class
+  means, a slope read from two segment means, a centroid you chose from a density plot of bins.
+- Computing your own candidate's metric on support rows (or a held-out support slice) to check it.
+- Revising a mechanism after reading development feedback, one idea at a time.
+
+## Not allowed
+- Optimizers, gradient steps, autodiff, learning libraries (sklearn, torch, statsmodels, ...).
+- Solvers that estimate parameters from data: `lstsq`, `solve`, `inv`, `pinv`, `polyfit`,
+  `curve_fit`, `scipy.optimize`, iterative k-means/EM updates.
+- Search loops that score many weight settings against labels and keep the best
+  (grid search, random search, coordinate descent) — that is fitting with extra steps.
+- Loading pretrained weights for the target.
+
+## Enforcement
+Every executed source and every file in `/workspace` is statically audited each turn.
+On the strict track a flagged candidate is rejected (it still costs an iteration); delete or
+rewrite the flagged code. On the open track the result is labeled. Transcripts are retained.
+# Regression
+
+Output: one value in the target's original units. Selection metric is usually RMSE.
+
+- **Baseline:** output bias = support mean of the target (RMSE = target std). Everything you add must beat it.
+- **Linear effects:** a feature with roughly linear conditional mean contributes weight
+  = (raw slope) × scale on `x:standardized`. Read the slope from the difference of mean target in
+  low vs. high quantile bins divided by the difference of their mean standardized feature.
+- **Correlated features:** marginal slopes double-count shared signal. After adding one strong
+  feature, look at the residual (target − your prediction) by bins of the next feature and read
+  its slope from the residual, not the raw target.
+- **Nonlinear shapes:** piecewise-linear via hinges (circuits.md): knots at quantiles where the
+  binned mean changes slope.
+- **Segments:** a categorical segment shifts the level: weight = segment mean residual.
+- **Check:** RMSE and R² on a held-out support slice; plot (in text) mean residual per decile of
+  prediction to spot curvature or scale errors.
+# Circuit cookbook (ReLU unless stated)
+
+Write s = standardized input, t = standardized threshold. ReLU(u) = max(0, u).
+
+| Shape | Construction |
+|---|---|
+| Linear evidence | output weight w on the input directly (no hidden unit needed) |
+| Step at t (soft) | unit `ReLU(k(s - t)) - ReLU(k(s - t) - 1)` → 0 below t, 1 above t + 1/k (two units) |
+| Hinge (effect only above t) | `ReLU(s - t)`; slope = output weight |
+| Hinge below t | `ReLU(t - s)` (weight -1, bias t) |
+| Interval / bump [a, b] | step at a minus step at b (four units), or `ReLU(1 - k|s - c|)` via two units |
+| Absolute value | `|s - c| = ReLU(s - c) + ReLU(c - s)` |
+| AND of binary features (one-hot) | `ReLU(f1 + f2 - 1)` → 1 only when both are 1 |
+| AND of n conditions | `ReLU(sum(f_i) - (n - 1))` |
+| OR (saturating) | `min(1, f1 + f2) = (f1 + f2) - ReLU(f1 + f2 - 1)` |
+| Condition AND threshold | `ReLU(k(s - t) + M(f - 1))` with large M: active only if f = 1 and s > t |
+| Min / max | `min(a,b) = a - ReLU(a - b)`; `max(a,b) = b + ReLU(a - b)` |
+| Piecewise-linear f(s) | knots t_j: f(s) = f(t_0) + slope_0 (s - t_0) + Σ_j Δslope_j ReLU(s - t_j) |
+
+Tips
+- Identity pass-through in a hidden layer: `ReLU(s) - ReLU(-s) = s` (two units).
+- Keep magnitudes moderate (|w| < ~20) unless you need hard gates; large weights make probabilities
+  overconfident and log loss explodes on mistakes.
+- Two hidden layers let layer 1 compute conditions and layer 2 combine them (AND of ORs).
+- `tanh`/`sigmoid` hidden layers give smooth saturating gates when you want bounded evidence.

@@ -1,0 +1,70 @@
+{
+  "kmeans": {
+    "selection_metric": "silhouette",
+    "min_delta": 0.0,
+    "hyperparameters": {
+      "n_clusters": 4
+    },
+    "development": {
+      "n": 320,
+      "clusters_used": 4,
+      "cluster_sizes": [
+        96,
+        84,
+        49,
+        91
+      ],
+      "silhouette": 0.42795334520104705,
+      "inertia": 1.8034946519057882,
+      "adjusted_rand": null
+    },
+    "final_test": {
+      "n": 320,
+      "clusters_used": 4,
+      "cluster_sizes": [
+        83,
+        79,
+        55,
+        103
+      ],
+      "silhouette": 0.41980855955175933,
+      "inertia": 2.131292601709737,
+      "adjusted_rand": 0.9812017476808458
+    },
+    "size": 48
+  },
+  "gaussian_mixture": {
+    "selection_metric": "silhouette",
+    "min_delta": 0.0,
+    "hyperparameters": {
+      "n_components": 4
+    },
+    "development": {
+      "n": 320,
+      "clusters_used": 4,
+      "cluster_sizes": [
+        96,
+        84,
+        49,
+        91
+      ],
+      "silhouette": 0.42795334520104705,
+      "inertia": 1.8034946519057882,
+      "adjusted_rand": null
+    },
+    "final_test": {
+      "n": 320,
+      "clusters_used": 4,
+      "cluster_sizes": [
+        85,
+        79,
+        55,
+        101
+      ],
+      "silhouette": 0.4184649855195842,
+      "inertia": 2.1373697041508257,
+      "adjusted_rand": 1.0
+    },
+    "size": 628
+  }
+}

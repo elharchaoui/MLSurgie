@@ -1,0 +1,47 @@
+Region counts [314 290 210 146]
+Raw density-region means:
+0 {'annual_spend': 1393.3388, 'visits_per_month': 5.3085, 'avg_basket': 21.4437, 'days_since_last_visit': 10.4586, 'online_share': 0.1556, 'age': 41.9299}
+1 {'annual_spend': 4140.6821, 'visits_per_month': 11.5342, 'avg_basket': 34.3493, 'days_since_last_visit': 3.5276, 'online_share': 0.1032, 'age': 41.3276}
+2 {'annual_spend': 2726.1361, 'visits_per_month': 2.5767, 'avg_basket': 67.8802, 'days_since_last_visit': 14.5857, 'online_share': 0.8585, 'age': 42.6286}
+3 {'annual_spend': 5515.9364, 'visits_per_month': 1.4214, 'avg_basket': 232.0894, 'days_since_last_visit': 39.9315, 'online_share': 0.2426, 'age': 41.2603}
+Regional behavioral variances [[0.04266913 0.16096344 0.00704178 0.09525608 0.07238268 1.13988713]
+ [0.34292097 0.49274294 0.01339677 0.01031177 0.056265   0.99916673]
+ [0.16640798 0.02115233 0.05659211 0.14010926 0.06559282 0.8137716 ]
+ [0.64185893 0.00690268 0.58059203 1.23475481 0.05836744 0.95712023]]
+Candidate metrics {
+  "n": 960,
+  "clusters_used": 4,
+  "cluster_sizes": [
+    314,
+    290,
+    210,
+    146
+  ],
+  "silhouette": 0.4303220546291903,
+  "inertia": 1.8563902572370623,
+  "silhouette_by_cluster": [
+    0.44905731414564326,
+    0.3488518930971916,
+    0.5182013434105484,
+    0.4254509910129453
+  ]
+}
+Changed support assignments 2
+Subset metrics {
+  "n": 240,
+  "clusters_used": 4,
+  "cluster_sizes": [
+    77,
+    76,
+    52,
+    35
+  ],
+  "silhouette": 0.4184121127058554,
+  "inertia": 1.9405062842324332,
+  "silhouette_by_cluster": [
+    0.4609261798931921,
+    0.3162560007986393,
+    0.5111513798412168,
+    0.40892181100541813
+  ]
+}

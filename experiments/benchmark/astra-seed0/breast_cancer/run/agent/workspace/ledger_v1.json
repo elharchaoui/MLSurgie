@@ -1,0 +1,49 @@
+{
+  "channels": {
+    "log_size": {
+      "mean_benign": 2.573133673332496,
+      "mean_malignant": 3.0195429612324824,
+      "pooled_sd": 0.1769911654142514,
+      "standardized_evidence": 1.8
+    },
+    "indentation": {
+      "mean_benign": 0.07455494948496037,
+      "mean_malignant": 0.18641061230820918,
+      "pooled_sd": 0.042563905278377265,
+      "standardized_evidence": 1.6
+    },
+    "texture": {
+      "mean_benign": 4.517606780283819,
+      "mean_malignant": 5.510764011885717,
+      "pooled_sd": 0.9626105292048062,
+      "standardized_evidence": 0.9
+    },
+    "surface": {
+      "mean_benign": 0.12604879742184322,
+      "mean_malignant": 0.1472619388082576,
+      "pooled_sd": 0.020265390429945195,
+      "standardized_evidence": 0.75
+    },
+    "asymmetry": {
+      "mean_benign": 0.27394683551453464,
+      "mean_malignant": 0.32180102026758817,
+      "pooled_sd": 0.058558444250180114,
+      "standardized_evidence": 0.4
+    },
+    "relative_radius_error": {
+      "mean_benign": -3.8217970934876377,
+      "mean_malignant": -3.4324882080232872,
+      "pooled_sd": 0.4114127209659606,
+      "standardized_evidence": 1.05
+    }
+  },
+  "projection": {
+    "mean0": -5.889399992723821,
+    "mean1": 5.889399992723822,
+    "var0": 8.598544032718623,
+    "var1": 17.67837874498778,
+    "pooled_variance": 12.066039966144245,
+    "slope": 0.9761943453276668,
+    "prior": -0.4756980451392921
+  }
+}

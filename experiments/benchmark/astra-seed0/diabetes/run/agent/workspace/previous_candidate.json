@@ -1,0 +1,45 @@
+{
+  "base": "zero",
+  "hidden_sizes": [],
+  "activations": [],
+  "rationale": "Centered additive metabolic-risk circuit. Support mean is the baseline. Within strata of the other major risk factors, upper-minus-lower half mean contrasts give target-unit slopes per input SD of BMI 32.4, log-triglycerides 35.1, BP 13.9, and HDL -13.0. BMI and log-TG contrast groups still differ in HDL and other risk markers, so shared evidence is discounted to 28 and 30; BP is rounded to 14. HDL is adjusted to -15 because the high-HDL group is enriched for sex 1. The stratified sex-2-minus-sex-1 target contrast -8.4 still contains higher BMI, BP and lower HDL risk, motivating -26 after subtracting those positive risks. Sex is centered at its support frequency; numeric inputs are already centered. Age, glucose, and redundant cholesterol measures are omitted to avoid noisy duplicate evidence. Weights are rounded from descriptive contrasts and nuisance imbalances, not optimized.",
+  "operations": [
+    {
+      "op": "set",
+      "tensor": "layers.0.weight",
+      "value": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          -26.0,
+          0.0,
+          0.0,
+          28.0,
+          0.0,
+          14.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -15.0,
+          0.0,
+          0.0,
+          0.0,
+          30.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "op": "set",
+      "tensor": "layers.0.bias",
+      "value": [
+        163.58113207547171
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+Raw head
+  annual_spend  visits_per_month  avg_basket  days_since_last_visit  online_share  age
+      2034.33              2.10       59.74                     13         0.735   40
+      5826.70              1.47      274.28                     36         0.229   59
+      1234.92              6.34       32.17                     15         0.115   63
+      3415.54             14.32       30.92                      2         0.053   37
+      1326.83              3.23       17.59                      6         0.243   51
+      3181.70              2.68       51.79                     11         0.740   49
+Full quantiles
+       annual_spend  visits_per_month  avg_basket  days_since_last_visit  online_share   age
+0.00        703.45              0.65        9.61                    1.0          0.00  18.0
+0.10       1189.29              1.51       17.73                    3.0          0.04  26.0
+0.25       1548.16              2.44       23.22                    4.0          0.10  33.0
+0.50       2945.06              4.69       35.20                   10.0          0.19  42.0
+0.75       4309.26              9.11       69.68                   16.0          0.32  50.0
+0.90       5477.63             12.44      200.85                   33.0          0.86  58.0
+1.00      10073.39             23.16      451.86                  113.0          1.00  83.0
+Online >.55 profile (all other variables)
+              annual_spend          visits_per_month       avg_basket        days_since_last_visit        online_share          age       
+                     mean      std             mean   std       mean    std                  mean    std         mean   std   mean    std
+online_share                                                                                                                             
+False             3258.18  1887.43             6.96  4.49      67.44  85.41                 13.52  15.22         0.15  0.09  41.57  12.66
+True              2726.14   700.48             2.58  0.64      67.88  18.10                 14.59   5.13         0.86  0.08  42.63  11.16
+Offline spend / visits cross tab
+ visits_per_month  (0, 3]  (3, 6]  (6, 9]  (9, 12]  (12, 15]  (15, 30]
+annual_spend                                                         
+(0, 1500]              6     166      44        1         0         0
+(1500, 2500]           0      62      28        3         1         3
+(2500, 3500]           4       2      18       35        28         7
+(3500, 4500]          35       0      18       45        28        15
+(4500, 6000]          62       0      13       36        21        12
+(6000, 11000]         45       0       3        4         4         1
+Offline basket x visits
+ visits_per_month  (0, 3]  (3, 6]  (6, 9]  (9, 12]  (12, 15]  (15, 30]
+avg_basket                                                           
+(0, 40]                6     229     105       96        62        31
+(40, 80]               0       1      19       28        20         7
+(80, 120]              1       0       0        0         0         0
+(120, 160]            10       0       0        0         0         0
+(160, 200]            37       0       0        0         0         0
+(200, 300]            77       0       0        0         0         0
+(300, 500]            21       0       0        0         0         0

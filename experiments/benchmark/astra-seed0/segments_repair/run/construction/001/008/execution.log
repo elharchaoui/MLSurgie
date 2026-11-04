@@ -1,0 +1,50 @@
+RAW (960, 6) ['annual_spend', 'visits_per_month', 'avg_basket', 'days_since_last_visit', 'online_share', 'age']
+ annual_spend  visits_per_month  avg_basket  days_since_last_visit  online_share  age
+      2034.33              2.10       59.74                     13         0.735   40
+      5826.70              1.47      274.28                     36         0.229   59
+      1234.92              6.34       32.17                     15         0.115   63
+      3415.54             14.32       30.92                      2         0.053   37
+      1326.83              3.23       17.59                      6         0.243   51
+ENCODED (960, 12) ['annual_spend:standardized', 'annual_spend:missing', 'visits_per_month:standardized', 'visits_per_month:missing', 'avg_basket:standardized', 'avg_basket:missing', 'days_since_last_visit:standardized', 'days_since_last_visit:missing', 'online_share:standardized', 'online_share:missing', 'age:standardized', 'age:missing']
+SUMMARY
+        annual_spend  visits_per_month  avg_basket  days_since_last_visit  online_share      age
+count       960.000           960.000     960.000                960.000       960.000  960.000
+mean       3141.793             6.000      67.536                 13.750         0.307   41.799
+std        1713.960             4.375      75.950                 13.671         0.305   12.348
+min         703.450             0.650       9.610                  1.000         0.000   18.000
+25%        1548.160             2.440      23.215                  4.000         0.101   33.000
+50%        2945.055             4.690      35.200                 10.000         0.188   42.000
+75%        4309.260             9.108      69.680                 16.000         0.319   50.000
+max       10073.390            23.160     451.860                113.000         1.000   83.000
+MISSING
+ annual_spend             0
+visits_per_month         0
+avg_basket               0
+days_since_last_visit    0
+online_share             0
+age                      0
+dtype: int64
+CORRELATIONS
+                        annual_spend  visits_per_month  avg_basket  days_since_last_visit  online_share   age
+annual_spend                   1.00              0.11        0.59                   0.34         -0.09 -0.03
+visits_per_month               0.11              1.00       -0.48                  -0.60         -0.51 -0.01
+avg_basket                     0.59             -0.48        1.00                   0.79          0.12  0.00
+days_since_last_visit          0.34             -0.60        0.79                   1.00          0.16 -0.02
+online_share                  -0.09             -0.51        0.12                   0.16          1.00  0.03
+age                           -0.03             -0.01        0.00                  -0.02          0.03  1.00
+CENTROID HALF WEIGHTS [[-1.04519355 -0.15101223 -0.65693104 -0.24438691 -0.53371328  0.        ]
+ [ 0.54921323  1.31714511 -0.47044075 -0.77698743 -0.67356849  0.        ]
+ [-0.24362026 -0.79386073  0.01480408  0.06234928  1.6479696   0.        ]
+ [ 1.35818553 -1.05948496 -2.21403241  1.93540871  0.24517347  0.        ]]
+EXPECTED BIAS [ -1.89286813  -3.31640599  -3.4098237  -11.67939399]
+BIAS DIFFERENCE [ 0.12008342  6.22434614 -0.3313069   0.16896556]
+ENCODED VAR
+        annual_spend:standardized  annual_spend:missing  visits_per_month:standardized  visits_per_month:missing  avg_basket:standardized  avg_basket:missing  days_since_last_visit:standardized  days_since_last_visit:missing  online_share:standardized  online_share:missing  age:standardized  age:missing
+count                    960.000                 960.0                        960.000                     960.0                  960.000               960.0                             960.000                          960.0                    960.000                 960.0           960.000        960.0
+mean                       0.000                   0.0                         -0.000                       0.0                   -0.000                 0.0                               0.000                            0.0                     -0.000                   0.0             0.000          0.0
+std                        1.001                   0.0                          1.001                       0.0                    1.001                 0.0                               1.001                            0.0                      1.001                   0.0             1.001          0.0
+min                       -1.423                   0.0                         -1.224                       0.0                   -0.763                 0.0                              -0.933                            0.0                     -1.005                   0.0            -1.928          0.0
+25%                       -0.930                   0.0                         -0.814                       0.0                   -0.584                 0.0                              -0.714                            0.0                     -0.675                   0.0            -0.713          0.0
+50%                       -0.115                   0.0                         -0.300                       0.0                   -0.426                 0.0                              -0.274                            0.0                     -0.391                   0.0             0.016          0.0
+75%                        0.682                   0.0                          0.711                       0.0                    0.028                 0.0                               0.165                            0.0                      0.040                   0.0             0.665          0.0
+max                        4.046                   0.0                          3.924                       0.0                    5.063                 0.0                               7.264                            0.0                      2.271                   0.0             3.338          0.0

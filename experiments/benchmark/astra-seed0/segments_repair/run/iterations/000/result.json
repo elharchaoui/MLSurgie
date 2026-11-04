@@ -1,0 +1,25 @@
+{
+  "diff": {
+    "base_hash": "zero",
+    "changed_values": 40,
+    "l2_change": 15.468641486931807
+  },
+  "initial": true,
+  "iteration": 0,
+  "metrics": {
+    "adjusted_rand": null,
+    "cluster_sizes": [
+      19,
+      190,
+      100,
+      11
+    ],
+    "clusters_used": 4,
+    "inertia": 3.835459688104513,
+    "n": 320,
+    "silhouette": 0.05856394822482538
+  },
+  "selected": true,
+  "state_hash": "4c09df3dd461169d6eb7e1629d819a93d2c21cb492bd9d1d89a457064992bf09",
+  "status": "evaluated"
+}

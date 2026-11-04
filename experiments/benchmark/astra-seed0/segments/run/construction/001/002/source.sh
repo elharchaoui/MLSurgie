@@ -1,0 +1,1 @@
+cat /inputs/README.md; echo ---; cat /inputs/task.json; echo ---; cat /inputs/state.json; echo ---; cat /skills/network-ir.md; echo ---; cat /skills/policy.md; echo ---; cat /skills/clustering.md; echo ---; cat /skills/circuits.md

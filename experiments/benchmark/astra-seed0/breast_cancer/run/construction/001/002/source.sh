@@ -1,0 +1,1 @@
+for f in /inputs/README.md /inputs/task.json /inputs/state.json /skills/network-ir.md /skills/policy.md /skills/binary-evidence.md /skills/circuits.md; do echo; echo "--- $f ---"; cat "$f"; done; ls -l /inputs/data

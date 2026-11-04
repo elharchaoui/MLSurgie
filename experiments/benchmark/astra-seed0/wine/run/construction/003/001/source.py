@@ -1,0 +1,2 @@
+import json,pandas as pd
+s=json.load(open('/inputs/state.json')); print(pd.DataFrame([{**e['features'],'label':e['label'],'p':e['probabilities']} for e in s['last_feedback']['largest_errors']]).to_string(index=False))

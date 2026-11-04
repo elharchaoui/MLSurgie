@@ -1,0 +1,1 @@
+cat /inputs/README.md && printf '\n--- TASK ---\n' && cat /inputs/task.json && printf '\n--- SKILLS ---\n' && cat /skills/README.md

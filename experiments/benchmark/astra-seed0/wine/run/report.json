@@ -1,0 +1,228 @@
+{
+  "architecture": {
+    "activations": [
+      "relu"
+    ],
+    "hidden_sizes": [
+      247
+    ],
+    "output_size": 3
+  },
+  "assurance": "source-recorded and statically audited; no-fitting policy is not mechanically proven",
+  "cost": {
+    "currency_cost": 0.0,
+    "editor_tokens": 147640,
+    "evaluated_rows": 109,
+    "revealed_development_labels": 16,
+    "wall_seconds": 193.98394779197406
+  },
+  "development": {
+    "accuracy": 0.9722222222222222,
+    "accuracy_wilson_95": [
+      0.8582996626496918,
+      0.9950797197044302
+    ],
+    "balanced_accuracy": 0.9722222222222222,
+    "classes": 3,
+    "confusion_matrix": [
+      [
+        11,
+        1,
+        0
+      ],
+      [
+        0,
+        14,
+        0
+      ],
+      [
+        0,
+        0,
+        10
+      ]
+    ],
+    "log_loss": 0.04915432975411303,
+    "macro_f1": 0.9740129935032483,
+    "n": 36
+  },
+  "editor": {
+    "assurance": "source-recorded and statically audited; no-fitting policy is not mechanically proven",
+    "base_url": null,
+    "image": "mlsurgie-constructor:local",
+    "kind": "openhands",
+    "max_agent_steps": 24,
+    "model": "openrouter/openai/gpt-6-astra"
+  },
+  "final_evaluation_error": null,
+  "final_target_met": null,
+  "final_test": {
+    "accuracy": 1.0,
+    "accuracy_wilson_95": [
+      0.9059390425448564,
+      1.0
+    ],
+    "balanced_accuracy": 1.0,
+    "classes": 3,
+    "confusion_matrix": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        15,
+        0
+      ],
+      [
+        0,
+        0,
+        10
+      ]
+    ],
+    "log_loss": 0.007468702520306086,
+    "macro_f1": 1.0,
+    "n": 37
+  },
+  "history": [
+    {
+      "audit": {
+        "scanned_files": 9,
+        "violations": []
+      },
+      "diff": {
+        "base_hash": "zero",
+        "changed_values": 42,
+        "l2_change": 11.646995132459818
+      },
+      "iteration": 1,
+      "metrics": {
+        "accuracy": 0.9722222222222222,
+        "accuracy_wilson_95": [
+          0.8582996626496918,
+          0.9950797197044302
+        ],
+        "balanced_accuracy": 0.9761904761904763,
+        "classes": 3,
+        "confusion_matrix": [
+          [
+            12,
+            0,
+            0
+          ],
+          [
+            1,
+            13,
+            0
+          ],
+          [
+            0,
+            0,
+            10
+          ]
+        ],
+        "log_loss": 0.10464687033047902,
+        "macro_f1": 0.974320987654321,
+        "n": 36
+      },
+      "selected": true,
+      "state_hash": "097c2e9f87990285ece29612c7bcfbfcba8e02f2f49bfdf3a82d95bdb52f0bf0",
+      "status": "evaluated",
+      "usage": {
+        "cache_read_tokens": 32462,
+        "cost_usd": 0.0,
+        "input_tokens": 45986,
+        "output_tokens": 4155,
+        "request_preflight": [],
+        "tool_calls": 7
+      }
+    },
+    {
+      "audit": {
+        "scanned_files": 7,
+        "violations": []
+      },
+      "diff": {
+        "base_hash": "zero",
+        "changed_values": 1199,
+        "l2_change": 290.51577501415744
+      },
+      "iteration": 2,
+      "metrics": {
+        "accuracy": 0.9722222222222222,
+        "accuracy_wilson_95": [
+          0.8582996626496918,
+          0.9950797197044302
+        ],
+        "balanced_accuracy": 0.9722222222222222,
+        "classes": 3,
+        "confusion_matrix": [
+          [
+            11,
+            1,
+            0
+          ],
+          [
+            0,
+            14,
+            0
+          ],
+          [
+            0,
+            0,
+            10
+          ]
+        ],
+        "log_loss": 0.04915432975411303,
+        "macro_f1": 0.9740129935032483,
+        "n": 36
+      },
+      "selected": true,
+      "state_hash": "ebe6af79df3aa1baf69f8ef68e6c9d669b886b02d8c4bf8fb3774ffe41e55f58",
+      "status": "evaluated",
+      "usage": {
+        "cache_read_tokens": 70662,
+        "cost_usd": 0.0,
+        "input_tokens": 76234,
+        "output_tokens": 2562,
+        "request_preflight": [],
+        "tool_calls": 4
+      }
+    },
+    {
+      "audit": {
+        "scanned_files": 4,
+        "violations": []
+      },
+      "error": "Editor response exceeded runtime/token budget",
+      "iteration": 3,
+      "selected": false,
+      "status": "budget_exceeded",
+      "usage": {
+        "cache_read_tokens": 18176,
+        "cost_usd": 0.0,
+        "input_tokens": 18606,
+        "output_tokens": 97,
+        "request_preflight": [],
+        "tool_calls": 1
+      }
+    }
+  ],
+  "limitations": [
+    "Adaptive development evaluation can overfit.",
+    "Accuracy interval is Wilson 95%, assumes independent observations; other metrics have no interval here.",
+    "Custom Python editor plugins are trusted; isolation is enforced through built-in JSON editor contexts, not an OS sandbox.",
+    "Token limits stop subsequent work; one provider request can overshoot due to input token usage.",
+    "Scripted fixtures demonstrate the protocol, not autonomous LLM performance."
+  ],
+  "parameters": 7413,
+  "selected_iteration": 2,
+  "selection_metric": "log_loss",
+  "status": "completed",
+  "stop_reason": "editor_budget_exceeded",
+  "task": "multiclass",
+  "track": {
+    "names": "semantic",
+    "policy": "strict"
+  }
+}

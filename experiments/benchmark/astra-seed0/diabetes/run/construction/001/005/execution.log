@@ -1,0 +1,48 @@
+goal : {'description': 'Predict a quantitative measure of diabetes disease progression one year after baseline.', 'target': 'progression', 'positive_label': '1', 'primary_metric': 'rmse', 'threshold': 0.5, 'target_score': None, 'task': 'regression', 'n_clusters': None, 'reference_column': None}
+task : regression
+classes : None
+output_size : 1
+features : [{'name': 'age', 'kind': 'numeric', 'description': 'Age in years'}, {'name': 'sex', 'kind': 'categorical', 'description': 'Sex, coded 1 or 2'}, {'name': 'bmi', 'kind': 'numeric', 'description': 'Body mass index'}, {'name': 'bp', 'kind': 'numeric', 'description': 'Average blood pressure'}, {'name': 's1', 'kind': 'numeric', 'description': 'Total serum cholesterol'}, {'name': 's2', 'kind': 'numeric', 'description': 'Low-density lipoproteins'}, {'name': 's3', 'kind': 'numeric', 'description': 'High-density lipoproteins'}, {'name': 's4', 'kind': 'numeric', 'description': 'Total cholesterol / HDL'}, {'name': 's5', 'kind': 'numeric', 'description': 'Log of serum triglycerides'}, {'name': 's6', 'kind': 'numeric', 'description': 'Blood sugar level'}]
+encoded_features : ['age:standardized', 'age:missing', "sex='1.0'", "sex='2.0'", 'sex:missing', 'sex:unknown', 'bmi:standardized', 'bmi:missing', 'bp:standardized', 'bp:missing', 's1:standardized', 's1:missing', 's2:standardized', 's2:missing', 's3:standardized', 's3:missing', 's4:standardized', 's4:missing', 's5:standardized', 's5:missing', 's6:standardized', 's6:missing']
+limits : {'iterations': 8, 'max_parameters': 65536, 'max_width': 256, 'max_hidden_layers': 4, 'max_evaluated_rows': 100000, 'max_seconds': 3600, 'max_editor_tokens': 140000, 'max_output_tokens': 16384, 'support_examples': 64, 'diagnostic_examples': 8, 'max_input_features': 256, 'max_abs_weight': 10000}
+track : {'names': 'semantic', 'policy': 'strict'}
+protocol : {'feedback': {'error_rows': None, 'max_revealed_labels': None}, 'selection': {'metric': 'rmse', 'min_delta': 0.0}, 'track': {'names': 'semantic', 'policy': 'strict'}, 'initial_program': False}
+support_rows : 265
+preprocessing: [{'name': 'age', 'kind': 'numeric', 'description': 'Age in years', 'median': 49.0, 'mean': 47.841509433962266, 'scale': 13.125711969365364}, {'name': 'sex', 'kind': 'categorical', 'description': 'Sex, coded 1 or 2', 'categories': ['1.0', '2.0']}, {'name': 'bmi', 'kind': 'numeric', 'description': 'Body mass index', 'median': 25.6, 'mean': 26.575849056603776, 'scale': 4.683896714280352}, {'name': 'bp', 'kind': 'numeric', 'description': 'Average blood pressure', 'median': 93.0, 'mean': 94.52569811320754, 'scale': 14.3335107150446}]
+# Network IR: what you are writing
+
+A feed-forward network: `x -> [Linear -> activation]* -> Linear -> head`.
+
+```json
+{"base": "zero", "hidden_sizes": [16, 8], "activations": ["relu", "relu"],
+ "rationale": "unit ledger: ...", "operations": [ ... ]}
+```
+
+- `hidden_sizes`: widths; `[]` means the output is a linear function of the inputs.
+- `activations`: per hidden layer, one of `relu`, `tanh`, `sigmoid`, `identity` (default relu).
+- Tensors: `layers.{i}.weight` with shape `[out, in]`, `layers.{i}.bias` with shape `[out]`.
+  Layer 0 reads the encoded inputs (`len(encoded_features)` columns, in that order).
+- Every entry starts at zero for `base: "zero"`. Unassigned entries stay zero.
+- Operations: `fill` (scalar), `set` (full tensor), `set_entries` / `add_entries` (sparse
+  `{"index": [row, col], "value": v}`).
+- `base: "best"` + `base_hash` (from state.json `best.hash`) patches the current best; the
+  architecture must match exactly.
+- Limits in task.json: `max_parameters`, `max_width`, `max_hidden_layers`, `max_abs_weight`.
+
+## Output heads (task.json `task`, `output_size`)
+
+| Task | Outputs | Interpretation |
+|---|---|---|
+| binary | 1 | logit z; P(positive) = 1/(1+e^-z); class = P >= threshold |
+| multiclass | number of classes | softmax over outputs, ordered as task.json `classes` |
+| regression | 1 | the prediction in the target's original units |
+| clustering | n_clusters | one score per cluster; assignment = argmax |
+
+## Encoding (exact)
+
+- numeric `x`: `x:standardized = (value_or_median - mean) / scale`; `x:missing` is 1 when blank.
+- categorical `c`: one-hot `c='v'` per support category, plus `c:missing`, `c:unknown`.
+- A raw threshold t on `x` is the standardized threshold `(t - mean) / scale`.
+- A raw-unit slope a on `x` is weight `a * scale` on `x:standardized`.
+
+Your NumPy forward pass must reproduce this exactly; float32 rounding is the only difference.

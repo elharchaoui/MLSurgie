@@ -1,0 +1,1 @@
+cat /skills/network-ir.md; cat /skills/policy.md

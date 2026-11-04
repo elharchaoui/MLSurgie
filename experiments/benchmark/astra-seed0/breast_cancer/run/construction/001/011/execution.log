@@ -1,0 +1,23 @@
+Channel means, pooled sd, standardized class separation:
+                       benign  malignant      sd  separation
+log_size               2.5741     3.0206  0.1770      2.5218
+indentation            0.0746     0.1864  0.0426      2.6279
+texture                4.5176     5.5108  0.9626      1.0317
+surface                0.1260     0.1473  0.0203      1.0468
+asymmetry              0.2739     0.3218  0.0586      0.8172
+relative_radius_error -3.8207    -3.4315  0.4114      0.9461
+
+Within-class correlations:
+                       log_size  indentation  texture  surface  asymmetry  relative_radius_error
+log_size                   1.00         0.50     0.11    -0.19      -0.16                   0.00
+indentation                0.50         1.00     0.02     0.37       0.34                  -0.13
+texture                    0.11         0.02     1.00    -0.04       0.02                   0.07
+surface                   -0.19         0.37    -0.04     1.00       0.47                  -0.05
+asymmetry                 -0.16         0.34     0.02     0.47       1.00                  -0.13
+relative_radius_error      0.00        -0.13     0.07    -0.05      -0.13                   1.00
+
+Class quantiles for relative radius error:
+        0.10   0.25   0.50   0.75   0.90
+label                                   
+0     -4.289 -4.109 -3.848 -3.568 -3.342
+1     -4.033 -3.669 -3.438 -3.149 -2.937

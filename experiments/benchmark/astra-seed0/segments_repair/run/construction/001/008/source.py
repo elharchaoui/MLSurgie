@@ -1,0 +1,3 @@
+import pandas as pd,numpy as np,json
+r=pd.read_csv('/inputs/data/support.csv');e=pd.read_csv('/inputs/data/support_encoded.csv');s=json.load(open('/inputs/state.json'));w=np.array(s['best']['parameters']['layers.0.weight']);b=np.array(s['best']['parameters']['layers.0.bias']);
+print('RAW',r.shape,r.columns.tolist());print(r.head().to_string(index=False)); print('ENCODED',e.shape,e.columns.tolist());print('SUMMARY\n',r.describe().round(3).to_string());print('MISSING\n',r.isna().sum());print('CORRELATIONS\n',r.corr(numeric_only=True).round(2).to_string());print('CENTROID HALF WEIGHTS',w[:,::2]/2);print('EXPECTED BIAS',-(w*w).sum(1)/4); print('BIAS DIFFERENCE',b+(w*w).sum(1)/4);print('ENCODED VAR\n',e.describe().round(3).to_string())

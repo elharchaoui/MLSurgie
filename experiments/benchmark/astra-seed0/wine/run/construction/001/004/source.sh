@@ -1,0 +1,1 @@
+cat /inputs/README.md; head -65 /inputs/task.json; cat /skills/network-ir.md

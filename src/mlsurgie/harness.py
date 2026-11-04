@@ -215,7 +215,7 @@ Development and final-test rows are not available here. Write `/workspace/candid
         program, status = self.read_candidate()
         self.pending = program
         prefix = f"Execution failed (exit {code}):\n" if code else ""
-        return prefix + (log[-8000:] + "\n" if log else "") + status
+        return prefix + (log[-4000:] + "\n" if log else "") + status
 
     def read_candidate(self):
         """The deliverable is the valid /workspace/candidate.json present when the turn ends."""
@@ -338,6 +338,7 @@ Development and final-test rows are not available here. Write `/workspace/candid
             self.llm.timeout = max(1, math.ceil(timeout))
             self.llm.max_output_tokens = context["output_token_limit"]
             before = self.llm.metrics.accumulated_token_usage.model_copy(deep=True)
+            cost_before = self.llm.metrics.accumulated_cost
             self.conversation.send_message(self._brief(self.context))
             try:
                 self.conversation.run()
@@ -350,6 +351,9 @@ Development and final-test rows are not available here. Write `/workspace/candid
             usage = {"input_tokens": after.prompt_tokens - before.prompt_tokens,
                      "output_tokens": after.completion_tokens - before.completion_tokens}
             usage["request_preflight"] = self.preflight_checks
+            usage["cache_read_tokens"] = after.cache_read_tokens - before.cache_read_tokens
+            # Provider-reported dollars via LiteLLM pricing; 0 when the model has no price entry.
+            usage["cost_usd"] = round(self.llm.metrics.accumulated_cost - cost_before, 6)
         usage["tool_calls"] = self.calls
         # A missing/invalid candidate is an invalid proposal, not a fitted fallback.
         program, _ = self.read_candidate()

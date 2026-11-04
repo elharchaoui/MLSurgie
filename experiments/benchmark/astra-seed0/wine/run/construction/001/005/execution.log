@@ -1,0 +1,87 @@
+raw (105, 14)  alcohol  malic_acid  ash  alcalinity_of_ash  magnesium  total_phenols  flavanoids  nonflavanoid_phenols  proanthocyanins  color_intensity   hue  od280_od315_of_diluted_wines  proline  label
+   13.50        1.81 2.61               20.0       96.0           2.53        2.61                  0.28             1.66             3.52 1.120                          3.82    845.0      0
+   13.05        3.86 2.32               22.5       85.0           1.65        1.59                  0.61             1.62             4.80 0.840                          2.01    515.0      1
+   13.48        1.67 2.64               22.5       89.0           2.60        1.10                  0.52             2.29            11.75 0.570                          1.78    620.0      2
+   12.29        1.61 2.21               20.4      103.0           1.10        1.02                  0.37             1.46             3.05 0.906                          1.82    870.0      1
+   12.86        1.35 2.32               18.0      122.0           1.51        1.25                  0.21             0.94             4.10 0.760                          1.29    630.0      2
+encoded (105, 27)  alcohol:standardized  alcohol:missing  malic_acid:standardized  malic_acid:missing  ash:standardized  ash:missing  alcalinity_of_ash:standardized  alcalinity_of_ash:missing  magnesium:standardized  magnesium:missing  total_phenols:standardized  total_phenols:missing  flavanoids:standardized  flavanoids:missing  nonflavanoid_phenols:standardized  nonflavanoid_phenols:missing  proanthocyanins:standardized  proanthocyanins:missing  color_intensity:standardized  color_intensity:missing  hue:standardized  hue:missing  od280_od315_of_diluted_wines:standardized  od280_od315_of_diluted_wines:missing  proline:standardized  proline:missing  label
+             0.594738              0.0                -0.470376                 0.0          0.754369          0.0                        0.050772                        0.0               -0.207623                0.0                    0.419487                    0.0                 0.612597                 0.0                          -0.595201                           0.0                      0.270307                      0.0                     -0.661121                      0.0          0.761275          0.0                                   1.678416                                   0.0              0.372806              0.0      0
+             0.043082              0.0                 1.389100                 0.0         -0.233611          0.0                        0.771189                        0.0               -1.067136                0.0                   -0.960386                    0.0                -0.414150                 0.0                           2.032024                           0.0                      0.196635                      0.0                     -0.051860                      0.0         -0.558077          0.0                                  -0.791257                                   0.0             -0.716102              0.0      1
+COUNTS {0: 35, 1: 42, 2: 28}
+MISSING {'alcohol': 0, 'malic_acid': 0, 'ash': 0, 'alcalinity_of_ash': 0, 'magnesium': 0, 'total_phenols': 0, 'flavanoids': 0, 'nonflavanoid_phenols': 0, 'proanthocyanins': 0, 'color_intensity': 0, 'hue': 0, 'od280_od315_of_diluted_wines': 0, 'proline': 0, 'label': 0}
+RAW MEANS
+ label                                0        1        2
+alcohol                         13.706   12.301   13.222
+malic_acid                       1.953    1.901    3.438
+ash                              2.479    2.259    2.470
+alcalinity_of_ash               17.371   20.750   21.500
+magnesium                      106.143   92.405   98.679
+total_phenols                    2.805    2.212    1.661
+flavanoids                       2.941    2.009    0.816
+nonflavanoid_phenols             0.280    0.367    0.429
+proanthocyanins                  1.873    1.496    1.089
+color_intensity                  5.322    3.186    6.977
+hue                              1.053    1.050    0.704
+od280_od315_of_diluted_wines     3.198    2.698    1.668
+proline                       1086.429  523.738  601.429
+STANDARDIZED MEANS
+ label                                          0      1      2
+alcohol:standardized                       0.847 -0.875  0.254
+malic_acid:standardized                   -0.340 -0.387  1.007
+ash:standardized                           0.309 -0.443  0.279
+alcalinity_of_ash:standardized            -0.707  0.267  0.483
+magnesium:standardized                     0.585 -0.489  0.002
+total_phenols:standardized                 0.850 -0.080 -0.943
+flavanoids:standardized                    0.945  0.008 -1.193
+nonflavanoid_phenols:standardized         -0.593  0.100  0.590
+proanthocyanins:standardized               0.663 -0.031 -0.781
+color_intensity:standardized               0.197 -0.820  0.984
+hue:standardized                           0.444  0.431 -1.201
+od280_od315_of_diluted_wines:standardized  0.830  0.148 -1.259
+proline:standardized                       1.169 -0.687 -0.431
+STANDARDIZED SDs
+ label                                          0      1      2
+alcohol:standardized                       0.587  0.725  0.684
+malic_acid:standardized                    0.523  0.888  0.956
+ash:standardized                           0.692  1.263  0.595
+alcalinity_of_ash:standardized             0.674  1.133  0.605
+magnesium:standardized                     0.748  1.079  0.776
+total_phenols:standardized                 0.581  0.935  0.517
+flavanoids:standardized                    0.402  0.795  0.302
+nonflavanoid_phenols:standardized          0.434  1.063  1.051
+proanthocyanins:standardized               0.670  1.065  0.631
+color_intensity:standardized               0.540  0.473  1.040
+hue:standardized                           0.524  0.891  0.545
+od280_od315_of_diluted_wines:standardized  0.540  0.742  0.343
+proline:standardized                       0.741  0.525  0.279
+WITHIN-CLASS CORRELATIONS
+             alcohol  malic_acid   ash  alcalinity  magnesium  total_phen  flavanoids  nonflavano  proanthocy  color_inte   hue  od280_od31  proline
+alcohol        1.00       -0.11 -0.15       -0.04      -0.04        0.08        0.06       -0.01        0.06        0.40  0.09       -0.01     0.19
+malic_acid    -0.11        1.00  0.18        0.19      -0.04       -0.01       -0.04        0.19        0.17       -0.16 -0.32        0.09    -0.19
+ash           -0.15        0.18  1.00        0.72       0.28        0.10        0.26        0.25        0.10        0.05  0.08        0.14     0.00
+alcalinity    -0.04        0.19  0.72        1.00       0.19        0.12        0.29        0.09        0.31        0.04  0.01        0.25     0.03
+magnesium     -0.04       -0.04  0.28        0.19       1.00        0.18        0.27       -0.31        0.09        0.13  0.04       -0.03     0.10
+total_phen     0.08       -0.01  0.10        0.12       0.18        1.00        0.70       -0.22        0.46        0.34 -0.04        0.44     0.14
+flavanoids     0.06       -0.04  0.26        0.29       0.27        0.70        1.00       -0.27        0.50        0.39 -0.06        0.41     0.06
+nonflavano    -0.01        0.19  0.25        0.09      -0.31       -0.22       -0.27        1.00       -0.19        0.03  0.03       -0.24    -0.05
+proanthocy     0.06        0.17  0.10        0.31       0.09        0.46        0.50       -0.19        1.00        0.34 -0.27        0.34     0.09
+color_inte     0.40       -0.16  0.05        0.04       0.13        0.34        0.39        0.03        0.34        1.00 -0.22       -0.10     0.21
+hue            0.09       -0.32  0.08        0.01       0.04       -0.04       -0.06        0.03       -0.27       -0.22  1.00        0.03     0.19
+od280_od31    -0.01        0.09  0.14        0.25      -0.03        0.44        0.41       -0.24        0.34       -0.10  0.03        1.00    -0.11
+proline        0.19       -0.19  0.00        0.03       0.10        0.14        0.06       -0.05        0.09        0.21  0.19       -0.11     1.00
+RAW QUANTILES
+ label                               0                                              1                                            2                                    
+                                 0.05     0.25     0.50      0.75      0.95     0.05     0.25     0.50     0.75     0.95     0.05     0.25     0.50     0.75     0.95
+alcohol                        13.014   13.290    13.73    14.100    14.376   11.563   11.832   12.195   12.630   13.471   12.288   12.805   13.400   13.638   14.028
+malic_acid                      1.549    1.650     1.77     1.910     3.310    0.921    1.300    1.645    2.075    4.278    1.894    2.738    3.250    4.105    5.314
+ash                             2.140    2.310     2.48     2.620     2.812    1.700    1.982    2.280    2.500    2.778    2.221    2.350    2.425    2.625    2.733
+alcalinity_of_ash              14.000   16.050    17.00    18.900    20.650   16.000   18.500   20.750   22.500   28.400   18.500   20.000   21.250   23.125   24.825
+magnesium                      94.000   99.000   103.00   114.000   121.800   78.100   84.250   88.000   99.500  118.400   88.000   90.750   96.000  105.250  118.500
+total_phenols                   2.385    2.565     2.80     2.955     3.465    1.384    1.882    2.100    2.532    3.294    1.260    1.398    1.620    1.808    2.212
+flavanoids                      2.398    2.655     2.97     3.155     3.614    1.024    1.582    1.880    2.260    3.172    0.474    0.590    0.755    0.992    1.322
+nonflavanoid_phenols            0.191    0.255     0.28     0.320     0.376    0.172    0.260    0.380    0.445    0.599    0.214    0.360    0.460    0.520    0.612
+proanthocyanins                 1.357    1.640     1.86     2.065     2.401    0.626    1.250    1.450    1.695    2.270    0.737    0.837    1.035    1.250    1.553
+color_intensity                 3.891    4.440     5.20     5.800     7.275    1.952    2.525    3.025    3.395    5.275    4.188    5.210    6.860    8.615   10.415
+hue                             0.874    0.995     1.05     1.115     1.243    0.752    0.923    1.020    1.220    1.360    0.554    0.617    0.700    0.772    0.903
+od280_od315_of_diluted_wines    2.626    2.835     3.22     3.460     3.850    1.820    2.280    2.770    3.128    3.566    1.290    1.538    1.685    1.805    2.056
+proline                       759.500  917.500  1065.00  1230.000  1489.000  325.850  396.500  495.000  625.000  862.000  487.000  520.000  600.000  663.750  746.500

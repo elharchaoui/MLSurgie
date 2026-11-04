@@ -1,0 +1,33 @@
+counts {0: 35, 1: 42, 2: 28}
+raw [{'alcohol': 13.5, 'malic_acid': 1.81, 'ash': 2.61, 'alcalinity_of_ash': 20.0, 'magnesium': 96.0, 'total_phenols': 2.53, 'flavanoids': 2.61, 'nonflavanoid_phenols': 0.28, 'proanthocyanins': 1.66, 'color_intensity': 3.52, 'hue': 1.12, 'od280_od315_of_diluted_wines': 3.82, 'proline': 845.0, 'label': 0}]
+missing? 0
+MEANS standardized
+ label                                          0      1      2
+alcohol:standardized                       0.847 -0.875  0.254
+malic_acid:standardized                   -0.340 -0.387  1.007
+ash:standardized                           0.309 -0.443  0.279
+alcalinity_of_ash:standardized            -0.707  0.267  0.483
+magnesium:standardized                     0.585 -0.489  0.002
+total_phenols:standardized                 0.850 -0.080 -0.943
+flavanoids:standardized                    0.945  0.008 -1.193
+nonflavanoid_phenols:standardized         -0.593  0.100  0.590
+proanthocyanins:standardized               0.663 -0.031 -0.781
+color_intensity:standardized               0.197 -0.820  0.984
+hue:standardized                           0.444  0.431 -1.201
+od280_od315_of_diluted_wines:standardized  0.830  0.148 -1.259
+proline:standardized                       1.169 -0.687 -0.431
+STD standardized
+ label                                          0      1      2
+alcohol:standardized                       0.587  0.725  0.684
+malic_acid:standardized                    0.523  0.888  0.956
+ash:standardized                           0.692  1.263  0.595
+alcalinity_of_ash:standardized             0.674  1.133  0.605
+magnesium:standardized                     0.748  1.079  0.776
+total_phenols:standardized                 0.581  0.935  0.517
+flavanoids:standardized                    0.402  0.795  0.302
+nonflavanoid_phenols:standardized          0.434  1.063  1.051
+proanthocyanins:standardized               0.670  1.065  0.631
+color_intensity:standardized               0.540  0.473  1.040
+hue:standardized                           0.524  0.891  0.545
+od280_od315_of_diluted_wines:standardized  0.540  0.742  0.343
+proline:standardized                       0.741  0.525  0.279

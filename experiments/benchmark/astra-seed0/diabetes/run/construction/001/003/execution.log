@@ -1,0 +1,246 @@
+
+FILE /inputs/README.md 
+ # Inputs (read-only)
+
+- `task.json`: goal, task type (regression), classes, output size, feature declarations,
+  preprocessing state, encoded feature names, budgets, track, and the weight-program format.
+- `state.json`: refreshed every turn: iteration, remaining budgets, best network (weights and hash),
+  best development metrics, and last development feedback.
+- `data/support.csv`: 265 labeled support rows with raw feature values. `target` is the numeric target in original units.
+- `data/support_encoded.csv`: the same rows as the network actually sees them
+  (columns in `encoded_features` order), plus the same label column.
+
+The network input is exactly the encoded vector. Encoding (from support rows only):
+numeric `x` -> `x:standardized` = (x_or_median - mean) / scale, and `x:missing` in {0,1};
+categorical `c` -> one-hot `c='value'` columns, plus `c:missing` and `c:unknown`.
+Preprocessing statistics are in task.json `preprocessing` (mean, scale, median, categories).
+To express a raw threshold t on numeric x, use (t - mean) / scale on `x:standardized`.
+
+Development and final-test rows are not available here. Write `/workspace/candidate.json`.
+
+
+FILE /inputs/task.json 
+ {
+  "goal": {
+    "description": "Predict a quantitative measure of diabetes disease progression one year after baseline.",
+    "target": "progression",
+    "positive_label": "1",
+    "primary_metric": "rmse",
+    "threshold": 0.5,
+    "target_score": null,
+    "task": "regression",
+    "n_clusters": null,
+    "reference_column": null
+  },
+  "task": "regression",
+  "classes": null,
+  "output_size": 1,
+  "features": [
+    {
+      "name": "age",
+      "kind": "numeric",
+      "description": "Age in years"
+    },
+    {
+      "name": "sex",
+      "kind": "categorical",
+      "description": "Sex, coded 1 or 2"
+    },
+    {
+      "name": "bmi",
+      "kind": "numeric",
+      "description": "Body mass index"
+    },
+    {
+      "name": "bp",
+      "kind": "numeric",
+      "description": "Average blood pressure"
+    },
+    {
+      "name": "s1",
+      "kind": "numeric",
+      "description": "Total serum cholesterol"
+    },
+    {
+      "name": "s2",
+      "kind": "numeric",
+      "description": "Low-density lipoproteins"
+    },
+    {
+      "name": "s3",
+      "kind": "numeric",
+      "description": "High-density lipoproteins"
+    },
+    {
+      "name": "s4",
+      "kind": "numeric",
+      "description": "Total cholesterol / HDL"
+    },
+    {
+      "name": "s5",
+      "kind": "numeric",
+      "description": "Log of serum triglycerides"
+    },
+    {
+      "name": "s6",
+      "kind": "numeric",
+      "description": "Blood sugar level"
+    }
+  ],
+  "preprocessing": [
+    {
+      "name": "age",
+      "kind": "numeric",
+      "description": "Age in years",
+      "median": 49.0,
+      "mean": 47.841509433962266,
+      "scale": 13.125711969365364
+    },
+    {
+      "name": "sex",
+      "kind": "categorical",
+      "description": "Sex, coded 1 or 2",
+      "categories": [
+        "1.0",
+        "2.0"
+      ]
+    },
+    {
+      "name": "bmi",
+      "kind": "numeric",
+      "description": "Body mass index",
+      "median": 25.6,
+      "mean": 26.575849056603776,
+      "scale": 4.683896714280352
+    },
+    {
+      "name": "bp",
+      "kind": "numeric",
+      "description": "Average blood pressure",
+      "median": 93.0,
+      "mean": 94.52569811320754,
+      "scale": 14.3335107150446
+    },
+    {
+      "name": "s1",
+      "kind": "numeric",
+      "description": "Total serum cholesterol",
+      "median": 186.0,
+      "mean": 188.76603773584907,
+      "scale": 34.34571706234822
+    },
+    {
+      "name": "s2",
+      "kind": "numeric",
+      "description": "Low-density lipoproteins",
+      "median": 110.8,
+      "mean": 115.7611320754717,
+      "scale": 30.630090622598455
+    },
+    {
+      "name": "s3",
+      "kind": "numeric",
+      "description": "High-density lipoproteins",
+      "median": 47.0,
+      "mean": 49.60943396226415,
+      "scale": 12.391084198088947
+    },
+    {
+      "name": "s4",
+      "kind": "numeric",
+      "description": "Total cholesterol / HDL",
+      "median": 4.0,
+      "mean": 4.081056603773585,
+      "scale": 1.3692315764703793
+    },
+    {
+      "name": "s5",
+      "kind": "numeric",
+      "description": "Log of serum triglycerides",
+      "median": 4.5747,
+      "mean": 4.628213207547169,
+      "scale": 0.509406689823447
+    },
+    {
+      "name": "s6",
+      "kind": "numeric",
+      "description": "Blood sugar level",
+      "median": 91.0,
+      "mean": 91.00754716981132,
+      "scale": 11.679038617978273
+    }
+  ],
+  "encoded_features": [
+    "age:standardized",
+    "age:missing",
+    "sex='1.0'",
+    "sex='2.0'",
+    "sex:missing",
+    "sex:unknown",
+    "bmi:standardized",
+    "bmi:missing",
+    "bp:standardized",
+    "bp:missing",
+    "s1:standardized",
+    "s1:missing",
+    "s2:standardized",
+    "s2:missing",
+    "s3:standardized",
+    "s3:missing",
+    "s4:standardized",
+    "s4:missing",
+    "s5:standardized",
+    "s5:missing",
+    "s6:standardized",
+    "s6:missing"
+  ],
+  "limits": {
+    "iterations": 8,
+    "max_parameters": 65536,
+    "max_width": 256,
+    "max_hidden_layers": 4,
+    "max_evaluated_rows": 100000,
+    "max_seconds": 3600,
+    "max_editor_tokens": 140000,
+    "max_output_tokens": 16384,
+    "support_examples": 64,
+    "diagnostic_examples": 8,
+    "max_input_features": 256,
+    "max_abs_weight": 10000
+  },
+  "track": {
+    "names": "semantic",
+    "policy": "strict"
+  },
+  "protocol": {
+    "feedback": {
+      "error_rows": null,
+      "max_revealed_labels": null
+    },
+    "selection": {
+      "metric": "rmse",
+      "min_delta": 0.0
+    },
+    "track": {
+      "names": "semantic",
+      "policy": "strict"
+    },
+    "initial_program": false
+  },
+  "program_format": "Return a JSON object, no code or markdown:\n{\"base\":\"zero\", \"hidden_sizes\":[8], \"activations\":[\"relu\"], \"rationale\":\"mechanism hypothesis\", \"operations\":[]}\nhidden_sizes is a list of hidden layer widths (empty means a direct linear output).\nactivations is optional: one of relu, tanh, sigmoid, identity per hidden layer (default relu).\nOutput head: output_size is 1: the prediction itself, in the target's original units.\nEvery tensor starts at zero when base=zero; unassigned entries remain zero.\nTensors are layers.0.weight, layers.0.bias, ...; weights have shape [out,in].\nAllowed operations:\n{\"op\":\"fill\",\"tensor\":\"layers.0.bias\",\"value\":0}\n{\"op\":\"set\",\"tensor\":\"layers.0.weight\",\"value\":[[1,2],[3,4]]}\n{\"op\":\"set_entries\",\"tensor\":\"layers.0.weight\",\"entries\":[{\"index\":[0,1],\"value\":2}]}\n{\"op\":\"add_entries\",\"tensor\":\"layers.0.bias\",\"entries\":[{\"index\":[0],\"value\":0.2}]}\nUse base=best with base_hash equal to the supplied best hash to patch that checkpoint.\nArchitecture can change on any base=zero candidate. base=best requires matching architecture and hash.\nDesign weight values directly by reasoning. No fitting, optimizers, gradient steps,\npretrained target weights, executable code, or requests for final-test data.\n",
+  "support_rows": 265
+}
+
+FILE /inputs/state.json 
+ {
+  "iteration": 1,
+  "remaining": {
+    "iterations": 8,
+    "seconds": 3599.9999963750015,
+    "editor_tokens": 140000
+  },
+  "best": null,
+  "best_metrics": null,
+  "last_feedback": null,
+  "output_token_limit": 16384
+}

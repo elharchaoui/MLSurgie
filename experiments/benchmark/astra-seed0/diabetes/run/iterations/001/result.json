@@ -1,0 +1,31 @@
+{
+  "audit": {
+    "scanned_files": 12,
+    "violations": []
+  },
+  "diff": {
+    "base_hash": "zero",
+    "changed_values": 6,
+    "l2_change": 171.87142407383715
+  },
+  "iteration": 1,
+  "metrics": {
+    "mae": 40.92091655731201,
+    "n": 88,
+    "r2": 0.5699063848863686,
+    "rmse": 51.711270646011435,
+    "target_mean": 153.72727272727272,
+    "target_std": 78.85036566363695
+  },
+  "selected": true,
+  "state_hash": "84f4261e545143fb8737471d0ac45be4755bc7ef3806cd75c6074fb1f63ad34a",
+  "status": "evaluated",
+  "usage": {
+    "cache_read_tokens": 57466,
+    "cost_usd": 0.0,
+    "input_tokens": 75237,
+    "output_tokens": 5757,
+    "request_preflight": [],
+    "tool_calls": 9
+  }
+}

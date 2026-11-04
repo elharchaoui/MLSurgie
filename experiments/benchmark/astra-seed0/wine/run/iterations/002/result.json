@@ -1,0 +1,52 @@
+{
+  "audit": {
+    "scanned_files": 7,
+    "violations": []
+  },
+  "diff": {
+    "base_hash": "zero",
+    "changed_values": 1199,
+    "l2_change": 290.51577501415744
+  },
+  "iteration": 2,
+  "metrics": {
+    "accuracy": 0.9722222222222222,
+    "accuracy_wilson_95": [
+      0.8582996626496918,
+      0.9950797197044302
+    ],
+    "balanced_accuracy": 0.9722222222222222,
+    "classes": 3,
+    "confusion_matrix": [
+      [
+        11,
+        1,
+        0
+      ],
+      [
+        0,
+        14,
+        0
+      ],
+      [
+        0,
+        0,
+        10
+      ]
+    ],
+    "log_loss": 0.04915432975411303,
+    "macro_f1": 0.9740129935032483,
+    "n": 36
+  },
+  "selected": true,
+  "state_hash": "ebe6af79df3aa1baf69f8ef68e6c9d669b886b02d8c4bf8fb3774ffe41e55f58",
+  "status": "evaluated",
+  "usage": {
+    "cache_read_tokens": 70662,
+    "cost_usd": 0.0,
+    "input_tokens": 76234,
+    "output_tokens": 2562,
+    "request_preflight": [],
+    "tool_calls": 4
+  }
+}
