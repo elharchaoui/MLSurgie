@@ -4,20 +4,20 @@
 
 ## Inputs and supported scope
 
-- Goal: natural-language description, target, positive label, selection metric, fixed decision threshold, optional target score.
-- Dataset: binary labels; explicitly selected numeric/categorical inputs. Numeric blanks use support medians and a missing flag; values are standardized using support statistics. Categories have explicit missing/unknown bins.
-- Architecture: zero, one, or two hidden Linear/ReLU layers by default; one output logit interpreted through sigmoid. In JSON-only `build`, the first valid candidate freezes the architecture. The optional [agent harness](agent-harness.md) permits topology changes between candidates.
+- Goal: natural-language description, `task` (`binary`, `multiclass`, `regression`, `clustering`), target (or `n_clusters` plus an optional hidden `reference_column` for clustering), positive label, selection metric, fixed decision threshold, optional target score.
+- Dataset: explicitly selected numeric/categorical inputs. Numeric blanks use support medians and a missing flag; values are standardized using support statistics. Categories have explicit missing/unknown bins.
+- Architecture: zero, one, or two hidden layers by default (raise `max_hidden_layers`), each Linear followed by `relu`, `tanh`, `sigmoid` or `identity`. The output head depends on the task: sigmoid logit, softmax logits, a raw value, or argmax cluster scores. In JSON-only `build`, the first valid candidate freezes the architecture. The optional [agent harness](agent-harness.md) permits topology changes between candidates.
 - Budget: maximum submitted iterations, parameters, widths, wall time, reported editor tokens, output tokens per response, and evaluated rows. Input-token usage can cause a single call to overshoot its token allowance; subsequent work stops and the overshoot is recorded. Final evaluation is reserved separately in the row budget and may add runtime after the editing deadline.
 
-Default split: support/development/test = 60/20/20, stratified by class. Grouped splits are disjoint and approximately follow these proportions by group count. All three must contain both classes. At least five examples per class are needed even to attempt the IID split; that minimum is not enough for reliable generalization estimates.
+Default split: support/development/test = 60/20/20, stratified by class for classification and random for regression and clustering. Grouped splits are disjoint and approximately follow these proportions by group count. For classification, all three must contain every class. At least five examples per class are needed even to attempt the IID split; that minimum is not enough for reliable generalization estimates.
 
 Preprocessing estimates distribution statistics, not neural weights. Its state is disclosed in the artifact. Numeric validation and split creation use the supplied table; only support rows determine preprocessing. Final-test predictions are computed only after selection.
 
-The current version supports binary classification only. Regression, multiclass, custom preservation constraints, activations as feedback, user-supplied separate test sets, arbitrary custom layers and additional direct hosted adapters are future extensions. Selection currently uses one primary metric, not an arbitrary natural-language acceptance condition.
+Protocol components are declared and recorded in the manifest: `FeedbackPolicy` (error rows per evaluation, cumulative cap on revealed development labels), `SelectionRule` (metric, minimum improvement), `Track` (semantic/anonymized, strict/open), and an optional `initial_program` for repair tasks, evaluated as iteration 0. See [Benchmarking](benchmark.md). Custom preservation constraints, user-supplied separate test sets, arbitrary custom layers and additional model families (additive models, scorecards) are future extensions.
 
 ## Weight programs
 
-Editors submit JSON, never Python. Each submission specifies its base, architecture, rationale, and explicit operations. Unassigned entries of a `zero` construction are zero. Weight matrices use `[out, in]` convention.
+Editors submit JSON, never Python. Each submission specifies its base, architecture (`hidden_sizes`, optional `activations`), rationale, and explicit operations. The output layer's size is fixed by the task: 1 for binary and regression, the number of classes, or `n_clusters`. Unassigned entries of a `zero` construction are zero. Weight matrices use `[out, in]` convention.
 
 ```json
 {
@@ -94,4 +94,4 @@ Checksums detect accidental mismatch, not malicious replacement of an entire run
 
 ## Development
 
-See [CONTRIBUTING.md](../CONTRIBUTING.md), the [framework design](framework-plan.md), and [research dossier](weight-space-research.md). The architecture has separate data, network, proposer, evaluation, and artifact modules. Core tests require no network or model provider.
+See [CONTRIBUTING.md](../CONTRIBUTING.md), the [framework design](archive/framework-plan.md), and [research dossier](weight-space-research.md). The architecture has separate data, network, proposer, evaluation, and artifact modules. Core tests require no network or model provider.

@@ -1,0 +1,53 @@
+{
+  "name": "segments",
+  "dataset": "../data/segments.csv",
+  "notes": "Synthetic retail customers from 4 planted segments; `segment` is a hidden reference used only for final ARI.",
+  "goal": {
+    "task": "clustering",
+    "description": "Segment retail customers into 4 actionable groups by purchasing behavior.",
+    "n_clusters": 4,
+    "reference_column": "segment",
+    "primary_metric": "silhouette"
+  },
+  "features": [
+    {
+      "name": "annual_spend",
+      "kind": "numeric",
+      "description": "Annual spend in USD"
+    },
+    {
+      "name": "visits_per_month",
+      "kind": "numeric",
+      "description": "Store or site visits per month"
+    },
+    {
+      "name": "avg_basket",
+      "kind": "numeric",
+      "description": "Average basket value in USD"
+    },
+    {
+      "name": "days_since_last_visit",
+      "kind": "numeric",
+      "description": "Recency in days"
+    },
+    {
+      "name": "online_share",
+      "kind": "numeric",
+      "description": "Share of purchases made online, 0-1"
+    },
+    {
+      "name": "age",
+      "kind": "numeric",
+      "description": "Customer age in years"
+    }
+  ],
+  "budget": {
+    "iterations": 8,
+    "max_parameters": 65536,
+    "max_width": 256,
+    "max_hidden_layers": 4,
+    "max_seconds": 3600,
+    "max_editor_tokens": 400000,
+    "max_output_tokens": 16384
+  }
+}

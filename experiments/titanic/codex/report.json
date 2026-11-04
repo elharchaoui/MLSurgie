@@ -1,0 +1,429 @@
+{
+  "cost": {
+    "currency_cost": null,
+    "editor_tokens": null,
+    "evaluated_rows": 1603,
+    "wall_seconds": 329.1846275420394
+  },
+  "development": {
+    "accuracy": 0.8089887640449438,
+    "accuracy_wilson_95": [
+      0.7449533180599053,
+      0.8599687679754133
+    ],
+    "balanced_accuracy": 0.7808823529411765,
+    "brier": 0.1382140701096868,
+    "confusion_matrix": [
+      [
+        99,
+        11
+      ],
+      [
+        23,
+        45
+      ]
+    ],
+    "f1": 0.7258064516129032,
+    "log_loss": 0.4366121384692509,
+    "n": 178,
+    "positive_count": 68,
+    "precision": 0.8035714285714286,
+    "recall": 0.6617647058823529,
+    "roc_auc": 0.8583556149732621,
+    "threshold": 0.5
+  },
+  "editor": {
+    "interface": "Codex conversation via file bridge",
+    "kind": "interactive_llm",
+    "model": "gpt-6-astra",
+    "token_accounting": "not available from this host session"
+  },
+  "final_target_met": null,
+  "final_test": {
+    "accuracy": 0.8044692737430168,
+    "accuracy_wilson_95": [
+      0.7402289109346676,
+      0.855915511341226
+    ],
+    "balanced_accuracy": 0.7814888010540184,
+    "brier": 0.1414325622792152,
+    "confusion_matrix": [
+      [
+        97,
+        13
+      ],
+      [
+        22,
+        47
+      ]
+    ],
+    "f1": 0.7286821705426356,
+    "log_loss": 0.4455165724825331,
+    "n": 179,
+    "positive_count": 69,
+    "precision": 0.7833333333333333,
+    "recall": 0.6811594202898551,
+    "roc_auc": 0.8397891963109354,
+    "threshold": 0.5
+  },
+  "history": [
+    {
+      "diff": {
+        "base_hash": "zero",
+        "changed_values": 96,
+        "l2_change": 109.84351879390393
+      },
+      "iteration": 1,
+      "metrics": {
+        "accuracy": 0.797752808988764,
+        "accuracy_wilson_95": [
+          0.7327417729421544,
+          0.8501831463282434
+        ],
+        "balanced_accuracy": 0.7633689839572193,
+        "brier": 0.14238719071430578,
+        "confusion_matrix": [
+          [
+            100,
+            10
+          ],
+          [
+            26,
+            42
+          ]
+        ],
+        "f1": 0.7,
+        "log_loss": 0.45195181622469793,
+        "n": 178,
+        "positive_count": 68,
+        "precision": 0.8076923076923077,
+        "recall": 0.6176470588235294,
+        "roc_auc": 0.8272058823529411,
+        "threshold": 0.5
+      },
+      "selected": true,
+      "state_hash": "8432c51e2f7056a67a522b8ce81410c5dea552d8812d0aabcc8396db71d60d1d",
+      "status": "evaluated",
+      "usage": {
+        "input_tokens": 0,
+        "measurement": "unavailable",
+        "output_tokens": 0
+      }
+    },
+    {
+      "diff": {
+        "base_hash": "zero",
+        "changed_values": 96,
+        "l2_change": 109.82326083725277
+      },
+      "iteration": 2,
+      "metrics": {
+        "accuracy": 0.8033707865168539,
+        "accuracy_wilson_95": [
+          0.7388387659781506,
+          0.8550847366747076
+        ],
+        "balanced_accuracy": 0.776336898395722,
+        "brier": 0.1409688515602549,
+        "confusion_matrix": [
+          [
+            98,
+            12
+          ],
+          [
+            23,
+            45
+          ]
+        ],
+        "f1": 0.72,
+        "log_loss": 0.44366222032772096,
+        "n": 178,
+        "positive_count": 68,
+        "precision": 0.7894736842105263,
+        "recall": 0.6617647058823529,
+        "roc_auc": 0.8402406417112299,
+        "threshold": 0.5
+      },
+      "selected": true,
+      "state_hash": "6ebbaba9d30fdb6ad231274c1b124dc733ecd5d89ac1b46ea6530c0a17f4604b",
+      "status": "evaluated",
+      "usage": {
+        "input_tokens": 0,
+        "measurement": "unavailable",
+        "output_tokens": 0
+      }
+    },
+    {
+      "diff": {
+        "base_hash": "zero",
+        "changed_values": 102,
+        "l2_change": 109.8418231877688
+      },
+      "iteration": 3,
+      "metrics": {
+        "accuracy": 0.8089887640449438,
+        "accuracy_wilson_95": [
+          0.7449533180599053,
+          0.8599687679754133
+        ],
+        "balanced_accuracy": 0.7808823529411765,
+        "brier": 0.13971162966321374,
+        "confusion_matrix": [
+          [
+            99,
+            11
+          ],
+          [
+            23,
+            45
+          ]
+        ],
+        "f1": 0.7258064516129032,
+        "log_loss": 0.442641568340452,
+        "n": 178,
+        "positive_count": 68,
+        "precision": 0.8035714285714286,
+        "recall": 0.6617647058823529,
+        "roc_auc": 0.8383021390374331,
+        "threshold": 0.5
+      },
+      "selected": true,
+      "state_hash": "a8bad3642b01ee8fd849f256f41e7dbf631ca0b57c4e38b5c85ed40d1e3fc604",
+      "status": "evaluated",
+      "usage": {
+        "input_tokens": 0,
+        "measurement": "unavailable",
+        "output_tokens": 0
+      }
+    },
+    {
+      "diff": {
+        "base_hash": "zero",
+        "changed_values": 100,
+        "l2_change": 109.83954716409325
+      },
+      "iteration": 4,
+      "metrics": {
+        "accuracy": 0.8089887640449438,
+        "accuracy_wilson_95": [
+          0.7449533180599053,
+          0.8599687679754133
+        ],
+        "balanced_accuracy": 0.7808823529411765,
+        "brier": 0.1387927389692066,
+        "confusion_matrix": [
+          [
+            99,
+            11
+          ],
+          [
+            23,
+            45
+          ]
+        ],
+        "f1": 0.7258064516129032,
+        "log_loss": 0.43796922329005705,
+        "n": 178,
+        "positive_count": 68,
+        "precision": 0.8035714285714286,
+        "recall": 0.6617647058823529,
+        "roc_auc": 0.8493983957219251,
+        "threshold": 0.5
+      },
+      "selected": true,
+      "state_hash": "78ae3679b833facec2e745df06ffff48c0727fccb4f1005fdaee0cf55a99f35f",
+      "status": "evaluated",
+      "usage": {
+        "input_tokens": 0,
+        "measurement": "unavailable",
+        "output_tokens": 0
+      }
+    },
+    {
+      "diff": {
+        "base_hash": "zero",
+        "changed_values": 100,
+        "l2_change": 109.83053364684648
+      },
+      "iteration": 5,
+      "metrics": {
+        "accuracy": 0.8089887640449438,
+        "accuracy_wilson_95": [
+          0.7449533180599053,
+          0.8599687679754133
+        ],
+        "balanced_accuracy": 0.7836898395721925,
+        "brier": 0.13933941256443277,
+        "confusion_matrix": [
+          [
+            98,
+            12
+          ],
+          [
+            22,
+            46
+          ]
+        ],
+        "f1": 0.7301587301587301,
+        "log_loss": 0.4394284191631403,
+        "n": 178,
+        "positive_count": 68,
+        "precision": 0.7931034482758621,
+        "recall": 0.6764705882352942,
+        "roc_auc": 0.8508021390374332,
+        "threshold": 0.5
+      },
+      "selected": false,
+      "state_hash": "cff0ab00c526ed1f98ce072eceaa947be8693c02079d051c9ffac5e5c2990b0f",
+      "status": "evaluated",
+      "usage": {
+        "input_tokens": 0,
+        "measurement": "unavailable",
+        "output_tokens": 0
+      }
+    },
+    {
+      "diff": {
+        "base_hash": "zero",
+        "changed_values": 100,
+        "l2_change": 109.84161834755298
+      },
+      "iteration": 6,
+      "metrics": {
+        "accuracy": 0.8089887640449438,
+        "accuracy_wilson_95": [
+          0.7449533180599053,
+          0.8599687679754133
+        ],
+        "balanced_accuracy": 0.7836898395721925,
+        "brier": 0.1422186508343258,
+        "confusion_matrix": [
+          [
+            98,
+            12
+          ],
+          [
+            22,
+            46
+          ]
+        ],
+        "f1": 0.7301587301587301,
+        "log_loss": 0.44633199186828526,
+        "n": 178,
+        "positive_count": 68,
+        "precision": 0.7931034482758621,
+        "recall": 0.6764705882352942,
+        "roc_auc": 0.8422459893048129,
+        "threshold": 0.5
+      },
+      "selected": false,
+      "state_hash": "8edb0f5ef4e1ff5faaa1c657d4b560be1bee4e25f5f9a9aaacf0057286e0f863",
+      "status": "evaluated",
+      "usage": {
+        "input_tokens": 0,
+        "measurement": "unavailable",
+        "output_tokens": 0
+      }
+    },
+    {
+      "diff": {
+        "base_hash": "zero",
+        "changed_values": 98,
+        "l2_change": 109.83934231963285
+      },
+      "iteration": 7,
+      "metrics": {
+        "accuracy": 0.8089887640449438,
+        "accuracy_wilson_95": [
+          0.7449533180599053,
+          0.8599687679754133
+        ],
+        "balanced_accuracy": 0.7808823529411765,
+        "brier": 0.1382140701096868,
+        "confusion_matrix": [
+          [
+            99,
+            11
+          ],
+          [
+            23,
+            45
+          ]
+        ],
+        "f1": 0.7258064516129032,
+        "log_loss": 0.4366121384692509,
+        "n": 178,
+        "positive_count": 68,
+        "precision": 0.8035714285714286,
+        "recall": 0.6617647058823529,
+        "roc_auc": 0.8583556149732621,
+        "threshold": 0.5
+      },
+      "selected": true,
+      "state_hash": "029d43a0ba41a4581ca3e405619cb0b2ba9dd60f369acccc8c0331421f0325ce",
+      "status": "evaluated",
+      "usage": {
+        "input_tokens": 0,
+        "measurement": "unavailable",
+        "output_tokens": 0
+      }
+    },
+    {
+      "diff": {
+        "base_hash": "zero",
+        "changed_values": 98,
+        "l2_change": 109.87211256758958
+      },
+      "iteration": 8,
+      "metrics": {
+        "accuracy": 0.8033707865168539,
+        "accuracy_wilson_95": [
+          0.7388387659781506,
+          0.8550847366747076
+        ],
+        "balanced_accuracy": 0.776336898395722,
+        "brier": 0.1393889073375757,
+        "confusion_matrix": [
+          [
+            98,
+            12
+          ],
+          [
+            23,
+            45
+          ]
+        ],
+        "f1": 0.72,
+        "log_loss": 0.4387116527786109,
+        "n": 178,
+        "positive_count": 68,
+        "precision": 0.7894736842105263,
+        "recall": 0.6617647058823529,
+        "roc_auc": 0.8567513368983958,
+        "threshold": 0.5
+      },
+      "selected": false,
+      "state_hash": "b9ebb34274b71d4b8003f0a8f35d257fe41e7162da54fd80b3709f6bf1847d7e",
+      "status": "evaluated",
+      "usage": {
+        "input_tokens": 0,
+        "measurement": "unavailable",
+        "output_tokens": 0
+      }
+    }
+  ],
+  "limitations": [
+    "Adaptive development evaluation can overfit.",
+    "Accuracy interval is Wilson 95%, assumes independent observations; other metrics have no interval here.",
+    "Custom Python editor plugins are trusted; isolation is enforced through built-in JSON editor contexts, not an OS sandbox.",
+    "Token limits stop subsequent work; one provider request can overshoot due to input token usage.",
+    "Scripted fixtures demonstrate the protocol, not autonomous LLM performance.",
+    "Titanic is a public benchmark potentially present in editor pretraining; this is not evidence of uncontaminated learning.",
+    "IID split; relatives/duplicate passenger-feature rows can cross splits.",
+    "This interactive host was trusted to avoid test inspection; separation was procedural, not an OS security boundary.",
+    "Support counts were inspected; no numeric weight-fitting routine was used."
+  ],
+  "selected_iteration": 7,
+  "status": "completed",
+  "stop_reason": "iteration_budget"
+}

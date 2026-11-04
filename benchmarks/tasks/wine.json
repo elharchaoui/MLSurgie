@@ -1,0 +1,87 @@
+{
+  "name": "wine",
+  "dataset": "../data/wine.csv",
+  "notes": "UCI wine recognition (scikit-learn bundled copy). 3 classes, 178 rows.",
+  "goal": {
+    "task": "multiclass",
+    "description": "Identify which of three cultivars a wine comes from, using its chemical analysis.",
+    "target": "cultivar",
+    "primary_metric": "log_loss"
+  },
+  "features": [
+    {
+      "name": "alcohol",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "malic_acid",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "ash",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "alcalinity_of_ash",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "magnesium",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "total_phenols",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "flavanoids",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "nonflavanoid_phenols",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "proanthocyanins",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "color_intensity",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "hue",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "od280_od315_of_diluted_wines",
+      "kind": "numeric",
+      "description": ""
+    },
+    {
+      "name": "proline",
+      "kind": "numeric",
+      "description": ""
+    }
+  ],
+  "budget": {
+    "iterations": 8,
+    "max_parameters": 65536,
+    "max_width": 256,
+    "max_hidden_layers": 4,
+    "max_seconds": 3600,
+    "max_editor_tokens": 400000,
+    "max_output_tokens": 16384
+  }
+}

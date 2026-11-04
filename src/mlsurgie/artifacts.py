@@ -26,18 +26,34 @@ def sha256(path):
 
 @dataclass
 class Predictor:
+    """A frozen network plus its preprocessing; needs no LLM or editor."""
     network: Network
     preprocessing: Preprocessor
-    classes: list[str]
+    classes: list[str] | None
     threshold: float
+    task: str = "binary"
+
+    def outputs(self, rows):
+        from .tasks import head
+        return head(self.task, self.network.outputs(self.preprocessing.transform(rows)))
 
     def predict_proba(self, rows):
-        p = self.network.probabilities(self.preprocessing.transform(rows))
-        return np.column_stack([1 - p, p])
+        if self.task == "binary":
+            p = self.outputs(rows)
+            return np.column_stack([1 - p, p])
+        if self.task == "multiclass":
+            return self.outputs(rows)
+        raise ValueError("predict_proba applies to classification tasks")
 
     def predict(self, rows):
-        index = (self.predict_proba(rows)[:, 1] >= self.threshold).astype(int)
-        return np.asarray(self.classes)[index]
+        if self.task == "binary":
+            index = (self.predict_proba(rows)[:, 1] >= self.threshold).astype(int)
+            return np.asarray(self.classes)[index]
+        if self.task == "multiclass":
+            return np.asarray(self.classes)[self.outputs(rows).argmax(1)]
+        if self.task == "regression":
+            return self.outputs(rows)
+        return self.outputs(rows).argmax(1)
 
 
 @dataclass
@@ -47,11 +63,12 @@ class BuildResult:
     model: Predictor | None
 
 
-def save_model(path, model, preprocessing, classes, threshold, budget):
+def save_model(path, model, preprocessing, classes, threshold, budget, task="binary"):
     path = Path(path)
     np.savez(path / "weights.npz", **model.arrays())
     write_json(path / "model.json", {
-        "format_version": 1, "input_size": model.input_size, "hidden_sizes": model.hidden_sizes,
+        "format_version": 2, "task": task, "input_size": model.input_size, "hidden_sizes": model.hidden_sizes,
+        "activations": model.activations, "output_size": model.output_size,
         "state_hash": model.fingerprint(), "preprocessing": preprocessing.state,
         "classes": classes, "threshold": threshold,
         "limits": {"max_parameters": budget.max_parameters, "max_width": budget.max_width,
@@ -84,13 +101,14 @@ def load(path):
         if sha256(path / name) != checksums.get(name):
             raise ValueError(f"Artifact checksum mismatch: {name}")
     config = read_json(path / "model.json")
-    if config.get("format_version") != 1:
+    if config.get("format_version") not in (1, 2):
         raise ValueError("Unsupported artifact version")
     budget = Budget(**config["limits"])
     preprocessing = Preprocessor(config["preprocessing"])
     if config["input_size"] != len(preprocessing.names):
         raise ValueError("Preprocessing/architecture mismatch")
-    model = Network(config["input_size"], config["hidden_sizes"], budget)
+    model = Network(config["input_size"], config["hidden_sizes"], budget,
+                    config.get("output_size", 1), config.get("activations"))
     with np.load(path / "weights.npz", allow_pickle=False) as arrays, torch.no_grad():
         params = dict(model.named_parameters())
         if set(arrays.files) != set(params):
@@ -104,7 +122,7 @@ def load(path):
             param.copy_(torch.from_numpy(value.copy()))
     if model.fingerprint() != config["state_hash"]:
         raise ValueError("Checkpoint state hash mismatch")
-    return Predictor(model, preprocessing, config["classes"], config["threshold"])
+    return Predictor(model, preprocessing, config["classes"], config["threshold"], config.get("task", "binary"))
 
 
 def replay(path):
@@ -120,7 +138,8 @@ def replay(path):
             continue
         program = read_json(path / "iterations" / f"{record['iteration']:03d}" / "proposal.json")
         candidate = apply_program(program, manifest["input_size"], budget, best,
-                                  None if manifest.get("dynamic_architecture", False) else architecture)
+                                  None if manifest.get("dynamic_architecture", False) or record.get("initial") else architecture,
+                                  manifest.get("output_size", 1))
         architecture = candidate.hidden_sizes
         if candidate.fingerprint() != record["state_hash"]:
             raise ValueError("Replay candidate hash mismatch")
@@ -131,6 +150,14 @@ def replay(path):
     if best.fingerprint() != load(path).network.fingerprint():
         raise ValueError("Replay differs from exported checkpoint")
     return best
+
+
+REPORT_METRICS = {
+    "binary": ("n", "log_loss", "brier", "roc_auc", "average_precision", "accuracy", "balanced_accuracy", "precision", "recall", "f1"),
+    "multiclass": ("n", "log_loss", "accuracy", "balanced_accuracy", "macro_f1"),
+    "regression": ("n", "rmse", "mae", "r2"),
+    "clustering": ("n", "silhouette", "inertia", "adjusted_rand", "clusters_used"),
+}
 
 
 def save_report(path, report):
@@ -145,11 +172,12 @@ def save_report(path, report):
     metric_rows = "".join(
         f"<tr><th>{name}</th><td>{cell((report['development'] or {}).get(name))}</td>"
         f"<td>{cell((report['final_test'] or {}).get(name))}</td></tr>"
-        for name in ("n", "log_loss", "brier", "roc_auc", "accuracy", "balanced_accuracy", "precision", "recall", "f1")
+        for name in REPORT_METRICS[report.get("task", "binary")]
     )
+    selection_metric = report.get("selection_metric", "log_loss")
     attempts = "".join(
         f"<tr><td>{row['iteration']}</td><td>{cell(row['status'])}</td>"
-        f"<td>{cell(row.get('metrics', {}).get('log_loss'))}</td>"
+        f"<td>{cell(row.get('metrics', {}).get(selection_metric))}</td>"
         f"<td>{cell(row.get('diff', {}).get('changed_values'))}</td>"
         f"<td>{'Yes' if row['selected'] else 'No'}</td></tr>"
         for row in report["history"]
@@ -178,7 +206,8 @@ def save_report(path, report):
         f'<tbody>{metric_rows}</tbody></table>'
         '<h2>Candidate history</h2><p>“Selected” means the candidate became best at that iteration. '
         'Changed values are relative to each proposal’s declared base.</p>'
-        '<table><thead><tr><th>Iteration</th><th>Status</th><th>Log loss</th><th>Changed values</th><th>Selected</th></tr></thead>'
+        f'<table><thead><tr><th>Iteration</th><th>Status</th><th>{html.escape(selection_metric)}</th>'
+        '<th>Changed values</th><th>Selected</th></tr></thead>'
         f'<tbody>{attempts}</tbody></table>'
         f'<h2>Compute</h2><p>{cell(report["cost"]["evaluated_rows"])} evaluated rows · '
         f'{cell(report["cost"]["editor_tokens"])} editor tokens · '

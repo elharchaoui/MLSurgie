@@ -1,0 +1,63 @@
+{
+  "name": "fraud",
+  "dataset": "../data/fraud.csv",
+  "notes": "Synthetic card transactions, ~2% fraud, planted conjunctive signatures. Imbalanced binary.",
+  "goal": {
+    "task": "binary",
+    "description": "Detect fraudulent card transactions. Fraud is rare (~2%); rank suspicious transactions well (average precision) and keep probabilities calibrated.",
+    "target": "is_fraud",
+    "positive_label": "1",
+    "primary_metric": "average_precision"
+  },
+  "features": [
+    {
+      "name": "amount",
+      "kind": "numeric",
+      "description": "Transaction amount in USD"
+    },
+    {
+      "name": "hour",
+      "kind": "numeric",
+      "description": "Local hour of day, 0-23"
+    },
+    {
+      "name": "account_age_days",
+      "kind": "numeric",
+      "description": "Days since the account was opened"
+    },
+    {
+      "name": "txn_last_24h",
+      "kind": "numeric",
+      "description": "Transactions on this card in the previous 24 hours"
+    },
+    {
+      "name": "merchant_category",
+      "kind": "categorical",
+      "description": "Merchant category"
+    },
+    {
+      "name": "card_present",
+      "kind": "categorical",
+      "description": "Physical card present at the terminal"
+    },
+    {
+      "name": "country_mismatch",
+      "kind": "categorical",
+      "description": "Merchant country differs from card country"
+    },
+    {
+      "name": "distance_from_home_km",
+      "kind": "numeric",
+      "description": "Distance between merchant and cardholder home; may be missing"
+    }
+  ],
+  "budget": {
+    "iterations": 8,
+    "max_parameters": 65536,
+    "max_width": 256,
+    "max_hidden_layers": 4,
+    "max_seconds": 3600,
+    "max_editor_tokens": 400000,
+    "max_output_tokens": 16384
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "mlsurgie-classical-v1",
+  "tasks": [
+    "tasks/fraud.json",
+    "tasks/breast_cancer.json",
+    "tasks/wine.json",
+    "tasks/diabetes.json",
+    "tasks/segments.json",
+    "tasks/segments_repair.json"
+  ],
+  "seeds": [
+    0,
+    1,
+    2
+  ]
+}

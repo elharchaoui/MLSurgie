@@ -10,9 +10,11 @@ jobs:
           python-version: '3.12'
       - run: python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
       - run: python -m pip install -e '.[dev]'
+      - run: ruff check .
       - run: python -m pytest -q
       - run: mlsurgie demo --output runs/ci-demo
       - run: mlsurgie replay runs/ci-demo
+      - run: mlsurgie bench --editor random-search --seeds 0 --iterations 2 --output runs/ci-bench
   harness:
     runs-on: ubuntu-latest
     steps:

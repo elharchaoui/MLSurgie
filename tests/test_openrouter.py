@@ -4,9 +4,8 @@ from urllib.error import HTTPError
 
 import pytest
 
-from mlsurgie import Budget, Feature, Goal, OpenRouterEditor, Table, build, replay
 import mlsurgie.editors as editors
-
+from mlsurgie import Budget, Feature, Goal, OpenRouterEditor, Table, build, replay
 
 PROGRAM = {"base": "zero", "hidden_sizes": [], "rationale": "Control", "operations": []}
 

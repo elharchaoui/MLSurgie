@@ -1,5 +1,30 @@
-from dataclasses import asdict, dataclass
+"""Declarative task, feature, and budget contracts shared by every editor."""
 import math
+from dataclasses import asdict, dataclass
+
+TASKS = ("binary", "multiclass", "regression", "clustering")
+
+# Metrics available for selection, per task. Direction is in LOWER_IS_BETTER.
+METRICS = {
+    "binary": ("log_loss", "brier", "roc_auc", "average_precision", "accuracy", "balanced_accuracy", "f1"),
+    "multiclass": ("log_loss", "accuracy", "balanced_accuracy", "macro_f1"),
+    "regression": ("rmse", "mae", "r2"),
+    # Clustering selection must not use reference labels; adjusted_rand is reported only.
+    "clustering": ("silhouette", "inertia"),
+}
+DEFAULT_METRIC = {"binary": "log_loss", "multiclass": "log_loss", "regression": "rmse", "clustering": "silhouette"}
+LOWER_IS_BETTER = frozenset({"log_loss", "brier", "rmse", "mae", "inertia"})
+
+
+def improves(metric, value, reference, min_delta=0.0):
+    """True when value beats reference by more than min_delta in the metric's direction."""
+    if reference is None:
+        return True
+    return value < reference - min_delta if metric in LOWER_IS_BETTER else value > reference + min_delta
+
+
+def reaches(metric, value, target):
+    return value <= target if metric in LOWER_IS_BETTER else value >= target
 
 
 @dataclass(frozen=True)
@@ -16,21 +41,38 @@ class Feature:
 @dataclass(frozen=True)
 class Goal:
     description: str
-    target: str
+    target: str | None = None
     positive_label: str = "1"
-    primary_metric: str = "log_loss"
+    primary_metric: str | None = None
     threshold: float = 0.5
     target_score: float | None = None
+    task: str = "binary"
+    n_clusters: int | None = None
+    # Clustering only: optional ground-truth column, never shown to editors, used for reporting.
+    reference_column: str | None = None
 
     def __post_init__(self):
-        if not self.description.strip() or not self.target:
-            raise ValueError("Goal description and target are required")
-        if self.primary_metric not in {"log_loss", "roc_auc", "accuracy", "balanced_accuracy", "brier"}:
-            raise ValueError("Unsupported selection metric")
+        if self.task not in TASKS:
+            raise ValueError(f"task must be one of {TASKS}")
+        if not self.description.strip():
+            raise ValueError("Goal description is required")
+        if self.task != "clustering" and not self.target:
+            raise ValueError("Supervised tasks need a target column")
+        if self.task == "clustering":
+            if self.target:
+                raise ValueError("Clustering has no target; use reference_column for evaluation labels")
+            if type(self.n_clusters) is not int or self.n_clusters < 2:
+                raise ValueError("Clustering needs an integer n_clusters >= 2")
+        elif self.n_clusters is not None or self.reference_column is not None:
+            raise ValueError("n_clusters/reference_column apply only to clustering")
+        if self.primary_metric is None:
+            object.__setattr__(self, "primary_metric", DEFAULT_METRIC[self.task])
+        if self.primary_metric not in METRICS[self.task]:
+            raise ValueError(f"Unsupported selection metric for {self.task}: {self.primary_metric}")
         if not 0 < self.threshold < 1:
             raise ValueError("threshold must be between 0 and 1")
-        if self.target_score is not None and (not math.isfinite(self.target_score) or self.target_score < 0):
-            raise ValueError("target_score must be finite and nonnegative")
+        if self.target_score is not None and not math.isfinite(self.target_score):
+            raise ValueError("target_score must be finite")
 
     def to_dict(self):
         return asdict(self)

@@ -1,4 +1,9 @@
-"""Fixed-architecture networks constructed entirely by checked JSON operations."""
+"""Feed-forward networks constructed entirely by checked JSON weight programs.
+
+The weight program is MLSurgie's intermediate representation (IR). Editors may author
+it however their track allows (JSON directly, or code in a sandbox), but only the IR
+is validated, hashed, replayed, and exported.
+"""
 import hashlib
 import json
 from copy import deepcopy
@@ -9,6 +14,13 @@ from torch import nn
 
 from .contracts import Budget
 
+ACTIVATIONS = {"relu": torch.relu, "tanh": torch.tanh, "sigmoid": torch.sigmoid, "identity": lambda x: x}
+
+
+def sigmoid(logits):
+    # float32 torch sigmoid keeps format-1 artifact metrics bit-identical and overflow-safe.
+    return torch.sigmoid(torch.as_tensor(logits, dtype=torch.float32)).numpy().astype(float)
+
 
 def integer(value, label):
     if type(value) is not int:
@@ -16,8 +28,13 @@ def integer(value, label):
     return value
 
 
+def parameter_count(input_size, hidden_sizes, output_size=1):
+    sizes = [input_size, *hidden_sizes, output_size]
+    return sum((a + 1) * b for a, b in zip(sizes, sizes[1:]))
+
+
 class Network(nn.Module):
-    def __init__(self, input_size, hidden_sizes, budget=None):
+    def __init__(self, input_size, hidden_sizes, budget=None, output_size=1, activations=None):
         super().__init__()
         budget = budget or Budget()
         if not isinstance(hidden_sizes, list) or len(hidden_sizes) > budget.max_hidden_layers:
@@ -25,12 +42,19 @@ class Network(nn.Module):
         for width in hidden_sizes:
             if not 1 <= integer(width, "width") <= budget.max_width:
                 raise ValueError("Hidden width exceeds budget")
-        sizes = [input_size, *hidden_sizes, 1]
-        count = sum((a + 1) * b for a, b in zip(sizes, sizes[1:]))
-        if count > budget.max_parameters:
+        if not 1 <= integer(output_size, "output_size") <= 1024:
+            raise ValueError("Invalid output size")
+        activations = ["relu"] * len(hidden_sizes) if activations is None else activations
+        if (not isinstance(activations, list) or len(activations) != len(hidden_sizes)
+                or any(a not in ACTIVATIONS for a in activations)):
+            raise ValueError(f"activations must list one of {sorted(ACTIVATIONS)} per hidden layer")
+        if parameter_count(input_size, hidden_sizes, output_size) > budget.max_parameters:
             raise ValueError("Parameter count exceeds budget")
         self.input_size = input_size
         self.hidden_sizes = list(hidden_sizes)
+        self.output_size = output_size
+        self.activations = list(activations)
+        sizes = [input_size, *hidden_sizes, output_size]
         # Meta construction avoids even temporary random weight initialization.
         self.layers = nn.ModuleList([nn.Linear(a, b, device="meta") for a, b in zip(sizes, sizes[1:])])
         self.to_empty(device="cpu")
@@ -40,53 +64,71 @@ class Network(nn.Module):
                 param.requires_grad_(False)
         self.eval()
 
+    @property
+    def default_architecture(self):
+        return self.output_size == 1 and all(a == "relu" for a in self.activations)
+
     def forward(self, x):
-        for layer in self.layers[:-1]:
-            x = torch.relu(layer(x))
-        return self.layers[-1](x).squeeze(-1)
+        for layer, activation in zip(self.layers[:-1], self.activations):
+            x = ACTIVATIONS[activation](layer(x))
+        return self.layers[-1](x)
+
+    def outputs(self, x):
+        """Raw output matrix [rows, output_size]; task heads interpret it."""
+        with torch.inference_mode():
+            raw = self(torch.as_tensor(np.asarray(x), dtype=torch.float32))
+            if not torch.isfinite(raw).all():
+                raise ValueError("Network produced nonfinite outputs")
+            return raw.numpy().astype(float)
 
     def probabilities(self, x):
-        with torch.inference_mode():
-            logits = self(torch.as_tensor(x, dtype=torch.float32))
-            if not torch.isfinite(logits).all():
-                raise ValueError("Network produced nonfinite logits")
-            return torch.sigmoid(logits).numpy().astype(float)
+        """Binary convenience: sigmoid of the single output logit."""
+        if self.output_size != 1:
+            raise ValueError("probabilities() applies to single-output networks")
+        return sigmoid(self.outputs(x)[:, 0])
 
     def arrays(self):
         return {name: p.detach().cpu().numpy().copy() for name, p in self.named_parameters()}
 
+    def architecture(self):
+        return {"hidden_sizes": self.hidden_sizes, "activations": self.activations, "output_size": self.output_size}
+
     def fingerprint(self):
-        h = hashlib.sha256(json.dumps([self.input_size, self.hidden_sizes]).encode())
+        # Default (format 1) architectures keep their original hash for artifact compatibility.
+        header = ([self.input_size, self.hidden_sizes] if self.default_architecture else
+                  [self.input_size, self.hidden_sizes, self.output_size, self.activations])
+        h = hashlib.sha256(json.dumps(header).encode())
         for name, value in self.arrays().items():
             h.update(name.encode())
             h.update(value.astype("<f4").tobytes())
         return h.hexdigest()
 
     def snapshot(self):
-        return {"hash": self.fingerprint(), "hidden_sizes": self.hidden_sizes,
+        return {"hash": self.fingerprint(), **self.architecture(),
                 "parameters": {k: v.tolist() for k, v in self.arrays().items()}}
 
 
-def apply_program(program, input_size, budget, best=None, frozen_architecture=None):
+def apply_program(program, input_size, budget, best=None, frozen_architecture=None, output_size=1):
     if not isinstance(program, dict):
         raise ValueError("Program must be a JSON object")
-    allowed = {"base", "base_hash", "hidden_sizes", "rationale", "operations"}
+    allowed = {"base", "base_hash", "hidden_sizes", "activations", "rationale", "operations"}
     if set(program) - allowed:
         raise ValueError("Unknown program keys; executable code is not accepted")
     if not isinstance(program.get("rationale"), str) or not program["rationale"].strip():
         raise ValueError("A mechanism rationale is required")
     hidden = program.get("hidden_sizes")
+    activations = program.get("activations")
     if frozen_architecture is not None and hidden != frozen_architecture:
         raise ValueError("Architecture is frozen after the first valid candidate")
     base = program.get("base")
     if base == "zero":
         if program.get("base_hash") not in (None, ""):
             raise ValueError("Zero construction cannot reference a checkpoint")
-        model = Network(input_size, hidden, budget)
+        model = Network(input_size, hidden, budget, output_size, activations)
     elif base == "best":
         if best is None or program.get("base_hash") != best.fingerprint():
             raise ValueError("Missing or stale base_hash")
-        if hidden != best.hidden_sizes:
+        if hidden != best.hidden_sizes or (activations is not None and activations != best.activations):
             raise ValueError("Patch architecture mismatch")
         model = deepcopy(best)
     else:
@@ -98,7 +140,7 @@ def apply_program(program, input_size, budget, best=None, frozen_architecture=No
     with torch.no_grad():
         for op in operations:
             if not isinstance(op, dict) or op.get("tensor") not in tensors:
-                raise ValueError("Unknown tensor")
+                raise ValueError(f"Unknown tensor; available: {sorted(tensors)}")
             target = tensors[op["tensor"]]
             action = op.get("op")
             if action in {"fill", "set"}:
@@ -106,7 +148,7 @@ def apply_program(program, input_size, budget, best=None, frozen_architecture=No
                     raise ValueError("fill/set needs only op, tensor, value")
                 try:
                     value = torch.as_tensor(op["value"], dtype=torch.float32)
-                except (TypeError, RuntimeError) as exc:
+                except (TypeError, RuntimeError, ValueError) as exc:
                     raise ValueError("Invalid tensor value") from exc
                 if not torch.isfinite(value).all() or (value.abs() > budget.max_abs_weight).any():
                     raise ValueError("Invalid or out-of-bounds weights")
@@ -116,7 +158,7 @@ def apply_program(program, input_size, budget, best=None, frozen_architecture=No
                     target.fill_(value.item())
                 else:
                     if value.shape != target.shape:
-                        raise ValueError("set shape mismatch")
+                        raise ValueError(f"set shape mismatch for {op['tensor']}: expected {list(target.shape)}, got {list(value.shape)}")
                     target.copy_(value)
             elif action in {"set_entries", "add_entries"}:
                 if set(op) != {"op", "tensor", "entries"} or not isinstance(op["entries"], list):
@@ -146,19 +188,36 @@ def apply_program(program, input_size, budget, best=None, frozen_architecture=No
     return model
 
 
-PROGRAM_GUIDE = """Return a JSON object, no code or markdown:
-{"base":"zero", "hidden_sizes":[8], "rationale":"mechanism hypothesis", "operations":[]}
-hidden_sizes is a list of hidden layer widths (empty means a linear logit).
-All layers are Linear, with ReLU between layers, and a sigmoid probability output.
+HEADS = {
+    "binary": "output_size is 1: a logit; probability = sigmoid(logit), class = probability >= threshold.",
+    "multiclass": "output_size equals the number of classes (in the order of `classes`); probabilities = softmax(outputs).",
+    "regression": "output_size is 1: the prediction itself, in the target's original units.",
+    "clustering": "output_size equals n_clusters: one score per cluster; assignment = argmax. A nearest-centroid "
+                  "layer is score_k = 2*c_k.x - |c_k|^2 (weights 2*c_k, bias -|c_k|^2).",
+}
+
+
+def program_guide(task="binary", dynamic_architecture=False):
+    architecture = ("Architecture can change on any base=zero candidate. base=best requires matching architecture and hash."
+                    if dynamic_architecture else
+                    "After the first valid submission hidden_sizes is frozen. You can restart its weights with base=zero.")
+    return f"""Return a JSON object, no code or markdown:
+{{"base":"zero", "hidden_sizes":[8], "activations":["relu"], "rationale":"mechanism hypothesis", "operations":[]}}
+hidden_sizes is a list of hidden layer widths (empty means a direct linear output).
+activations is optional: one of relu, tanh, sigmoid, identity per hidden layer (default relu).
+Output head: {HEADS[task]}
 Every tensor starts at zero when base=zero; unassigned entries remain zero.
 Tensors are layers.0.weight, layers.0.bias, ...; weights have shape [out,in].
 Allowed operations:
-{"op":"fill","tensor":"layers.0.bias","value":0}
-{"op":"set","tensor":"layers.0.weight","value":[[1,2],[3,4]]}
-{"op":"set_entries","tensor":"layers.0.weight","entries":[{"index":[0,1],"value":2}]}
-{"op":"add_entries","tensor":"layers.0.bias","entries":[{"index":[0],"value":0.2}]}
+{{"op":"fill","tensor":"layers.0.bias","value":0}}
+{{"op":"set","tensor":"layers.0.weight","value":[[1,2],[3,4]]}}
+{{"op":"set_entries","tensor":"layers.0.weight","entries":[{{"index":[0,1],"value":2}}]}}
+{{"op":"add_entries","tensor":"layers.0.bias","entries":[{{"index":[0],"value":0.2}}]}}
 Use base=best with base_hash equal to the supplied best hash to patch that checkpoint.
-After the first valid submission hidden_sizes is frozen. You can restart its weights with base=zero.
+{architecture}
 Design weight values directly by reasoning. No fitting, optimizers, gradient steps,
 pretrained target weights, executable code, or requests for final-test data.
 """
+
+
+PROGRAM_GUIDE = program_guide("binary")

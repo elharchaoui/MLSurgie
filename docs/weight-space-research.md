@@ -133,4 +133,4 @@ Major unanswered questions:
 - Does total editing cost beat refitting, calibration, or a small hyperparameter search?
 - Does domain-guided construction work with few labels on fresh tasks, without benchmark memorization?
 
-These are the framework's initial research objectives. The implementation plan is in [framework-plan.md](framework-plan.md).
+These are the framework's initial research objectives. The implementation plan is in [framework-plan.md](archive/framework-plan.md).

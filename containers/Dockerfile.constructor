@@ -1,4 +1,5 @@
 FROM python:3.12-slim
-RUN python -m pip install --no-cache-dir numpy==2.2.6
-WORKDIR /work
-# No provider credentials, SDK, evaluator, or original dataset in this image.
+# The agent's computer: analysis libraries only. No provider credentials, SDK, evaluator,
+# learning libraries, or development/test data. Build a custom image for other tooling.
+RUN python -m pip install --no-cache-dir numpy==2.2.6 pandas==2.2.3 scipy==1.15.3
+WORKDIR /workspace

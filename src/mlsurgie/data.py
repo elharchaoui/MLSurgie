@@ -27,36 +27,72 @@ class Table:
             rows = list(reader)
         return cls(rows, features, goal, group_column)
 
-    def validate(self):
+    def _required(self):
         names = [f.name for f in self.features]
-        if not names or len(set(names)) != len(names) or self.goal.target in names:
-            raise ValueError("Specify unique input features excluding the target")
-        required = names + [self.goal.target] + ([self.group_column] if self.group_column else [])
-        if not self.rows or any(any(name not in row for name in required) for row in self.rows):
+        extra = [self.goal.target or self.goal.reference_column, self.group_column]
+        return names + [c for c in extra if c]
+
+    def validate(self):
+        """Check columns and labels. Returns class names (classification) or None."""
+        names = [f.name for f in self.features]
+        hidden = {self.goal.target, self.goal.reference_column} - {None}
+        if not names or len(set(names)) != len(names) or hidden & set(names):
+            raise ValueError("Specify unique input features excluding the target/reference column")
+        if not self.rows or any(any(name not in row for name in self._required()) for row in self.rows):
             raise ValueError("Missing required columns or empty dataset")
-        labels = {str(row[self.goal.target]) for row in self.rows}
-        if len(labels) != 2 or self.goal.positive_label not in labels or "" in labels or "None" in labels:
-            raise ValueError("Exactly two nonmissing labels and a matching positive_label are required")
         if self.group_column and any(row[self.group_column] in (None, "") for row in self.rows):
             raise ValueError("Group identifiers cannot be missing")
-        return sorted(labels - {self.goal.positive_label}) + [self.goal.positive_label]
+        task = self.goal.task
+        if task == "regression":
+            values = [number(row[self.goal.target]) for row in self.rows]
+            if any(v is None for v in values):
+                raise ValueError("Regression targets cannot be missing")
+            return None
+        if task == "clustering":
+            if self.goal.reference_column and any(row[self.goal.reference_column] in (None, "") for row in self.rows):
+                raise ValueError("Reference labels cannot be missing")
+            return None
+        labels = {str(row[self.goal.target]) for row in self.rows}
+        if "" in labels or "None" in labels:
+            raise ValueError("Labels cannot be missing")
+        if task == "binary":
+            if len(labels) != 2 or self.goal.positive_label not in labels:
+                raise ValueError("Exactly two nonmissing labels and a matching positive_label are required")
+            return sorted(labels - {self.goal.positive_label}) + [self.goal.positive_label]
+        if len(labels) < 3:
+            raise ValueError("Multiclass tasks need at least three classes; use task=binary for two")
+        return sorted(labels)
 
     def labels(self, indices):
-        return np.array([str(self.rows[int(i)][self.goal.target]) == self.goal.positive_label for i in indices], dtype=int)
+        """Integer labels (classification), floats (regression), reference ids or None (clustering)."""
+        task = self.goal.task
+        if task == "binary":
+            return np.array([str(self.rows[int(i)][self.goal.target]) == self.goal.positive_label for i in indices], dtype=int)
+        if task == "multiclass":
+            lookup = {c: k for k, c in enumerate(self.validate())}
+            return np.array([lookup[str(self.rows[int(i)][self.goal.target])] for i in indices], dtype=int)
+        if task == "regression":
+            return np.array([number(self.rows[int(i)][self.goal.target]) for i in indices], dtype=float)
+        if not self.goal.reference_column:
+            return None
+        references = sorted({str(row[self.goal.reference_column]) for row in self.rows})
+        lookup = {c: k for k, c in enumerate(references)}
+        return np.array([lookup[str(self.rows[int(i)][self.goal.reference_column])] for i in indices], dtype=int)
 
     def fingerprint(self):
-        relevant = [f.name for f in self.features] + [self.goal.target]
-        if self.group_column:
-            relevant.append(self.group_column)
+        relevant = self._required()
         values = [{k: row[k] for k in relevant} for row in self.rows]
         return hashlib.sha256(json.dumps(values, sort_keys=True, allow_nan=False).encode()).hexdigest()
 
 
 def split_table(table, seed=42):
-    """60/20/20; stratified or disjoint groups. Refuse unsupported tiny splits."""
+    """60/20/20; stratified for classification, random otherwise, or disjoint groups."""
     table.validate()
     rng = np.random.default_rng(seed)
-    y = table.labels(range(len(table.rows)))
+    stratified = table.goal.task in {"binary", "multiclass"}
+    y = table.labels(range(len(table.rows))) if stratified else None
+    def usable(part):
+        return len(part) >= 3 and (not stratified or len(set(y[part])) == len(set(y)))
     if table.group_column:
         groups = sorted({str(row[table.group_column]) for row in table.rows})
         if len(groups) < 5:
@@ -66,11 +102,17 @@ def split_table(table, seed=42):
             a, b = int(len(groups) * .6), int(len(groups) * .8)
             subsets = [set(shuffled[:a]), set(shuffled[a:b]), set(shuffled[b:])]
             parts = [np.array([i for i, row in enumerate(table.rows) if str(row[table.group_column]) in subset]) for subset in subsets]
-            if all(len(part) and len(set(y[part])) == 2 for part in parts):
+            if all(usable(part) for part in parts):
                 return dict(zip(("support", "development", "test"), parts))
-        raise ValueError("Cannot create three grouped splits containing both classes; provide more groups/data")
+        raise ValueError("Cannot create three grouped splits containing every class; provide more groups/data")
+    if not stratified:
+        if len(table.rows) < 15:
+            raise ValueError("Need at least fifteen rows for support/development/test")
+        order = rng.permutation(len(table.rows))
+        a, b = int(len(order) * .6), int(len(order) * .8)
+        return {"support": order[:a], "development": order[a:b], "test": order[b:]}
     parts = [[], [], []]
-    for label in (0, 1):
+    for label in sorted(set(y.tolist())):
         indices = rng.permutation(np.flatnonzero(y == label))
         if len(indices) < 5:
             raise ValueError("Need at least five examples per class for support/development/test")
