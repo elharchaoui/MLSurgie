@@ -1,70 +1,69 @@
+<div align="center">
+
 # MLSurgie
 
-**Construct small neural networks by programming their weights directly.**
+### Weight-space programming for neural networks
 
-Supply a prediction goal, labeled table, and iteration budget. An editor proposes an architecture and explicit parameter assignments. MLSurgie validates the proposals, evaluates their behavior, returns development feedback, and exports the best network with an untouched-test report.
+**Describe a prediction goal. Let an LLM write the weights. Export a tested network.**
 
-This is an early, working binary-classification prototype. No optimizer, backpropagation, classical estimator fitting, or pretrained target weights are used. Direct edits guided by evaluation are still adaptive optimization. In one interactive Titanic experiment, the assistant constructed a network through eight weight proposals and achieved **80.45% accuracy, 0.8398 ROC-AUC, and 0.4455 log loss** on 179 held-out passengers. See the [experiment protocol, baselines, and limitations](experiments/titanic/RESULTS.md). This familiar public benchmark and single split do not establish general performance.
+[![Tests](https://github.com/elharchaoui/MLSurgie/actions/workflows/tests.yml/badge.svg)](https://github.com/elharchaoui/MLSurgie/actions/workflows/tests.yml)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-3776AB?logo=python&logoColor=white)](pyproject.toml)
+[![PyTorch](https://img.shields.io/badge/built_with-PyTorch-EE4C2C?logo=pytorch&logoColor=white)](https://pytorch.org/)
+[![Status: research prototype](https://img.shields.io/badge/status-research_prototype-0F766E)](#current-scope)
 
-## Install and run offline
+[Quickstart](docs/quickstart.md) · [Technical reference](docs/reference.md) · [Titanic experiment](experiments/titanic/RESULTS.md) · [Contribute](CONTRIBUTING.md)
 
-Python 3.11+ with a compatible PyTorch wheel is required. Python 3.12 is tested locally.
+</div>
+
+![MLSurgie workflow: goal and support data, LLM weight programs, validation and development feedback, then a frozen network with final test metrics.](docs/assets/weight-space-loop.svg)
+
+MLSurgie is a Python framework for **LLM-driven weight-space programming**: constructing small neural networks through explicit assignments to their weights and biases. Supply a goal, labeled tabular data, and an iteration budget. An editor proposes weight programs; MLSurgie checks them, measures development performance, and returns bounded feedback. The best network is frozen before final-test evaluation.
+
+The construction loop uses direct tensor operations without backpropagation, gradient descent, or conventional estimator fitting. Evaluation-guided revisions are still adaptive optimization. Once exported, the network predicts without an LLM.
+
+## Start here
+
+| Your goal | Start with |
+|---|---|
+| Try the pipeline without a model or credentials | [Offline demo below](#quickstart) |
+| Build a classifier using a local LLM | [Live-editor quickstart](docs/quickstart.md#build-with-a-local-llm) |
+| Understand the weight language and artifacts | [Technical reference](docs/reference.md) |
+| Inspect an actual LLM construction experiment | [Titanic protocol and results](experiments/titanic/RESULTS.md) |
+| Add an editor or contribute a benchmark | [Contributing guide](CONTRIBUTING.md) |
+
+## Quickstart
+
+Requires **Python 3.11+** and a compatible PyTorch wheel; Python 3.12 is used in CI. Install from source:
 
 ```bash
+git clone https://github.com/elharchaoui/MLSurgie.git
+cd MLSurgie
 python3.12 -m venv .venv
 source .venv/bin/activate
-pip install -e '.[dev]'
-mlsurgie demo --output runs/sign-demo
-mlsurgie replay runs/sign-demo
-pytest -q
+python -m pip install -e .
+
+mlsurgie demo --output runs/first-demo
+mlsurgie replay runs/first-demo
 ```
 
-Use a new output directory for each run. Existing runs are never overwritten.
+Windows PowerShell activation: `.venv\Scripts\Activate.ps1`. Use a new output directory for every run.
 
-The demo is **a scripted protocol fixture**, not a live LLM experiment. It constructs the known function `x > 0` as a ReLU network, submits a worse final candidate, and demonstrates that selection keeps the better earlier candidate. There is no training. It verifies the pipeline without credentials or a model download.
+The demo is a **scripted known-rule fixture** for `x > 0`. It checks the complete proposal → selection → export → replay path without downloading an LLM. The CLI prints the selected iteration and test metrics. Open `runs/first-demo/report.html` for the full report; replay prints the verified checkpoint hash.
 
-## Build a Titanic classifier with a live editor
+**Ready for an LLM?** Follow the [copyable Titanic walkthrough](docs/quickstart.md#build-with-a-local-llm), including data download, matching configuration, local editor setup, and prediction.
 
-Place your labeled CSV locally; it should have `Survived` and the input columns listed in [examples/titanic.json](examples/titanic.json). Dataset editions vary: review the configuration against your file. Unlabeled competition test files cannot produce final correctness scores.
+## How weight-space programming works
 
-Start an Ollama server and install a capable model of your choice, then:
-
-```bash
-mlsurgie build \
-  --config examples/titanic.json \
-  --dataset data/titanic.csv \
-  --ollama-model YOUR_MODEL_NAME \
-  --output runs/titanic-001
-```
-
-The live adapter uses Ollama's [JSON chat API](https://docs.ollama.com/api/chat). It sends no tools or executable code. `--ollama-url` can target another server. The default is local. If you choose a remote endpoint, support examples and bounded development diagnostics are sent there; the final test is not included in editor requests.
-
-The Titanic example excludes names and passenger IDs and uses an IID stratified split. For a stricter evaluation, supply a meaningful group identifier in the CSV and set `group_column` in the configuration. The grouping column is not automatically a model input. Public Titanic examples may already be familiar to the editor from pretraining; use fresh tasks before drawing general research conclusions.
-
-You can also provide a JSON array of proposals via `--programs proposals.json`. These runs are labeled `scripted_fixture`, never counted as autonomous LLM results.
-
-## Inputs and supported scope
-
-- Goal: natural-language description, target, positive label, selection metric, fixed decision threshold, optional target score.
-- Dataset: binary labels; explicitly selected numeric/categorical inputs. Numeric blanks use support medians and a missing flag; values are standardized using support statistics. Categories have explicit missing/unknown bins.
-- Architecture: zero, one, or two hidden Linear/ReLU layers by default; one output logit interpreted through sigmoid. The first valid candidate freezes the architecture.
-- Budget: maximum submitted iterations, parameters, widths, wall time, reported editor tokens, output tokens per response, and evaluated rows. Input-token usage can cause a single call to overshoot its token allowance; subsequent work stops and the overshoot is recorded. Final evaluation is reserved separately in the row budget and may add runtime after the editing deadline.
-
-Default split: support/development/test = 60/20/20, stratified by class. Grouped splits are disjoint and approximately follow these proportions by group count. All three must contain both classes. At least five examples per class are needed even to attempt the IID split; that minimum is not enough for reliable generalization estimates.
-
-Preprocessing estimates distribution statistics, not neural weights. Its state is disclosed in the artifact. Numeric validation and split creation use the supplied table; only support rows determine preprocessing. Final-test predictions are computed only after selection.
-
-The current version supports binary classification only. Regression, multiclass, custom preservation constraints, activations as feedback, user-supplied separate test sets, architecture changes during a run, and other hosted-provider adapters are future extensions. Selection currently uses one primary metric, not an arbitrary natural-language acceptance condition.
-
-## Weight programs
-
-Editors submit JSON, never Python. Each submission specifies its base, architecture, rationale, and explicit operations. Unassigned entries of a `zero` construction are zero. Weight matrices use `[out, in]` convention.
+1. **Specify behavior.** Declare the goal, target, input semantics, selection metric, and budget. MLSurgie creates support, development, and test partitions.
+2. **Construct weights.** The editor sees support examples, preprocessing, constraints, and development feedback. It returns JSON operations on neural weights and biases.
+3. **Measure and revise.** MLSurgie rejects invalid programs, scores valid candidates, and retains the best eligible network. The first valid architecture stays fixed throughout the run.
+4. **Freeze and deliver.** Final-test evaluation follows selection. Export includes weights, preprocessing, proposal history, checksums, and metrics.
 
 ```json
 {
   "base": "zero",
   "hidden_sizes": [2],
-  "rationale": "Use two ReLU units to retain positive and negative evidence.",
+  "rationale": "Represent positive and negative evidence with two ReLU units.",
   "operations": [
     {"op": "set", "tensor": "layers.0.weight", "value": [[1, 0], [-1, 0]]},
     {"op": "set", "tensor": "layers.1.weight", "value": [[4, -4]]}
@@ -72,67 +71,68 @@ Editors submit JSON, never Python. Each submission specifies its base, architect
 }
 ```
 
-This particular example requires two encoded input features. `layers.N.bias` is also editable. Supported operations are `fill`, `set`, `set_entries`, and `add_entries`. An entry has `index` and `value`. A patch can use `base: "best"` with the exact `base_hash` provided in the context. Stale bases, unknown operations/tensors, invalid shapes/indices, architecture changes, and nonfinite or excessive weights are rejected.
+This example expects two **encoded** inputs; unassigned parameters stay zero. Editors can use `fill`, `set`, `set_entries`, or `add_entries`, and patch the current best checkpoint with its exact hash. See [weight-program semantics](docs/reference.md#weight-programs).
 
-There is no expression evaluation, code execution, optimizer API, or fitting fallback in the construction language. This enforces the local operation surface; it does not prove how a remote LLM internally derived a numeric constant. Custom Python editor plugins are trusted extensions and do not constitute an adversarial sandbox.
+## Evidence: Titanic classifier
 
-One submitted candidate counts as one iteration, including invalid proposals. Each valid candidate receives one full development evaluation and a bounded list of largest probability errors. There are no hidden extra probes or retries. Provider errors stop the run and are recorded. The best eligible candidate is frozen before the final test; an unsuccessful target score is reported as such.
+In an interactive Codex experiment, the assistant designed a 769-parameter neural network through eight proposals. Development log loss selected candidate 7 before opening the 179-passenger test set.
 
-## Python API
+| Predictor | Held-out accuracy | ROC-AUC | Log loss ↓ |
+|---|---:|---:|---:|
+| Constant support prevalence | 61.45% | 0.5000 | 0.6667 |
+| Fixed sex-based rule | 76.54% | 0.7389 | 0.5440 |
+| **LLM-constructed neural network** | **80.45%** | **0.8398** | **0.4455** |
+
+This is **one public dataset and one split**. Titanic may be present in the editor's pretraining; relatives can cross the IID split. Accuracy's Wilson 95% interval is 74.02–85.59%. The result demonstrates execution of the protocol, not general superiority. The interactive editor differs from the packaged Ollama adapter; local-model results will vary. [Read the full methods, revisions, and limitations →](experiments/titanic/RESULTS.md)
+
+## Current scope
+
+| Supported in v0.1.0 | Details |
+|---|---|
+| Binary tabular classification | Numeric and categorical features; explicit feature allowlist |
+| Small feed-forward networks | Linear/ReLU hidden layers and one sigmoid output; zero to two hidden layers by default |
+| Editors | Ollama JSON chat, scripted fixtures, trusted Python editor extensions |
+| Evaluation | Log loss, Brier, ROC-AUC, accuracy, balanced accuracy, precision, recall, F1, confusion matrix |
+| Reproducibility | Saved programs, tensor diffs, dataset fingerprints, split indices, checksum-verified loading and replay |
+| Inference | Python API and CSV CLI; no editor required |
+
+Regression, multiclass classification, changing architecture during a run, and separate user-supplied test sets are future extensions. Run folders contain exposed data examples; review them before sharing. [Full constraints and trust model →](docs/reference.md#inputs-and-supported-scope)
+
+## Use the exported network
 
 ```python
-from mlsurgie import Budget, Feature, Goal, OllamaEditor, Table, build, load
+from mlsurgie import load
 
-goal = Goal("Predict survival", target="Survived", positive_label="1")
-features = [Feature("Age", "numeric"), Feature("Sex", "categorical")]
-table = Table.from_csv("data/titanic.csv", features, goal)
-
-result = build(
-    table=table,
-    editor=OllamaEditor("YOUR_MODEL_NAME"),
-    output="runs/experiment-001",
-    budget=Budget(iterations=10, max_seconds=1800),
-)
-print(result.report["final_test"])
-if result.model is not None:
-    predictor = load(result.path)
-    print(predictor.predict_proba([{"Age": 30, "Sex": "female"}]))
+predictor = load("runs/first-demo")
+print(predictor.classes)  # probability column order
+print(predictor.predict_proba([{"x": 0.7}, {"x": -0.7}]))
+print(predictor.predict([{"x": 0.7}]))
 ```
 
-`predict_proba` returns columns `[negative_label, positive_label]`; inspect `predictor.classes`. `predict` returns original label strings. The native PyTorch module is `predictor.network`. No LLM is needed for prediction.
+For a classifier built on your own CSV:
 
 ```bash
-mlsurgie predict runs/titanic-001 \
-  --dataset data/passengers.csv --output predictions.csv
+mlsurgie predict runs/my-classifier --dataset data/new-rows.csv --output predictions.csv
 ```
 
-## Artifacts and reproducibility
+[Build from Python](docs/reference.md#python-api) · [Artifact layout](docs/reference.md#artifacts-and-reproducibility)
 
-Each run stores:
+## Questions
 
-```text
-manifest.json           goal, feature semantics, support preprocessing, splits,
-                        dataset fingerprint, budgets, versions, editor identity
-iterations/001/
-  context.json          exactly the data/weights/feedback exposed to the editor
-  proposal.json         submitted construction/patch
-  reply.txt             raw response when supplied by the provider
-  result.json           acceptance, diagnostics summary, token usage
-  diff.npz              changed indices and old/new values relative to declared base
-selection.json          frozen checkpoint identity before final evaluation
-model.json              inference contract and preprocessing
-weights.npz             non-executable arrays, loaded with allow_pickle=False
-checksums.json          artifact integrity checks
-report.json             development and final metrics, full attempt history
-report.html             local, self-contained readable report
-```
+**What inputs do I need?** A natural-language goal, a labeled binary dataset, an explicit list of prediction-time features, and evaluation limits. The goal and examples guide the editor; the selected numeric metric determines the winner.
 
-`mlsurgie replay` rebuilds every evaluated candidate from its recorded program and checks the final checkpoint identity. It does not rerun the editor or reevaluate the dataset. Dataset contents are not bundled in full; reproducing scores requires the exact original data and split manifest. Context logs intentionally include the examples shown to the editor: treat run folders as dataset artifacts when sharing them.
+**Does an LLM generate every weight?** The editor supplies explicit parameter operations starting from zero or the best checkpoint. A program may leave parameters at zero. MLSurgie validates and applies the program; it has no weight-fitting fallback.
 
-Reports include log loss, Brier score, ROC-AUC, accuracy, balanced accuracy, precision, recall, F1, and confusion matrix. Only accuracy currently has a Wilson 95% interval, which assumes independent observations. Other metric uncertainty is not yet implemented. Degenerate metrics are explicitly null where appropriate; zero predicted positives gives precision 0.
+**Is this training-free?** It uses no gradients or conventional target-model fitting. It does use labeled support data, support-only preprocessing statistics, and repeated development feedback. Those revisions are adaptive optimization.
 
-Checksums detect accidental mismatch, not malicious replacement of an entire run and its checksum file. Provider monetary cost is currently unknown/null; token counts and elapsed time are recorded. The first example's hand-designed success is not evidence of autonomous classifier synthesis.
+**Can I reproduce the reported Titanic result with any local model?** No. Saved programs reproduce a network; rerunning an editor is a new experiment. Model capability, randomness, budget, and dataset split affect results.
 
-## Development
+**Does the demo demonstrate LLM reasoning?** The offline demo verifies the framework using a known scripted rule. The linked Titanic report documents the separate interactive LLM experiment.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md), the [framework design](docs/framework-plan.md), and [research dossier](docs/weight-space-research.md). The architecture has separate data, network, proposer, evaluation, and artifact modules. Core tests require no network or model provider.
+## Research and community
+
+Inspired by [Weight Space Programming](https://rikiyat.github.io/blog/weight-space-programming/). MLSurgie is an independent implementation exploring direct weight construction for small tabular neural networks. Read the [research dossier](docs/weight-space-research.md) and [framework design](docs/framework-plan.md).
+
+Contributions are welcome: editor adapters, unfamiliar benchmark tasks, reproducible failures, and numerical validation. Follow [CONTRIBUTING.md](CONTRIBUTING.md). For help, [open an issue](https://github.com/elharchaoui/MLSurgie/issues/new/choose) with your configuration, versions, and a minimal example. Omit private data and credentials.
+
+Maintained by [@elharchaoui](https://github.com/elharchaoui). Licensing terms have not yet been specified; a license decision is needed before treating this as permissively licensed software.

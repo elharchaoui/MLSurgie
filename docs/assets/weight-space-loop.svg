@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="490" viewBox="0 0 1200 490" role="img" aria-labelledby="title desc">
+  <title id="title">MLSurgie — program weights, measure behavior</title>
+  <desc id="desc">A goal and labeled support data guide an LLM to propose explicit neural weights. MLSurgie validates and evaluates each candidate on development data, returns feedback within an iteration budget, freezes the best network, and evaluates the final test once.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#101d35"/><stop offset="1" stop-color="#080f1c"/></linearGradient>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="none" stroke="#66dfcb" stroke-width="1.5"/></marker>
+  </defs>
+  <rect width="1200" height="490" rx="24" fill="url(#bg)"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="48" y="53" fill="#66dfcb" font-size="14" letter-spacing="3">MLSURGIE / WEIGHT-SPACE PROGRAMMING</text>
+    <text x="48" y="108" fill="#f4f7fc" font-size="40" font-weight="700">Program weights. Measure behavior.</text>
+    <text x="48" y="143" fill="#b1c0d6" font-size="18">Goal + labeled data → explicit neural weights → a tested, replayable network</text>
+    <g fill="#16253c" stroke="#344862">
+      <rect x="48" y="197" width="238" height="116" rx="12"/>
+      <rect x="336" y="197" width="238" height="116" rx="12"/>
+      <rect x="624" y="197" width="238" height="116" rx="12"/>
+      <rect x="912" y="197" width="240" height="116" rx="12" stroke="#66dfcb"/>
+    </g>
+    <g fill="#66dfcb" font-size="12" letter-spacing="2">
+      <text x="68" y="225">01 / SPECIFY</text><text x="356" y="225">02 / PROGRAM</text>
+      <text x="644" y="225">03 / EVALUATE</text><text x="932" y="225">04 / DELIVER</text>
+    </g>
+    <g fill="#f4f7fc" font-size="21" font-weight="700">
+      <text x="68" y="257">Goal + support data</text><text x="356" y="257">LLM writes weights</text>
+      <text x="644" y="257">Validate + score</text><text x="932" y="257">Freeze best network</text>
+    </g>
+    <g fill="#b1c0d6" font-size="15">
+      <text x="68" y="286">Features, labels, metric, budget</text><text x="356" y="286">Explicit JSON tensor operations</text>
+      <text x="644" y="286">Development metrics + errors</text><text x="932" y="286">Final test + weights + report</text>
+    </g>
+    <g fill="none" stroke="#66dfcb" stroke-width="2" marker-end="url(#arrow)">
+      <path d="M291 255H325"/><path d="M579 255H613"/><path d="M867 255H901"/>
+      <path d="M743 322V358H455V323"/>
+    </g>
+    <rect x="486" y="342" width="226" height="30" rx="15" fill="#101d35"/>
+    <text x="599" y="362" text-anchor="middle" fill="#66dfcb" font-size="14">Feedback · bounded iterations</text>
+    <path d="M48 404H1152" stroke="#344862"/>
+    <text x="48" y="441" fill="#b1c0d6" font-size="15">Direct weight construction · Auditable proposals · No backpropagation · LLM-free inference</text>
+    <text x="1152" y="441" text-anchor="end" fill="#66dfcb" font-size="13">RESEARCH PROTOTYPE</text>
+  </g>
+</svg>

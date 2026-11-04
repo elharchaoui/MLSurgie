@@ -6,11 +6,19 @@ build-backend = "setuptools.build_meta"
 name = "mlsurgie"
 version = "0.1.0"
 description = "Construct neural networks through explicit, evaluated weight-space programs"
+readme = "README.md"
+keywords = ["weight-space-programming", "neural-networks", "llm", "pytorch", "tabular-classification"]
 requires-python = ">=3.11"
 dependencies = ["numpy>=1.26,<3", "torch>=2.2,<3"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8,<10"]
+
+[project.urls]
+Homepage = "https://github.com/elharchaoui/MLSurgie"
+Repository = "https://github.com/elharchaoui/MLSurgie"
+Documentation = "https://github.com/elharchaoui/MLSurgie/blob/main/docs/quickstart.md"
+Issues = "https://github.com/elharchaoui/MLSurgie/issues"
 
 [project.scripts]
 mlsurgie = "mlsurgie.cli:main"
