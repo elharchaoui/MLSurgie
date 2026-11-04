@@ -1,0 +1,82 @@
+{
+  "classes": [
+    "0",
+    "1"
+  ],
+  "format_version": 1,
+  "hidden_sizes": [
+    14
+  ],
+  "input_size": 22,
+  "limits": {
+    "max_abs_weight": 10000,
+    "max_hidden_layers": 4,
+    "max_parameters": 4096,
+    "max_width": 64
+  },
+  "preprocessing": [
+    {
+      "categories": [
+        "1",
+        "2",
+        "3"
+      ],
+      "description": "Passenger ticket class",
+      "kind": "categorical",
+      "name": "pclass"
+    },
+    {
+      "categories": [
+        "female",
+        "male"
+      ],
+      "description": "Recorded passenger sex",
+      "kind": "categorical",
+      "name": "sex"
+    },
+    {
+      "description": "Age in years; may be missing",
+      "kind": "numeric",
+      "mean": 29.277322097378278,
+      "median": 28.0,
+      "name": "age",
+      "scale": 13.090667092482944
+    },
+    {
+      "description": "Siblings/spouses aboard",
+      "kind": "numeric",
+      "mean": 0.5711610486891385,
+      "median": 0.0,
+      "name": "sibsp",
+      "scale": 1.2199925401547984
+    },
+    {
+      "description": "Parents/children aboard",
+      "kind": "numeric",
+      "mean": 0.3895131086142322,
+      "median": 0.0,
+      "name": "parch",
+      "scale": 0.7967411073556212
+    },
+    {
+      "description": "Ticket fare",
+      "kind": "numeric",
+      "mean": 31.623477715355804,
+      "median": 14.4271,
+      "name": "fare",
+      "scale": 46.01792717052976
+    },
+    {
+      "categories": [
+        "C",
+        "Q",
+        "S"
+      ],
+      "description": "Embarkation port",
+      "kind": "categorical",
+      "name": "embarked"
+    }
+  ],
+  "state_hash": "bd7332a5293d07c06d2531387fb020c7e0d7fdb70ac5867c3171aa629259ad68",
+  "threshold": 0.5
+}

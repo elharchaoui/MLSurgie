@@ -1,0 +1,64 @@
+{
+  "authentication": "verified via OpenRouter API",
+  "configuration": {
+    "budget": {
+      "diagnostic_examples": 8,
+      "iterations": 3,
+      "max_editor_tokens": 40000,
+      "max_hidden_layers": 4,
+      "max_output_tokens": 4096,
+      "max_parameters": 4096,
+      "max_seconds": 600,
+      "max_width": 64,
+      "support_examples": 64
+    },
+    "features": [
+      {
+        "description": "Passenger ticket class",
+        "kind": "categorical",
+        "name": "pclass"
+      },
+      {
+        "description": "Recorded passenger sex",
+        "kind": "categorical",
+        "name": "sex"
+      },
+      {
+        "description": "Age in years; may be missing",
+        "kind": "numeric",
+        "name": "age"
+      },
+      {
+        "description": "Siblings/spouses aboard",
+        "kind": "numeric",
+        "name": "sibsp"
+      },
+      {
+        "description": "Parents/children aboard",
+        "kind": "numeric",
+        "name": "parch"
+      },
+      {
+        "description": "Ticket fare",
+        "kind": "numeric",
+        "name": "fare"
+      },
+      {
+        "description": "Embarkation port",
+        "kind": "categorical",
+        "name": "embarked"
+      }
+    ],
+    "goal": {
+      "description": "Construct a small neural network predicting passenger survival from the supplied pre-outcome attributes. Write all weights directly. Investigate development errors and revise weights without fitting or gradient methods.",
+      "positive_label": "1",
+      "primary_metric": "log_loss",
+      "target": "survived",
+      "threshold": 0.5
+    },
+    "seed": 42
+  },
+  "dataset_sha256": "81787d320d7f7b03df935e91de8bd19e11d45c5bbcab86ef4d4a76dc91b7d4f2",
+  "dataset_url": "https://raw.githubusercontent.com/mwaskom/seaborn-data/master/titanic.csv",
+  "model_requested": "anthropic/claude-opus-5.5"
+}

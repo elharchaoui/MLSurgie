@@ -87,6 +87,7 @@ class Reply:
     usage: dict = field(default_factory=dict)
     raw: str | None = None
     stop: bool = False
+    stop_reason: str | None = None
 
 
 class ScriptedEditor:

@@ -11,6 +11,19 @@ from .network import PROGRAM_GUIDE
 from .sandbox import DockerSandbox
 
 
+class RequestBudgetExceeded(RuntimeError):
+    """Local preflight stopped a request before provider invocation."""
+
+
+def estimate_request_budget(limit, used, input_tokens, output_tokens):
+    """Reserve output and a tokenization margin; this remains an estimate."""
+    reserved = (input_tokens * 11 + 9) // 10 + 128 + output_tokens
+    return {'remaining_tokens': max(0, limit - used),
+            'estimated_input_tokens': input_tokens,
+            'reserved_tokens': reserved,
+            'allowed': used + reserved <= limit}
+
+
 INSTRUCTIONS = '''You are constructing a neural network by weight-space programming.
 Investigate the task and support data, reason about behavior, and write Python that
 constructs explicit weights. Do not fit parameters, use gradients, invoke optimizers,
@@ -104,7 +117,26 @@ class OpenHandsEditor:
         import uuid
         name = 'construct_' + uuid.uuid4().hex
         register_tool(name, ConstructionTool)
-        self.llm = LLM(model=self.model, api_key=self._key, base_url=self.base_url,
+
+        class BudgetedLLM(LLM):
+            def completion(self, messages, tools=None, add_security_risk_prediction=False, **kwargs):
+                if time.monotonic() >= editor.deadline:
+                    editor.preflight_stop = 'editor_time_preflight'
+                    raise RequestBudgetExceeded('Construction deadline reached before provider request')
+                usage = self.metrics.accumulated_token_usage
+                count = self.get_token_count(messages, tools, add_security_risk_prediction)
+                check = estimate_request_budget(
+                    editor.context['limits']['max_editor_tokens'],
+                    usage.prompt_tokens + usage.completion_tokens,
+                    count, self.max_output_tokens)
+                editor.preflight_checks.append(check)
+                if not check['allowed']:
+                    editor.preflight_stop = 'editor_token_preflight'
+                    raise RequestBudgetExceeded('Estimated input plus output reserve exceeds remaining token budget')
+                return super().completion(messages, tools=tools,
+                                          add_security_risk_prediction=add_security_risk_prediction, **kwargs)
+
+        self.llm = BudgetedLLM(model=self.model, api_key=self._key, base_url=self.base_url,
                        usage_id='mlsurgie', num_retries=0,
                        max_output_tokens=self.context['output_token_limit'],
                        timeout=max(1, math.ceil(self.deadline - time.monotonic())))
@@ -152,6 +184,7 @@ class OpenHandsEditor:
         write_json(self.output / 'iterations' / f"{context['iteration']:03d}" / 'context.json', self.context)
         self.deadline = time.monotonic() + timeout
         self.calls, self.pending, self.stop_requested = 0, None, False
+        self.preflight_stop, self.preflight_checks = None, []
         if self.runtime:
             usage = self.runtime(self, self.context, timeout)
         else:
@@ -161,15 +194,23 @@ class OpenHandsEditor:
             self.llm.max_output_tokens = context['output_token_limit']
             before = self.llm.metrics.accumulated_token_usage.model_copy(deep=True)
             self.conversation.send_message(json.dumps(self.context, allow_nan=False))
-            self.conversation.run()
+            try:
+                self.conversation.run()
+            except Exception:
+                # SDK wraps tool/model exceptions. Only our own preflight flag
+                # permits recovery; authentication and other errors still stop.
+                if self.preflight_stop is None:
+                    raise
             after = self.llm.metrics.accumulated_token_usage
             usage = {'input_tokens': after.prompt_tokens - before.prompt_tokens,
                      'output_tokens': after.completion_tokens - before.completion_tokens}
+            usage['request_preflight'] = self.preflight_checks
         # A missing/failed construction is an invalid proposal, not a fitted fallback.
         program = self.pending
-        if program is None and not self.stop_requested:
+        if program is None and not self.stop_requested and not self.preflight_stop:
             program = {'construction_error': 'No candidate produced'}
-        return Reply(program, usage, stop=self.stop_requested)
+        return Reply(program, usage, stop=self.stop_requested or bool(self.preflight_stop),
+                     stop_reason=self.preflight_stop)
 
     def close(self):
         if self.conversation is not None:

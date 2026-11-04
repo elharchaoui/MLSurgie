@@ -69,7 +69,7 @@ mlsurgie agent \
 
 Requires a running Docker engine and an explicit tool-capable model. [Complete setup, data download, execution boundaries, and limitations →](docs/agent-harness.md)
 
-The first milestone retains feed-forward Linear/ReLU exports and binary classification. It removes architecture freezing in harness mode; arbitrary custom layers are not yet supported. Construction source is recorded, but arbitrary Python's compliance with the no-fitting policy is not mechanically proven. This new harness has not yet produced a live LLM benchmark result.
+The first milestone retains feed-forward Linear/ReLU exports and binary classification. It removes architecture freezing in harness mode; arbitrary custom layers are not yet supported. Construction source is recorded, but arbitrary Python's compliance with the no-fitting policy is not mechanically proven. A [live Opus 5.5 harness run](experiments/titanic/opus55/README.md) produced a 337-parameter network with 79.89% held-out Titanic accuracy; only one candidate was evaluated before the token limit stopped the run.
 
 ## Choose your LLM provider
 
@@ -91,7 +91,7 @@ mlsurgie build \
   --output runs/openrouter-classifier
 ```
 
-Replace the placeholders with your key and an exact [OpenRouter model ID](https://openrouter.ai/models) supporting JSON output. No specific hosted or Ollama model has yet been benchmarked through these packaged adapters. The reported Titanic experiment used a separate interactive assistant bridge. LiteLLM is not a built-in adapter.
+Replace the placeholders with your key and an exact [OpenRouter model ID](https://openrouter.ai/models) supporting JSON output. The direct JSON-only adapters have not been benchmarked with a specific model. The optional OpenHands harness has a [live Opus 5.5 result](experiments/titanic/opus55/README.md); the original Titanic experiment used a separate interactive assistant bridge. LiteLLM provider routing is available through the optional harness; `build` uses the direct adapters.
 
 Follow the [copyable Titanic walkthrough](docs/quickstart.md) for both provider paths, or read the [provider configuration reference](docs/providers.md).
 
@@ -117,6 +117,20 @@ Follow the [copyable Titanic walkthrough](docs/quickstart.md) for both provider 
 This example expects two **encoded** inputs; unassigned parameters stay zero. Editors can use `fill`, `set`, `set_entries`, or `add_entries`, and patch the current best checkpoint with its exact hash. See [weight-program semantics](docs/reference.md#weight-programs).
 
 ## Evidence: Titanic classifier
+
+Two measured experiments are available. Both use the same public dataset and seed-42 split; neither establishes general model superiority.
+
+### Live Opus 5.5 agent harness
+
+The actual OpenHands harness called `anthropic/claude-opus-5.5` through OpenRouter. Opus wrote Python in Docker and delivered a **337-parameter network**. No scripted model responses or manually supplied weights were used.
+
+| Test accuracy | ROC-AUC | Log loss ↓ | SDK-reported cost |
+|---:|---:|---:|---:|
+| **79.89%** (143/179) | **0.8439** | **0.4551** | **~$0.28** |
+
+Only the first candidate was evaluated; the next request exceeded the 40,000-token budget, taking reported usage to 75,233. The first network was frozen before final-test evaluation. This run predates the new request preflight guard and does not demonstrate an iterative improvement or architecture search. [Methods, exact source, model, and replayable evidence →](experiments/titanic/opus55/README.md)
+
+### Interactive assistant experiment
 
 These are measured results from an actual interactive LLM experiment, separate from the scripted offline demo. In the Codex conversation, the assistant designed a 769-parameter neural network through eight proposals; a deterministic materializer converted the assistant's circuit constants into weight tensors. Development log loss selected candidate 7 before opening the 179-passenger test set. This was an interactive assistant workflow, not an autonomous run of the packaged Ollama or OpenRouter adapters.
 

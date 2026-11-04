@@ -15,7 +15,7 @@ MLSurgie supports **Ollama** and **OpenRouter** as built-in live editors. The us
 | `build --openrouter-model VENDOR/MODEL` | The explicit OpenRouter model ID supplied by the user; OpenRouter routes to its serving providers. |
 | Published Titanic experiment | An interactive assistant submitting programs through a file bridge; this is separate from the packaged live adapters. |
 
-Neither a default model nor an automatically recommended model is bundled. Adapter tests mock HTTP; a particular local or hosted model's weight-programming quality has not been established. A successful JSON response can still contain invalid or poor weights.
+Neither a default model nor an automatically recommended model is bundled. The direct JSON adapter tests mock HTTP and have no model-specific benchmark. The optional OpenHands harness has a [live Opus 5.5 experiment](../experiments/titanic/opus55/README.md) on Titanic; its result does not establish general model quality. A successful JSON response can still contain invalid or poor weights.
 
 ## Ollama
 

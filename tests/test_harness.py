@@ -195,7 +195,8 @@ def test_final_evaluator_failure_preserves_frozen_model_and_error_report(monkeyp
     assert (result.path / 'selection.json').exists()
 
 
-def test_actual_sdk_tool_loop_with_mock_model_and_independent_evaluation(monkeypatch, tmp_path):
+@pytest.mark.parametrize('token_limit, expected_calls, selected', [(100000, 4, 2), (445, 1, 1)])
+def test_actual_sdk_tool_loop_with_mock_model_and_independent_evaluation(monkeypatch, tmp_path, token_limit, expected_calls, selected):
     monkeypatch.setenv('OH_PERSISTENCE_DIR', str(tmp_path / 'sdk-state'))
     monkeypatch.setenv('LITELLM_LOCAL_MODEL_COST_MAP', 'True')
     monkeypatch.setenv('OPENHANDS_SUPPRESS_BANNER', '1')
@@ -220,18 +221,26 @@ def test_actual_sdk_tool_loop_with_mock_model_and_independent_evaluation(monkeyp
         return LLMResponse(message=message, metrics=MetricsSnapshot(), raw_response=ModelResponse())
     monkeypatch.setattr(sdk.LLM, 'completion', completion)
     monkeypatch.setattr(sdk.LLM, 'resolve_runtime_metadata', lambda self: None)
+    monkeypatch.setattr(sdk.LLM, 'get_token_count', lambda self, *args, **kwargs: 100)
     editor = OpenHandsEditor('openrouter/test/model', tmp_path / 'run', 'MLSURGIE_TEST_KEY',
                              sandbox=FixtureSandbox())
     editor.identity['kind'] = 'scripted_fixture'
     try:
         result = build(table=data(), editor=editor, output=tmp_path / 'run',
-                       budget=Budget(iterations=2), dynamic_architecture=True, isolated_evaluation=True)
+                       budget=Budget(iterations=2, max_editor_tokens=token_limit, max_output_tokens=200),
+                       dynamic_architecture=True, isolated_evaluation=True)
     finally:
         editor.close()
     assert result.report['status'] == 'completed', result.report
-    assert result.report['selected_iteration'] == 2
-    assert result.report['cost']['editor_tokens'] == 60
-    assert len(calls) == 4
+    assert result.report['selected_iteration'] == selected
+    assert result.report['cost']['editor_tokens'] == expected_calls * 15
+    assert len(calls) == expected_calls
+    if expected_calls == 1:
+        assert result.report['stop_reason'] == 'editor_token_preflight'
+        checks = result.report['history'][0]['usage']['request_preflight']
+        assert checks[0]['allowed'] is True and checks[1]['allowed'] is False
+        assert checks[1]['reserved_tokens'] == 438
+        assert load(result.path).network.hidden_sizes == []
     assert list((result.path / 'agent-events').rglob('*.json'))
 
 

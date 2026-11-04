@@ -114,7 +114,7 @@ def build(*, table, editor, output, budget=None, seed=42,
             record.update(status="editor_stopped")
             history.append(record)
             write_json(folder / "result.json", record)
-            stop_reason = "editor_finished"
+            stop_reason = reply.stop_reason or "editor_finished"
             break
         try:
             serialized = json.dumps(reply.program, allow_nan=False)
@@ -155,7 +155,7 @@ def build(*, table, editor, output, budget=None, seed=42,
         history.append(record)
         write_json(folder / "result.json", record)
         if reply.stop:
-            stop_reason = "editor_finished"
+            stop_reason = reply.stop_reason or "editor_finished"
             break
         if best_metrics and table.goal.target_score is not None:
             target = table.goal.target_score

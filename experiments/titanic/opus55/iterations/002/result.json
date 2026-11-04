@@ -1,0 +1,10 @@
+{
+  "error": "Editor response exceeded runtime/token budget",
+  "iteration": 2,
+  "selected": false,
+  "status": "budget_exceeded",
+  "usage": {
+    "input_tokens": 36680,
+    "output_tokens": 860
+  }
+}

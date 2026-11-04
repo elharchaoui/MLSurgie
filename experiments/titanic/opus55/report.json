@@ -1,0 +1,141 @@
+{
+  "assurance": "source-recorded; no-fitting policy is not mechanically proven",
+  "cost": {
+    "currency_cost": null,
+    "editor_tokens": 75233,
+    "evaluated_rows": 357,
+    "sdk_reported_usd": 0.2812194,
+    "wall_seconds": 50.45973879197845
+  },
+  "development": {
+    "accuracy": 0.8202247191011236,
+    "accuracy_wilson_95": [
+      0.7572374216262175,
+      0.8696818311740219
+    ],
+    "balanced_accuracy": 0.7955882352941177,
+    "brier": 0.1390376040556326,
+    "confusion_matrix": [
+      [
+        99,
+        11
+      ],
+      [
+        21,
+        47
+      ]
+    ],
+    "f1": 0.746031746031746,
+    "log_loss": 0.44041504808041565,
+    "n": 178,
+    "positive_count": 68,
+    "precision": 0.8103448275862069,
+    "recall": 0.6911764705882353,
+    "roc_auc": 0.8343582887700535,
+    "threshold": 0.5
+  },
+  "editor": {
+    "assurance": "source-recorded; no-fitting policy is not mechanically proven",
+    "base_url": null,
+    "image": "mlsurgie-constructor:local",
+    "kind": "openhands",
+    "max_agent_steps": 5,
+    "model": "openrouter/anthropic/claude-opus-5.5"
+  },
+  "final_evaluation_error": null,
+  "final_target_met": null,
+  "final_test": {
+    "accuracy": 0.7988826815642458,
+    "accuracy_wilson_95": [
+      0.7341634613765463,
+      0.851042531132817
+    ],
+    "balanced_accuracy": 0.7769433465085639,
+    "brier": 0.14358791036571303,
+    "confusion_matrix": [
+      [
+        96,
+        14
+      ],
+      [
+        22,
+        47
+      ]
+    ],
+    "f1": 0.7230769230769231,
+    "log_loss": 0.4551172342511522,
+    "n": 179,
+    "positive_count": 69,
+    "precision": 0.7704918032786885,
+    "recall": 0.6811594202898551,
+    "roc_auc": 0.8438735177865613,
+    "threshold": 0.5
+  },
+  "history": [
+    {
+      "diff": {
+        "base_hash": "zero",
+        "changed_values": 48,
+        "l2_change": 17.39513988019272
+      },
+      "iteration": 1,
+      "metrics": {
+        "accuracy": 0.8202247191011236,
+        "accuracy_wilson_95": [
+          0.7572374216262175,
+          0.8696818311740219
+        ],
+        "balanced_accuracy": 0.7955882352941177,
+        "brier": 0.1390376040556326,
+        "confusion_matrix": [
+          [
+            99,
+            11
+          ],
+          [
+            21,
+            47
+          ]
+        ],
+        "f1": 0.746031746031746,
+        "log_loss": 0.44041504808041565,
+        "n": 178,
+        "positive_count": 68,
+        "precision": 0.8103448275862069,
+        "recall": 0.6911764705882353,
+        "roc_auc": 0.8343582887700535,
+        "threshold": 0.5
+      },
+      "selected": true,
+      "state_hash": "bd7332a5293d07c06d2531387fb020c7e0d7fdb70ac5867c3171aa629259ad68",
+      "status": "evaluated",
+      "usage": {
+        "input_tokens": 34003,
+        "output_tokens": 3690
+      }
+    },
+    {
+      "error": "Editor response exceeded runtime/token budget",
+      "iteration": 2,
+      "selected": false,
+      "status": "budget_exceeded",
+      "usage": {
+        "input_tokens": 36680,
+        "output_tokens": 860
+      }
+    }
+  ],
+  "limitations": [
+    "Adaptive development evaluation can overfit.",
+    "Accuracy interval is Wilson 95%, assumes independent observations; other metrics have no interval here.",
+    "Custom Python editor plugins are trusted; isolation is enforced through built-in JSON editor contexts, not an OS sandbox.",
+    "Token limits stop subsequent work; one provider request can overshoot due to input token usage.",
+    "Scripted fixtures demonstrate the protocol, not autonomous LLM performance.",
+    "Public Titanic benchmark may be present in model pretraining.",
+    "One IID split; relatives may cross partitions. No claim of general superiority.",
+    "Arbitrary construction Python follows a no-fitting policy that is not mechanically proven."
+  ],
+  "selected_iteration": 1,
+  "status": "completed",
+  "stop_reason": "editor_budget_exceeded"
+}
