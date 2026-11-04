@@ -1,0 +1,2139 @@
+{
+  "suite": "claude-code-interactive",
+  "track": null,
+  "seeds": [
+    0
+  ],
+  "cells": [
+    {
+      "task": "fraud",
+      "task_type": "binary",
+      "seed": 0,
+      "selection_metric": "average_precision",
+      "baselines": {
+        "prior": {
+          "selection_metric": "average_precision",
+          "min_delta": 0.0,
+          "hyperparameters": {},
+          "development": {
+            "n": 2400,
+            "positive_count": 49,
+            "threshold": 0.5,
+            "log_loss": 0.09965680605934206,
+            "brier": 0.019999846480313853,
+            "roc_auc": 0.5,
+            "average_precision": 0.020416666666666666,
+            "accuracy": 0.9795833333333334,
+            "balanced_accuracy": 0.5,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "confusion_matrix": [
+              [
+                2351,
+                0
+              ],
+              [
+                49,
+                0
+              ]
+            ],
+            "accuracy_wilson_95": [
+              0.9731117073095044,
+              0.9845221068319934
+            ]
+          },
+          "final_test": {
+            "n": 2401,
+            "positive_count": 50,
+            "threshold": 0.5,
+            "log_loss": 0.10123316104753276,
+            "brier": 0.02039106096594368,
+            "roc_auc": 0.5,
+            "average_precision": 0.02082465639316951,
+            "accuracy": 0.9791753436068305,
+            "balanced_accuracy": 0.5,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "confusion_matrix": [
+              [
+                2351,
+                0
+              ],
+              [
+                50,
+                0
+              ]
+            ],
+            "accuracy_wilson_95": [
+              0.9726514688025377,
+              0.9841683067702068
+            ]
+          },
+          "size": 1
+        },
+        "logistic_regression": {
+          "selection_metric": "average_precision",
+          "min_delta": 0.0,
+          "hyperparameters": {
+            "C": 1.0
+          },
+          "development": {
+            "n": 2400,
+            "positive_count": 49,
+            "threshold": 0.5,
+            "log_loss": 0.04374102069812571,
+            "brier": 0.008501895711316177,
+            "roc_auc": 0.8925251087249021,
+            "average_precision": 0.7518381903155881,
+            "accuracy": 0.9895833333333334,
+            "balanced_accuracy": 0.7748721777098759,
+            "precision": 0.9,
+            "recall": 0.5510204081632653,
+            "f1": 0.6835443037974683,
+            "confusion_matrix": [
+              [
+                2348,
+                3
+              ],
+              [
+                22,
+                27
+              ]
+            ],
+            "accuracy_wilson_95": [
+              0.9846674383233294,
+              0.9929344136456191
+            ]
+          },
+          "final_test": {
+            "n": 2401,
+            "positive_count": 50,
+            "threshold": 0.5,
+            "log_loss": 0.05057389598543657,
+            "brier": 0.010698407131158426,
+            "roc_auc": 0.8971331348362399,
+            "average_precision": 0.6675333043439068,
+            "accuracy": 0.9879216992919617,
+            "balanced_accuracy": 0.71,
+            "precision": 1.0,
+            "recall": 0.42,
+            "f1": 0.5915492957746479,
+            "confusion_matrix": [
+              [
+                2351,
+                0
+              ],
+              [
+                29,
+                21
+              ]
+            ],
+            "accuracy_wilson_95": [
+              0.9827073112485233,
+              0.9915772320660968
+            ]
+          },
+          "size": 28
+        },
+        "random_forest": {
+          "selection_metric": "average_precision",
+          "min_delta": 0.0,
+          "hyperparameters": {
+            "min_samples_leaf": 5
+          },
+          "development": {
+            "n": 2400,
+            "positive_count": 49,
+            "threshold": 0.5,
+            "log_loss": 0.04670830726832629,
+            "brier": 0.006431753536689791,
+            "roc_auc": 0.8973471991944375,
+            "average_precision": 0.8183937310521988,
+            "accuracy": 0.9933333333333333,
+            "balanced_accuracy": 0.8467261000529518,
+            "precision": 0.9714285714285714,
+            "recall": 0.6938775510204082,
+            "f1": 0.8095238095238095,
+            "confusion_matrix": [
+              [
+                2350,
+                1
+              ],
+              [
+                15,
+                34
+              ]
+            ],
+            "accuracy_wilson_95": [
+              0.989197604973952,
+              0.9958922611802904
+            ]
+          },
+          "final_test": {
+            "n": 2401,
+            "positive_count": 50,
+            "threshold": 0.5,
+            "log_loss": 0.04867689919471592,
+            "brier": 0.007304646482141483,
+            "roc_auc": 0.8747894512973203,
+            "average_precision": 0.7796576181613993,
+            "accuracy": 0.9925031236984589,
+            "balanced_accuracy": 0.8200000000000001,
+            "precision": 1.0,
+            "recall": 0.64,
+            "f1": 0.7804878048780488,
+            "confusion_matrix": [
+              [
+                2351,
+                0
+              ],
+              [
+                18,
+                32
+              ]
+            ],
+            "accuracy_wilson_95": [
+              0.9881801324619274,
+              0.9952526225270081
+            ]
+          },
+          "size": 129708
+        },
+        "svm_rbf": {
+          "selection_metric": "average_precision",
+          "min_delta": 0.0,
+          "hyperparameters": {
+            "C": 3.0
+          },
+          "development": {
+            "n": 2400,
+            "positive_count": 49,
+            "threshold": 0.5,
+            "log_loss": 0.036496179441145575,
+            "brier": 0.00736567070875263,
+            "roc_auc": 0.9373518867351279,
+            "average_precision": 0.7867917080285128,
+            "accuracy": 0.9916666666666667,
+            "balanced_accuracy": 0.8458753982239429,
+            "precision": 0.8717948717948718,
+            "recall": 0.6938775510204082,
+            "f1": 0.7727272727272727,
+            "confusion_matrix": [
+              [
+                2346,
+                5
+              ],
+              [
+                15,
+                34
+              ]
+            ],
+            "accuracy_wilson_95": [
+              0.987162869360891,
+              0.9945989904887763
+            ]
+          },
+          "final_test": {
+            "n": 2401,
+            "positive_count": 50,
+            "threshold": 0.5,
+            "log_loss": 0.046044151157742505,
+            "brier": 0.0076299330889383005,
+            "roc_auc": 0.8167077839217355,
+            "average_precision": 0.7210471967597649,
+            "accuracy": 0.9920866305705955,
+            "balanced_accuracy": 0.8295746490854956,
+            "precision": 0.9428571428571428,
+            "recall": 0.66,
+            "f1": 0.7764705882352941,
+            "confusion_matrix": [
+              [
+                2349,
+                2
+              ],
+              [
+                17,
+                33
+              ]
+            ],
+            "accuracy_wilson_95": [
+              0.9876730086284152,
+              0.9949280907537644
+            ]
+          },
+          "size": 8961
+        }
+      },
+      "editor": {
+        "identity": {
+          "kind": "interactive_llm",
+          "model": "claude-opus-5-5",
+          "base_url": null,
+          "image": "mlsurgie-constructor:local",
+          "max_agent_steps": 60,
+          "assurance": "source-recorded and statically audited; no-fitting policy is not mechanically proven",
+          "interface": "Claude Code session via file bridge; Docker sandbox; strict audit",
+          "token_accounting": "not available from the host session"
+        },
+        "status": "completed",
+        "final_test": {
+          "n": 2401,
+          "positive_count": 50,
+          "threshold": 0.5,
+          "log_loss": 0.03549074847942921,
+          "brier": 0.006672139446577855,
+          "roc_auc": 0.918855806039983,
+          "average_precision": 0.7831520450285329,
+          "accuracy": 0.9920866305705955,
+          "balanced_accuracy": 0.8295746490854956,
+          "precision": 0.9428571428571428,
+          "recall": 0.66,
+          "f1": 0.7764705882352941,
+          "confusion_matrix": [
+            [
+              2349,
+              2
+            ],
+            [
+              17,
+              33
+            ]
+          ],
+          "accuracy_wilson_95": [
+            0.9876730086284152,
+            0.9949280907537644
+          ]
+        },
+        "development": {
+          "n": 2400,
+          "positive_count": 49,
+          "threshold": 0.5,
+          "log_loss": 0.03353160326742933,
+          "brier": 0.006422089994784129,
+          "roc_auc": 0.9042700023437703,
+          "average_precision": 0.7948923377080972,
+          "accuracy": 0.9925,
+          "balanced_accuracy": 0.8363093429630466,
+          "precision": 0.9428571428571428,
+          "recall": 0.673469387755102,
+          "f1": 0.7857142857142857,
+          "confusion_matrix": [
+            [
+              2349,
+              2
+            ],
+            [
+              16,
+              33
+            ]
+          ],
+          "accuracy_wilson_95": [
+            0.9881752206708239,
+            0.9952506423311311
+          ]
+        },
+        "parameters": 478,
+        "iterations": 3,
+        "stop_reason": "editor_finished",
+        "cost": {
+          "evaluated_rows": 7201,
+          "editor_tokens": 0,
+          "revealed_development_labels": 16,
+          "wall_seconds": 168.1296027909848,
+          "currency_cost": null
+        },
+        "policy_flags": 0
+      }
+    },
+    {
+      "task": "breast_cancer",
+      "task_type": "binary",
+      "seed": 0,
+      "selection_metric": "log_loss",
+      "baselines": {
+        "prior": {
+          "selection_metric": "log_loss",
+          "min_delta": 0.0,
+          "hyperparameters": {},
+          "development": {
+            "n": 113,
+            "positive_count": 42,
+            "threshold": 0.5,
+            "log_loss": 0.65984571004624,
+            "brier": 0.23353490739133373,
+            "roc_auc": 0.5,
+            "average_precision": 0.37168141592920356,
+            "accuracy": 0.6283185840707964,
+            "balanced_accuracy": 0.5,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "confusion_matrix": [
+              [
+                71,
+                0
+              ],
+              [
+                42,
+                0
+              ]
+            ],
+            "accuracy_wilson_95": [
+              0.5363721871689842,
+              0.711827084323361
+            ]
+          },
+          "final_test": {
+            "n": 115,
+            "positive_count": 43,
+            "threshold": 0.5,
+            "log_loss": 0.6610101485940151,
+            "brier": 0.23410426691264744,
+            "roc_auc": 0.5,
+            "average_precision": 0.3739130434782609,
+            "accuracy": 0.6260869565217392,
+            "balanced_accuracy": 0.5,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "confusion_matrix": [
+              [
+                72,
+                0
+              ],
+              [
+                43,
+                0
+              ]
+            ],
+            "accuracy_wilson_95": [
+              0.5349246898224094,
+              0.7090976054008122
+            ]
+          },
+          "size": 1
+        },
+        "logistic_regression": {
+          "selection_metric": "log_loss",
+          "min_delta": 0.0,
+          "hyperparameters": {
+            "C": 10.0
+          },
+          "development": {
+            "n": 113,
+            "positive_count": 42,
+            "threshold": 0.5,
+            "log_loss": 0.027090707049704565,
+            "brier": 0.007891369960067581,
+            "roc_auc": 0.999664654594232,
+            "average_precision": 0.9994462901439646,
+            "accuracy": 0.9911504424778761,
+            "balanced_accuracy": 0.9929577464788732,
+            "precision": 0.9767441860465116,
+            "recall": 1.0,
+            "f1": 0.9882352941176471,
+            "confusion_matrix": [
+              [
+                70,
+                1
+              ],
+              [
+                0,
+                42
+              ]
+            ],
+            "accuracy_wilson_95": [
+              0.9515679439394749,
+              0.9984361641863984
+            ]
+          },
+          "final_test": {
+            "n": 115,
+            "positive_count": 43,
+            "threshold": 0.5,
+            "log_loss": 0.07994166050382358,
+            "brier": 0.025795154544799134,
+            "roc_auc": 0.9964470284237726,
+            "average_precision": 0.9946400885935769,
+            "accuracy": 0.9565217391304348,
+            "balanced_accuracy": 0.960594315245478,
+            "precision": 0.9130434782608695,
+            "recall": 0.9767441860465116,
+            "f1": 0.9438202247191011,
+            "confusion_matrix": [
+              [
+                68,
+                4
+              ],
+              [
+                1,
+                42
+              ]
+            ],
+            "accuracy_wilson_95": [
+              0.9022408250995758,
+              0.981288174846571
+            ]
+          },
+          "size": 61
+        },
+        "random_forest": {
+          "selection_metric": "log_loss",
+          "min_delta": 0.0,
+          "hyperparameters": {
+            "min_samples_leaf": 1
+          },
+          "development": {
+            "n": 113,
+            "positive_count": 42,
+            "threshold": 0.5,
+            "log_loss": 0.08920854239947464,
+            "brier": 0.02244228121927237,
+            "roc_auc": 0.9993293091884641,
+            "average_precision": 0.998917748917749,
+            "accuracy": 0.9734513274336283,
+            "balanced_accuracy": 0.9642857142857143,
+            "precision": 1.0,
+            "recall": 0.9285714285714286,
+            "f1": 0.9629629629629629,
+            "confusion_matrix": [
+              [
+                71,
+                0
+              ],
+              [
+                3,
+                39
+              ]
+            ],
+            "accuracy_wilson_95": [
+              0.9248390354028831,
+              0.9909306904481835
+            ]
+          },
+          "final_test": {
+            "n": 115,
+            "positive_count": 43,
+            "threshold": 0.5,
+            "log_loss": 0.1387614615888006,
+            "brier": 0.03880801932367149,
+            "roc_auc": 0.9938630490956072,
+            "average_precision": 0.990310558460483,
+            "accuracy": 0.9565217391304348,
+            "balanced_accuracy": 0.9465439276485788,
+            "precision": 0.975,
+            "recall": 0.9069767441860465,
+            "f1": 0.9397590361445783,
+            "confusion_matrix": [
+              [
+                71,
+                1
+              ],
+              [
+                4,
+                39
+              ]
+            ],
+            "accuracy_wilson_95": [
+              0.9022408250995758,
+              0.981288174846571
+            ]
+          },
+          "size": 30420
+        },
+        "svm_rbf": {
+          "selection_metric": "log_loss",
+          "min_delta": 0.0,
+          "hyperparameters": {
+            "C": 3.0
+          },
+          "development": {
+            "n": 113,
+            "positive_count": 42,
+            "threshold": 0.5,
+            "log_loss": 0.03727888469187375,
+            "brier": 0.005652713874346686,
+            "roc_auc": 1.0,
+            "average_precision": 1.0,
+            "accuracy": 1.0,
+            "balanced_accuracy": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "confusion_matrix": [
+              [
+                71,
+                0
+              ],
+              [
+                0,
+                42
+              ]
+            ],
+            "accuracy_wilson_95": [
+              0.9671212992632762,
+              1.0
+            ]
+          },
+          "final_test": {
+            "n": 115,
+            "positive_count": 43,
+            "threshold": 0.5,
+            "log_loss": 0.0933271190937766,
+            "brier": 0.024135850696151945,
+            "roc_auc": 0.9964470284237726,
+            "average_precision": 0.9946783265508083,
+            "accuracy": 0.9739130434782609,
+            "balanced_accuracy": 0.9697997416020672,
+            "precision": 0.9761904761904762,
+            "recall": 0.9534883720930233,
+            "f1": 0.9647058823529412,
+            "confusion_matrix": [
+              [
+                71,
+                1
+              ],
+              [
+                2,
+                41
+              ]
+            ],
+            "accuracy_wilson_95": [
+              0.9260981308647812,
+              0.9910891166983616
+            ]
+          },
+          "size": 5003
+        }
+      },
+      "editor": {
+        "identity": {
+          "kind": "interactive_llm",
+          "model": "claude-opus-5-5",
+          "base_url": null,
+          "image": "mlsurgie-constructor:local",
+          "max_agent_steps": 60,
+          "assurance": "source-recorded and statically audited; no-fitting policy is not mechanically proven",
+          "interface": "Claude Code session via file bridge; Docker sandbox; strict audit",
+          "token_accounting": "not available from the host session"
+        },
+        "status": "completed",
+        "final_test": {
+          "n": 115,
+          "positive_count": 43,
+          "threshold": 0.5,
+          "log_loss": 0.11591497749699643,
+          "brier": 0.036493851008777056,
+          "roc_auc": 0.9941860465116279,
+          "average_precision": 0.9908086406073606,
+          "accuracy": 0.9478260869565217,
+          "balanced_accuracy": 0.9302325581395349,
+          "precision": 1.0,
+          "recall": 0.8604651162790697,
+          "f1": 0.925,
+          "confusion_matrix": [
+            [
+              72,
+              0
+            ],
+            [
+              6,
+              37
+            ]
+          ],
+          "accuracy_wilson_95": [
+            0.8908280962827254,
+            0.9758717798549231
+          ]
+        },
+        "development": {
+          "n": 113,
+          "positive_count": 42,
+          "threshold": 0.5,
+          "log_loss": 0.0721238889928423,
+          "brier": 0.02071901178484678,
+          "roc_auc": 0.9986586183769283,
+          "average_precision": 0.9979296066252588,
+          "accuracy": 0.9646017699115044,
+          "balanced_accuracy": 0.9523809523809523,
+          "precision": 1.0,
+          "recall": 0.9047619047619048,
+          "f1": 0.95,
+          "confusion_matrix": [
+            [
+              71,
+              0
+            ],
+            [
+              4,
+              38
+            ]
+          ],
+          "accuracy_wilson_95": [
+            0.9125024891789997,
+            0.9861500455346639
+          ]
+        },
+        "parameters": 621,
+        "iterations": 2,
+        "stop_reason": "editor_finished",
+        "cost": {
+          "evaluated_rows": 228,
+          "editor_tokens": 0,
+          "revealed_development_labels": 8,
+          "wall_seconds": 112.39636804204201,
+          "currency_cost": null
+        },
+        "policy_flags": 0
+      }
+    },
+    {
+      "task": "wine",
+      "task_type": "multiclass",
+      "seed": 0,
+      "selection_metric": "log_loss",
+      "baselines": {
+        "prior": {
+          "selection_metric": "log_loss",
+          "min_delta": 0.0,
+          "hyperparameters": {},
+          "development": {
+            "n": 36,
+            "classes": 3,
+            "log_loss": 1.0896937808355187,
+            "accuracy": 0.3888888888888889,
+            "balanced_accuracy": 0.3333333333333333,
+            "macro_f1": 0.18666666666666668,
+            "confusion_matrix": [
+              [
+                0,
+                12,
+                0
+              ],
+              [
+                0,
+                14,
+                0
+              ],
+              [
+                0,
+                10,
+                0
+              ]
+            ],
+            "accuracy_wilson_95": [
+              0.24784655417822943,
+              0.5513582970325652
+            ]
+          },
+          "final_test": {
+            "n": 37,
+            "classes": 3,
+            "log_loss": 1.085007211944671,
+            "accuracy": 0.40540540540540543,
+            "balanced_accuracy": 0.3333333333333333,
+            "macro_f1": 0.1923076923076923,
+            "confusion_matrix": [
+              [
+                0,
+                12,
+                0
+              ],
+              [
+                0,
+                15,
+                0
+              ],
+              [
+                0,
+                10,
+                0
+              ]
+            ],
+            "accuracy_wilson_95": [
+              0.26346295839940137,
+              0.565143168686707
+            ]
+          },
+          "size": 1
+        },
+        "logistic_regression": {
+          "selection_metric": "log_loss",
+          "min_delta": 0.0,
+          "hyperparameters": {
+            "C": 10.0
+          },
+          "development": {
+            "n": 36,
+            "classes": 3,
+            "log_loss": 0.053883858452185775,
+            "accuracy": 0.9722222222222222,
+            "balanced_accuracy": 0.9666666666666667,
+            "macro_f1": 0.9709618874773139,
+            "confusion_matrix": [
+              [
+                12,
+                0,
+                0
+              ],
+              [
+                0,
+                14,
+                0
+              ],
+              [
+                0,
+                1,
+                9
+              ]
+            ],
+            "accuracy_wilson_95": [
+              0.8582996626496918,
+              0.9950797197044302
+            ]
+          },
+          "final_test": {
+            "n": 37,
+            "classes": 3,
+            "log_loss": 0.02642686648439139,
+            "accuracy": 1.0,
+            "balanced_accuracy": 1.0,
+            "macro_f1": 1.0,
+            "confusion_matrix": [
+              [
+                12,
+                0,
+                0
+              ],
+              [
+                0,
+                15,
+                0
+              ],
+              [
+                0,
+                0,
+                10
+              ]
+            ],
+            "accuracy_wilson_95": [
+              0.9059390425448564,
+              1.0
+            ]
+          },
+          "size": 81
+        },
+        "random_forest": {
+          "selection_metric": "log_loss",
+          "min_delta": 0.0,
+          "hyperparameters": {
+            "min_samples_leaf": 1
+          },
+          "development": {
+            "n": 36,
+            "classes": 3,
+            "log_loss": 0.1550995280698989,
+            "accuracy": 1.0,
+            "balanced_accuracy": 1.0,
+            "macro_f1": 1.0,
+            "confusion_matrix": [
+              [
+                12,
+                0,
+                0
+              ],
+              [
+                0,
+                14,
+                0
+              ],
+              [
+                0,
+                0,
+                10
+              ]
+            ],
+            "accuracy_wilson_95": [
+              0.9035781695514236,
+              1.0
+            ]
+          },
+          "final_test": {
+            "n": 37,
+            "classes": 3,
+            "log_loss": 0.16499493634005996,
+            "accuracy": 1.0,
+            "balanced_accuracy": 1.0,
+            "macro_f1": 1.0,
+            "confusion_matrix": [
+              [
+                12,
+                0,
+                0
+              ],
+              [
+                0,
+                15,
+                0
+              ],
+              [
+                0,
+                0,
+                10
+              ]
+            ],
+            "accuracy_wilson_95": [
+              0.9059390425448564,
+              1.0
+            ]
+          },
+          "size": 16914
+        },
+        "svm_rbf": {
+          "selection_metric": "log_loss",
+          "min_delta": 0.0,
+          "hyperparameters": {
+            "C": 3.0
+          },
+          "development": {
+            "n": 36,
+            "classes": 3,
+            "log_loss": 0.14460718234579664,
+            "accuracy": 0.9444444444444444,
+            "balanced_accuracy": 0.9388888888888888,
+            "macro_f1": 0.9457411645054665,
+            "confusion_matrix": [
+              [
+                11,
+                1,
+                0
+              ],
+              [
+                0,
+                14,
+                0
+              ],
+              [
+                0,
+                1,
+                9
+              ]
+            ],
+            "accuracy_wilson_95": [
+              0.8185502589238878,
+              0.9846303362329332
+            ]
+          },
+          "final_test": {
+            "n": 37,
+            "classes": 3,
+            "log_loss": 0.07985729933177947,
+            "accuracy": 1.0,
+            "balanced_accuracy": 1.0,
+            "macro_f1": 1.0,
+            "confusion_matrix": [
+              [
+                12,
+                0,
+                0
+              ],
+              [
+                0,
+                15,
+                0
+              ],
+              [
+                0,
+                0,
+                10
+              ]
+            ],
+            "accuracy_wilson_95": [
+              0.9059390425448564,
+              1.0
+            ]
+          },
+          "size": 1291
+        }
+      },
+      "editor": {
+        "identity": {
+          "kind": "interactive_llm",
+          "model": "claude-opus-5-5",
+          "base_url": null,
+          "image": "mlsurgie-constructor:local",
+          "max_agent_steps": 60,
+          "assurance": "source-recorded and statically audited; no-fitting policy is not mechanically proven",
+          "interface": "Claude Code session via file bridge; Docker sandbox; strict audit",
+          "token_accounting": "not available from the host session"
+        },
+        "status": "completed",
+        "final_test": {
+          "n": 37,
+          "classes": 3,
+          "log_loss": 0.01950178614859993,
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0,
+          "macro_f1": 1.0,
+          "confusion_matrix": [
+            [
+              12,
+              0,
+              0
+            ],
+            [
+              0,
+              15,
+              0
+            ],
+            [
+              0,
+              0,
+              10
+            ]
+          ],
+          "accuracy_wilson_95": [
+            0.9059390425448564,
+            1.0
+          ]
+        },
+        "development": {
+          "n": 36,
+          "classes": 3,
+          "log_loss": 0.009233724120635053,
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0,
+          "macro_f1": 1.0,
+          "confusion_matrix": [
+            [
+              12,
+              0,
+              0
+            ],
+            [
+              0,
+              14,
+              0
+            ],
+            [
+              0,
+              0,
+              10
+            ]
+          ],
+          "accuracy_wilson_95": [
+            0.9035781695514236,
+            1.0
+          ]
+        },
+        "parameters": 2343,
+        "iterations": 2,
+        "stop_reason": "editor_finished",
+        "cost": {
+          "evaluated_rows": 73,
+          "editor_tokens": 0,
+          "revealed_development_labels": 8,
+          "wall_seconds": 92.8268021249678,
+          "currency_cost": null
+        },
+        "policy_flags": 0
+      }
+    },
+    {
+      "task": "diabetes",
+      "task_type": "regression",
+      "seed": 0,
+      "selection_metric": "rmse",
+      "baselines": {
+        "mean": {
+          "selection_metric": "rmse",
+          "min_delta": 0.0,
+          "hyperparameters": {},
+          "development": {
+            "n": 88,
+            "rmse": 78.87373144149595,
+            "mae": 67.54631217838765,
+            "r2": -0.0005927490547457115,
+            "target_mean": 153.72727272727272,
+            "target_std": 78.85036566363695
+          },
+          "final_test": {
+            "n": 89,
+            "rmse": 70.48460907403498,
+            "mae": 59.63396226415095,
+            "r2": -1.5719875363195968e-05,
+            "target_mean": 151.52808988764045,
+            "target_std": 70.48405507593172
+          },
+          "size": 1
+        },
+        "ridge": {
+          "selection_metric": "rmse",
+          "min_delta": 0.0,
+          "hyperparameters": {
+            "alpha": 10.0
+          },
+          "development": {
+            "n": 88,
+            "rmse": 52.674417820696085,
+            "mae": 40.87987012104233,
+            "r2": 0.5537357827595248,
+            "target_mean": 153.72727272727272,
+            "target_std": 78.85036566363695
+          },
+          "final_test": {
+            "n": 89,
+            "rmse": 56.86585881254979,
+            "mae": 45.4221934089433,
+            "r2": 0.3490892544920181,
+            "target_mean": 151.52808988764045,
+            "target_std": 70.48405507593172
+          },
+          "size": 23
+        },
+        "random_forest": {
+          "selection_metric": "rmse",
+          "min_delta": 0.0,
+          "hyperparameters": {
+            "min_samples_leaf": 5
+          },
+          "development": {
+            "n": 88,
+            "rmse": 54.18870118536702,
+            "mae": 45.01587891685287,
+            "r2": 0.5277085753014454,
+            "target_mean": 153.72727272727272,
+            "target_std": 78.85036566363695
+          },
+          "final_test": {
+            "n": 89,
+            "rmse": 54.149936398589766,
+            "mae": 43.51356025173257,
+            "r2": 0.40977970616795123,
+            "target_mean": 151.52808988764045,
+            "target_std": 70.48405507593172
+          },
+          "size": 47382
+        },
+        "svr_rbf": {
+          "selection_metric": "rmse",
+          "min_delta": 0.0,
+          "hyperparameters": {
+            "C": 100.0
+          },
+          "development": {
+            "n": 88,
+            "rmse": 54.41251556171315,
+            "mae": 41.94798440656401,
+            "r2": 0.5237991290474785,
+            "target_mean": 153.72727272727272,
+            "target_std": 78.85036566363695
+          },
+          "final_test": {
+            "n": 89,
+            "rmse": 57.50971480871644,
+            "mae": 43.736629945336695,
+            "r2": 0.3342661125940528,
+            "target_mean": 151.52808988764045,
+            "target_std": 70.48405507593172
+          },
+          "size": 6096
+        }
+      },
+      "editor": {
+        "identity": {
+          "kind": "interactive_llm",
+          "model": "claude-opus-5-5",
+          "base_url": null,
+          "image": "mlsurgie-constructor:local",
+          "max_agent_steps": 60,
+          "assurance": "source-recorded and statically audited; no-fitting policy is not mechanically proven",
+          "interface": "Claude Code session via file bridge; Docker sandbox; strict audit",
+          "token_accounting": "not available from the host session"
+        },
+        "status": "completed",
+        "final_test": {
+          "n": 89,
+          "rmse": 58.86612284546614,
+          "mae": 48.62468659475948,
+          "r2": 0.30249214775993705,
+          "target_mean": 151.52808988764045,
+          "target_std": 70.48405507593172
+        },
+        "development": {
+          "n": 88,
+          "rmse": 52.906878265542765,
+          "mae": 41.400884888388894,
+          "r2": 0.5497882237550556,
+          "target_mean": 153.72727272727272,
+          "target_std": 78.85036566363695
+        },
+        "parameters": 73,
+        "iterations": 3,
+        "stop_reason": "editor_finished",
+        "cost": {
+          "evaluated_rows": 265,
+          "editor_tokens": 0,
+          "revealed_development_labels": 16,
+          "wall_seconds": 109.35264541598735,
+          "currency_cost": null
+        },
+        "policy_flags": 0
+      }
+    },
+    {
+      "task": "segments",
+      "task_type": "clustering",
+      "seed": 0,
+      "selection_metric": "silhouette",
+      "baselines": {
+        "kmeans": {
+          "selection_metric": "silhouette",
+          "min_delta": 0.0,
+          "hyperparameters": {
+            "n_clusters": 4
+          },
+          "development": {
+            "n": 320,
+            "clusters_used": 4,
+            "cluster_sizes": [
+              96,
+              84,
+              49,
+              91
+            ],
+            "silhouette": 0.42795334520104705,
+            "inertia": 1.8034946519057882,
+            "adjusted_rand": null
+          },
+          "final_test": {
+            "n": 320,
+            "clusters_used": 4,
+            "cluster_sizes": [
+              83,
+              79,
+              55,
+              103
+            ],
+            "silhouette": 0.41980855955175933,
+            "inertia": 2.131292601709737,
+            "adjusted_rand": 0.9812017476808458
+          },
+          "size": 48
+        },
+        "gaussian_mixture": {
+          "selection_metric": "silhouette",
+          "min_delta": 0.0,
+          "hyperparameters": {
+            "n_components": 4
+          },
+          "development": {
+            "n": 320,
+            "clusters_used": 4,
+            "cluster_sizes": [
+              96,
+              84,
+              49,
+              91
+            ],
+            "silhouette": 0.42795334520104705,
+            "inertia": 1.8034946519057882,
+            "adjusted_rand": null
+          },
+          "final_test": {
+            "n": 320,
+            "clusters_used": 4,
+            "cluster_sizes": [
+              85,
+              79,
+              55,
+              101
+            ],
+            "silhouette": 0.4184649855195842,
+            "inertia": 2.1373697041508257,
+            "adjusted_rand": 1.0
+          },
+          "size": 628
+        }
+      },
+      "editor": {
+        "identity": {
+          "kind": "interactive_llm",
+          "model": "claude-opus-5-5",
+          "base_url": null,
+          "image": "mlsurgie-constructor:local",
+          "max_agent_steps": 60,
+          "assurance": "source-recorded and statically audited; no-fitting policy is not mechanically proven",
+          "interface": "Claude Code session via file bridge; Docker sandbox; strict audit",
+          "token_accounting": "not available from the host session"
+        },
+        "status": "completed",
+        "final_test": {
+          "n": 320,
+          "clusters_used": 4,
+          "cluster_sizes": [
+            79,
+            55,
+            83,
+            103
+          ],
+          "silhouette": 0.41980855955175933,
+          "inertia": 2.131292601709737,
+          "adjusted_rand": 0.9812017476808458
+        },
+        "development": {
+          "n": 320,
+          "clusters_used": 4,
+          "cluster_sizes": [
+            84,
+            49,
+            96,
+            91
+          ],
+          "silhouette": 0.42795334520104705,
+          "inertia": 1.8034946519057882,
+          "adjusted_rand": null
+        },
+        "parameters": 52,
+        "iterations": 2,
+        "stop_reason": "editor_finished",
+        "cost": {
+          "evaluated_rows": 640,
+          "editor_tokens": 0,
+          "revealed_development_labels": 0,
+          "wall_seconds": 56.44977674999973,
+          "currency_cost": null
+        },
+        "policy_flags": 0
+      }
+    },
+    {
+      "task": "segments_repair",
+      "task_type": "clustering",
+      "seed": 0,
+      "selection_metric": "silhouette",
+      "baselines": {
+        "kmeans": {
+          "selection_metric": "silhouette",
+          "min_delta": 0.0,
+          "hyperparameters": {
+            "n_clusters": 4
+          },
+          "development": {
+            "n": 320,
+            "clusters_used": 4,
+            "cluster_sizes": [
+              96,
+              84,
+              49,
+              91
+            ],
+            "silhouette": 0.42795334520104705,
+            "inertia": 1.8034946519057882,
+            "adjusted_rand": null
+          },
+          "final_test": {
+            "n": 320,
+            "clusters_used": 4,
+            "cluster_sizes": [
+              83,
+              79,
+              55,
+              103
+            ],
+            "silhouette": 0.41980855955175933,
+            "inertia": 2.131292601709737,
+            "adjusted_rand": 0.9812017476808458
+          },
+          "size": 48
+        },
+        "gaussian_mixture": {
+          "selection_metric": "silhouette",
+          "min_delta": 0.0,
+          "hyperparameters": {
+            "n_components": 4
+          },
+          "development": {
+            "n": 320,
+            "clusters_used": 4,
+            "cluster_sizes": [
+              96,
+              84,
+              49,
+              91
+            ],
+            "silhouette": 0.42795334520104705,
+            "inertia": 1.8034946519057882,
+            "adjusted_rand": null
+          },
+          "final_test": {
+            "n": 320,
+            "clusters_used": 4,
+            "cluster_sizes": [
+              85,
+              79,
+              55,
+              101
+            ],
+            "silhouette": 0.4184649855195842,
+            "inertia": 2.1373697041508257,
+            "adjusted_rand": 1.0
+          },
+          "size": 628
+        }
+      },
+      "editor": {
+        "identity": {
+          "kind": "interactive_llm",
+          "model": "claude-opus-5-5",
+          "base_url": null,
+          "image": "mlsurgie-constructor:local",
+          "max_agent_steps": 60,
+          "assurance": "source-recorded and statically audited; no-fitting policy is not mechanically proven",
+          "interface": "Claude Code session via file bridge; Docker sandbox; strict audit",
+          "token_accounting": "not available from the host session"
+        },
+        "status": "completed",
+        "final_test": {
+          "n": 320,
+          "clusters_used": 4,
+          "cluster_sizes": [
+            103,
+            83,
+            79,
+            55
+          ],
+          "silhouette": 0.41980855955175933,
+          "inertia": 2.131292601709737,
+          "adjusted_rand": 0.9812017476808458
+        },
+        "development": {
+          "n": 320,
+          "clusters_used": 4,
+          "cluster_sizes": [
+            91,
+            96,
+            84,
+            49
+          ],
+          "silhouette": 0.42795334520104705,
+          "inertia": 1.8034946519057882,
+          "adjusted_rand": null
+        },
+        "parameters": 52,
+        "iterations": 3,
+        "stop_reason": "editor_finished",
+        "cost": {
+          "evaluated_rows": 960,
+          "editor_tokens": 0,
+          "revealed_development_labels": 0,
+          "wall_seconds": 59.67374374996871,
+          "currency_cost": null
+        },
+        "policy_flags": 0
+      }
+    }
+  ],
+  "table": [
+    {
+      "task": "fraud",
+      "task_type": "binary",
+      "headline": "average_precision",
+      "methods": {
+        "editor": {
+          "metrics": {
+            "average_precision": {
+              "mean": 0.7831520450285329,
+              "sd": 0.0,
+              "n": 1
+            },
+            "roc_auc": {
+              "mean": 0.918855806039983,
+              "sd": 0.0,
+              "n": 1
+            },
+            "log_loss": {
+              "mean": 0.03549074847942921,
+              "sd": 0.0,
+              "n": 1
+            },
+            "accuracy": {
+              "mean": 0.9920866305705955,
+              "sd": 0.0,
+              "n": 1
+            }
+          },
+          "size": {
+            "mean": 478.0,
+            "sd": 0.0,
+            "n": 1
+          }
+        },
+        "prior": {
+          "metrics": {
+            "average_precision": {
+              "mean": 0.02082465639316951,
+              "sd": 0.0,
+              "n": 1
+            },
+            "roc_auc": {
+              "mean": 0.5,
+              "sd": 0.0,
+              "n": 1
+            },
+            "log_loss": {
+              "mean": 0.10123316104753276,
+              "sd": 0.0,
+              "n": 1
+            },
+            "accuracy": {
+              "mean": 0.9791753436068305,
+              "sd": 0.0,
+              "n": 1
+            }
+          },
+          "size": {
+            "mean": 1.0,
+            "sd": 0.0,
+            "n": 1
+          }
+        },
+        "logistic_regression": {
+          "metrics": {
+            "average_precision": {
+              "mean": 0.6675333043439068,
+              "sd": 0.0,
+              "n": 1
+            },
+            "roc_auc": {
+              "mean": 0.8971331348362399,
+              "sd": 0.0,
+              "n": 1
+            },
+            "log_loss": {
+              "mean": 0.05057389598543657,
+              "sd": 0.0,
+              "n": 1
+            },
+            "accuracy": {
+              "mean": 0.9879216992919617,
+              "sd": 0.0,
+              "n": 1
+            }
+          },
+          "size": {
+            "mean": 28.0,
+            "sd": 0.0,
+            "n": 1
+          }
+        },
+        "random_forest": {
+          "metrics": {
+            "average_precision": {
+              "mean": 0.7796576181613993,
+              "sd": 0.0,
+              "n": 1
+            },
+            "roc_auc": {
+              "mean": 0.8747894512973203,
+              "sd": 0.0,
+              "n": 1
+            },
+            "log_loss": {
+              "mean": 0.04867689919471592,
+              "sd": 0.0,
+              "n": 1
+            },
+            "accuracy": {
+              "mean": 0.9925031236984589,
+              "sd": 0.0,
+              "n": 1
+            }
+          },
+          "size": {
+            "mean": 129708.0,
+            "sd": 0.0,
+            "n": 1
+          }
+        },
+        "svm_rbf": {
+          "metrics": {
+            "average_precision": {
+              "mean": 0.7210471967597649,
+              "sd": 0.0,
+              "n": 1
+            },
+            "roc_auc": {
+              "mean": 0.8167077839217355,
+              "sd": 0.0,
+              "n": 1
+            },
+            "log_loss": {
+              "mean": 0.046044151157742505,
+              "sd": 0.0,
+              "n": 1
+            },
+            "accuracy": {
+              "mean": 0.9920866305705955,
+              "sd": 0.0,
+              "n": 1
+            }
+          },
+          "size": {
+            "mean": 8961.0,
+            "sd": 0.0,
+            "n": 1
+          }
+        }
+      },
+      "editor_kind": "interactive_llm",
+      "best_baseline": "random_forest"
+    },
+    {
+      "task": "breast_cancer",
+      "task_type": "binary",
+      "headline": "log_loss",
+      "methods": {
+        "editor": {
+          "metrics": {
+            "log_loss": {
+              "mean": 0.11591497749699643,
+              "sd": 0.0,
+              "n": 1
+            },
+            "average_precision": {
+              "mean": 0.9908086406073606,
+              "sd": 0.0,
+              "n": 1
+            },
+            "roc_auc": {
+              "mean": 0.9941860465116279,
+              "sd": 0.0,
+              "n": 1
+            },
+            "accuracy": {
+              "mean": 0.9478260869565217,
+              "sd": 0.0,
+              "n": 1
+            }
+          },
+          "size": {
+            "mean": 621.0,
+            "sd": 0.0,
+            "n": 1
+          }
+        },
+        "prior": {
+          "metrics": {
+            "log_loss": {
+              "mean": 0.6610101485940151,
+              "sd": 0.0,
+              "n": 1
+            },
+            "average_precision": {
+              "mean": 0.3739130434782609,
+              "sd": 0.0,
+              "n": 1
+            },
+            "roc_auc": {
+              "mean": 0.5,
+              "sd": 0.0,
+              "n": 1
+            },
+            "accuracy": {
+              "mean": 0.6260869565217392,
+              "sd": 0.0,
+              "n": 1
+            }
+          },
+          "size": {
+            "mean": 1.0,
+            "sd": 0.0,
+            "n": 1
+          }
+        },
+        "logistic_regression": {
+          "metrics": {
+            "log_loss": {
+              "mean": 0.07994166050382358,
+              "sd": 0.0,
+              "n": 1
+            },
+            "average_precision": {
+              "mean": 0.9946400885935769,
+              "sd": 0.0,
+              "n": 1
+            },
+            "roc_auc": {
+              "mean": 0.9964470284237726,
+              "sd": 0.0,
+              "n": 1
+            },
+            "accuracy": {
+              "mean": 0.9565217391304348,
+              "sd": 0.0,
+              "n": 1
+            }
+          },
+          "size": {
+            "mean": 61.0,
+            "sd": 0.0,
+            "n": 1
+          }
+        },
+        "random_forest": {
+          "metrics": {
+            "log_loss": {
+              "mean": 0.1387614615888006,
+              "sd": 0.0,
+              "n": 1
+            },
+            "average_precision": {
+              "mean": 0.990310558460483,
+              "sd": 0.0,
+              "n": 1
+            },
+            "roc_auc": {
+              "mean": 0.9938630490956072,
+              "sd": 0.0,
+              "n": 1
+            },
+            "accuracy": {
+              "mean": 0.9565217391304348,
+              "sd": 0.0,
+              "n": 1
+            }
+          },
+          "size": {
+            "mean": 30420.0,
+            "sd": 0.0,
+            "n": 1
+          }
+        },
+        "svm_rbf": {
+          "metrics": {
+            "log_loss": {
+              "mean": 0.0933271190937766,
+              "sd": 0.0,
+              "n": 1
+            },
+            "average_precision": {
+              "mean": 0.9946783265508083,
+              "sd": 0.0,
+              "n": 1
+            },
+            "roc_auc": {
+              "mean": 0.9964470284237726,
+              "sd": 0.0,
+              "n": 1
+            },
+            "accuracy": {
+              "mean": 0.9739130434782609,
+              "sd": 0.0,
+              "n": 1
+            }
+          },
+          "size": {
+            "mean": 5003.0,
+            "sd": 0.0,
+            "n": 1
+          }
+        }
+      },
+      "editor_kind": "interactive_llm",
+      "best_baseline": "logistic_regression"
+    },
+    {
+      "task": "wine",
+      "task_type": "multiclass",
+      "headline": "log_loss",
+      "methods": {
+        "editor": {
+          "metrics": {
+            "log_loss": {
+              "mean": 0.01950178614859993,
+              "sd": 0.0,
+              "n": 1
+            },
+            "accuracy": {
+              "mean": 1.0,
+              "sd": 0.0,
+              "n": 1
+            },
+            "macro_f1": {
+              "mean": 1.0,
+              "sd": 0.0,
+              "n": 1
+            }
+          },
+          "size": {
+            "mean": 2343.0,
+            "sd": 0.0,
+            "n": 1
+          }
+        },
+        "prior": {
+          "metrics": {
+            "log_loss": {
+              "mean": 1.085007211944671,
+              "sd": 0.0,
+              "n": 1
+            },
+            "accuracy": {
+              "mean": 0.40540540540540543,
+              "sd": 0.0,
+              "n": 1
+            },
+            "macro_f1": {
+              "mean": 0.1923076923076923,
+              "sd": 0.0,
+              "n": 1
+            }
+          },
+          "size": {
+            "mean": 1.0,
+            "sd": 0.0,
+            "n": 1
+          }
+        },
+        "logistic_regression": {
+          "metrics": {
+            "log_loss": {
+              "mean": 0.02642686648439139,
+              "sd": 0.0,
+              "n": 1
+            },
+            "accuracy": {
+              "mean": 1.0,
+              "sd": 0.0,
+              "n": 1
+            },
+            "macro_f1": {
+              "mean": 1.0,
+              "sd": 0.0,
+              "n": 1
+            }
+          },
+          "size": {
+            "mean": 81.0,
+            "sd": 0.0,
+            "n": 1
+          }
+        },
+        "random_forest": {
+          "metrics": {
+            "log_loss": {
+              "mean": 0.16499493634005996,
+              "sd": 0.0,
+              "n": 1
+            },
+            "accuracy": {
+              "mean": 1.0,
+              "sd": 0.0,
+              "n": 1
+            },
+            "macro_f1": {
+              "mean": 1.0,
+              "sd": 0.0,
+              "n": 1
+            }
+          },
+          "size": {
+            "mean": 16914.0,
+            "sd": 0.0,
+            "n": 1
+          }
+        },
+        "svm_rbf": {
+          "metrics": {
+            "log_loss": {
+              "mean": 0.07985729933177947,
+              "sd": 0.0,
+              "n": 1
+            },
+            "accuracy": {
+              "mean": 1.0,
+              "sd": 0.0,
+              "n": 1
+            },
+            "macro_f1": {
+              "mean": 1.0,
+              "sd": 0.0,
+              "n": 1
+            }
+          },
+          "size": {
+            "mean": 1291.0,
+            "sd": 0.0,
+            "n": 1
+          }
+        }
+      },
+      "editor_kind": "interactive_llm",
+      "best_baseline": "logistic_regression"
+    },
+    {
+      "task": "diabetes",
+      "task_type": "regression",
+      "headline": "rmse",
+      "methods": {
+        "editor": {
+          "metrics": {
+            "rmse": {
+              "mean": 58.86612284546614,
+              "sd": 0.0,
+              "n": 1
+            },
+            "mae": {
+              "mean": 48.62468659475948,
+              "sd": 0.0,
+              "n": 1
+            },
+            "r2": {
+              "mean": 0.30249214775993705,
+              "sd": 0.0,
+              "n": 1
+            }
+          },
+          "size": {
+            "mean": 73.0,
+            "sd": 0.0,
+            "n": 1
+          }
+        },
+        "mean": {
+          "metrics": {
+            "rmse": {
+              "mean": 70.48460907403498,
+              "sd": 0.0,
+              "n": 1
+            },
+            "mae": {
+              "mean": 59.63396226415095,
+              "sd": 0.0,
+              "n": 1
+            },
+            "r2": {
+              "mean": -1.5719875363195968e-05,
+              "sd": 0.0,
+              "n": 1
+            }
+          },
+          "size": {
+            "mean": 1.0,
+            "sd": 0.0,
+            "n": 1
+          }
+        },
+        "ridge": {
+          "metrics": {
+            "rmse": {
+              "mean": 56.86585881254979,
+              "sd": 0.0,
+              "n": 1
+            },
+            "mae": {
+              "mean": 45.4221934089433,
+              "sd": 0.0,
+              "n": 1
+            },
+            "r2": {
+              "mean": 0.3490892544920181,
+              "sd": 0.0,
+              "n": 1
+            }
+          },
+          "size": {
+            "mean": 23.0,
+            "sd": 0.0,
+            "n": 1
+          }
+        },
+        "random_forest": {
+          "metrics": {
+            "rmse": {
+              "mean": 54.149936398589766,
+              "sd": 0.0,
+              "n": 1
+            },
+            "mae": {
+              "mean": 43.51356025173257,
+              "sd": 0.0,
+              "n": 1
+            },
+            "r2": {
+              "mean": 0.40977970616795123,
+              "sd": 0.0,
+              "n": 1
+            }
+          },
+          "size": {
+            "mean": 47382.0,
+            "sd": 0.0,
+            "n": 1
+          }
+        },
+        "svr_rbf": {
+          "metrics": {
+            "rmse": {
+              "mean": 57.50971480871644,
+              "sd": 0.0,
+              "n": 1
+            },
+            "mae": {
+              "mean": 43.736629945336695,
+              "sd": 0.0,
+              "n": 1
+            },
+            "r2": {
+              "mean": 0.3342661125940528,
+              "sd": 0.0,
+              "n": 1
+            }
+          },
+          "size": {
+            "mean": 6096.0,
+            "sd": 0.0,
+            "n": 1
+          }
+        }
+      },
+      "editor_kind": "interactive_llm",
+      "best_baseline": "random_forest"
+    },
+    {
+      "task": "segments",
+      "task_type": "clustering",
+      "headline": "adjusted_rand",
+      "methods": {
+        "editor": {
+          "metrics": {
+            "adjusted_rand": {
+              "mean": 0.9812017476808458,
+              "sd": 0.0,
+              "n": 1
+            },
+            "silhouette": {
+              "mean": 0.41980855955175933,
+              "sd": 0.0,
+              "n": 1
+            }
+          },
+          "size": {
+            "mean": 52.0,
+            "sd": 0.0,
+            "n": 1
+          }
+        },
+        "kmeans": {
+          "metrics": {
+            "adjusted_rand": {
+              "mean": 0.9812017476808458,
+              "sd": 0.0,
+              "n": 1
+            },
+            "silhouette": {
+              "mean": 0.41980855955175933,
+              "sd": 0.0,
+              "n": 1
+            }
+          },
+          "size": {
+            "mean": 48.0,
+            "sd": 0.0,
+            "n": 1
+          }
+        },
+        "gaussian_mixture": {
+          "metrics": {
+            "adjusted_rand": {
+              "mean": 1.0,
+              "sd": 0.0,
+              "n": 1
+            },
+            "silhouette": {
+              "mean": 0.4184649855195842,
+              "sd": 0.0,
+              "n": 1
+            }
+          },
+          "size": {
+            "mean": 628.0,
+            "sd": 0.0,
+            "n": 1
+          }
+        }
+      },
+      "editor_kind": "interactive_llm",
+      "best_baseline": "gaussian_mixture"
+    },
+    {
+      "task": "segments_repair",
+      "task_type": "clustering",
+      "headline": "adjusted_rand",
+      "methods": {
+        "editor": {
+          "metrics": {
+            "adjusted_rand": {
+              "mean": 0.9812017476808458,
+              "sd": 0.0,
+              "n": 1
+            },
+            "silhouette": {
+              "mean": 0.41980855955175933,
+              "sd": 0.0,
+              "n": 1
+            }
+          },
+          "size": {
+            "mean": 52.0,
+            "sd": 0.0,
+            "n": 1
+          }
+        },
+        "kmeans": {
+          "metrics": {
+            "adjusted_rand": {
+              "mean": 0.9812017476808458,
+              "sd": 0.0,
+              "n": 1
+            },
+            "silhouette": {
+              "mean": 0.41980855955175933,
+              "sd": 0.0,
+              "n": 1
+            }
+          },
+          "size": {
+            "mean": 48.0,
+            "sd": 0.0,
+            "n": 1
+          }
+        },
+        "gaussian_mixture": {
+          "metrics": {
+            "adjusted_rand": {
+              "mean": 1.0,
+              "sd": 0.0,
+              "n": 1
+            },
+            "silhouette": {
+              "mean": 0.4184649855195842,
+              "sd": 0.0,
+              "n": 1
+            }
+          },
+          "size": {
+            "mean": 628.0,
+            "sd": 0.0,
+            "n": 1
+          }
+        }
+      },
+      "editor_kind": "interactive_llm",
+      "best_baseline": "gaussian_mixture"
+    }
+  ]
+}

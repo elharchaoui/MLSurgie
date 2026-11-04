@@ -1,0 +1,13 @@
+('bmi', np.float64(40.98), 61.71)
+('s5', np.float64(21.42), 56.71)
+('bp', np.float64(4.89), 56.13)
+('s3', np.float64(-5.58), 55.83)
+('sex', np.float64(-13.36), 55.23)
+('s6', np.float64(-1.44), 'dropped')
+('s4', np.float64(-2.11), 'dropped')
+('age', np.float64(0.26), 'dropped')
+('s1', np.float64(-5.73), 54.8)
+('s2', np.float64(-0.73), 'dropped')
+support RMSE 54.8 halves 53.19 56.38 baseline sd 78.5
+bp extra slope 3.04 | HDL hinge knot (std) -0.13 gap 2.64 slope 4.09
+support RMSE 54.42 halves 52.44 56.34

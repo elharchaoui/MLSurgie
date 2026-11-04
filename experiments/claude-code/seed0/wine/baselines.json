@@ -1,0 +1,264 @@
+{
+  "prior": {
+    "selection_metric": "log_loss",
+    "min_delta": 0.0,
+    "hyperparameters": {},
+    "development": {
+      "n": 36,
+      "classes": 3,
+      "log_loss": 1.0896937808355187,
+      "accuracy": 0.3888888888888889,
+      "balanced_accuracy": 0.3333333333333333,
+      "macro_f1": 0.18666666666666668,
+      "confusion_matrix": [
+        [
+          0,
+          12,
+          0
+        ],
+        [
+          0,
+          14,
+          0
+        ],
+        [
+          0,
+          10,
+          0
+        ]
+      ],
+      "accuracy_wilson_95": [
+        0.24784655417822943,
+        0.5513582970325652
+      ]
+    },
+    "final_test": {
+      "n": 37,
+      "classes": 3,
+      "log_loss": 1.085007211944671,
+      "accuracy": 0.40540540540540543,
+      "balanced_accuracy": 0.3333333333333333,
+      "macro_f1": 0.1923076923076923,
+      "confusion_matrix": [
+        [
+          0,
+          12,
+          0
+        ],
+        [
+          0,
+          15,
+          0
+        ],
+        [
+          0,
+          10,
+          0
+        ]
+      ],
+      "accuracy_wilson_95": [
+        0.26346295839940137,
+        0.565143168686707
+      ]
+    },
+    "size": 1
+  },
+  "logistic_regression": {
+    "selection_metric": "log_loss",
+    "min_delta": 0.0,
+    "hyperparameters": {
+      "C": 10.0
+    },
+    "development": {
+      "n": 36,
+      "classes": 3,
+      "log_loss": 0.053883858452185775,
+      "accuracy": 0.9722222222222222,
+      "balanced_accuracy": 0.9666666666666667,
+      "macro_f1": 0.9709618874773139,
+      "confusion_matrix": [
+        [
+          12,
+          0,
+          0
+        ],
+        [
+          0,
+          14,
+          0
+        ],
+        [
+          0,
+          1,
+          9
+        ]
+      ],
+      "accuracy_wilson_95": [
+        0.8582996626496918,
+        0.9950797197044302
+      ]
+    },
+    "final_test": {
+      "n": 37,
+      "classes": 3,
+      "log_loss": 0.02642686648439139,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "macro_f1": 1.0,
+      "confusion_matrix": [
+        [
+          12,
+          0,
+          0
+        ],
+        [
+          0,
+          15,
+          0
+        ],
+        [
+          0,
+          0,
+          10
+        ]
+      ],
+      "accuracy_wilson_95": [
+        0.9059390425448564,
+        1.0
+      ]
+    },
+    "size": 81
+  },
+  "random_forest": {
+    "selection_metric": "log_loss",
+    "min_delta": 0.0,
+    "hyperparameters": {
+      "min_samples_leaf": 1
+    },
+    "development": {
+      "n": 36,
+      "classes": 3,
+      "log_loss": 0.1550995280698989,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "macro_f1": 1.0,
+      "confusion_matrix": [
+        [
+          12,
+          0,
+          0
+        ],
+        [
+          0,
+          14,
+          0
+        ],
+        [
+          0,
+          0,
+          10
+        ]
+      ],
+      "accuracy_wilson_95": [
+        0.9035781695514236,
+        1.0
+      ]
+    },
+    "final_test": {
+      "n": 37,
+      "classes": 3,
+      "log_loss": 0.16499493634005996,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "macro_f1": 1.0,
+      "confusion_matrix": [
+        [
+          12,
+          0,
+          0
+        ],
+        [
+          0,
+          15,
+          0
+        ],
+        [
+          0,
+          0,
+          10
+        ]
+      ],
+      "accuracy_wilson_95": [
+        0.9059390425448564,
+        1.0
+      ]
+    },
+    "size": 16914
+  },
+  "svm_rbf": {
+    "selection_metric": "log_loss",
+    "min_delta": 0.0,
+    "hyperparameters": {
+      "C": 3.0
+    },
+    "development": {
+      "n": 36,
+      "classes": 3,
+      "log_loss": 0.14460718234579664,
+      "accuracy": 0.9444444444444444,
+      "balanced_accuracy": 0.9388888888888888,
+      "macro_f1": 0.9457411645054665,
+      "confusion_matrix": [
+        [
+          11,
+          1,
+          0
+        ],
+        [
+          0,
+          14,
+          0
+        ],
+        [
+          0,
+          1,
+          9
+        ]
+      ],
+      "accuracy_wilson_95": [
+        0.8185502589238878,
+        0.9846303362329332
+      ]
+    },
+    "final_test": {
+      "n": 37,
+      "classes": 3,
+      "log_loss": 0.07985729933177947,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "macro_f1": 1.0,
+      "confusion_matrix": [
+        [
+          12,
+          0,
+          0
+        ],
+        [
+          0,
+          15,
+          0
+        ],
+        [
+          0,
+          0,
+          10
+        ]
+      ],
+      "accuracy_wilson_95": [
+        0.9059390425448564,
+        1.0
+      ]
+    },
+    "size": 1291
+  }
+}

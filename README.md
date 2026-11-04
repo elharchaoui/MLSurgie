@@ -132,6 +132,21 @@ Caveat: a skill file available during this run hinted at fraud patterns that ove
 
 Written weights are **competitive but not dominant**. They win where explicit prototypes fit (wine log loss) and lose where a learned smooth boundary helps (breast cancer, diabetes). Most tasks got one candidate per budget, on one seed and on familiar public data, so this is a first measurement, not a ranking.
 
+### All six tasks: Claude Opus 5.5 as the weight-space programmer
+
+Claude, working in Claude Code, drove the same harness through a file bridge: sandboxed code, strict audit (0 flags), sealed test. It built every network by reasoning from support statistics. [Transcripts, constructions and caveats →](experiments/claude-code/seed0/README.md)
+
+| Task (final test) | Metric | Claude | Astra | Best trained baseline |
+|---|---|---:|---:|---:|
+| fraud | avg. precision ↑ | **0.783** | — | RF 0.780 |
+| breast_cancer | log loss ↓ | 0.116 | 0.137 | **LR 0.080** |
+| wine | log loss ↓ | 0.0195 | **0.0075** | LR 0.026 |
+| diabetes | RMSE ↓ | 58.87 | 57.85 | **RF 54.15** |
+| segments | ARI ↑ | 0.981 | 0.981 | **GMM 1.000** |
+| segments_repair | ARI ↑ | 0.981 (3/3 faults) | 0.981 (2/3) | **GMM 1.000** |
+
+**Caveat:** the same assistant wrote the synthetic fraud, segments and repair generators, so those three results are contaminated. They show the construction is possible, not unaided discovery.
+
 ### Titanic
 
 Two LLM-constructed networks, each frozen before the test set was opened, compared with trained baselines on the **same seed-42 split and the same 22 encoded inputs** (179 test passengers):

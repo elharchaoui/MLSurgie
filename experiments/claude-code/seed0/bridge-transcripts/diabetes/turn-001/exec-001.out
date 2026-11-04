@@ -1,0 +1,11 @@
+# Inputs (read-only)
+
+- `task.json`: goal, task type (regression), classes, output size, feature declarations,
+  preprocessing state, encoded feature names, budgets, track, and the weight-program format.
+- `state.json`: refreshed every turn: iteration, remaining budgets, best network (weights and hash),
+  best development metrics, and last development feedback.
+- `data/support.csv`: 265 labeled su
+encoded: ['age:standardized', 'age:missing', "sex='1.0'", "sex='2.0'", 'sex:missing', 'sex:unknown', 'bmi:standardized', 'bmi:missing', 'bp:standardized', 'bp:missing', 's1:standardized', 's1:missing', 's2:standardized', 's2:missing', 's3:standardized', 's3:missing', 's4:standardized', 's4:missing', 's5:standardized', 's5:missing', 's6:standardized', 's6:missing']
+{'age': {'mean': 47.841509433962266, 'scale': 13.125711969365364, 'median': 49.0}, 'bmi': {'mean': 26.575849056603776, 'scale': 4.683896714280352, 'median': 25.6}, 'bp': {'mean': 94.52569811320754, 'scale': 14.3335107150446, 'median': 93.0}, 's1': {'mean': 188.76603773584907, 'scale': 34.34571706234822, 'median': 186.0}, 's2': {'mean': 115.7611320754717, 'scale': 30.630090622598455, 'median': 110.8}, 's3': {'mean': 49.60943396226415, 'scale': 12.391084198088947, 'median': 47.0}, 's4': {'mean': 4.081056603773585, 'scale': 1.3692315764703793, 'median': 4.0}, 's5': {'mean': 4.628213207547169, 'scale': 0.509406689823447, 'median': 4.5747}, 's6': {'mean': 91.00754716981132, 'scale': 11.679038617978273, 'median': 91.0}}
+
+No /workspace/candidate.json yet.

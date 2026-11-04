@@ -1,0 +1,256 @@
+{
+  "prior": {
+    "selection_metric": "average_precision",
+    "min_delta": 0.0,
+    "hyperparameters": {},
+    "development": {
+      "n": 2400,
+      "positive_count": 49,
+      "threshold": 0.5,
+      "log_loss": 0.09965680605934206,
+      "brier": 0.019999846480313853,
+      "roc_auc": 0.5,
+      "average_precision": 0.020416666666666666,
+      "accuracy": 0.9795833333333334,
+      "balanced_accuracy": 0.5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "confusion_matrix": [
+        [
+          2351,
+          0
+        ],
+        [
+          49,
+          0
+        ]
+      ],
+      "accuracy_wilson_95": [
+        0.9731117073095044,
+        0.9845221068319934
+      ]
+    },
+    "final_test": {
+      "n": 2401,
+      "positive_count": 50,
+      "threshold": 0.5,
+      "log_loss": 0.10123316104753276,
+      "brier": 0.02039106096594368,
+      "roc_auc": 0.5,
+      "average_precision": 0.02082465639316951,
+      "accuracy": 0.9791753436068305,
+      "balanced_accuracy": 0.5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "confusion_matrix": [
+        [
+          2351,
+          0
+        ],
+        [
+          50,
+          0
+        ]
+      ],
+      "accuracy_wilson_95": [
+        0.9726514688025377,
+        0.9841683067702068
+      ]
+    },
+    "size": 1
+  },
+  "logistic_regression": {
+    "selection_metric": "average_precision",
+    "min_delta": 0.0,
+    "hyperparameters": {
+      "C": 1.0
+    },
+    "development": {
+      "n": 2400,
+      "positive_count": 49,
+      "threshold": 0.5,
+      "log_loss": 0.04374102069812571,
+      "brier": 0.008501895711316177,
+      "roc_auc": 0.8925251087249021,
+      "average_precision": 0.7518381903155881,
+      "accuracy": 0.9895833333333334,
+      "balanced_accuracy": 0.7748721777098759,
+      "precision": 0.9,
+      "recall": 0.5510204081632653,
+      "f1": 0.6835443037974683,
+      "confusion_matrix": [
+        [
+          2348,
+          3
+        ],
+        [
+          22,
+          27
+        ]
+      ],
+      "accuracy_wilson_95": [
+        0.9846674383233294,
+        0.9929344136456191
+      ]
+    },
+    "final_test": {
+      "n": 2401,
+      "positive_count": 50,
+      "threshold": 0.5,
+      "log_loss": 0.05057389598543657,
+      "brier": 0.010698407131158426,
+      "roc_auc": 0.8971331348362399,
+      "average_precision": 0.6675333043439068,
+      "accuracy": 0.9879216992919617,
+      "balanced_accuracy": 0.71,
+      "precision": 1.0,
+      "recall": 0.42,
+      "f1": 0.5915492957746479,
+      "confusion_matrix": [
+        [
+          2351,
+          0
+        ],
+        [
+          29,
+          21
+        ]
+      ],
+      "accuracy_wilson_95": [
+        0.9827073112485233,
+        0.9915772320660968
+      ]
+    },
+    "size": 28
+  },
+  "random_forest": {
+    "selection_metric": "average_precision",
+    "min_delta": 0.0,
+    "hyperparameters": {
+      "min_samples_leaf": 5
+    },
+    "development": {
+      "n": 2400,
+      "positive_count": 49,
+      "threshold": 0.5,
+      "log_loss": 0.04670830726832629,
+      "brier": 0.006431753536689791,
+      "roc_auc": 0.8973471991944375,
+      "average_precision": 0.8183937310521988,
+      "accuracy": 0.9933333333333333,
+      "balanced_accuracy": 0.8467261000529518,
+      "precision": 0.9714285714285714,
+      "recall": 0.6938775510204082,
+      "f1": 0.8095238095238095,
+      "confusion_matrix": [
+        [
+          2350,
+          1
+        ],
+        [
+          15,
+          34
+        ]
+      ],
+      "accuracy_wilson_95": [
+        0.989197604973952,
+        0.9958922611802904
+      ]
+    },
+    "final_test": {
+      "n": 2401,
+      "positive_count": 50,
+      "threshold": 0.5,
+      "log_loss": 0.04867689919471592,
+      "brier": 0.007304646482141483,
+      "roc_auc": 0.8747894512973203,
+      "average_precision": 0.7796576181613993,
+      "accuracy": 0.9925031236984589,
+      "balanced_accuracy": 0.8200000000000001,
+      "precision": 1.0,
+      "recall": 0.64,
+      "f1": 0.7804878048780488,
+      "confusion_matrix": [
+        [
+          2351,
+          0
+        ],
+        [
+          18,
+          32
+        ]
+      ],
+      "accuracy_wilson_95": [
+        0.9881801324619274,
+        0.9952526225270081
+      ]
+    },
+    "size": 129708
+  },
+  "svm_rbf": {
+    "selection_metric": "average_precision",
+    "min_delta": 0.0,
+    "hyperparameters": {
+      "C": 3.0
+    },
+    "development": {
+      "n": 2400,
+      "positive_count": 49,
+      "threshold": 0.5,
+      "log_loss": 0.036496179441145575,
+      "brier": 0.00736567070875263,
+      "roc_auc": 0.9373518867351279,
+      "average_precision": 0.7867917080285128,
+      "accuracy": 0.9916666666666667,
+      "balanced_accuracy": 0.8458753982239429,
+      "precision": 0.8717948717948718,
+      "recall": 0.6938775510204082,
+      "f1": 0.7727272727272727,
+      "confusion_matrix": [
+        [
+          2346,
+          5
+        ],
+        [
+          15,
+          34
+        ]
+      ],
+      "accuracy_wilson_95": [
+        0.987162869360891,
+        0.9945989904887763
+      ]
+    },
+    "final_test": {
+      "n": 2401,
+      "positive_count": 50,
+      "threshold": 0.5,
+      "log_loss": 0.046044151157742505,
+      "brier": 0.0076299330889383005,
+      "roc_auc": 0.8167077839217355,
+      "average_precision": 0.7210471967597649,
+      "accuracy": 0.9920866305705955,
+      "balanced_accuracy": 0.8295746490854956,
+      "precision": 0.9428571428571428,
+      "recall": 0.66,
+      "f1": 0.7764705882352941,
+      "confusion_matrix": [
+        [
+          2349,
+          2
+        ],
+        [
+          17,
+          33
+        ]
+      ],
+      "accuracy_wilson_95": [
+        0.9876730086284152,
+        0.9949280907537644
+      ]
+    },
+    "size": 8961
+  }
+}

@@ -1,0 +1,66 @@
+n 7199 positives 148 rate 0.0206
+merchant_category=electronics                 n=  528 fraud=  24 rate=0.045 share_of_fraud=0.16
+merchant_category=gaming                      n=  394 fraud=  23 rate=0.058 share_of_fraud=0.16
+merchant_category=gift_cards                  n=  425 fraud=  49 rate=0.115 share_of_fraud=0.33
+merchant_category=grocery                     n= 2068 fraud=  16 rate=0.008 share_of_fraud=0.11
+merchant_category=restaurants                 n= 1477 fraud=  14 rate=0.009 share_of_fraud=0.09
+merchant_category=retail                      n= 1768 fraud=  19 rate=0.011 share_of_fraud=0.13
+merchant_category=travel                      n=  539 fraud=   3 rate=0.006 share_of_fraud=0.02
+card_present=no                               n= 2209 fraud= 127 rate=0.057 share_of_fraud=0.86
+card_present=yes                              n= 4990 fraud=  21 rate=0.004 share_of_fraud=0.14
+country_mismatch=no                           n= 6797 fraud= 117 rate=0.017 share_of_fraud=0.79
+country_mismatch=yes                          n=  402 fraud=  31 rate=0.077 share_of_fraud=0.21
+amount < 5                                    n=  174 fraud=  14 rate=0.080 share_of_fraud=0.09
+amount >= 5                                   n= 7025 fraud= 134 rate=0.019 share_of_fraud=0.91
+amount < 10                                   n=  642 fraud=  37 rate=0.058 share_of_fraud=0.25
+amount >= 10                                  n= 6557 fraud= 111 rate=0.017 share_of_fraud=0.75
+amount < 50                                   n= 4022 fraud=  55 rate=0.014 share_of_fraud=0.37
+amount >= 50                                  n= 3177 fraud=  93 rate=0.029 share_of_fraud=0.63
+amount < 100                                  n= 5631 fraud=  69 rate=0.012 share_of_fraud=0.47
+amount >= 100                                 n= 1568 fraud=  79 rate=0.050 share_of_fraud=0.53
+amount < 200                                  n= 6596 fraud=  83 rate=0.013 share_of_fraud=0.56
+amount >= 200                                 n=  603 fraud=  65 rate=0.108 share_of_fraud=0.44
+amount < 300                                  n= 6890 fraud=  93 rate=0.013 share_of_fraud=0.63
+amount >= 300                                 n=  309 fraud=  55 rate=0.178 share_of_fraud=0.37
+amount < 500                                  n= 7095 fraud= 121 rate=0.017 share_of_fraud=0.82
+amount >= 500                                 n=  104 fraud=  27 rate=0.260 share_of_fraud=0.18
+amount < 1000                                 n= 7183 fraud= 143 rate=0.020 share_of_fraud=0.97
+amount >= 1000                                n=   16 fraud=   5 rate=0.312 share_of_fraud=0.03
+account_age_days < 7                          n=   73 fraud=  12 rate=0.164 share_of_fraud=0.08
+account_age_days >= 7                         n= 7126 fraud= 136 rate=0.019 share_of_fraud=0.92
+account_age_days < 14                         n=  138 fraud=  25 rate=0.181 share_of_fraud=0.17
+account_age_days >= 14                        n= 7061 fraud= 123 rate=0.017 share_of_fraud=0.83
+account_age_days < 30                         n=  287 fraud=  49 rate=0.171 share_of_fraud=0.33
+account_age_days >= 30                        n= 6912 fraud=  99 rate=0.014 share_of_fraud=0.67
+account_age_days < 60                         n=  517 fraud=  53 rate=0.103 share_of_fraud=0.36
+account_age_days >= 60                        n= 6682 fraud=  95 rate=0.014 share_of_fraud=0.64
+account_age_days < 180                        n= 1352 fraud=  64 rate=0.047 share_of_fraud=0.43
+account_age_days >= 180                       n= 5847 fraud=  84 rate=0.014 share_of_fraud=0.57
+txn_last_24h < 2                              n= 3983 fraud=  60 rate=0.015 share_of_fraud=0.41
+txn_last_24h >= 2                             n= 3216 fraud=  88 rate=0.027 share_of_fraud=0.59
+txn_last_24h < 3                              n= 5777 fraud=  92 rate=0.016 share_of_fraud=0.62
+txn_last_24h >= 3                             n= 1422 fraud=  56 rate=0.039 share_of_fraud=0.38
+txn_last_24h < 4                              n= 6668 fraud= 104 rate=0.016 share_of_fraud=0.70
+txn_last_24h >= 4                             n=  531 fraud=  44 rate=0.083 share_of_fraud=0.30
+txn_last_24h < 5                              n= 6993 fraud= 108 rate=0.015 share_of_fraud=0.73
+txn_last_24h >= 5                             n=  206 fraud=  40 rate=0.194 share_of_fraud=0.27
+txn_last_24h < 6                              n= 7123 fraud= 111 rate=0.016 share_of_fraud=0.75
+txn_last_24h >= 6                             n=   76 fraud=  37 rate=0.487 share_of_fraud=0.25
+txn_last_24h < 8                              n= 7161 fraud= 114 rate=0.016 share_of_fraud=0.77
+txn_last_24h >= 8                             n=   38 fraud=  34 rate=0.895 share_of_fraud=0.23
+hour < 3                                      n=  262 fraud=  20 rate=0.076 share_of_fraud=0.14
+hour >= 3                                     n= 6937 fraud= 128 rate=0.018 share_of_fraud=0.86
+hour < 6                                      n=  654 fraud=  43 rate=0.066 share_of_fraud=0.29
+hour >= 6                                     n= 6545 fraud= 105 rate=0.016 share_of_fraud=0.71
+hour < 8                                      n=  979 fraud=  49 rate=0.050 share_of_fraud=0.33
+hour >= 8                                     n= 6220 fraud=  99 rate=0.016 share_of_fraud=0.67
+hour < 20                                     n= 6455 fraud= 131 rate=0.020 share_of_fraud=0.89
+hour >= 20                                    n=  744 fraud=  17 rate=0.023 share_of_fraud=0.11
+distance_from_home_km < 50                    n= 6436 fraud= 102 rate=0.016 share_of_fraud=0.69
+distance_from_home_km >= 50                   n=  399 fraud=  39 rate=0.098 share_of_fraud=0.26
+distance_from_home_km < 250                   n= 6789 fraud= 107 rate=0.016 share_of_fraud=0.72
+distance_from_home_km >= 250                  n=   46 fraud=  34 rate=0.739 share_of_fraud=0.23
+distance_from_home_km < 500                   n= 6806 fraud= 114 rate=0.017 share_of_fraud=0.77
+distance_from_home_km >= 500                  n=   29 fraud=  27 rate=0.931 share_of_fraud=0.18
+distance_from_home_km < 1000                  n= 6819 fraud= 125 rate=0.018 share_of_fraud=0.84
+distance_from_home_km >= 1000                 n=   16 fraud=  16 rate=1.000 share_of_fraud=0.11

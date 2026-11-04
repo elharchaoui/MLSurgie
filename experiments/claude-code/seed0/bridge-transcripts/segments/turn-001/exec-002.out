@@ -1,0 +1,16 @@
+n 960 columns ['annual_spend', 'visits_per_month', 'avg_basket', 'days_since_last_visit', 'online_share', 'age']
+annual_spend           log range [6.56,9.22]   4  24  57  80  89  52  52  74  89  99 113 106  68  32  16   5
+visits_per_month       log range [-0.43,3.14]   3  12  45  49  62  77  77  80  88 103  80  60  98  85  32   9
+avg_basket             log range [2.26,6.11]   8  38 103 133 147 116  82  80  66  37   7  15  47  53  23   5
+days_since_last_visit  log range [0.00,4.73]   2   0  63 108  70  51  80 133 170 100  47  53  41  31   9   2
+online_share           raw range [0.00,1.00] 142 171 167 151  84  27   7   1   0   0   2  14  48  60  44  42
+age                    raw range [18.00,83.00]  68  35  81 105  91 127 109 106 100  53  34  27  11   6   5   2
+online>0.5: 210
+online {'annual_spend': 2639.62, 'visits_per_month': 2.5, 'avg_basket': 66.97, 'days_since_last_visit': 14.0, 'online_share': 0.85, 'age': 42.0}
+offline {'annual_spend': 3270.55, 'visits_per_month': 5.95, 'avg_basket': 29.27, 'days_since_last_visit': 8.0, 'online_share': 0.15, 'age': 41.0}
+offline avg_basket log edges [2.26 6.11]  10  61 136 154 151  76  16   0   0   8  38  56  38   6
+offline visits_per_month log edges [-0.43  3.14]   5  18  52  51  18   8  49  98 111  79  85 119  46  11
+offline annual_spend log edges [6.56 9.22]   6  36  71 106  54  27  23  48  77 128 100  49  18   7
+offline days_since_last_visit log edges [0.   4.73]   2   0  63 108 120  71 103  91  46  33  59  38  12   4
+
+No /workspace/candidate.json yet.

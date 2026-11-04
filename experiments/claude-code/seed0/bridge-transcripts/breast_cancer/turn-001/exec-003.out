@@ -1,0 +1,30 @@
+worst_perimeter          d=+2.32 mean_m=+1.01 mean_b=-0.60 sd_m=0.90 sd_b=0.40
+worst_concave_points     d=+2.61 mean_m=+1.03 mean_b=-0.61 sd_m=0.69 sd_b=0.56
+worst_texture            d=+1.00 mean_m=+0.56 mean_b=-0.33 sd_m=0.87 sd_b=0.92
+mean_texture             d=+0.91 mean_m=+0.52 mean_b=-0.31 sd_m=0.88 sd_b=0.94
+worst_smoothness         d=+1.04 mean_m=+0.59 mean_b=-0.35 sd_m=0.92 sd_b=0.88
+worst_symmetry           d=+0.84 mean_m=+0.52 mean_b=-0.31 sd_m=1.21 sd_b=0.70
+worst_fractal_dimension  d=+0.71 mean_m=+0.44 mean_b=-0.26 sd_m=1.16 sd_b=0.79
+area_error               d=+1.11 mean_m=+0.69 mean_b=-0.41 sd_m=1.38 sd_b=0.17
+within-class correlation (benign):
+                         worst_perimeter  worst_concave_points  worst_texture  mean_texture  worst_smoothness  worst_symmetry  worst_fractal_dimension  area_error
+worst_perimeter                     1.00                  0.58           0.05          0.01             -0.18           -0.04                    -0.08        0.40
+worst_concave_points                0.58                  1.00           0.01         -0.06              0.31            0.28                     0.46        0.07
+worst_texture                       0.05                  0.01           1.00          0.91             -0.07           -0.02                    -0.02        0.01
+mean_texture                        0.01                 -0.06           0.91          1.00             -0.17           -0.15                    -0.05        0.10
+worst_smoothness                   -0.18                  0.31          -0.07         -0.17              1.00            0.43                     0.45       -0.23
+worst_symmetry                     -0.04                  0.28          -0.02         -0.15              0.43            1.00                     0.35       -0.20
+worst_fractal_dimension            -0.08                  0.46          -0.02         -0.05              0.45            0.35                     1.00       -0.13
+area_error                          0.40                  0.07           0.01          0.10             -0.23           -0.20                    -0.13        1.00
+within-class correlation (malignant):
+                         worst_perimeter  worst_concave_points  worst_texture  mean_texture  worst_smoothness  worst_symmetry  worst_fractal_dimension  area_error
+worst_perimeter                     1.00                  0.52           0.14          0.21             -0.15           -0.16                    -0.26        0.70
+worst_concave_points                0.52                  1.00           0.01         -0.02              0.43            0.37                     0.40        0.20
+worst_texture                       0.14                  0.01           1.00          0.85              0.11            0.13                     0.10       -0.03
+mean_texture                        0.21                 -0.02           0.85          1.00             -0.09           -0.04                    -0.04        0.14
+worst_smoothness                   -0.15                  0.43           0.11         -0.09              1.00            0.53                     0.68       -0.24
+worst_symmetry                     -0.16                  0.37           0.13         -0.04              0.53            1.00                     0.62       -0.29
+worst_fractal_dimension            -0.26                  0.40           0.10         -0.04              0.68            0.62                     1.00       -0.31
+area_error                          0.70                  0.20          -0.03          0.14             -0.24           -0.29                    -0.31        1.00
+
+No /workspace/candidate.json yet.

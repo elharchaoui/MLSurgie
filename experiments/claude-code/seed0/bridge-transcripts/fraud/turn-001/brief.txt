@@ -1,0 +1,5 @@
+Iteration 1 of 8.
+Goal: Detect fraudulent card transactions. Fraud is rare (~2%); rank suspicious transactions well (average precision) and keep probabilities calibrated.
+Task: binary; selection metric: average_precision; output_size: 1; support rows: 7199.
+Start by reading /inputs/README.md, /inputs/task.json and /skills/README.md.
+Remaining: {"iterations": 8, "seconds": "unlimited", "editor_tokens": "unlimited"}. Write /workspace/candidate.json, then end your turn (or finish_run=true to stop).

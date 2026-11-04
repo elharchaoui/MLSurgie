@@ -1,0 +1,31 @@
+n 341 malignant 127 rate 0.372
+worst_concave_points         d=+2.62  mean_m=+1.03 mean_b=-0.61 sd_m=0.69 sd_b=0.56
+mean_concave_points          d=+2.44  mean_m=+1.03 mean_b=-0.61 sd_m=0.85 sd_b=0.41
+worst_perimeter              d=+2.32  mean_m=+1.01 mean_b=-0.60 sd_m=0.89 sd_b=0.40
+worst_radius                 d=+2.26  mean_m=+1.00 mean_b=-0.59 sd_m=0.91 sd_b=0.40
+mean_perimeter               d=+2.09  mean_m=+0.96 mean_b=-0.57 sd_m=0.92 sd_b=0.48
+mean_radius                  d=+2.01  mean_m=+0.94 mean_b=-0.56 sd_m=0.93 sd_b=0.50
+mean_concavity               d=+1.96  mean_m=+0.92 mean_b=-0.55 sd_m=0.91 sd_b=0.55
+worst_area                   d=+1.87  mean_m=+0.93 mean_b=-0.55 sd_m=1.09 sd_b=0.27
+mean_area                    d=+1.78  mean_m=+0.90 mean_b=-0.54 sd_m=1.08 sd_b=0.37
+worst_concavity              d=+1.70  mean_m=+0.83 mean_b=-0.49 sd_m=0.82 sd_b=0.74
+mean_compactness             d=+1.58  mean_m=+0.81 mean_b=-0.48 sd_m=0.98 sd_b=0.63
+worst_compactness            d=+1.45  mean_m=+0.78 mean_b=-0.46 sd_m=1.03 sd_b=0.63
+radius_error                 d=+1.28  mean_m=+0.74 mean_b=-0.44 sd_m=1.25 sd_b=0.37
+perimeter_error              d=+1.22  mean_m=+0.72 mean_b=-0.43 sd_m=1.28 sd_b=0.36
+area_error                   d=+1.12  mean_m=+0.69 mean_b=-0.41 sd_m=1.37 sd_b=0.17
+worst_smoothness             d=+1.04  mean_m=+0.59 mean_b=-0.35 sd_m=0.91 sd_b=0.88
+                worst_concave_  mean_concave_p  worst_perimete  worst_radius  mean_perimeter  mean_radius  mean_concavity  worst_area  mean_area  worst_concavit
+worst_concave_            1.00            0.92            0.82          0.79            0.78         0.75            0.87        0.73       0.72            0.85
+mean_concave_p            0.92            1.00            0.87          0.85            0.87         0.85            0.92        0.81       0.84            0.75
+worst_perimete            0.82            0.87            1.00          0.99            0.97         0.97            0.75        0.98       0.96            0.61
+worst_radius              0.79            0.85            0.99          1.00            0.97         0.97            0.71        0.98       0.96            0.57
+mean_perimeter            0.78            0.87            0.97          0.97            1.00         1.00            0.75        0.94       0.98            0.57
+mean_radius               0.75            0.85            0.97          0.97            1.00         1.00            0.71        0.94       0.99            0.54
+mean_concavity            0.87            0.92            0.75          0.71            0.75         0.71            1.00        0.68       0.71            0.89
+worst_area                0.73            0.81            0.98          0.98            0.94         0.94            0.68        1.00       0.96            0.53
+mean_area                 0.72            0.84            0.96          0.96            0.98         0.99            0.71        0.96       1.00            0.51
+worst_concavit            0.85            0.75            0.61          0.57            0.57         0.54            0.89        0.53       0.51            1.00
+missing flags any: 0.0
+
+No /workspace/candidate.json yet.

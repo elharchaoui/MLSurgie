@@ -1,0 +1,10 @@
+hinge worst_perimeter knot 0.398 slope 1.945 sd_m 0.89 sd_b 0.4
+support logloss 0.1347 acc 0.9589
+  p in [0,0.1) n=193 observed=0.02 mean_p=0.01
+  p in [0.1,0.3) n= 26 observed=0.31 mean_p=0.17
+  p in [0.3,0.7) n= 12 observed=0.50 mean_p=0.53
+  p in [0.7,0.9) n= 11 observed=1.00 mean_p=0.85
+  p in [0.9,1.01) n= 99 observed=1.00 mean_p=0.99
+split-half logloss 0.1685 0.1007
+
+candidate.json captured. End this turn to submit it, or keep revising.

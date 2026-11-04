@@ -1,0 +1,147 @@
+{
+  "goal": {
+    "description": "A deployed customer-segmentation network (4 segments) has degraded after a faulty manual edit. Diagnose and repair it.",
+    "target": null,
+    "positive_label": "1",
+    "primary_metric": "silhouette",
+    "threshold": 0.5,
+    "target_score": null,
+    "task": "clustering",
+    "n_clusters": 4,
+    "reference_column": "hidden"
+  },
+  "task": "clustering",
+  "classes": null,
+  "output_size": 4,
+  "features": [
+    {
+      "name": "annual_spend",
+      "kind": "numeric",
+      "description": "Annual spend in USD"
+    },
+    {
+      "name": "visits_per_month",
+      "kind": "numeric",
+      "description": "Store or site visits per month"
+    },
+    {
+      "name": "avg_basket",
+      "kind": "numeric",
+      "description": "Average basket value in USD"
+    },
+    {
+      "name": "days_since_last_visit",
+      "kind": "numeric",
+      "description": "Recency in days"
+    },
+    {
+      "name": "online_share",
+      "kind": "numeric",
+      "description": "Share of purchases made online, 0-1"
+    },
+    {
+      "name": "age",
+      "kind": "numeric",
+      "description": "Customer age in years"
+    }
+  ],
+  "preprocessing": [
+    {
+      "name": "annual_spend",
+      "kind": "numeric",
+      "description": "Annual spend in USD",
+      "median": 2945.0550000000003,
+      "mean": 3141.79321875,
+      "scale": 1713.0668554440583
+    },
+    {
+      "name": "visits_per_month",
+      "kind": "numeric",
+      "description": "Store or site visits per month",
+      "median": 4.69,
+      "mean": 6.000447916666667,
+      "scale": 4.372827711584804
+    },
+    {
+      "name": "avg_basket",
+      "kind": "numeric",
+      "description": "Average basket value in USD",
+      "median": 35.2,
+      "mean": 67.53596875,
+      "scale": 75.91075789550423
+    },
+    {
+      "name": "days_since_last_visit",
+      "kind": "numeric",
+      "description": "Recency in days",
+      "median": 10.0,
+      "mean": 13.75,
+      "scale": 13.663439659665984
+    },
+    {
+      "name": "online_share",
+      "kind": "numeric",
+      "description": "Share of purchases made online, 0-1",
+      "median": 0.1875,
+      "mean": 0.30676249999999994,
+      "scale": 0.30523249309952244
+    },
+    {
+      "name": "age",
+      "kind": "numeric",
+      "description": "Customer age in years",
+      "median": 42.0,
+      "mean": 41.79895833333333,
+      "scale": 12.341503443594863
+    }
+  ],
+  "encoded_features": [
+    "annual_spend:standardized",
+    "annual_spend:missing",
+    "visits_per_month:standardized",
+    "visits_per_month:missing",
+    "avg_basket:standardized",
+    "avg_basket:missing",
+    "days_since_last_visit:standardized",
+    "days_since_last_visit:missing",
+    "online_share:standardized",
+    "online_share:missing",
+    "age:standardized",
+    "age:missing"
+  ],
+  "limits": {
+    "iterations": 8,
+    "max_parameters": 65536,
+    "max_width": 256,
+    "max_hidden_layers": 4,
+    "max_evaluated_rows": 100000,
+    "max_seconds": null,
+    "max_editor_tokens": null,
+    "max_output_tokens": 16384,
+    "support_examples": 64,
+    "diagnostic_examples": 8,
+    "max_input_features": 256,
+    "max_abs_weight": 10000
+  },
+  "track": {
+    "names": "semantic",
+    "policy": "strict"
+  },
+  "protocol": {
+    "feedback": {
+      "error_rows": null,
+      "max_revealed_labels": null
+    },
+    "selection": {
+      "metric": "silhouette",
+      "min_delta": 0.0
+    },
+    "track": {
+      "names": "semantic",
+      "policy": "strict"
+    },
+    "initial_program": true
+  },
+  "program_format": "Return a JSON object, no code or markdown:\n{\"base\":\"zero\", \"hidden_sizes\":[8], \"activations\":[\"relu\"], \"rationale\":\"mechanism hypothesis\", \"operations\":[]}\nhidden_sizes is a list of hidden layer widths (empty means a direct linear output).\nactivations is optional: one of relu, tanh, sigmoid, identity per hidden layer (default relu).\nOutput head: output_size equals n_clusters: one score per cluster; assignment = argmax. A nearest-centroid layer is score_k = 2*c_k.x - |c_k|^2 (weights 2*c_k, bias -|c_k|^2).\nEvery tensor starts at zero when base=zero; unassigned entries remain zero.\nTensors are layers.0.weight, layers.0.bias, ...; weights have shape [out,in].\nAllowed operations:\n{\"op\":\"fill\",\"tensor\":\"layers.0.bias\",\"value\":0}\n{\"op\":\"set\",\"tensor\":\"layers.0.weight\",\"value\":[[1,2],[3,4]]}\n{\"op\":\"set_entries\",\"tensor\":\"layers.0.weight\",\"entries\":[{\"index\":[0,1],\"value\":2}]}\n{\"op\":\"add_entries\",\"tensor\":\"layers.0.bias\",\"entries\":[{\"index\":[0],\"value\":0.2}]}\nUse base=best with base_hash equal to the supplied best hash to patch that checkpoint.\nArchitecture can change on any base=zero candidate. base=best requires matching architecture and hash.\nDesign weight values directly by reasoning. No fitting, optimizers, gradient steps,\npretrained target weights, executable code, or requests for final-test data.\n",
+  "support_rows": 960
+}

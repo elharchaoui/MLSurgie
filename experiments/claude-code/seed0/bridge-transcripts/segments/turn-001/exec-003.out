@@ -1,0 +1,8 @@
+online_first             n= 210 {'annual_spend': 2639.62, 'visits_per_month': 2.5, 'avg_basket': 66.97, 'days_since_last_visit': 14.0, 'online_share': 0.85}
+large_basket_offline     n= 146 {'annual_spend': 5336.57, 'visits_per_month': 1.38, 'avg_basket': 226.91, 'days_since_last_visit': 37.0, 'online_share': 0.24}
+high_spend_regular       n= 304 {'annual_spend': 3983.26, 'visits_per_month': 11.19, 'avg_basket': 33.24, 'days_since_last_visit': 3.0, 'online_share': 0.1}
+low_spend_small_basket   n= 300 {'annual_spend': 1324.09, 'visits_per_month': 5.04, 'avg_basket': 20.17, 'days_since_last_visit': 10.0, 'online_share': 0.16}
+network vs region agreement 0.98 sizes [210, 146, 291, 313]
+support silhouette (all encoded inputs, incl. age) 0.4303
+
+candidate.json captured. End this turn to submit it, or keep revising.

@@ -1,0 +1,23 @@
+/workspace/bench.py:12: RuntimeWarning: overflow encountered in exp
+  "sigmoid": lambda z: 1 / (1 + np.exp(-z)), "identity": lambda z: z}
+/workspace/fraud_v1.py:32: RuntimeWarning: overflow encountered in exp
+  h1 = 1 / (1 + np.exp(-(X @ W0.T + b0)))
+/workspace/fraud_v1.py:49: RuntimeWarning: overflow encountered in exp
+  h2 = np.maximum((1 / (1 + np.exp(-(X @ W0.T + b0)))) @ W1.T + b1, 0)
+evidence/signature ledger (name, rows, frauds, weight):
+  ('cnp', 2076, 9, np.float64(0.02))
+  ('gift', 379, 3, np.float64(0.4))
+  ('risky', 884, 8, np.float64(0.56))
+  ('game', 373, 2, np.float64(0.15))
+  ('vel', 39, 0, np.float64(-1.8))
+  ('big', 650, 4, np.float64(0.25))
+  ('xb', 362, 0, np.float64(-3.14))
+  ('night', 605, 3, np.float64(0.1))
+  ('new', 232, 0, np.float64(-2.86))
+  ('bustout', 49, 47, np.float64(9.91))
+  ('bustout3', 53, 47, np.float64(1.82))
+  ('testing', 37, 37, np.float64(10.48))
+  ('farnight', 34, 34, np.float64(11.23))
+  ('xbnight', 39, 30, np.float64(9.34))
+base -5.298 | support AP 0.8177 logloss 0.03 mean p 0.0222 rate 0.0206
+split-half AP even/odd 0.8534 0.7935

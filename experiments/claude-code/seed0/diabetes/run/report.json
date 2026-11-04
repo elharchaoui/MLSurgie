@@ -1,0 +1,139 @@
+{
+  "architecture": {
+    "activations": [
+      "relu"
+    ],
+    "hidden_sizes": [
+      3
+    ],
+    "output_size": 1
+  },
+  "assurance": "source-recorded and statically audited; no-fitting policy is not mechanically proven",
+  "cost": {
+    "currency_cost": null,
+    "editor_tokens": 0,
+    "evaluated_rows": 265,
+    "revealed_development_labels": 16,
+    "wall_seconds": 109.35264541598735
+  },
+  "development": {
+    "mae": 41.400884888388894,
+    "n": 88,
+    "r2": 0.5497882237550556,
+    "rmse": 52.906878265542765,
+    "target_mean": 153.72727272727272,
+    "target_std": 78.85036566363695
+  },
+  "editor": {
+    "assurance": "source-recorded and statically audited; no-fitting policy is not mechanically proven",
+    "base_url": null,
+    "image": "mlsurgie-constructor:local",
+    "interface": "Claude Code session via file bridge; Docker sandbox; strict audit",
+    "kind": "interactive_llm",
+    "max_agent_steps": 60,
+    "model": "claude-opus-5-5",
+    "token_accounting": "not available from the host session"
+  },
+  "final_evaluation_error": null,
+  "final_target_met": null,
+  "final_test": {
+    "mae": 48.62468659475948,
+    "n": 89,
+    "r2": 0.30249214775993705,
+    "rmse": 58.86612284546614,
+    "target_mean": 151.52808988764045,
+    "target_std": 70.48405507593172
+  },
+  "history": [
+    {
+      "audit": {
+        "scanned_files": 5,
+        "violations": []
+      },
+      "diff": {
+        "base_hash": "zero",
+        "changed_values": 7,
+        "l2_change": 165.29843104903486
+      },
+      "iteration": 1,
+      "metrics": {
+        "mae": 41.759137240323156,
+        "n": 88,
+        "r2": 0.5392003747669092,
+        "rmse": 53.525381363395645,
+        "target_mean": 153.72727272727272,
+        "target_std": 78.85036566363695
+      },
+      "selected": true,
+      "state_hash": "367bad28f4fddd65a4e8dc271c7a0435dec69a5987fd265fcb89cba9ef3e4f29",
+      "status": "evaluated",
+      "usage": {
+        "input_tokens": 0,
+        "measurement": "unavailable: interactive Claude Code session",
+        "output_tokens": 0,
+        "tool_calls": 3
+      }
+    },
+    {
+      "audit": {
+        "scanned_files": 6,
+        "violations": []
+      },
+      "diff": {
+        "base_hash": "zero",
+        "changed_values": 18,
+        "l2_change": 171.4905819546543
+      },
+      "iteration": 2,
+      "metrics": {
+        "mae": 41.400884888388894,
+        "n": 88,
+        "r2": 0.5497882237550556,
+        "rmse": 52.906878265542765,
+        "target_mean": 153.72727272727272,
+        "target_std": 78.85036566363695
+      },
+      "selected": true,
+      "state_hash": "1510facdd025a95d3ef528be1f316826eaa6f264bf9c5aa71b83cce3bc69997e",
+      "status": "evaluated",
+      "usage": {
+        "input_tokens": 0,
+        "measurement": "unavailable: interactive Claude Code session",
+        "output_tokens": 0,
+        "tool_calls": 3
+      }
+    },
+    {
+      "audit": {
+        "scanned_files": 3,
+        "violations": []
+      },
+      "iteration": 3,
+      "selected": false,
+      "status": "editor_stopped",
+      "usage": {
+        "input_tokens": 0,
+        "measurement": "unavailable: interactive Claude Code session",
+        "output_tokens": 0,
+        "tool_calls": 0
+      }
+    }
+  ],
+  "limitations": [
+    "Adaptive development evaluation can overfit.",
+    "Accuracy interval is Wilson 95%, assumes independent observations; other metrics have no interval here.",
+    "Custom Python editor plugins are trusted; isolation is enforced through built-in JSON editor contexts, not an OS sandbox.",
+    "Token limits stop subsequent work; one provider request can overshoot due to input token usage.",
+    "Scripted fixtures demonstrate the protocol, not autonomous LLM performance."
+  ],
+  "parameters": 73,
+  "selected_iteration": 2,
+  "selection_metric": "rmse",
+  "status": "completed",
+  "stop_reason": "editor_finished",
+  "task": "regression",
+  "track": {
+    "names": "semantic",
+    "policy": "strict"
+  }
+}

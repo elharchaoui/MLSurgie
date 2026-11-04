@@ -1,0 +1,35 @@
+n 265 mean 151.8 sd 78.5
+encoded: ['age:standardized', 'age:missing', "sex='1.0'", "sex='2.0'", 'sex:missing', 'sex:unknown', 'bmi:standardized', 'bmi:missing', 'bp:standardized', 'bp:missing', 's1:standardized', 's1:missing', 's2:standardized', 's2:missing', 's3:standardized', 's3:missing', 's4:standardized', 's4:missing', 's5:standardized', 's5:missing', 's6:standardized', 's6:missing']
+corr with target:
+s3:standardized    -0.414
+sex='1.0'          -0.059
+sex='2.0'           0.059
+age:standardized    0.150
+s2:standardized     0.233
+s1:standardized     0.262
+s6:standardized     0.371
+bp:standardized     0.422
+s4:standardized     0.452
+s5:standardized     0.566
+bmi:standardized    0.626
+age  quintile means: [136.0, 155.0, 144.0, 147.0, 181.0]
+bmi  quintile means: [92.0, 123.0, 137.0, 186.0, 224.0]
+bp   quintile means: [122.0, 129.0, 134.0, 176.0, 204.0]
+s1   quintile means: [125.0, 145.0, 136.0, 172.0, 183.0]
+s2   quintile means: [120.0, 153.0, 142.0, 173.0, 171.0]
+s3   quintile means: [190.0, 195.0, 140.0, 132.0, 100.0]
+s4   quintile means: [111.0, 122.0, 157.0, 185.0, 201.0]
+s5   quintile means: [97.0, 118.0, 147.0, 186.0, 217.0]
+s6   quintile means: [118.0, 140.0, 149.0, 152.0, 203.0]
+                  age:standardized  sex='1.0'  sex='2.0'  bmi:standardized  bp:standardized  s1:standardized  s2:standardized  s3:standardized  s4:standardized  s5:standardized  s6:standardized
+age:standardized              1.00      -0.15       0.15              0.14             0.30             0.26             0.23            -0.10             0.21             0.28             0.26
+sex='1.0'                    -0.15       1.00      -1.00             -0.12            -0.21            -0.13            -0.22             0.41            -0.37            -0.22            -0.20
+sex='2.0'                     0.15      -1.00       1.00              0.12             0.21             0.13             0.22            -0.41             0.37             0.22             0.20
+bmi:standardized              0.14      -0.12       0.12              1.00             0.37             0.33             0.34            -0.40             0.46             0.48             0.40
+bp:standardized               0.30      -0.21       0.21              0.37             1.00             0.29             0.23            -0.17             0.27             0.41             0.36
+s1:standardized               0.26      -0.13       0.13              0.33             0.29             1.00             0.91            -0.09             0.62             0.61             0.38
+s2:standardized               0.23      -0.22       0.22              0.34             0.23             0.91             1.00            -0.34             0.75             0.46             0.35
+s3:standardized              -0.10       0.41      -0.41             -0.40            -0.17            -0.09            -0.34             1.00            -0.77            -0.43            -0.26
+s4:standardized               0.21      -0.37       0.37              0.46             0.27             0.62             0.75            -0.77             1.00             0.66             0.43
+s5:standardized               0.28      -0.22       0.22              0.48             0.41             0.61             0.46            -0.43             0.66             1.00             0.46
+s6:standardized               0.26      -0.20       0.20              0.40             0.36             0.38             0.35            -0.26             0.43             0.46             1.00

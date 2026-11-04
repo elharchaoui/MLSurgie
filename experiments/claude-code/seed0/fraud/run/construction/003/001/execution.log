@@ -1,0 +1,8 @@
+1 0.0049 {'amount': '23.63', 'hour': '17', 'account_age_days': '251', 'txn_last_24h': '1', 'merchant_category': 'grocery', 'card_present': 'yes', 'country_mismatch': 'no', 'distance_from_home_km': '13.0'}
+1 0.0049 {'amount': '23.63', 'hour': '15', 'account_age_days': '73', 'txn_last_24h': '0', 'merchant_category': 'grocery', 'card_present': 'yes', 'country_mismatch': 'no', 'distance_from_home_km': '3.6'}
+1 0.0049 {'amount': '30.0', 'hour': '18', 'account_age_days': '861', 'txn_last_24h': '2', 'merchant_category': 'retail', 'card_present': 'yes', 'country_mismatch': 'no', 'distance_from_home_km': '5.0'}
+1 0.0049 {'amount': '42.54', 'hour': '13', 'account_age_days': '288', 'txn_last_24h': '1', 'merchant_category': 'grocery', 'card_present': 'yes', 'country_mismatch': 'no', 'distance_from_home_km': '1.4'}
+1 0.005 {'amount': '21.85', 'hour': '15', 'account_age_days': '749', 'txn_last_24h': '2', 'merchant_category': 'grocery', 'card_present': 'no', 'country_mismatch': 'no', 'distance_from_home_km': '26.6'}
+1 0.005 {'amount': '34.83', 'hour': '23', 'account_age_days': '331', 'txn_last_24h': '1', 'merchant_category': 'grocery', 'card_present': 'no', 'country_mismatch': 'no', 'distance_from_home_km': '34.8'}
+1 0.0051 {'amount': '106.77', 'hour': '18', 'account_age_days': '621', 'txn_last_24h': '1', 'merchant_category': 'retail', 'card_present': 'yes', 'country_mismatch': 'no', 'distance_from_home_km': '4.9'}
+1 0.0054 {'amount': '56.5', 'hour': '3', 'account_age_days': '1348', 'txn_last_24h': '0', 'merchant_category': 'retail', 'card_present': 'yes', 'country_mismatch': 'no', 'distance_from_home_km': '3.2'}

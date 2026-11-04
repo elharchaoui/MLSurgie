@@ -1,0 +1,117 @@
+{
+  "activations": [
+    "relu"
+  ],
+  "base": "zero",
+  "hidden_sizes": [
+    3
+  ],
+  "operations": [
+    {
+      "op": "set",
+      "tensor": "layers.0.weight",
+      "value": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          -13.359492,
+          0.0,
+          0.0,
+          40.98406,
+          0.0,
+          7.927559,
+          0.0,
+          -5.73394,
+          0.0,
+          0.0,
+          0.0,
+          -5.576755,
+          0.0,
+          0.0,
+          0.0,
+          21.416639,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.0,
+          -0.0,
+          -0.0,
+          13.359492,
+          -0.0,
+          -0.0,
+          -40.98406,
+          -0.0,
+          -7.927559,
+          -0.0,
+          5.73394,
+          -0.0,
+          -0.0,
+          -0.0,
+          5.576755,
+          -0.0,
+          -0.0,
+          -0.0,
+          -21.416639,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -1.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ]
+      ]
+    },
+    {
+      "op": "set",
+      "tensor": "layers.0.bias",
+      "value": [
+        0.0,
+        0.0,
+        -0.129886
+      ]
+    },
+    {
+      "op": "set",
+      "tensor": "layers.1.weight",
+      "value": [
+        [
+          1.0,
+          -1.0,
+          4.086656
+        ]
+      ]
+    },
+    {
+      "op": "set",
+      "tensor": "layers.1.bias",
+      "value": [
+        156.531059
+      ]
+    }
+  ],
+  "rationale": "v2 of the additive response: same residual-contrast slopes (BMI 41, s5 21, BP, HDL, sex, s1 per SD), plus (a) one further residual contrast for blood pressure, whose residuals still rose across quintiles, and (b) an HDL threshold hinge relu(48 mg/dL - HDL): low-HDL patients were under-predicted by ~10 units in support residuals and in development errors; hinge sized to 0.8 x that residual gap. Bias recentred to zero mean residual."
+}

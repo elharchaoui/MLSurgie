@@ -1,0 +1,2004 @@
+{
+  "best": {
+    "activations": [],
+    "hash": "4c09df3dd461169d6eb7e1629d819a93d2c21cb492bd9d1d89a457064992bf09",
+    "hidden_sizes": [],
+    "output_size": 4,
+    "parameters": {
+      "layers.0.bias": [
+        -1.77278470993042,
+        2.907940149307251,
+        -3.7411305904388428,
+        -11.510428428649902
+      ],
+      "layers.0.weight": [
+        [
+          -2.0903871059417725,
+          -0.07344745099544525,
+          -0.3020244538784027,
+          0.006216160953044891,
+          -1.3138620853424072,
+          -0.023798475041985512,
+          -0.48877382278442383,
+          0.0,
+          -1.0674265623092651,
+          -0.0017485467251390219,
+          0.0,
+          0.0
+        ],
+        [
+          1.0984264612197876,
+          0.03859410807490349,
+          2.6342902183532715,
+          -0.05421803146600723,
+          -0.9408814907073975,
+          -0.01704254001379013,
+          -1.5539748668670654,
+          0.0,
+          -1.3471369743347168,
+          -0.0022067392710596323,
+          0.0,
+          0.0
+        ],
+        [
+          -0.4872405230998993,
+          -0.017119593918323517,
+          -1.5877214670181274,
+          0.032677922397851944,
+          0.02960815839469433,
+          0.000536303676199168,
+          0.12469856441020966,
+          0.0,
+          3.2959392070770264,
+          0.005399063229560852,
+          0.0,
+          0.0
+        ],
+        [
+          2.7163710594177246,
+          0.09544190764427185,
+          -2.1189699172973633,
+          0.04361189529299736,
+          -4.428064823150635,
+          -0.08020719140768051,
+          3.8708174228668213,
+          0.0,
+          0.4903469383716583,
+          0.0008032351615838706,
+          0.0,
+          0.0
+        ]
+      ]
+    }
+  },
+  "best_metrics": {
+    "adjusted_rand": null,
+    "cluster_sizes": [
+      19,
+      190,
+      100,
+      11
+    ],
+    "clusters_used": 4,
+    "inertia": 3.835459688104513,
+    "n": 320,
+    "silhouette": 0.05856394822482538
+  },
+  "classes": null,
+  "encoded_features": [
+    "annual_spend:standardized",
+    "annual_spend:missing",
+    "visits_per_month:standardized",
+    "visits_per_month:missing",
+    "avg_basket:standardized",
+    "avg_basket:missing",
+    "days_since_last_visit:standardized",
+    "days_since_last_visit:missing",
+    "online_share:standardized",
+    "online_share:missing",
+    "age:standardized",
+    "age:missing"
+  ],
+  "feedback_role": "development, used adaptively; final test is inaccessible",
+  "frozen_hidden_sizes": null,
+  "goal": {
+    "description": "A deployed customer-segmentation network (4 segments) has degraded after a faulty manual edit. Diagnose and repair it.",
+    "n_clusters": 4,
+    "positive_label": "1",
+    "primary_metric": "silhouette",
+    "reference_column": "hidden",
+    "target": null,
+    "target_score": null,
+    "task": "clustering",
+    "threshold": 0.5
+  },
+  "iteration": 1,
+  "last_feedback": {
+    "largest_errors": [
+      {
+        "assigned": 2,
+        "encoded": [
+          0.6343866586685181,
+          0.0,
+          -1.054340124130249,
+          0.0,
+          1.7980854511260986,
+          0.0,
+          2.067561388015747,
+          0.0,
+          -0.4316791296005249,
+          0.0,
+          0.664509117603302,
+          0.0
+        ],
+        "features": {
+          "age": "50",
+          "annual_spend": "4228.54",
+          "avg_basket": "204.03",
+          "days_since_last_visit": "42",
+          "online_share": "0.175",
+          "visits_per_month": "1.39"
+        },
+        "scores": [
+          -5.6927,
+          -3.4959,
+          -3.488,
+          -7.7236
+        ]
+      },
+      {
+        "assigned": 0,
+        "encoded": [
+          -1.055704951286316,
+          0.0,
+          -0.5786754488945007,
+          0.0,
+          -0.6663873791694641,
+          0.0,
+          -0.5672070980072021,
+          0.0,
+          -0.0745742991566658,
+          0.0,
+          -0.38884714245796204,
+          0.0
+        ],
+        "features": {
+          "age": "37",
+          "annual_spend": "1333.3",
+          "avg_basket": "16.95",
+          "days_since_last_visit": "6",
+          "online_share": "0.284",
+          "visits_per_month": "3.47"
+        },
+        "scores": [
+          1.8412,
+          1.8328,
+          -2.6442,
+          -12.4332
+        ]
+      },
+      {
+        "assigned": 2,
+        "encoded": [
+          2.539811372756958,
+          0.0,
+          -1.0566270351409912,
+          0.0,
+          3.150858163833618,
+          0.0,
+          1.9943733215332031,
+          0.0,
+          -0.03526000678539276,
+          0.0,
+          1.150673508644104,
+          0.0
+        ],
+        "features": {
+          "age": "56",
+          "annual_spend": "7492.66",
+          "avg_basket": "306.72",
+          "days_since_last_visit": "41",
+          "online_share": "0.296",
+          "visits_per_month": "1.38"
+        },
+        "scores": [
+          -11.8398,
+          -3.102,
+          -3.0752,
+          -8.622
+        ]
+      },
+      {
+        "assigned": 0,
+        "encoded": [
+          -1.2325924634933472,
+          0.0,
+          -0.2127794623374939,
+          0.0,
+          -0.54571932554245,
+          0.0,
+          0.01829700358211994,
+          0.0,
+          -0.16958384215831757,
+          0.0,
+          -0.4698745608329773,
+          0.0
+        ],
+        "features": {
+          "age": "36",
+          "annual_spend": "1030.28",
+          "avg_basket": "26.11",
+          "days_since_last_visit": "14",
+          "online_share": "0.255",
+          "visits_per_month": "5.07"
+        },
+        "scores": [
+          1.7572,
+          1.707,
+          -3.3755,
+          -12.0036
+        ]
+      },
+      {
+        "assigned": 1,
+        "encoded": [
+          -1.1755894422531128,
+          0.0,
+          -0.34770360589027405,
+          0.0,
+          -0.6152747273445129,
+          0.0,
+          -0.2012670338153839,
+          0.0,
+          -0.6511839628219604,
+          0.0,
+          -0.5509019494056702,
+          0.0
+        ],
+        "features": {
+          "age": "35",
+          "annual_spend": "1127.93",
+          "avg_basket": "20.83",
+          "days_since_last_visit": "11",
+          "online_share": "0.108",
+          "visits_per_month": "4.48"
+        },
+        "scores": [
+          2.3915,
+          2.4696,
+          -4.8059,
+          -12.3409
+        ]
+      },
+      {
+        "assigned": 1,
+        "encoded": [
+          -0.9714292287826538,
+          0.0,
+          -0.6724362373352051,
+          0.0,
+          -0.7292242646217346,
+          0.0,
+          -0.5672070980072021,
+          0.0,
+          -0.49720296263694763,
+          0.0,
+          0.7455365061759949,
+          0.0
+        ],
+        "features": {
+          "age": "51",
+          "annual_spend": "1477.67",
+          "avg_basket": "12.18",
+          "days_since_last_visit": "6",
+          "online_share": "0.155",
+          "visits_per_month": "3.06"
+        },
+        "scores": [
+          2.227,
+          2.3068,
+          -3.9312,
+          -11.9346
+        ]
+      },
+      {
+        "assigned": 0,
+        "encoded": [
+          -1.0902220010757446,
+          0.0,
+          -0.5763885974884033,
+          0.0,
+          -0.5858981013298035,
+          0.0,
+          -0.4208310842514038,
+          0.0,
+          -0.5660029649734497,
+          0.0,
+          -1.6042581796646118,
+          0.0
+        ],
+        "features": {
+          "age": "22",
+          "annual_spend": "1274.17",
+          "avg_basket": "23.06",
+          "days_since_last_visit": "8",
+          "online_share": "0.134",
+          "visits_per_month": "3.48"
+        },
+        "scores": [
+          2.2599,
+          2.1597,
+          -4.2301,
+          -12.5626
+        ]
+      },
+      {
+        "assigned": 3,
+        "encoded": [
+          2.2212367057800293,
+          0.0,
+          -1.1183719635009766,
+          0.0,
+          1.9287652969360352,
+          0.0,
+          2.3603134155273438,
+          0.0,
+          -0.24821242690086365,
+          0.0,
+          1.150673508644104,
+          0.0
+        ],
+        "features": {
+          "age": "56",
+          "annual_spend": "6946.92",
+          "avg_basket": "213.95",
+          "days_since_last_visit": "46",
+          "online_share": "0.231",
+          "visits_per_month": "1.11"
+        },
+        "scores": [
+          -9.5011,
+          -2.7465,
+          -3.5144,
+          -2.633
+        ]
+      }
+    ],
+    "metrics": {
+      "adjusted_rand": null,
+      "cluster_sizes": [
+        19,
+        190,
+        100,
+        11
+      ],
+      "clusters_used": 4,
+      "inertia": 3.835459688104513,
+      "n": 320,
+      "silhouette": 0.05856394822482538
+    },
+    "revealed_development_labels": 0,
+    "selected": true,
+    "status": "initial_model"
+  },
+  "limits": {
+    "diagnostic_examples": 8,
+    "iterations": 8,
+    "max_abs_weight": 10000,
+    "max_editor_tokens": null,
+    "max_evaluated_rows": 100000,
+    "max_hidden_layers": 4,
+    "max_input_features": 256,
+    "max_output_tokens": 16384,
+    "max_parameters": 65536,
+    "max_seconds": null,
+    "max_width": 256,
+    "support_examples": 64
+  },
+  "output_size": 4,
+  "output_token_limit": 16384,
+  "preprocessing": [
+    {
+      "description": "Annual spend in USD",
+      "kind": "numeric",
+      "mean": 3141.79321875,
+      "median": 2945.0550000000003,
+      "name": "annual_spend",
+      "scale": 1713.0668554440583
+    },
+    {
+      "description": "Store or site visits per month",
+      "kind": "numeric",
+      "mean": 6.000447916666667,
+      "median": 4.69,
+      "name": "visits_per_month",
+      "scale": 4.372827711584804
+    },
+    {
+      "description": "Average basket value in USD",
+      "kind": "numeric",
+      "mean": 67.53596875,
+      "median": 35.2,
+      "name": "avg_basket",
+      "scale": 75.91075789550423
+    },
+    {
+      "description": "Recency in days",
+      "kind": "numeric",
+      "mean": 13.75,
+      "median": 10.0,
+      "name": "days_since_last_visit",
+      "scale": 13.663439659665984
+    },
+    {
+      "description": "Share of purchases made online, 0-1",
+      "kind": "numeric",
+      "mean": 0.30676249999999994,
+      "median": 0.1875,
+      "name": "online_share",
+      "scale": 0.30523249309952244
+    },
+    {
+      "description": "Customer age in years",
+      "kind": "numeric",
+      "mean": 41.79895833333333,
+      "median": 42.0,
+      "name": "age",
+      "scale": 12.341503443594863
+    }
+  ],
+  "program_format": "Return a JSON object, no code or markdown:\n{\"base\":\"zero\", \"hidden_sizes\":[8], \"activations\":[\"relu\"], \"rationale\":\"mechanism hypothesis\", \"operations\":[]}\nhidden_sizes is a list of hidden layer widths (empty means a direct linear output).\nactivations is optional: one of relu, tanh, sigmoid, identity per hidden layer (default relu).\nOutput head: output_size equals n_clusters: one score per cluster; assignment = argmax. A nearest-centroid layer is score_k = 2*c_k.x - |c_k|^2 (weights 2*c_k, bias -|c_k|^2).\nEvery tensor starts at zero when base=zero; unassigned entries remain zero.\nTensors are layers.0.weight, layers.0.bias, ...; weights have shape [out,in].\nAllowed operations:\n{\"op\":\"fill\",\"tensor\":\"layers.0.bias\",\"value\":0}\n{\"op\":\"set\",\"tensor\":\"layers.0.weight\",\"value\":[[1,2],[3,4]]}\n{\"op\":\"set_entries\",\"tensor\":\"layers.0.weight\",\"entries\":[{\"index\":[0,1],\"value\":2}]}\n{\"op\":\"add_entries\",\"tensor\":\"layers.0.bias\",\"entries\":[{\"index\":[0],\"value\":0.2}]}\nUse base=best with base_hash equal to the supplied best hash to patch that checkpoint.\nArchitecture can change on any base=zero candidate. base=best requires matching architecture and hash.\nDesign weight values directly by reasoning. No fitting, optimizers, gradient steps,\npretrained target weights, executable code, or requests for final-test data.\n",
+  "remaining": {
+    "editor_tokens": "unlimited",
+    "iterations": 8,
+    "seconds": "unlimited"
+  },
+  "selection": {
+    "metric": "silhouette",
+    "min_delta": 0.0
+  },
+  "support_count": 960,
+  "support_examples": [
+    {
+      "encoded": [
+        -0.6464798450469971,
+        0.0,
+        -0.8919738531112671,
+        0.0,
+        -0.10269913077354431,
+        0.0,
+        -0.054891008883714676,
+        0.0,
+        1.4029879570007324,
+        0.0,
+        -0.14576493203639984,
+        0.0
+      ],
+      "features": {
+        "age": "40",
+        "annual_spend": "2034.33",
+        "avg_basket": "59.74",
+        "days_since_last_visit": "13",
+        "online_share": "0.735",
+        "visits_per_month": "2.1"
+      }
+    },
+    {
+      "encoded": [
+        1.5673099756240845,
+        0.0,
+        -1.0360454320907593,
+        0.0,
+        2.7235143184661865,
+        0.0,
+        1.628433346748352,
+        0.0,
+        -0.2547648251056671,
+        0.0,
+        1.3937557935714722,
+        0.0
+      ],
+      "features": {
+        "age": "59",
+        "annual_spend": "5826.7",
+        "avg_basket": "274.28",
+        "days_since_last_visit": "36",
+        "online_share": "0.229",
+        "visits_per_month": "1.47"
+      }
+    },
+    {
+      "encoded": [
+        -1.1131341457366943,
+        0.0,
+        0.07765045762062073,
+        0.0,
+        -0.46588876843452454,
+        0.0,
+        0.09148501604795456,
+        0.0,
+        -0.6282505989074707,
+        0.0,
+        1.7178653478622437,
+        0.0
+      ],
+      "features": {
+        "age": "63",
+        "annual_spend": "1234.92",
+        "avg_basket": "32.17",
+        "days_since_last_visit": "15",
+        "online_share": "0.115",
+        "visits_per_month": "6.34"
+      }
+    },
+    {
+      "encoded": [
+        0.1597992330789566,
+        0.0,
+        1.9025565385818481,
+        0.0,
+        -0.4823554754257202,
+        0.0,
+        -0.8599591255187988,
+        0.0,
+        -0.83137446641922,
+        0.0,
+        -0.38884714245796204,
+        0.0
+      ],
+      "features": {
+        "age": "37",
+        "annual_spend": "3415.54",
+        "avg_basket": "30.92",
+        "days_since_last_visit": "2",
+        "online_share": "0.053",
+        "visits_per_month": "14.32"
+      }
+    },
+    {
+      "encoded": [
+        -1.0594818592071533,
+        0.0,
+        -0.6335598230361938,
+        0.0,
+        -0.6579564213752747,
+        0.0,
+        -0.5672070980072021,
+        0.0,
+        -0.2088981419801712,
+        0.0,
+        0.7455365061759949,
+        0.0
+      ],
+      "features": {
+        "age": "51",
+        "annual_spend": "1326.83",
+        "avg_basket": "17.59",
+        "days_since_last_visit": "6",
+        "online_share": "0.243",
+        "visits_per_month": "3.23"
+      }
+    },
+    {
+      "encoded": [
+        0.02329551801085472,
+        0.0,
+        -0.759336531162262,
+        0.0,
+        -0.20742736756801605,
+        0.0,
+        -0.2012670338153839,
+        0.0,
+        1.419368863105774,
+        0.0,
+        0.5834817290306091,
+        0.0
+      ],
+      "features": {
+        "age": "49",
+        "annual_spend": "3181.7",
+        "avg_basket": "51.79",
+        "days_since_last_visit": "11",
+        "online_share": "0.74",
+        "visits_per_month": "2.68"
+      }
+    },
+    {
+      "encoded": [
+        0.10464085638523102,
+        0.0,
+        -0.6129781603813171,
+        0.0,
+        -0.2559053599834442,
+        0.0,
+        -0.494019091129303,
+        0.0,
+        1.730607032775879,
+        0.0,
+        0.016289884224534035,
+        0.0
+      ],
+      "features": {
+        "age": "42",
+        "annual_spend": "3321.05",
+        "avg_basket": "48.11",
+        "days_since_last_visit": "7",
+        "online_share": "0.835",
+        "visits_per_month": "3.32"
+      }
+    },
+    {
+      "encoded": [
+        1.7378754615783691,
+        0.0,
+        -1.081782341003418,
+        0.0,
+        2.377713441848755,
+        0.0,
+        1.8479973077774048,
+        0.0,
+        -0.706879198551178,
+        0.0,
+        0.09731729328632355,
+        0.0
+      ],
+      "features": {
+        "age": "43",
+        "annual_spend": "6118.89",
+        "avg_basket": "248.03",
+        "days_since_last_visit": "39",
+        "online_share": "0.091",
+        "visits_per_month": "1.27"
+      }
+    },
+    {
+      "encoded": [
+        0.10141856223344803,
+        0.0,
+        1.7973614931106567,
+        0.0,
+        -0.32704150676727295,
+        0.0,
+        -0.8599591255187988,
+        0.0,
+        -0.8706887364387512,
+        0.0,
+        0.2593720853328705,
+        0.0
+      ],
+      "features": {
+        "age": "45",
+        "annual_spend": "3315.53",
+        "avg_basket": "42.71",
+        "days_since_last_visit": "2",
+        "online_share": "0.041",
+        "visits_per_month": "13.86"
+      }
+    },
+    {
+      "encoded": [
+        -0.6534848213195801,
+        0.0,
+        -0.20363205671310425,
+        0.0,
+        -0.518318772315979,
+        0.0,
+        0.16467303037643433,
+        0.0,
+        -0.5365172624588013,
+        0.0,
+        2.77122163772583,
+        0.0
+      ],
+      "features": {
+        "age": "76",
+        "annual_spend": "2022.33",
+        "avg_basket": "28.19",
+        "days_since_last_visit": "16",
+        "online_share": "0.143",
+        "visits_per_month": "5.11"
+      }
+    },
+    {
+      "encoded": [
+        -1.2551542520523071,
+        0.0,
+        -0.4437512755393982,
+        0.0,
+        -0.47524183988571167,
+        0.0,
+        0.09148501604795456,
+        0.0,
+        -0.1466505080461502,
+        0.0,
+        0.09731729328632355,
+        0.0
+      ],
+      "features": {
+        "age": "43",
+        "annual_spend": "991.63",
+        "avg_basket": "31.46",
+        "days_since_last_visit": "15",
+        "online_share": "0.262",
+        "visits_per_month": "4.06"
+      }
+    },
+    {
+      "encoded": [
+        1.3468165397644043,
+        0.0,
+        1.2210752964019775,
+        0.0,
+        -0.4317697584629059,
+        0.0,
+        -0.7867711186408997,
+        0.0,
+        -1.0050126314163208,
+        0.0,
+        -1.9283678531646729,
+        0.0
+      ],
+      "features": {
+        "age": "18",
+        "annual_spend": "5448.98",
+        "avg_basket": "34.76",
+        "days_since_last_visit": "3",
+        "online_share": "0.0",
+        "visits_per_month": "11.34"
+      }
+    },
+    {
+      "encoded": [
+        -0.08051829040050507,
+        0.0,
+        -0.6472809314727783,
+        0.0,
+        -0.07529853284358978,
+        0.0,
+        -0.12807902693748474,
+        0.0,
+        1.730607032775879,
+        0.0,
+        -0.9560389518737793,
+        0.0
+      ],
+      "features": {
+        "age": "30",
+        "annual_spend": "3003.86",
+        "avg_basket": "61.82",
+        "days_since_last_visit": "12",
+        "online_share": "0.835",
+        "visits_per_month": "3.17"
+      }
+    },
+    {
+      "encoded": [
+        0.6203474998474121,
+        0.0,
+        -1.132093071937561,
+        0.0,
+        2.295379877090454,
+        0.0,
+        1.2624932527542114,
+        0.0,
+        -0.4677172303199768,
+        0.0,
+        -1.2801486253738403,
+        0.0
+      ],
+      "features": {
+        "age": "26",
+        "annual_spend": "4204.49",
+        "avg_basket": "241.78",
+        "days_since_last_visit": "31",
+        "online_share": "0.164",
+        "visits_per_month": "1.05"
+      }
+    },
+    {
+      "encoded": [
+        -0.45566418766975403,
+        0.0,
+        -0.8142209649085999,
+        0.0,
+        -0.235091432929039,
+        0.0,
+        -0.2012670338153839,
+        0.0,
+        2.1171975135803223,
+        0.0,
+        0.2593720853328705,
+        0.0
+      ],
+      "features": {
+        "age": "45",
+        "annual_spend": "2361.21",
+        "avg_basket": "49.69",
+        "days_since_last_visit": "11",
+        "online_share": "0.953",
+        "visits_per_month": "2.44"
+      }
+    },
+    {
+      "encoded": [
+        -1.1440378427505493,
+        0.0,
+        -0.2996797561645508,
+        0.0,
+        -0.5890597105026245,
+        0.0,
+        -0.34764304757118225,
+        0.0,
+        -0.18596480786800385,
+        0.0,
+        0.5024543404579163,
+        0.0
+      ],
+      "features": {
+        "age": "48",
+        "annual_spend": "1181.98",
+        "avg_basket": "22.82",
+        "days_since_last_visit": "9",
+        "online_share": "0.25",
+        "visits_per_month": "4.69"
+      }
+    },
+    {
+      "encoded": [
+        0.5261071920394897,
+        0.0,
+        -0.8462368249893188,
+        0.0,
+        -0.2570909559726715,
+        0.0,
+        0.2378610372543335,
+        0.0,
+        1.9959784746170044,
+        0.0,
+        0.421426922082901,
+        0.0
+      ],
+      "features": {
+        "age": "47",
+        "annual_spend": "4043.05",
+        "avg_basket": "48.02",
+        "days_since_last_visit": "17",
+        "online_share": "0.916",
+        "visits_per_month": "2.3"
+      }
+    },
+    {
+      "encoded": [
+        0.3149186968803406,
+        0.0,
+        -0.699878454208374,
+        0.0,
+        -0.05777795985341072,
+        0.0,
+        -0.5672070980072021,
+        0.0,
+        1.953387975692749,
+        0.0,
+        -0.3078197240829468,
+        0.0
+      ],
+      "features": {
+        "age": "38",
+        "annual_spend": "3681.27",
+        "avg_basket": "63.15",
+        "days_since_last_visit": "6",
+        "online_share": "0.903",
+        "visits_per_month": "2.94"
+      }
+    },
+    {
+      "encoded": [
+        -0.17279140651226044,
+        0.0,
+        0.18741925060749054,
+        0.0,
+        -0.5216121077537537,
+        0.0,
+        -0.6403951048851013,
+        0.0,
+        -0.27442196011543274,
+        0.0,
+        0.016289884224534035,
+        0.0
+      ],
+      "features": {
+        "age": "42",
+        "annual_spend": "2845.79",
+        "avg_basket": "27.94",
+        "days_since_last_visit": "5",
+        "online_share": "0.223",
+        "visits_per_month": "6.82"
+      }
+    },
+    {
+      "encoded": [
+        0.6882432699203491,
+        0.0,
+        2.5268664360046387,
+        0.0,
+        -0.5324142575263977,
+        0.0,
+        -0.5672070980072021,
+        0.0,
+        -0.7363649010658264,
+        0.0,
+        -0.9560389518737793,
+        0.0
+      ],
+      "features": {
+        "age": "30",
+        "annual_spend": "4320.8",
+        "avg_basket": "27.12",
+        "days_since_last_visit": "6",
+        "online_share": "0.082",
+        "visits_per_month": "17.05"
+      }
+    },
+    {
+      "encoded": [
+        -1.0908408164978027,
+        0.0,
+        -0.36599838733673096,
+        0.0,
+        -0.4939480125904083,
+        0.0,
+        -0.5672070980072021,
+        0.0,
+        -0.7265363335609436,
+        0.0,
+        -1.2801486253738403,
+        0.0
+      ],
+      "features": {
+        "age": "26",
+        "annual_spend": "1273.11",
+        "avg_basket": "30.04",
+        "days_since_last_visit": "6",
+        "online_share": "0.085",
+        "visits_per_month": "4.4"
+      }
+    },
+    {
+      "encoded": [
+        -0.03016415797173977,
+        0.0,
+        1.0907249450683594,
+        0.0,
+        -0.5038280487060547,
+        0.0,
+        -0.7867711186408997,
+        0.0,
+        -0.7953363656997681,
+        0.0,
+        -0.14576493203639984,
+        0.0
+      ],
+      "features": {
+        "age": "40",
+        "annual_spend": "3090.12",
+        "avg_basket": "29.29",
+        "days_since_last_visit": "3",
+        "online_share": "0.064",
+        "visits_per_month": "10.77"
+      }
+    },
+    {
+      "encoded": [
+        -0.06524743884801865,
+        0.0,
+        -0.8142209649085999,
+        0.0,
+        0.22334161400794983,
+        0.0,
+        -0.2012670338153839,
+        0.0,
+        1.5111021995544434,
+        0.0,
+        0.5834817290306091,
+        0.0
+      ],
+      "features": {
+        "age": "49",
+        "annual_spend": "3030.02",
+        "avg_basket": "84.49",
+        "days_since_last_visit": "11",
+        "online_share": "0.768",
+        "visits_per_month": "2.44"
+      }
+    },
+    {
+      "encoded": [
+        0.751282274723053,
+        0.0,
+        1.4154576063156128,
+        0.0,
+        -0.48288241028785706,
+        0.0,
+        -0.6403951048851013,
+        0.0,
+        -0.6642886996269226,
+        0.0,
+        -0.7939841747283936,
+        0.0
+      ],
+      "features": {
+        "age": "32",
+        "annual_spend": "4428.79",
+        "avg_basket": "30.88",
+        "days_since_last_visit": "5",
+        "online_share": "0.104",
+        "visits_per_month": "12.19"
+      }
+    },
+    {
+      "encoded": [
+        0.9820963740348816,
+        0.0,
+        -0.9834478497505188,
+        0.0,
+        1.5143312215805054,
+        0.0,
+        1.4088692665100098,
+        0.0,
+        -0.2875267267227173,
+        0.0,
+        -0.8750115633010864,
+        0.0
+      ],
+      "features": {
+        "age": "31",
+        "annual_spend": "4824.19",
+        "avg_basket": "182.49",
+        "days_since_last_visit": "33",
+        "online_share": "0.219",
+        "visits_per_month": "1.7"
+      }
+    },
+    {
+      "encoded": [
+        0.7339741587638855,
+        0.0,
+        1.5389474630355835,
+        0.0,
+        -0.3328377902507782,
+        0.0,
+        -0.7867711186408997,
+        0.0,
+        -0.9460411667823792,
+        0.0,
+        -0.4698745608329773,
+        0.0
+      ],
+      "features": {
+        "age": "36",
+        "annual_spend": "4399.14",
+        "avg_basket": "42.27",
+        "days_since_last_visit": "3",
+        "online_share": "0.018",
+        "visits_per_month": "12.73"
+      }
+    },
+    {
+      "encoded": [
+        -0.8819406032562256,
+        0.0,
+        -0.45289868116378784,
+        0.0,
+        -0.6242325901985168,
+        0.0,
+        -0.4208310842514038,
+        0.0,
+        -0.6118696331977844,
+        0.0,
+        1.150673508644104,
+        0.0
+      ],
+      "features": {
+        "age": "56",
+        "annual_spend": "1630.97",
+        "avg_basket": "20.15",
+        "days_since_last_visit": "8",
+        "online_share": "0.12",
+        "visits_per_month": "4.02"
+      }
+    },
+    {
+      "encoded": [
+        0.8327910900115967,
+        0.0,
+        0.7545579671859741,
+        0.0,
+        -0.2557736039161682,
+        0.0,
+        -0.7867711186408997,
+        0.0,
+        -0.8903459310531616,
+        0.0,
+        -1.766313076019287,
+        0.0
+      ],
+      "features": {
+        "age": "20",
+        "annual_spend": "4568.42",
+        "avg_basket": "48.12",
+        "days_since_last_visit": "3",
+        "online_share": "0.035",
+        "visits_per_month": "9.3"
+      }
+    },
+    {
+      "encoded": [
+        -0.5232505798339844,
+        0.0,
+        0.1462559551000595,
+        0.0,
+        -0.6916801929473877,
+        0.0,
+        -0.4208310842514038,
+        0.0,
+        -0.2351076751947403,
+        0.0,
+        0.34039950370788574,
+        0.0
+      ],
+      "features": {
+        "age": "46",
+        "annual_spend": "2245.43",
+        "avg_basket": "15.03",
+        "days_since_last_visit": "8",
+        "online_share": "0.235",
+        "visits_per_month": "6.64"
+      }
+    },
+    {
+      "encoded": [
+        0.34594491124153137,
+        0.0,
+        -1.0268980264663696,
+        0.0,
+        1.5359355211257935,
+        0.0,
+        3.3849456310272217,
+        0.0,
+        -0.2088981419801712,
+        0.0,
+        0.9075913429260254,
+        0.0
+      ],
+      "features": {
+        "age": "53",
+        "annual_spend": "3734.42",
+        "avg_basket": "184.13",
+        "days_since_last_visit": "60",
+        "online_share": "0.243",
+        "visits_per_month": "1.51"
+      }
+    },
+    {
+      "encoded": [
+        2.2155683040618896,
+        0.0,
+        -0.7479022741317749,
+        0.0,
+        2.090270757675171,
+        0.0,
+        1.0429291725158691,
+        0.0,
+        -0.1466505080461502,
+        0.0,
+        0.664509117603302,
+        0.0
+      ],
+      "features": {
+        "age": "50",
+        "annual_spend": "6937.21",
+        "avg_basket": "226.21",
+        "days_since_last_visit": "28",
+        "online_share": "0.262",
+        "visits_per_month": "2.73"
+      }
+    },
+    {
+      "encoded": [
+        -1.1938666105270386,
+        0.0,
+        0.45955437421798706,
+        0.0,
+        -0.6516332030296326,
+        0.0,
+        -0.2012670338153839,
+        0.0,
+        -0.5430696606636047,
+        0.0,
+        0.664509117603302,
+        0.0
+      ],
+      "features": {
+        "age": "50",
+        "annual_spend": "1096.62",
+        "avg_basket": "18.07",
+        "days_since_last_visit": "11",
+        "online_share": "0.141",
+        "visits_per_month": "8.01"
+      }
+    },
+    {
+      "encoded": [
+        -0.20031513273715973,
+        0.0,
+        2.3576395511627197,
+        0.0,
+        -0.2001820206642151,
+        0.0,
+        -0.8599591255187988,
+        0.0,
+        -0.5692791938781738,
+        0.0,
+        -0.3078197240829468,
+        0.0
+      ],
+      "features": {
+        "age": "38",
+        "annual_spend": "2798.64",
+        "avg_basket": "52.34",
+        "days_since_last_visit": "2",
+        "online_share": "0.133",
+        "visits_per_month": "16.31"
+      }
+    },
+    {
+      "encoded": [
+        -0.5166775584220886,
+        0.0,
+        -0.8462368249893188,
+        0.0,
+        0.18276765942573547,
+        0.0,
+        -0.054891008883714676,
+        0.0,
+        2.0746071338653564,
+        0.0,
+        -1.1991212368011475,
+        0.0
+      ],
+      "features": {
+        "age": "27",
+        "annual_spend": "2256.69",
+        "avg_basket": "81.41",
+        "days_since_last_visit": "13",
+        "online_share": "0.94",
+        "visits_per_month": "2.3"
+      }
+    },
+    {
+      "encoded": [
+        0.8516694903373718,
+        0.0,
+        -0.6861573457717896,
+        0.0,
+        -0.12799198925495148,
+        0.0,
+        0.01829700358211994,
+        0.0,
+        2.110645294189453,
+        0.0,
+        -0.5509019494056702,
+        0.0
+      ],
+      "features": {
+        "age": "35",
+        "annual_spend": "4600.76",
+        "avg_basket": "57.82",
+        "days_since_last_visit": "14",
+        "online_share": "0.951",
+        "visits_per_month": "3.0"
+      }
+    },
+    {
+      "encoded": [
+        -0.40303927659988403,
+        0.0,
+        -0.9011212587356567,
+        0.0,
+        -0.0407843217253685,
+        0.0,
+        -0.494019091129303,
+        0.0,
+        1.7633689641952515,
+        0.0,
+        -0.14576493203639984,
+        0.0
+      ],
+      "features": {
+        "age": "40",
+        "annual_spend": "2451.36",
+        "avg_basket": "64.44",
+        "days_since_last_visit": "7",
+        "online_share": "0.845",
+        "visits_per_month": "2.06"
+      }
+    },
+    {
+      "encoded": [
+        -0.4389047622680664,
+        0.0,
+        0.14854280650615692,
+        0.0,
+        -0.6669142842292786,
+        0.0,
+        -0.2012670338153839,
+        0.0,
+        -0.4840981960296631,
+        0.0,
+        -0.7129567861557007,
+        0.0
+      ],
+      "features": {
+        "age": "33",
+        "annual_spend": "2389.92",
+        "avg_basket": "16.91",
+        "days_since_last_visit": "11",
+        "online_share": "0.159",
+        "visits_per_month": "6.65"
+      }
+    },
+    {
+      "encoded": [
+        1.5905256271362305,
+        0.0,
+        -1.0200374126434326,
+        0.0,
+        1.1254535913467407,
+        0.0,
+        0.96974116563797,
+        0.0,
+        -0.45461246371269226,
+        0.0,
+        1.798892855644226,
+        0.0
+      ],
+      "features": {
+        "age": "64",
+        "annual_spend": "5866.47",
+        "avg_basket": "152.97",
+        "days_since_last_visit": "27",
+        "online_share": "0.168",
+        "visits_per_month": "1.54"
+      }
+    },
+    {
+      "encoded": [
+        -1.1707618236541748,
+        0.0,
+        -0.27223753929138184,
+        0.0,
+        -0.5969637036323547,
+        0.0,
+        -0.6403951048851013,
+        0.0,
+        -0.8706887364387512,
+        0.0,
+        3.3384134769439697,
+        0.0
+      ],
+      "features": {
+        "age": "83",
+        "annual_spend": "1136.2",
+        "avg_basket": "22.22",
+        "days_since_last_visit": "5",
+        "online_share": "0.041",
+        "visits_per_month": "4.81"
+      }
+    },
+    {
+      "encoded": [
+        0.948297381401062,
+        0.0,
+        -1.0520533323287964,
+        0.0,
+        2.6727967262268066,
+        0.0,
+        3.6776976585388184,
+        0.0,
+        -0.290802925825119,
+        0.0,
+        -1.118093729019165,
+        0.0
+      ],
+      "features": {
+        "age": "28",
+        "annual_spend": "4766.29",
+        "avg_basket": "270.43",
+        "days_since_last_visit": "64",
+        "online_share": "0.218",
+        "visits_per_month": "1.4"
+      }
+    },
+    {
+      "encoded": [
+        1.1256459951400757,
+        0.0,
+        0.5990521907806396,
+        0.0,
+        -0.14524909853935242,
+        0.0,
+        -0.7135831117630005,
+        0.0,
+        -0.31046006083488464,
+        0.0,
+        -0.8750115633010864,
+        0.0
+      ],
+      "features": {
+        "age": "31",
+        "annual_spend": "5070.1",
+        "avg_basket": "56.51",
+        "days_since_last_visit": "4",
+        "online_share": "0.212",
+        "visits_per_month": "8.62"
+      }
+    },
+    {
+      "encoded": [
+        0.38681313395500183,
+        0.0,
+        3.5993990898132324,
+        0.0,
+        -0.5989397168159485,
+        0.0,
+        -0.8599591255187988,
+        0.0,
+        -1.0050126314163208,
+        0.0,
+        -1.523230791091919,
+        0.0
+      ],
+      "features": {
+        "age": "23",
+        "annual_spend": "3804.43",
+        "avg_basket": "22.07",
+        "days_since_last_visit": "2",
+        "online_share": "0.0",
+        "visits_per_month": "21.74"
+      }
+    },
+    {
+      "encoded": [
+        -1.074752688407898,
+        0.0,
+        0.020479215309023857,
+        0.0,
+        -0.6486033201217651,
+        0.0,
+        0.09148501604795456,
+        0.0,
+        -0.477545827627182,
+        0.0,
+        0.8265639543533325,
+        0.0
+      ],
+      "features": {
+        "age": "52",
+        "annual_spend": "1300.67",
+        "avg_basket": "18.3",
+        "days_since_last_visit": "15",
+        "online_share": "0.161",
+        "visits_per_month": "6.09"
+      }
+    },
+    {
+      "encoded": [
+        2.126079797744751,
+        0.0,
+        -1.1069377660751343,
+        0.0,
+        1.2188526391983032,
+        0.0,
+        0.3842370808124542,
+        0.0,
+        -0.3071838617324829,
+        0.0,
+        -0.38884714245796204,
+        0.0
+      ],
+      "features": {
+        "age": "37",
+        "annual_spend": "6783.91",
+        "avg_basket": "160.06",
+        "days_since_last_visit": "19",
+        "online_share": "0.213",
+        "visits_per_month": "1.16"
+      }
+    },
+    {
+      "encoded": [
+        -1.1970596313476562,
+        0.0,
+        -0.25851646065711975,
+        0.0,
+        -0.6243643164634705,
+        0.0,
+        0.7501771450042725,
+        0.0,
+        -0.5430696606636047,
+        0.0,
+        -1.1991212368011475,
+        0.0
+      ],
+      "features": {
+        "age": "27",
+        "annual_spend": "1091.15",
+        "avg_basket": "20.14",
+        "days_since_last_visit": "24",
+        "online_share": "0.141",
+        "visits_per_month": "4.87"
+      }
+    },
+    {
+      "encoded": [
+        0.8644010424613953,
+        0.0,
+        1.545807957649231,
+        0.0,
+        -0.4461287260055542,
+        0.0,
+        -0.6403951048851013,
+        0.0,
+        -0.5463458299636841,
+        0.0,
+        0.34039950370788574,
+        0.0
+      ],
+      "features": {
+        "age": "46",
+        "annual_spend": "4622.57",
+        "avg_basket": "33.67",
+        "days_since_last_visit": "5",
+        "online_share": "0.14",
+        "visits_per_month": "12.76"
+      }
+    },
+    {
+      "encoded": [
+        0.02399018034338951,
+        0.0,
+        0.8391714096069336,
+        0.0,
+        -0.27013257145881653,
+        0.0,
+        -0.7867711186408997,
+        0.0,
+        -0.5135838985443115,
+        0.0,
+        0.1783446967601776,
+        0.0
+      ],
+      "features": {
+        "age": "44",
+        "annual_spend": "3182.89",
+        "avg_basket": "47.03",
+        "days_since_last_visit": "3",
+        "online_share": "0.15",
+        "visits_per_month": "9.67"
+      }
+    },
+    {
+      "encoded": [
+        -0.9653115272521973,
+        0.0,
+        -0.3339824974536896,
+        0.0,
+        -0.7348888516426086,
+        0.0,
+        -0.2744550406932831,
+        0.0,
+        -0.25804099440574646,
+        0.0,
+        -0.7939841747283936,
+        0.0
+      ],
+      "features": {
+        "age": "32",
+        "annual_spend": "1488.15",
+        "avg_basket": "11.75",
+        "days_since_last_visit": "10",
+        "online_share": "0.228",
+        "visits_per_month": "4.54"
+      }
+    },
+    {
+      "encoded": [
+        0.7224859595298767,
+        0.0,
+        0.21943514049053192,
+        0.0,
+        -0.17423048615455627,
+        0.0,
+        -0.6403951048851013,
+        0.0,
+        -1.0050126314163208,
+        0.0,
+        -0.9560389518737793,
+        0.0
+      ],
+      "features": {
+        "age": "30",
+        "annual_spend": "4379.46",
+        "avg_basket": "54.31",
+        "days_since_last_visit": "5",
+        "online_share": "0.0",
+        "visits_per_month": "6.96"
+      }
+    },
+    {
+      "encoded": [
+        -0.4847874045372009,
+        0.0,
+        -0.5649543404579163,
+        0.0,
+        0.28011882305145264,
+        0.0,
+        0.8965531587600708,
+        0.0,
+        1.7633689641952515,
+        0.0,
+        0.1783446967601776,
+        0.0
+      ],
+      "features": {
+        "age": "44",
+        "annual_spend": "2311.32",
+        "avg_basket": "88.8",
+        "days_since_last_visit": "26",
+        "online_share": "0.845",
+        "visits_per_month": "3.53"
+      }
+    },
+    {
+      "encoded": [
+        -0.7064074873924255,
+        0.0,
+        -0.4803408682346344,
+        0.0,
+        -0.6737644076347351,
+        0.0,
+        -0.2012670338153839,
+        0.0,
+        -0.8215458989143372,
+        0.0,
+        -1.9283678531646729,
+        0.0
+      ],
+      "features": {
+        "age": "18",
+        "annual_spend": "1931.67",
+        "avg_basket": "16.39",
+        "days_since_last_visit": "11",
+        "online_share": "0.056",
+        "visits_per_month": "3.9"
+      }
+    },
+    {
+      "encoded": [
+        0.5220209360122681,
+        0.0,
+        0.07536361366510391,
+        0.0,
+        -0.3328377902507782,
+        0.0,
+        -0.7867711186408997,
+        0.0,
+        -0.5070315599441528,
+        0.0,
+        0.2593720853328705,
+        0.0
+      ],
+      "features": {
+        "age": "45",
+        "annual_spend": "4036.05",
+        "avg_basket": "42.27",
+        "days_since_last_visit": "3",
+        "online_share": "0.152",
+        "visits_per_month": "6.33"
+      }
+    },
+    {
+      "encoded": [
+        -0.9499239325523376,
+        0.0,
+        -0.31340083479881287,
+        0.0,
+        -0.6011791825294495,
+        0.0,
+        0.16467303037643433,
+        0.0,
+        -0.5725553631782532,
+        0.0,
+        -0.8750115633010864,
+        0.0
+      ],
+      "features": {
+        "age": "31",
+        "annual_spend": "1514.51",
+        "avg_basket": "21.9",
+        "days_since_last_visit": "16",
+        "online_share": "0.132",
+        "visits_per_month": "4.63"
+      }
+    },
+    {
+      "encoded": [
+        0.9102603197097778,
+        0.0,
+        2.0534887313842773,
+        0.0,
+        -0.43901509046554565,
+        0.0,
+        -0.7135831117630005,
+        0.0,
+        -1.0050126314163208,
+        0.0,
+        -0.9560389518737793,
+        0.0
+      ],
+      "features": {
+        "age": "30",
+        "annual_spend": "4701.13",
+        "avg_basket": "34.21",
+        "days_since_last_visit": "4",
+        "online_share": "0.0",
+        "visits_per_month": "14.98"
+      }
+    },
+    {
+      "encoded": [
+        -1.2976336479187012,
+        0.0,
+        -0.29053235054016113,
+        0.0,
+        -0.5527012348175049,
+        0.0,
+        -0.34764304757118225,
+        0.0,
+        -0.8018887639045715,
+        0.0,
+        -0.7939841747283936,
+        0.0
+      ],
+      "features": {
+        "age": "32",
+        "annual_spend": "918.86",
+        "avg_basket": "25.58",
+        "days_since_last_visit": "9",
+        "online_share": "0.062",
+        "visits_per_month": "4.73"
+      }
+    },
+    {
+      "encoded": [
+        0.7315223813056946,
+        0.0,
+        -1.1298061609268188,
+        0.0,
+        1.7828043699264526,
+        0.0,
+        0.6769891381263733,
+        0.0,
+        0.04009239003062248,
+        0.0,
+        -0.3078197240829468,
+        0.0
+      ],
+      "features": {
+        "age": "38",
+        "annual_spend": "4394.94",
+        "avg_basket": "202.87",
+        "days_since_last_visit": "23",
+        "online_share": "0.319",
+        "visits_per_month": "1.06"
+      }
+    },
+    {
+      "encoded": [
+        -1.4197479486465454,
+        0.0,
+        -0.06870792806148529,
+        0.0,
+        -0.7161826491355896,
+        0.0,
+        -0.4208310842514038,
+        0.0,
+        -0.2875267267227173,
+        0.0,
+        -1.6852855682373047,
+        0.0
+      ],
+      "features": {
+        "age": "21",
+        "annual_spend": "709.67",
+        "avg_basket": "13.17",
+        "days_since_last_visit": "8",
+        "online_share": "0.219",
+        "visits_per_month": "5.7"
+      }
+    },
+    {
+      "encoded": [
+        -0.5018094778060913,
+        0.0,
+        -0.73875492811203,
+        0.0,
+        0.050770554691553116,
+        0.0,
+        -0.2012670338153839,
+        0.0,
+        1.733883261680603,
+        0.0,
+        -0.4698745608329773,
+        0.0
+      ],
+      "features": {
+        "age": "36",
+        "annual_spend": "2282.16",
+        "avg_basket": "71.39",
+        "days_since_last_visit": "11",
+        "online_share": "0.836",
+        "visits_per_month": "2.77"
+      }
+    },
+    {
+      "encoded": [
+        -0.021548030897974968,
+        0.0,
+        2.12209415435791,
+        0.0,
+        -0.520294725894928,
+        0.0,
+        -0.7867711186408997,
+        0.0,
+        -0.9525935649871826,
+        0.0,
+        -0.14576493203639984,
+        0.0
+      ],
+      "features": {
+        "age": "40",
+        "annual_spend": "3104.88",
+        "avg_basket": "28.04",
+        "days_since_last_visit": "3",
+        "online_share": "0.016",
+        "visits_per_month": "15.28"
+      }
+    },
+    {
+      "encoded": [
+        1.4737526178359985,
+        0.0,
+        0.8117292523384094,
+        0.0,
+        -0.5953829288482666,
+        0.0,
+        -0.7867711186408997,
+        0.0,
+        -0.7822315692901611,
+        0.0,
+        -0.8750115633010864,
+        0.0
+      ],
+      "features": {
+        "age": "31",
+        "annual_spend": "5666.43",
+        "avg_basket": "22.34",
+        "days_since_last_visit": "3",
+        "online_share": "0.068",
+        "visits_per_month": "9.55"
+      }
+    },
+    {
+      "encoded": [
+        -0.983594536781311,
+        0.0,
+        -0.10301066935062408,
+        0.0,
+        -0.6208075284957886,
+        0.0,
+        0.8233651518821716,
+        0.0,
+        -0.2252790927886963,
+        0.0,
+        -0.14576493203639984,
+        0.0
+      ],
+      "features": {
+        "age": "40",
+        "annual_spend": "1456.83",
+        "avg_basket": "20.41",
+        "days_since_last_visit": "25",
+        "online_share": "0.238",
+        "visits_per_month": "5.55"
+      }
+    },
+    {
+      "encoded": [
+        -1.4233789443969727,
+        0.0,
+        -0.3957274258136749,
+        0.0,
+        -0.5649524331092834,
+        0.0,
+        -0.494019091129303,
+        0.0,
+        -0.477545827627182,
+        0.0,
+        -0.9560389518737793,
+        0.0
+      ],
+      "features": {
+        "age": "30",
+        "annual_spend": "703.45",
+        "avg_basket": "24.65",
+        "days_since_last_visit": "7",
+        "online_share": "0.161",
+        "visits_per_month": "4.27"
+      }
+    },
+    {
+      "encoded": [
+        -0.6312090158462524,
+        0.0,
+        -0.727320671081543,
+        0.0,
+        -0.10533380508422852,
+        0.0,
+        0.4574250876903534,
+        0.0,
+        1.3800545930862427,
+        0.0,
+        1.0696461200714111,
+        0.0
+      ],
+      "features": {
+        "age": "55",
+        "annual_spend": "2060.49",
+        "avg_basket": "59.54",
+        "days_since_last_visit": "20",
+        "online_share": "0.728",
+        "visits_per_month": "2.82"
+      }
+    },
+    {
+      "encoded": [
+        -1.001970887184143,
+        0.0,
+        -0.478054016828537,
+        0.0,
+        -0.5606052279472351,
+        0.0,
+        -0.2012670338153839,
+        0.0,
+        -0.6348029971122742,
+        0.0,
+        -0.14576493203639984,
+        0.0
+      ],
+      "features": {
+        "age": "40",
+        "annual_spend": "1425.35",
+        "avg_basket": "24.98",
+        "days_since_last_visit": "11",
+        "online_share": "0.113",
+        "visits_per_month": "3.91"
+      }
+    }
+  ],
+  "task": "clustering",
+  "track": {
+    "names": "semantic",
+    "policy": "strict"
+  }
+}

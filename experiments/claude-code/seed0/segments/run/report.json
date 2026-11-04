@@ -1,0 +1,121 @@
+{
+  "architecture": {
+    "activations": [],
+    "hidden_sizes": [],
+    "output_size": 4
+  },
+  "assurance": "source-recorded and statically audited; no-fitting policy is not mechanically proven",
+  "cost": {
+    "currency_cost": null,
+    "editor_tokens": 0,
+    "evaluated_rows": 640,
+    "revealed_development_labels": 0,
+    "wall_seconds": 56.44977674999973
+  },
+  "development": {
+    "adjusted_rand": null,
+    "cluster_sizes": [
+      84,
+      49,
+      96,
+      91
+    ],
+    "clusters_used": 4,
+    "inertia": 1.8034946519057882,
+    "n": 320,
+    "silhouette": 0.42795334520104705
+  },
+  "editor": {
+    "assurance": "source-recorded and statically audited; no-fitting policy is not mechanically proven",
+    "base_url": null,
+    "image": "mlsurgie-constructor:local",
+    "interface": "Claude Code session via file bridge; Docker sandbox; strict audit",
+    "kind": "interactive_llm",
+    "max_agent_steps": 60,
+    "model": "claude-opus-5-5",
+    "token_accounting": "not available from the host session"
+  },
+  "final_evaluation_error": null,
+  "final_target_met": null,
+  "final_test": {
+    "adjusted_rand": 0.9812017476808458,
+    "cluster_sizes": [
+      79,
+      55,
+      83,
+      103
+    ],
+    "clusters_used": 4,
+    "inertia": 2.131292601709737,
+    "n": 320,
+    "silhouette": 0.41980855955175933
+  },
+  "history": [
+    {
+      "audit": {
+        "scanned_files": 5,
+        "violations": []
+      },
+      "diff": {
+        "base_hash": "zero",
+        "changed_values": 24,
+        "l2_change": 15.449008827875463
+      },
+      "iteration": 1,
+      "metrics": {
+        "adjusted_rand": null,
+        "cluster_sizes": [
+          84,
+          49,
+          96,
+          91
+        ],
+        "clusters_used": 4,
+        "inertia": 1.8034946519057882,
+        "n": 320,
+        "silhouette": 0.42795334520104705
+      },
+      "selected": true,
+      "state_hash": "64128b6a4ce56f277f373efb52fe7623e7ea26a740fa96f113d5a3ecda787258",
+      "status": "evaluated",
+      "usage": {
+        "input_tokens": 0,
+        "measurement": "unavailable: interactive Claude Code session",
+        "output_tokens": 0,
+        "tool_calls": 3
+      }
+    },
+    {
+      "audit": {
+        "scanned_files": 2,
+        "violations": []
+      },
+      "iteration": 2,
+      "selected": false,
+      "status": "editor_stopped",
+      "usage": {
+        "input_tokens": 0,
+        "measurement": "unavailable: interactive Claude Code session",
+        "output_tokens": 0,
+        "tool_calls": 0
+      }
+    }
+  ],
+  "limitations": [
+    "Adaptive development evaluation can overfit.",
+    "Accuracy interval is Wilson 95%, assumes independent observations; other metrics have no interval here.",
+    "Custom Python editor plugins are trusted; isolation is enforced through built-in JSON editor contexts, not an OS sandbox.",
+    "Token limits stop subsequent work; one provider request can overshoot due to input token usage.",
+    "Scripted fixtures demonstrate the protocol, not autonomous LLM performance."
+  ],
+  "parameters": 52,
+  "selected_iteration": 1,
+  "selection_metric": "silhouette",
+  "status": "completed",
+  "stop_reason": "editor_finished",
+  "task": "clustering",
+  "track": {
+    "names": "semantic",
+    "policy": "strict"
+  }
+}

@@ -1,0 +1,36 @@
+merchant_category=electronics                        n=  528 f= 24 rate=0.045 share=0.16
+merchant_category=gaming                             n=  394 f= 23 rate=0.058 share=0.16
+merchant_category=gift_cards                         n=  425 f= 49 rate=0.115 share=0.33
+merchant_category=grocery                            n= 2068 f= 16 rate=0.008 share=0.11
+merchant_category=restaurants                        n= 1477 f= 14 rate=0.009 share=0.09
+merchant_category=retail                             n= 1768 f= 19 rate=0.011 share=0.13
+merchant_category=travel                             n=  539 f=  3 rate=0.006 share=0.02
+card_present=no                                      n= 2209 f=127 rate=0.057 share=0.86
+card_present=yes                                     n= 4990 f= 21 rate=0.004 share=0.14
+country_mismatch=no                                  n= 6797 f=117 rate=0.017 share=0.79
+country_mismatch=yes                                 n=  402 f= 31 rate=0.077 share=0.21
+amount<10                                            n=  642 f= 37 rate=0.058 share=0.25
+amount>=10                                           n= 6557 f=111 rate=0.017 share=0.75
+amount<100                                           n= 5631 f= 69 rate=0.012 share=0.47
+amount>=100                                          n= 1568 f= 79 rate=0.050 share=0.53
+amount<180                                           n= 6480 f= 82 rate=0.013 share=0.55
+amount>=180                                          n=  719 f= 66 rate=0.092 share=0.45
+amount<300                                           n= 6890 f= 93 rate=0.013 share=0.63
+amount>=300                                          n=  309 f= 55 rate=0.178 share=0.37
+new&big                                              n=   74 f= 47 rate=0.635 share=0.32
+new&big&cnp                                          n=   53 f= 47 rate=0.887 share=0.32
+new&big&cnp&risky                                    n=   49 f= 47 rate=0.959 share=0.32
+vel&tiny                                             n=   40 f= 37 rate=0.925 share=0.25
+vel&tiny&cnp                                         n=   37 f= 37 rate=1.000 share=0.25
+vel                                                  n=   76 f= 37 rate=0.487 share=0.25
+far&cnp                                              n=   40 f= 34 rate=0.850 share=0.23
+far&night                                            n=   34 f= 34 rate=1.000 share=0.23
+xborder&cnp                                          n=  132 f= 31 rate=0.235 share=0.21
+xborder&cnp&night                                    n=   39 f= 30 rate=0.769 share=0.20
+far&cnp&night                                        n=   34 f= 34 rate=1.000 share=0.23
+xborder&far                                          n=   29 f= 29 rate=1.000 share=0.20
+ANY signature                                        n=  142 f=118 rate=0.831 share=0.80
+outside signatures                                   n= 7057 f= 30 rate=0.004 share=0.20
+missing distance among fraud 7
+
+No /workspace/candidate.json yet.

@@ -1,0 +1,221 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>MLSurgie run</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{max-width:960px;margin:48px auto;padding:0 24px;font:16px/1.6 system-ui;color:#1b2937;}h1{font-size:36px;letter-spacing:-1px}h2{margin-top:36px}p{max-width:780px}.tag{font-size:13px;text-transform:uppercase;letter-spacing:1px;color:#146b64}.summary{background:#edf5f3;border-left:4px solid #146b64;padding:16px 24px}table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}th,td{text-align:left;padding:10px;border-bottom:1px solid #dce4e8}thead{background:#f1f4f6}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f4f5f7;padding:24px}details{margin-top:32px}summary{cursor:pointer}li{margin:8px 0}</style><p class="tag">MLSurgie / Live editor run · direct weight programming</p><h1>Weight-space programming run</h1><div class="summary"><strong>completed</strong> · selected iteration 2<br>Stop reason: editor_finished</div><p>Construction assurance: source-recorded and statically audited; no-fitting policy is not mechanically proven</p><h2>Prediction quality</h2><p>Development feedback selected the checkpoint. Final test predictions were computed only after selection.</p><table><thead><tr><th>Metric</th><th>Development</th><th>Final test</th></tr></thead><tbody><tr><th>n</th><td>2400</td><td>2401</td></tr><tr><th>log_loss</th><td>0.0335316</td><td>0.0354907</td></tr><tr><th>brier</th><td>0.00642209</td><td>0.00667214</td></tr><tr><th>roc_auc</th><td>0.90427</td><td>0.918856</td></tr><tr><th>average_precision</th><td>0.794892</td><td>0.783152</td></tr><tr><th>accuracy</th><td>0.9925</td><td>0.992087</td></tr><tr><th>balanced_accuracy</th><td>0.836309</td><td>0.829575</td></tr><tr><th>precision</th><td>0.942857</td><td>0.942857</td></tr><tr><th>recall</th><td>0.673469</td><td>0.66</td></tr><tr><th>f1</th><td>0.785714</td><td>0.776471</td></tr></tbody></table><h2>Candidate history</h2><p>“Selected” means the candidate became best at that iteration. Changed values are relative to each proposal’s declared base.</p><table><thead><tr><th>Iteration</th><th>Status</th><th>average_precision</th><th>Changed values</th><th>Selected</th></tr></thead><tbody><tr><td>1</td><td>evaluated</td><td>0.763928</td><td>67</td><td>Yes</td></tr><tr><td>2</td><td>evaluated</td><td>0.794892</td><td>62</td><td>Yes</td></tr><tr><td>3</td><td>editor_stopped</td><td>—</td><td>—</td><td>No</td></tr></tbody></table><h2>Compute</h2><p>7201 evaluated rows · 0 editor tokens · 168.13 seconds. Monetary cost is not estimated.</p><h2>Interpretation limits</h2><ul><li>Adaptive development evaluation can overfit.</li><li>Accuracy interval is Wilson 95%, assumes independent observations; other metrics have no interval here.</li><li>Custom Python editor plugins are trusted; isolation is enforced through built-in JSON editor contexts, not an OS sandbox.</li><li>Token limits stop subsequent work; one provider request can overshoot due to input token usage.</li><li>Scripted fixtures demonstrate the protocol, not autonomous LLM performance.</li></ul><details><summary>Full metrics, confusion matrices, intervals, and run record</summary><pre>{
+  &quot;status&quot;: &quot;completed&quot;,
+  &quot;task&quot;: &quot;binary&quot;,
+  &quot;selection_metric&quot;: &quot;average_precision&quot;,
+  &quot;final_evaluation_error&quot;: null,
+  &quot;editor&quot;: {
+    &quot;kind&quot;: &quot;interactive_llm&quot;,
+    &quot;model&quot;: &quot;claude-opus-5-5&quot;,
+    &quot;base_url&quot;: null,
+    &quot;image&quot;: &quot;mlsurgie-constructor:local&quot;,
+    &quot;max_agent_steps&quot;: 60,
+    &quot;assurance&quot;: &quot;source-recorded and statically audited; no-fitting policy is not mechanically proven&quot;,
+    &quot;interface&quot;: &quot;Claude Code session via file bridge; Docker sandbox; strict audit&quot;,
+    &quot;token_accounting&quot;: &quot;not available from the host session&quot;
+  },
+  &quot;stop_reason&quot;: &quot;editor_finished&quot;,
+  &quot;selected_iteration&quot;: 2,
+  &quot;assurance&quot;: &quot;source-recorded and statically audited; no-fitting policy is not mechanically proven&quot;,
+  &quot;track&quot;: {
+    &quot;names&quot;: &quot;semantic&quot;,
+    &quot;policy&quot;: &quot;strict&quot;
+  },
+  &quot;development&quot;: {
+    &quot;n&quot;: 2400,
+    &quot;positive_count&quot;: 49,
+    &quot;threshold&quot;: 0.5,
+    &quot;log_loss&quot;: 0.03353160326742933,
+    &quot;brier&quot;: 0.006422089994784129,
+    &quot;roc_auc&quot;: 0.9042700023437703,
+    &quot;average_precision&quot;: 0.7948923377080972,
+    &quot;accuracy&quot;: 0.9925,
+    &quot;balanced_accuracy&quot;: 0.8363093429630466,
+    &quot;precision&quot;: 0.9428571428571428,
+    &quot;recall&quot;: 0.673469387755102,
+    &quot;f1&quot;: 0.7857142857142857,
+    &quot;confusion_matrix&quot;: [
+      [
+        2349,
+        2
+      ],
+      [
+        16,
+        33
+      ]
+    ],
+    &quot;accuracy_wilson_95&quot;: [
+      0.9881752206708239,
+      0.9952506423311311
+    ]
+  },
+  &quot;final_test&quot;: {
+    &quot;n&quot;: 2401,
+    &quot;positive_count&quot;: 50,
+    &quot;threshold&quot;: 0.5,
+    &quot;log_loss&quot;: 0.03549074847942921,
+    &quot;brier&quot;: 0.006672139446577855,
+    &quot;roc_auc&quot;: 0.918855806039983,
+    &quot;average_precision&quot;: 0.7831520450285329,
+    &quot;accuracy&quot;: 0.9920866305705955,
+    &quot;balanced_accuracy&quot;: 0.8295746490854956,
+    &quot;precision&quot;: 0.9428571428571428,
+    &quot;recall&quot;: 0.66,
+    &quot;f1&quot;: 0.7764705882352941,
+    &quot;confusion_matrix&quot;: [
+      [
+        2349,
+        2
+      ],
+      [
+        17,
+        33
+      ]
+    ],
+    &quot;accuracy_wilson_95&quot;: [
+      0.9876730086284152,
+      0.9949280907537644
+    ]
+  },
+  &quot;final_target_met&quot;: null,
+  &quot;parameters&quot;: 478,
+  &quot;architecture&quot;: {
+    &quot;hidden_sizes&quot;: [
+      11,
+      13
+    ],
+    &quot;activations&quot;: [
+      &quot;sigmoid&quot;,
+      &quot;relu&quot;
+    ],
+    &quot;output_size&quot;: 1
+  },
+  &quot;history&quot;: [
+    {
+      &quot;iteration&quot;: 1,
+      &quot;selected&quot;: true,
+      &quot;usage&quot;: {
+        &quot;input_tokens&quot;: 0,
+        &quot;output_tokens&quot;: 0,
+        &quot;measurement&quot;: &quot;unavailable: interactive Claude Code session&quot;,
+        &quot;tool_calls&quot;: 4
+      },
+      &quot;audit&quot;: {
+        &quot;scanned_files&quot;: 6,
+        &quot;violations&quot;: []
+      },
+      &quot;status&quot;: &quot;evaluated&quot;,
+      &quot;state_hash&quot;: &quot;91d202b0f05fa6c02d2f387c6fc1cb7f71940ce65480301481558f175630f262&quot;,
+      &quot;metrics&quot;: {
+        &quot;n&quot;: 2400,
+        &quot;positive_count&quot;: 49,
+        &quot;threshold&quot;: 0.5,
+        &quot;log_loss&quot;: 0.03690152171120719,
+        &quot;brier&quot;: 0.005951561817580151,
+        &quot;roc_auc&quot;: 0.8836361426748496,
+        &quot;average_precision&quot;: 0.7639280717324254,
+        &quot;accuracy&quot;: 0.9933333333333333,
+        &quot;balanced_accuracy&quot;: 0.8866917247545552,
+        &quot;precision&quot;: 0.8837209302325582,
+        &quot;recall&quot;: 0.7755102040816326,
+        &quot;f1&quot;: 0.8260869565217391,
+        &quot;confusion_matrix&quot;: [
+          [
+            2346,
+            5
+          ],
+          [
+            11,
+            38
+          ]
+        ],
+        &quot;accuracy_wilson_95&quot;: [
+          0.989197604973952,
+          0.9958922611802904
+        ]
+      },
+      &quot;diff&quot;: {
+        &quot;changed_values&quot;: 67,
+        &quot;l2_change&quot;: 585.8748815520994,
+        &quot;base_hash&quot;: &quot;zero&quot;
+      }
+    },
+    {
+      &quot;iteration&quot;: 2,
+      &quot;selected&quot;: true,
+      &quot;usage&quot;: {
+        &quot;input_tokens&quot;: 0,
+        &quot;output_tokens&quot;: 0,
+        &quot;measurement&quot;: &quot;unavailable: interactive Claude Code session&quot;,
+        &quot;tool_calls&quot;: 3
+      },
+      &quot;audit&quot;: {
+        &quot;scanned_files&quot;: 6,
+        &quot;violations&quot;: []
+      },
+      &quot;status&quot;: &quot;evaluated&quot;,
+      &quot;state_hash&quot;: &quot;ab0faaac5226f31355fe64d0bfd2fb0ed87aa4ab30c1c7a1509598805d3c7824&quot;,
+      &quot;metrics&quot;: {
+        &quot;n&quot;: 2400,
+        &quot;positive_count&quot;: 49,
+        &quot;threshold&quot;: 0.5,
+        &quot;log_loss&quot;: 0.03353160326742933,
+        &quot;brier&quot;: 0.006422089994784129,
+        &quot;roc_auc&quot;: 0.9042700023437703,
+        &quot;average_precision&quot;: 0.7948923377080972,
+        &quot;accuracy&quot;: 0.9925,
+        &quot;balanced_accuracy&quot;: 0.8363093429630466,
+        &quot;precision&quot;: 0.9428571428571428,
+        &quot;recall&quot;: 0.673469387755102,
+        &quot;f1&quot;: 0.7857142857142857,
+        &quot;confusion_matrix&quot;: [
+          [
+            2349,
+            2
+          ],
+          [
+            16,
+            33
+          ]
+        ],
+        &quot;accuracy_wilson_95&quot;: [
+          0.9881752206708239,
+          0.9952506423311311
+        ]
+      },
+      &quot;diff&quot;: {
+        &quot;changed_values&quot;: 62,
+        &quot;l2_change&quot;: 585.5310544684403,
+        &quot;base_hash&quot;: &quot;zero&quot;
+      }
+    },
+    {
+      &quot;iteration&quot;: 3,
+      &quot;selected&quot;: false,
+      &quot;usage&quot;: {
+        &quot;input_tokens&quot;: 0,
+        &quot;output_tokens&quot;: 0,
+        &quot;measurement&quot;: &quot;unavailable: interactive Claude Code session&quot;,
+        &quot;tool_calls&quot;: 1
+      },
+      &quot;audit&quot;: {
+        &quot;scanned_files&quot;: 4,
+        &quot;violations&quot;: []
+      },
+      &quot;status&quot;: &quot;editor_stopped&quot;
+    }
+  ],
+  &quot;cost&quot;: {
+    &quot;evaluated_rows&quot;: 7201,
+    &quot;editor_tokens&quot;: 0,
+    &quot;revealed_development_labels&quot;: 16,
+    &quot;wall_seconds&quot;: 168.1296027909848,
+    &quot;currency_cost&quot;: null
+  },
+  &quot;limitations&quot;: [
+    &quot;Adaptive development evaluation can overfit.&quot;,
+    &quot;Accuracy interval is Wilson 95%, assumes independent observations; other metrics have no interval here.&quot;,
+    &quot;Custom Python editor plugins are trusted; isolation is enforced through built-in JSON editor contexts, not an OS sandbox.&quot;,
+    &quot;Token limits stop subsequent work; one provider request can overshoot due to input token usage.&quot;,
+    &quot;Scripted fixtures demonstrate the protocol, not autonomous LLM performance.&quot;
+  ]
+}</pre></details></html>

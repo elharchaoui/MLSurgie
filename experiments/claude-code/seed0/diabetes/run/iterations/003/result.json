@@ -1,0 +1,15 @@
+{
+  "audit": {
+    "scanned_files": 3,
+    "violations": []
+  },
+  "iteration": 3,
+  "selected": false,
+  "status": "editor_stopped",
+  "usage": {
+    "input_tokens": 0,
+    "measurement": "unavailable: interactive Claude Code session",
+    "output_tokens": 0,
+    "tool_calls": 0
+  }
+}

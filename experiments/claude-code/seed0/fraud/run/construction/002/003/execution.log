@@ -1,0 +1,26 @@
+/workspace/bench.py:12: RuntimeWarning: overflow encountered in exp
+  "sigmoid": lambda z: 1 / (1 + np.exp(-z)), "identity": lambda z: z}
+/workspace/fraud_v2.py:32: RuntimeWarning: overflow encountered in exp
+  h1 = 1 / (1 + np.exp(-(X @ W0.T + b0)))
+/workspace/fraud_v2.py:48: RuntimeWarning: overflow encountered in exp
+  h2 = np.maximum((1 / (1 + np.exp(-(X @ W0.T + b0)))) @ W1.T + b1, 0)
+evidence/signature ledger (name, rows, frauds, weight):
+  ('cnp', 2080, 9, np.float64(0.02))
+  ('gift', 379, 3, np.float64(0.41))
+  ('risky', 884, 8, np.float64(0.56))
+  ('game', 373, 2, np.float64(0.15))
+  ('vel', 39, 0, np.float64(-1.8))
+  ('big', 1115, 6, np.float64(0.17))
+  ('xb', 362, 0, np.float64(-3.14))
+  ('night', 605, 3, np.float64(0.1))
+  ('new', 236, 0, np.float64(-2.87))
+  ('bustout', 49, 47, np.float64(10.0))
+  ('testing', 37, 37, np.float64(10.48))
+  ('farnight', 34, 34, np.float64(11.23))
+  ('xbnight', 39, 30, np.float64(9.34))
+  ('bustout_calibrated', 49, 47, np.float64(10.37), np.float64(0.941))
+  ('testing_calibrated', 37, 37, np.float64(11.14), np.float64(0.974))
+  ('farnight_calibrated', 34, 34, np.float64(3.72), np.float64(0.972))
+  ('xbnight_calibrated', 39, 30, np.float64(6.63), np.float64(0.756))
+base -5.3 | support AP 0.8183 logloss 0.0303 mean p 0.0198 rate 0.0206
+split-half AP even/odd 0.859 0.7927

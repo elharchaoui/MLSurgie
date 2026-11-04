@@ -1,0 +1,5 @@
+Iteration 1 of 8.
+Goal: Diagnose malignant versus benign breast masses from cell-nucleus measurements of fine-needle aspirates.
+Task: binary; selection metric: log_loss; output_size: 1; support rows: 341.
+Start by reading /inputs/README.md, /inputs/task.json and /skills/README.md.
+Remaining: {"iterations": 8, "seconds": "unlimited", "editor_tokens": "unlimited"}. Write /workspace/candidate.json, then end your turn (or finish_run=true to stop).

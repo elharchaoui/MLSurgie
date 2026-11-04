@@ -1,0 +1,18 @@
+('bmi', np.float64(40.98), 61.71)
+('s5', np.float64(21.42), 56.71)
+('bp', np.float64(4.89), 56.13)
+('s3', np.float64(-5.58), 55.83)
+('sex', np.float64(-13.36), 55.23)
+('s6', np.float64(-1.44), 'dropped')
+('s4', np.float64(-2.11), 'dropped')
+('age', np.float64(0.26), 'dropped')
+('s1', np.float64(-5.73), 54.8)
+('s2', np.float64(-0.73), 'dropped')
+support RMSE 54.8 halves 53.19 56.38 baseline sd 78.5
+s3 residual by quintile: [7.6, 8.2, -11.5, -1.9, -2.2] edges [39.0, 45.6, 51.0, 60.0, 98.0]
+bmi residual by quintile: [8.1, 3.7, -8.9, 3.6, -6.7] edges [22.6, 24.66, 26.9, 31.0, 42.2]
+s5 residual by quintile: [-5.0, -3.2, -7.9, 9.4, 6.1] edges [4.19, 4.44, 4.73, 5.09, 5.96]
+bp residual by quintile: [-5.6, -0.1, -6.4, 4.1, 8.5] edges [82.93, 89.0, 97.0, 109.0, 133.0]
+age residual by quintile: [2.6, -1.0, -5.5, -5.7, 10.3] edges [35.0, 46.0, 52.0, 60.0, 79.0]
+
+candidate.json captured. End this turn to submit it, or keep revising.

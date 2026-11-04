@@ -1,0 +1,11 @@
+# Inputs (read-only)
+
+- `task.json`: goal, task type (multiclass), classes, output size, feature declarations,
+  preprocessing state, encoded feature names, budgets, track, and the weight-program format.
+- `state.json`: refreshed every turn: iteration, remaining budgets, best network (weights and hash),
+  best development metrics, and last development feedback.
+- `data/support.csv`: 105 labeled su
+encoded: ['alcohol:standardized', 'alcohol:missing', 'malic_acid:standardized', 'malic_acid:missing', 'ash:standardized', 'ash:missing', 'alcalinity_of_ash:standardized', 'alcalinity_of_ash:missing', 'magnesium:standardized', 'magnesium:missing', 'total_phenols:standardized', 'total_phenols:missing', 'flavanoids:standardized', 'flavanoids:missing', 'nonflavanoid_phenols:standardized', 'nonflavanoid_phenols:missing', 'proanthocyanins:standardized', 'proanthocyanins:missing', 'color_intensity:standardized', 'color_intensity:missing', 'hue:standardized', 'hue:missing', 'od280_od315_of_diluted_wines:standardized', 'od280_od315_of_diluted_wines:missing', 'proline:standardized', 'proline:missing']
+{'alcohol': {'mean': 13.014857142857142, 'scale': 0.8157253439330507, 'median': 13.05}, 'malic_acid': {'mean': 2.3285714285714287, 'scale': 1.1024608219549474, 'median': 1.87}, 'ash': {'mean': 2.388571428571429, 'scale': 0.2935283828944415, 'median': 2.4}, 'alcalinity_of_ash': {'mean': 19.823809523809523, 'scale': 3.4702140405929347, 'median': 20.0}, 'magnesium': {'mean': 98.65714285714286, 'scale': 12.797937759043592, 'median': 97.0}, 'total_phenols': {'mean': 2.2624761904761903, 'scale': 0.6377397303907143, 'median': 2.2}, 'flavanoids': {'mean': 2.0014285714285713, 'scale': 0.9934292972866681, 'median': 2.03}, 'nonflavanoid_phenols': {'mean': 0.3547619047619048, 'scale': 0.12560781927506962, 'median': 0.32}, 'proanthocyanins': {'mean': 1.513238095238095, 'scale': 0.5429452225954557, 'median': 1.46}, 'color_intensity': {'mean': 4.908952380952382, 'scale': 2.1009063458238453, 'median': 4.6}, 'hue': {'mean': 0.9584380952380952, 'scale': 0.21222539338253538, 'median': 0.97}, 'od280_od315_of_diluted_wines': {'mean': 2.5899047619047617, 'scale': 0.732890552782799, 'median': 2.75}, 'proline': {'mean': 732.0190476190476, 'scale': 303.0559584019138, 'median': 630.0}}
+
+No /workspace/candidate.json yet.

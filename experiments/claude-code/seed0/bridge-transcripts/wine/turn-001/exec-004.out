@@ -1,0 +1,14 @@
+T=1 support logloss/acc (0.1239144115058485, 0.9428571428571428) halves (0.19381839152440736, 0.9245283018867925) (0.052666124179240444, 0.9615384615384616)
+confusion (rows true, cols pred):
+[[33  2  0]
+ [ 1 38  3]
+ [ 0  0 28]]
+true 1 p [0.995 0.005 0.   ] {'flavanoids': 0.89, 'od280_od31': 1.24, 'proline': 0.83, 'color_inte': -0.74, 'alcohol': -0.03, 'hue': 1.66, 'total_phen': 1.63, 'malic_acid': -0.6, 'magnesium': 3.15, 'alcalinity': 2.93}
+true 1 p [0.    0.131 0.869] {'flavanoids': -0.6, 'od280_od31': -1.36, 'proline': -0.93, 'color_inte': 0.4, 'alcohol': -0.46, 'hue': 0.1, 'total_phen': -0.38, 'malic_acid': -0.88, 'magnesium': 0.1, 'alcalinity': -0.87}
+true 0 p [0.22  0.78  0.001] {'flavanoids': 0.63, 'od280_od31': 0.56, 'proline': -0.17, 'color_inte': -0.26, 'alcohol': 0.28, 'hue': -0.65, 'total_phen': 0.59, 'malic_acid': 1.5, 'magnesium': 0.34, 'alcalinity': -0.67}
+true 1 p [0.    0.324 0.676] {'flavanoids': -0.41, 'od280_od31': -0.79, 'proline': -0.72, 'color_inte': -0.05, 'alcohol': 0.04, 'hue': -0.56, 'total_phen': -0.96, 'malic_acid': 1.39, 'magnesium': -1.07, 'alcalinity': 0.77}
+true 0 p [0.443 0.557 0.   ] {'flavanoids': 0.69, 'od280_od31': 0.46, 'proline': 0.01, 'color_inte': -0.28, 'alcohol': 0.28, 'hue': 0.38, 'total_phen': 0.84, 'malic_acid': 0.24, 'magnesium': 1.51, 'alcalinity': 0.34}
+true 1 p [0.    0.496 0.504] {'flavanoids': -0.76, 'od280_od31': -0.64, 'proline': -1.19, 'color_inte': -0.72, 'alcohol': -0.3, 'hue': -1.22, 'total_phen': -0.99, 'malic_acid': 1.0, 'magnesium': -1.46, 'alcalinity': -1.1}
+true 1 p [0.    0.602 0.398] {'flavanoids': -0.99, 'od280_od31': -1.05, 'proline': 0.46, 'color_inte': -0.88, 'alcohol': -0.89, 'hue': -0.25, 'total_phen': -1.82, 'malic_acid': -0.65, 'magnesium': 0.34, 'alcalinity': 0.17}
+
+No /workspace/candidate.json yet.

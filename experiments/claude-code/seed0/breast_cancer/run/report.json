@@ -1,0 +1,170 @@
+{
+  "architecture": {
+    "activations": [
+      "relu"
+    ],
+    "hidden_sizes": [
+      10
+    ],
+    "output_size": 1
+  },
+  "assurance": "source-recorded and statically audited; no-fitting policy is not mechanically proven",
+  "cost": {
+    "currency_cost": null,
+    "editor_tokens": 0,
+    "evaluated_rows": 228,
+    "revealed_development_labels": 8,
+    "wall_seconds": 112.39636804204201
+  },
+  "development": {
+    "accuracy": 0.9646017699115044,
+    "accuracy_wilson_95": [
+      0.9125024891789997,
+      0.9861500455346639
+    ],
+    "average_precision": 0.9979296066252588,
+    "balanced_accuracy": 0.9523809523809523,
+    "brier": 0.02071901178484678,
+    "confusion_matrix": [
+      [
+        71,
+        0
+      ],
+      [
+        4,
+        38
+      ]
+    ],
+    "f1": 0.95,
+    "log_loss": 0.0721238889928423,
+    "n": 113,
+    "positive_count": 42,
+    "precision": 1.0,
+    "recall": 0.9047619047619048,
+    "roc_auc": 0.9986586183769283,
+    "threshold": 0.5
+  },
+  "editor": {
+    "assurance": "source-recorded and statically audited; no-fitting policy is not mechanically proven",
+    "base_url": null,
+    "image": "mlsurgie-constructor:local",
+    "interface": "Claude Code session via file bridge; Docker sandbox; strict audit",
+    "kind": "interactive_llm",
+    "max_agent_steps": 60,
+    "model": "claude-opus-5-5",
+    "token_accounting": "not available from the host session"
+  },
+  "final_evaluation_error": null,
+  "final_target_met": null,
+  "final_test": {
+    "accuracy": 0.9478260869565217,
+    "accuracy_wilson_95": [
+      0.8908280962827254,
+      0.9758717798549231
+    ],
+    "average_precision": 0.9908086406073606,
+    "balanced_accuracy": 0.9302325581395349,
+    "brier": 0.036493851008777056,
+    "confusion_matrix": [
+      [
+        72,
+        0
+      ],
+      [
+        6,
+        37
+      ]
+    ],
+    "f1": 0.925,
+    "log_loss": 0.11591497749699643,
+    "n": 115,
+    "positive_count": 43,
+    "precision": 1.0,
+    "recall": 0.8604651162790697,
+    "roc_auc": 0.9941860465116279,
+    "threshold": 0.5
+  },
+  "history": [
+    {
+      "audit": {
+        "scanned_files": 10,
+        "violations": []
+      },
+      "diff": {
+        "base_hash": "zero",
+        "changed_values": 31,
+        "l2_change": 8.576756867945598
+      },
+      "iteration": 1,
+      "metrics": {
+        "accuracy": 0.9646017699115044,
+        "accuracy_wilson_95": [
+          0.9125024891789997,
+          0.9861500455346639
+        ],
+        "average_precision": 0.9979296066252588,
+        "balanced_accuracy": 0.9523809523809523,
+        "brier": 0.02071901178484678,
+        "confusion_matrix": [
+          [
+            71,
+            0
+          ],
+          [
+            4,
+            38
+          ]
+        ],
+        "f1": 0.95,
+        "log_loss": 0.0721238889928423,
+        "n": 113,
+        "positive_count": 42,
+        "precision": 1.0,
+        "recall": 0.9047619047619048,
+        "roc_auc": 0.9986586183769283,
+        "threshold": 0.5
+      },
+      "selected": true,
+      "state_hash": "5962c5f3520b829d88d4418bf62a685afc787e990d5e38ed5796f2d0ffd3e39e",
+      "status": "evaluated",
+      "usage": {
+        "input_tokens": 0,
+        "measurement": "unavailable: interactive Claude Code session",
+        "output_tokens": 0,
+        "tool_calls": 6
+      }
+    },
+    {
+      "audit": {
+        "scanned_files": 5,
+        "violations": []
+      },
+      "iteration": 2,
+      "selected": false,
+      "status": "editor_stopped",
+      "usage": {
+        "input_tokens": 0,
+        "measurement": "unavailable: interactive Claude Code session",
+        "output_tokens": 0,
+        "tool_calls": 1
+      }
+    }
+  ],
+  "limitations": [
+    "Adaptive development evaluation can overfit.",
+    "Accuracy interval is Wilson 95%, assumes independent observations; other metrics have no interval here.",
+    "Custom Python editor plugins are trusted; isolation is enforced through built-in JSON editor contexts, not an OS sandbox.",
+    "Token limits stop subsequent work; one provider request can overshoot due to input token usage.",
+    "Scripted fixtures demonstrate the protocol, not autonomous LLM performance."
+  ],
+  "parameters": 621,
+  "selected_iteration": 1,
+  "selection_metric": "log_loss",
+  "status": "completed",
+  "stop_reason": "editor_finished",
+  "task": "binary",
+  "track": {
+    "names": "semantic",
+    "policy": "strict"
+  }
+}

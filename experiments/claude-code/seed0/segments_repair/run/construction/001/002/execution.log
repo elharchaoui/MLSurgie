@@ -1,0 +1,13 @@
+hash 4c09df3dd461 arch [] shape (4, 12)
+support assignment sizes [64, 615, 265, 16]
+check 1: bias vs -|c|^2 (nearest-centroid identity)
+  cluster 0: bias=-1.773  -|c|^2=-1.893  excess=+0.120
+  cluster 1: bias=+2.908  -|c|^2=-3.316  excess=+6.224
+  cluster 2: bias=-3.741  -|c|^2=-3.410  excess=-0.331
+  cluster 3: bias=-11.510  -|c|^2=-11.679  excess=+0.169
+check 2: implied centroids in raw units vs observed support range
+  cluster 0: {'annual_spend': '1351.31', 'visits_per_month': '5.34', 'avg_basket': '17.67', 'days_since_last_visit': '10.41', 'online_share': '0.14', 'age': '41.80'}
+  cluster 1: {'annual_spend': '4082.63', 'visits_per_month': '11.76', 'avg_basket': '31.82', 'days_since_last_visit': '3.13', 'online_share': '0.10', 'age': '41.80'}
+  cluster 2: {'annual_spend': '2724.46', 'visits_per_month': '2.53', 'avg_basket': '68.66', 'days_since_last_visit': '14.60', 'online_share': '0.81', 'age': '41.80'}
+  cluster 3: {'annual_spend': '5468.46', 'visits_per_month': '1.37', 'avg_basket': '-100.53  <-- OUTSIDE observed range', 'days_since_last_visit': '40.19', 'online_share': '0.38', 'age': '41.80'}
+observed ranges {'annual_spend': (np.float64(703.45), np.float64(10073.39)), 'visits_per_month': (np.float64(0.65), np.float64(23.16)), 'avg_basket': (np.float64(9.61), np.float64(451.86)), 'days_since_last_visit': (np.int64(1), np.int64(113)), 'online_share': (np.float64(0.0), np.float64(1.0)), 'age': (np.int64(18), np.int64(83))}

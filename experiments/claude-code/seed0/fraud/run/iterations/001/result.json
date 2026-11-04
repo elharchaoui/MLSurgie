@@ -1,0 +1,49 @@
+{
+  "audit": {
+    "scanned_files": 6,
+    "violations": []
+  },
+  "diff": {
+    "base_hash": "zero",
+    "changed_values": 67,
+    "l2_change": 585.8748815520994
+  },
+  "iteration": 1,
+  "metrics": {
+    "accuracy": 0.9933333333333333,
+    "accuracy_wilson_95": [
+      0.989197604973952,
+      0.9958922611802904
+    ],
+    "average_precision": 0.7639280717324254,
+    "balanced_accuracy": 0.8866917247545552,
+    "brier": 0.005951561817580151,
+    "confusion_matrix": [
+      [
+        2346,
+        5
+      ],
+      [
+        11,
+        38
+      ]
+    ],
+    "f1": 0.8260869565217391,
+    "log_loss": 0.03690152171120719,
+    "n": 2400,
+    "positive_count": 49,
+    "precision": 0.8837209302325582,
+    "recall": 0.7755102040816326,
+    "roc_auc": 0.8836361426748496,
+    "threshold": 0.5
+  },
+  "selected": true,
+  "state_hash": "91d202b0f05fa6c02d2f387c6fc1cb7f71940ce65480301481558f175630f262",
+  "status": "evaluated",
+  "usage": {
+    "input_tokens": 0,
+    "measurement": "unavailable: interactive Claude Code session",
+    "output_tokens": 0,
+    "tool_calls": 4
+  }
+}

@@ -1,0 +1,9 @@
+# Inputs (read-only)
+
+- `task.json`: goal, task type (clustering), classes, output size, feature declarations,
+  preprocessing state, encoded feature names, budgets, track, and the weight-program format.
+- `state.json`: refreshed every turn: iteration, remaining budgets, best network (weights and hash),
+  best development metrics, and last development feedback.
+- `data/support.csv`: 960 labeled su
+encoded: ['annual_spend:standardized', 'annual_spend:missing', 'visits_per_month:standardized', 'visits_per_month:missing', 'avg_basket:standardized', 'avg_basket:missing', 'days_since_last_visit:standardized', 'days_since_last_visit:missing', 'online_share:standardized', 'online_share:missing', 'age:standardized', 'age:missing']
+{'annual_spend': {'mean': 3141.79321875, 'scale': 1713.0668554440583, 'median': 2945.0550000000003}, 'visits_per_month': {'mean': 6.000447916666667, 'scale': 4.372827711584804, 'median': 4.69}, 'avg_basket': {'mean': 67.53596875, 'scale': 75.91075789550423, 'median': 35.2}, 'days_since_last_visit': {'mean': 13.75, 'scale': 13.663439659665984, 'median': 10.0}, 'online_share': {'mean': 0.30676249999999994, 'scale': 0.30523249309952244, 'median': 0.1875}, 'age': {'mean': 41.79895833333333, 'scale': 12.341503443594863, 'median': 42.0}}

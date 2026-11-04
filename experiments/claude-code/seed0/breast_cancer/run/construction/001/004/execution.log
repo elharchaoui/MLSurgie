@@ -1,0 +1,11 @@
+('worst_perimeter', np.float64(1.008), np.float64(-0.598), np.float64(0.478), np.float64(2.169))
+('worst_concave_points', np.float64(1.029), np.float64(-0.61), np.float64(0.393), np.float64(2.692))
+('worst_texture', np.float64(0.561), np.float64(-0.333), np.float64(0.802), np.float64(1.115))
+('worst_smoothness', np.float64(0.585), np.float64(-0.347), np.float64(0.805), np.float64(0.846))
+bias -1.757 support logloss 0.1422 acc 0.9531
+  p in [0,0.1) n=193 observed=0.02 mean_p=0.01
+  p in [0.1,0.3) n= 26 observed=0.31 mean_p=0.17
+  p in [0.3,0.7) n= 13 observed=0.54 mean_p=0.51
+  p in [0.7,0.9) n= 14 observed=1.00 mean_p=0.82
+  p in [0.9,1.01) n= 95 observed=1.00 mean_p=0.98
+split-half logloss 0.178 0.1063

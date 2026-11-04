@@ -1,0 +1,96 @@
+{
+  "mean": {
+    "selection_metric": "rmse",
+    "min_delta": 0.0,
+    "hyperparameters": {},
+    "development": {
+      "n": 88,
+      "rmse": 78.87373144149595,
+      "mae": 67.54631217838765,
+      "r2": -0.0005927490547457115,
+      "target_mean": 153.72727272727272,
+      "target_std": 78.85036566363695
+    },
+    "final_test": {
+      "n": 89,
+      "rmse": 70.48460907403498,
+      "mae": 59.63396226415095,
+      "r2": -1.5719875363195968e-05,
+      "target_mean": 151.52808988764045,
+      "target_std": 70.48405507593172
+    },
+    "size": 1
+  },
+  "ridge": {
+    "selection_metric": "rmse",
+    "min_delta": 0.0,
+    "hyperparameters": {
+      "alpha": 10.0
+    },
+    "development": {
+      "n": 88,
+      "rmse": 52.674417820696085,
+      "mae": 40.87987012104233,
+      "r2": 0.5537357827595248,
+      "target_mean": 153.72727272727272,
+      "target_std": 78.85036566363695
+    },
+    "final_test": {
+      "n": 89,
+      "rmse": 56.86585881254979,
+      "mae": 45.4221934089433,
+      "r2": 0.3490892544920181,
+      "target_mean": 151.52808988764045,
+      "target_std": 70.48405507593172
+    },
+    "size": 23
+  },
+  "random_forest": {
+    "selection_metric": "rmse",
+    "min_delta": 0.0,
+    "hyperparameters": {
+      "min_samples_leaf": 5
+    },
+    "development": {
+      "n": 88,
+      "rmse": 54.18870118536702,
+      "mae": 45.01587891685287,
+      "r2": 0.5277085753014454,
+      "target_mean": 153.72727272727272,
+      "target_std": 78.85036566363695
+    },
+    "final_test": {
+      "n": 89,
+      "rmse": 54.149936398589766,
+      "mae": 43.51356025173257,
+      "r2": 0.40977970616795123,
+      "target_mean": 151.52808988764045,
+      "target_std": 70.48405507593172
+    },
+    "size": 47382
+  },
+  "svr_rbf": {
+    "selection_metric": "rmse",
+    "min_delta": 0.0,
+    "hyperparameters": {
+      "C": 100.0
+    },
+    "development": {
+      "n": 88,
+      "rmse": 54.41251556171315,
+      "mae": 41.94798440656401,
+      "r2": 0.5237991290474785,
+      "target_mean": 153.72727272727272,
+      "target_std": 78.85036566363695
+    },
+    "final_test": {
+      "n": 89,
+      "rmse": 57.50971480871644,
+      "mae": 43.736629945336695,
+      "r2": 0.3342661125940528,
+      "target_mean": 151.52808988764045,
+      "target_std": 70.48405507593172
+    },
+    "size": 6096
+  }
+}

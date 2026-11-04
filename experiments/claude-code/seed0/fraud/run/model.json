@@ -1,0 +1,100 @@
+{
+  "activations": [
+    "sigmoid",
+    "relu"
+  ],
+  "classes": [
+    "0",
+    "1"
+  ],
+  "format_version": 2,
+  "hidden_sizes": [
+    11,
+    13
+  ],
+  "input_size": 27,
+  "limits": {
+    "max_abs_weight": 10000,
+    "max_hidden_layers": 4,
+    "max_parameters": 65536,
+    "max_width": 256
+  },
+  "output_size": 1,
+  "preprocessing": [
+    {
+      "description": "Transaction amount in USD",
+      "kind": "numeric",
+      "mean": 79.81345603556049,
+      "median": 42.55,
+      "name": "amount",
+      "scale": 121.50835504546802
+    },
+    {
+      "description": "Local hour of day, 0-23",
+      "kind": "numeric",
+      "mean": 13.211279344353382,
+      "median": 14.0,
+      "name": "hour",
+      "scale": 5.125398545851667
+    },
+    {
+      "description": "Days since the account was opened",
+      "kind": "numeric",
+      "mean": 886.8966523128212,
+      "median": 611.0,
+      "name": "account_age_days",
+      "scale": 890.612498955745
+    },
+    {
+      "description": "Transactions on this card in the previous 24 hours",
+      "kind": "numeric",
+      "mean": 1.5742464231143214,
+      "median": 1.0,
+      "name": "txn_last_24h",
+      "scale": 1.5370619451059364
+    },
+    {
+      "categories": [
+        "electronics",
+        "gaming",
+        "gift_cards",
+        "grocery",
+        "restaurants",
+        "retail",
+        "travel"
+      ],
+      "description": "Merchant category",
+      "kind": "categorical",
+      "name": "merchant_category"
+    },
+    {
+      "categories": [
+        "no",
+        "yes"
+      ],
+      "description": "Physical card present at the terminal",
+      "kind": "categorical",
+      "name": "card_present"
+    },
+    {
+      "categories": [
+        "no",
+        "yes"
+      ],
+      "description": "Merchant country differs from card country",
+      "kind": "categorical",
+      "name": "country_mismatch"
+    },
+    {
+      "description": "Distance between merchant and cardholder home; may be missing",
+      "kind": "numeric",
+      "mean": 20.357994165856372,
+      "median": 7.5,
+      "name": "distance_from_home_km",
+      "scale": 105.99551483343829
+    }
+  ],
+  "state_hash": "ab0faaac5226f31355fe64d0bfd2fb0ed87aa4ab30c1c7a1509598805d3c7824",
+  "task": "binary",
+  "threshold": 0.5
+}

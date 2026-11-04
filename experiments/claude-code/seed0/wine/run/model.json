@@ -1,0 +1,131 @@
+{
+  "activations": [
+    "relu"
+  ],
+  "classes": [
+    "cultivar_1",
+    "cultivar_2",
+    "cultivar_3"
+  ],
+  "format_version": 2,
+  "hidden_sizes": [
+    78
+  ],
+  "input_size": 26,
+  "limits": {
+    "max_abs_weight": 10000,
+    "max_hidden_layers": 4,
+    "max_parameters": 65536,
+    "max_width": 256
+  },
+  "output_size": 3,
+  "preprocessing": [
+    {
+      "description": "",
+      "kind": "numeric",
+      "mean": 13.014857142857142,
+      "median": 13.05,
+      "name": "alcohol",
+      "scale": 0.8157253439330507
+    },
+    {
+      "description": "",
+      "kind": "numeric",
+      "mean": 2.3285714285714287,
+      "median": 1.87,
+      "name": "malic_acid",
+      "scale": 1.1024608219549474
+    },
+    {
+      "description": "",
+      "kind": "numeric",
+      "mean": 2.388571428571429,
+      "median": 2.4,
+      "name": "ash",
+      "scale": 0.2935283828944415
+    },
+    {
+      "description": "",
+      "kind": "numeric",
+      "mean": 19.823809523809523,
+      "median": 20.0,
+      "name": "alcalinity_of_ash",
+      "scale": 3.4702140405929347
+    },
+    {
+      "description": "",
+      "kind": "numeric",
+      "mean": 98.65714285714286,
+      "median": 97.0,
+      "name": "magnesium",
+      "scale": 12.797937759043592
+    },
+    {
+      "description": "",
+      "kind": "numeric",
+      "mean": 2.2624761904761903,
+      "median": 2.2,
+      "name": "total_phenols",
+      "scale": 0.6377397303907143
+    },
+    {
+      "description": "",
+      "kind": "numeric",
+      "mean": 2.0014285714285713,
+      "median": 2.03,
+      "name": "flavanoids",
+      "scale": 0.9934292972866681
+    },
+    {
+      "description": "",
+      "kind": "numeric",
+      "mean": 0.3547619047619048,
+      "median": 0.32,
+      "name": "nonflavanoid_phenols",
+      "scale": 0.12560781927506962
+    },
+    {
+      "description": "",
+      "kind": "numeric",
+      "mean": 1.513238095238095,
+      "median": 1.46,
+      "name": "proanthocyanins",
+      "scale": 0.5429452225954557
+    },
+    {
+      "description": "",
+      "kind": "numeric",
+      "mean": 4.908952380952382,
+      "median": 4.6,
+      "name": "color_intensity",
+      "scale": 2.1009063458238453
+    },
+    {
+      "description": "",
+      "kind": "numeric",
+      "mean": 0.9584380952380952,
+      "median": 0.97,
+      "name": "hue",
+      "scale": 0.21222539338253538
+    },
+    {
+      "description": "",
+      "kind": "numeric",
+      "mean": 2.5899047619047617,
+      "median": 2.75,
+      "name": "od280_od315_of_diluted_wines",
+      "scale": 0.732890552782799
+    },
+    {
+      "description": "",
+      "kind": "numeric",
+      "mean": 732.0190476190476,
+      "median": 630.0,
+      "name": "proline",
+      "scale": 303.0559584019138
+    }
+  ],
+  "state_hash": "e7eb8fdda73cea89fe9a677365052dcefbc3638c2a5cd9c5a9047621bd303f2d",
+  "task": "multiclass",
+  "threshold": 0.5
+}

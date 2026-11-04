@@ -1,0 +1,22 @@
+classes ['cultivar_1', 'cultivar_2', 'cultivar_3'] counts [35 42 28]
+flavanoids                     sep=3.77 means=[ 0.95  0.01 -1.19] sds=[0.4  0.79 0.3 ] pooled=0.57
+od280_od315_of_diluted_wines   sep=3.58 means=[ 0.83  0.15 -1.26] sds=[0.53 0.73 0.34] pooled=0.58
+proline                        sep=3.36 means=[ 1.17 -0.69 -0.43] sds=[0.73 0.52 0.27] pooled=0.55
+color_intensity                sep=2.66 means=[ 0.2  -0.82  0.98] sds=[0.53 0.47 1.02] pooled=0.68
+alcohol                        sep=2.60 means=[ 0.85 -0.88  0.25] sds=[0.58 0.72 0.67] pooled=0.66
+total_phenols                  sep=2.49 means=[ 0.85 -0.08 -0.94] sds=[0.57 0.92 0.51] pooled=0.72
+hue                            sep=2.38 means=[ 0.44  0.43 -1.2 ] sds=[0.52 0.88 0.53] pooled=0.69
+malic_acid                     sep=1.75 means=[-0.34 -0.39  1.01] sds=[0.52 0.88 0.94] pooled=0.79
+proanthocyanins                sep=1.74 means=[ 0.66 -0.03 -0.78] sds=[0.66 1.05 0.62] pooled=0.83
+alcalinity_of_ash              sep=1.38 means=[-0.71  0.27  0.48] sds=[0.66 1.12 0.59] pooled=0.86
+nonflavanoid_phenols           sep=1.33 means=[-0.59  0.1   0.59] sds=[0.43 1.05 1.03] pooled=0.89
+magnesium                      sep=1.21 means=[ 0.58 -0.49  0.  ] sds=[0.74 1.07 0.76] pooled=0.89
+ash                            sep=0.81 means=[ 0.31 -0.44  0.28] sds=[0.68 1.25 0.58] pooled=0.93
+pooled within-class correlation:
+              flavanoids:s  od280_od315_  proline:stan  color_intens  alcohol:stan  total_phenol
+flavanoids:s          1.00          0.11          0.03          0.53          0.12          0.60
+od280_od315_          0.11          1.00         -0.09         -0.13          0.04          0.33
+proline:stan          0.03         -0.09          1.00          0.21          0.18          0.14
+color_intens          0.53         -0.13          0.21          1.00          0.43          0.44
+alcohol:stan          0.12          0.04          0.18          0.43          1.00          0.15
+total_phenol          0.60          0.33          0.14          0.44          0.15          1.00

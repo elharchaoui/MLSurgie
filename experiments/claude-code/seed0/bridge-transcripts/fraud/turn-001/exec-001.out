@@ -1,0 +1,11 @@
+# Inputs (read-only)
+
+- `task.json`: goal, task type (binary), classes, output size, feature declarations,
+  preprocessing state, encoded feature names, budgets, track, and the weight-program format.
+- `state.json`: refreshed every turn: iteration, remaining budgets, best network (weights and hash),
+  best development metrics, and last development feedback.
+- `data/support.csv`: 7199 labeled suppo
+encoded: ['amount:standardized', 'amount:missing', 'hour:standardized', 'hour:missing', 'account_age_days:standardized', 'account_age_days:missing', 'txn_last_24h:standardized', 'txn_last_24h:missing', "merchant_category='electronics'", "merchant_category='gaming'", "merchant_category='gift_cards'", "merchant_category='grocery'", "merchant_category='restaurants'", "merchant_category='retail'", "merchant_category='travel'", 'merchant_category:missing', 'merchant_category:unknown', "card_present='no'", "card_present='yes'", 'card_present:missing', 'card_present:unknown', "country_mismatch='no'", "country_mismatch='yes'", 'country_mismatch:missing', 'country_mismatch:unknown', 'distance_from_home_km:standardized', 'distance_from_home_km:missing']
+{'amount': {'mean': 79.81345603556049, 'scale': 121.50835504546802, 'median': 42.55}, 'hour': {'mean': 13.211279344353382, 'scale': 5.125398545851667, 'median': 14.0}, 'account_age_days': {'mean': 886.8966523128212, 'scale': 890.612498955745, 'median': 611.0}, 'txn_last_24h': {'mean': 1.5742464231143214, 'scale': 1.5370619451059364, 'median': 1.0}, 'distance_from_home_km': {'mean': 20.357994165856372, 'scale': 105.99551483343829, 'median': 7.5}}
+
+No /workspace/candidate.json yet.

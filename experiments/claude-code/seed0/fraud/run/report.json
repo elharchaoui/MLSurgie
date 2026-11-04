@@ -1,0 +1,221 @@
+{
+  "architecture": {
+    "activations": [
+      "sigmoid",
+      "relu"
+    ],
+    "hidden_sizes": [
+      11,
+      13
+    ],
+    "output_size": 1
+  },
+  "assurance": "source-recorded and statically audited; no-fitting policy is not mechanically proven",
+  "cost": {
+    "currency_cost": null,
+    "editor_tokens": 0,
+    "evaluated_rows": 7201,
+    "revealed_development_labels": 16,
+    "wall_seconds": 168.1296027909848
+  },
+  "development": {
+    "accuracy": 0.9925,
+    "accuracy_wilson_95": [
+      0.9881752206708239,
+      0.9952506423311311
+    ],
+    "average_precision": 0.7948923377080972,
+    "balanced_accuracy": 0.8363093429630466,
+    "brier": 0.006422089994784129,
+    "confusion_matrix": [
+      [
+        2349,
+        2
+      ],
+      [
+        16,
+        33
+      ]
+    ],
+    "f1": 0.7857142857142857,
+    "log_loss": 0.03353160326742933,
+    "n": 2400,
+    "positive_count": 49,
+    "precision": 0.9428571428571428,
+    "recall": 0.673469387755102,
+    "roc_auc": 0.9042700023437703,
+    "threshold": 0.5
+  },
+  "editor": {
+    "assurance": "source-recorded and statically audited; no-fitting policy is not mechanically proven",
+    "base_url": null,
+    "image": "mlsurgie-constructor:local",
+    "interface": "Claude Code session via file bridge; Docker sandbox; strict audit",
+    "kind": "interactive_llm",
+    "max_agent_steps": 60,
+    "model": "claude-opus-5-5",
+    "token_accounting": "not available from the host session"
+  },
+  "final_evaluation_error": null,
+  "final_target_met": null,
+  "final_test": {
+    "accuracy": 0.9920866305705955,
+    "accuracy_wilson_95": [
+      0.9876730086284152,
+      0.9949280907537644
+    ],
+    "average_precision": 0.7831520450285329,
+    "balanced_accuracy": 0.8295746490854956,
+    "brier": 0.006672139446577855,
+    "confusion_matrix": [
+      [
+        2349,
+        2
+      ],
+      [
+        17,
+        33
+      ]
+    ],
+    "f1": 0.7764705882352941,
+    "log_loss": 0.03549074847942921,
+    "n": 2401,
+    "positive_count": 50,
+    "precision": 0.9428571428571428,
+    "recall": 0.66,
+    "roc_auc": 0.918855806039983,
+    "threshold": 0.5
+  },
+  "history": [
+    {
+      "audit": {
+        "scanned_files": 6,
+        "violations": []
+      },
+      "diff": {
+        "base_hash": "zero",
+        "changed_values": 67,
+        "l2_change": 585.8748815520994
+      },
+      "iteration": 1,
+      "metrics": {
+        "accuracy": 0.9933333333333333,
+        "accuracy_wilson_95": [
+          0.989197604973952,
+          0.9958922611802904
+        ],
+        "average_precision": 0.7639280717324254,
+        "balanced_accuracy": 0.8866917247545552,
+        "brier": 0.005951561817580151,
+        "confusion_matrix": [
+          [
+            2346,
+            5
+          ],
+          [
+            11,
+            38
+          ]
+        ],
+        "f1": 0.8260869565217391,
+        "log_loss": 0.03690152171120719,
+        "n": 2400,
+        "positive_count": 49,
+        "precision": 0.8837209302325582,
+        "recall": 0.7755102040816326,
+        "roc_auc": 0.8836361426748496,
+        "threshold": 0.5
+      },
+      "selected": true,
+      "state_hash": "91d202b0f05fa6c02d2f387c6fc1cb7f71940ce65480301481558f175630f262",
+      "status": "evaluated",
+      "usage": {
+        "input_tokens": 0,
+        "measurement": "unavailable: interactive Claude Code session",
+        "output_tokens": 0,
+        "tool_calls": 4
+      }
+    },
+    {
+      "audit": {
+        "scanned_files": 6,
+        "violations": []
+      },
+      "diff": {
+        "base_hash": "zero",
+        "changed_values": 62,
+        "l2_change": 585.5310544684403
+      },
+      "iteration": 2,
+      "metrics": {
+        "accuracy": 0.9925,
+        "accuracy_wilson_95": [
+          0.9881752206708239,
+          0.9952506423311311
+        ],
+        "average_precision": 0.7948923377080972,
+        "balanced_accuracy": 0.8363093429630466,
+        "brier": 0.006422089994784129,
+        "confusion_matrix": [
+          [
+            2349,
+            2
+          ],
+          [
+            16,
+            33
+          ]
+        ],
+        "f1": 0.7857142857142857,
+        "log_loss": 0.03353160326742933,
+        "n": 2400,
+        "positive_count": 49,
+        "precision": 0.9428571428571428,
+        "recall": 0.673469387755102,
+        "roc_auc": 0.9042700023437703,
+        "threshold": 0.5
+      },
+      "selected": true,
+      "state_hash": "ab0faaac5226f31355fe64d0bfd2fb0ed87aa4ab30c1c7a1509598805d3c7824",
+      "status": "evaluated",
+      "usage": {
+        "input_tokens": 0,
+        "measurement": "unavailable: interactive Claude Code session",
+        "output_tokens": 0,
+        "tool_calls": 3
+      }
+    },
+    {
+      "audit": {
+        "scanned_files": 4,
+        "violations": []
+      },
+      "iteration": 3,
+      "selected": false,
+      "status": "editor_stopped",
+      "usage": {
+        "input_tokens": 0,
+        "measurement": "unavailable: interactive Claude Code session",
+        "output_tokens": 0,
+        "tool_calls": 1
+      }
+    }
+  ],
+  "limitations": [
+    "Adaptive development evaluation can overfit.",
+    "Accuracy interval is Wilson 95%, assumes independent observations; other metrics have no interval here.",
+    "Custom Python editor plugins are trusted; isolation is enforced through built-in JSON editor contexts, not an OS sandbox.",
+    "Token limits stop subsequent work; one provider request can overshoot due to input token usage.",
+    "Scripted fixtures demonstrate the protocol, not autonomous LLM performance."
+  ],
+  "parameters": 478,
+  "selected_iteration": 2,
+  "selection_metric": "average_precision",
+  "status": "completed",
+  "stop_reason": "editor_finished",
+  "task": "binary",
+  "track": {
+    "names": "semantic",
+    "policy": "strict"
+  }
+}

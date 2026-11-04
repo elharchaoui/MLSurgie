@@ -1,0 +1,29 @@
+{
+  "audit": {
+    "scanned_files": 5,
+    "violations": []
+  },
+  "diff": {
+    "base_hash": "zero",
+    "changed_values": 7,
+    "l2_change": 165.29843104903486
+  },
+  "iteration": 1,
+  "metrics": {
+    "mae": 41.759137240323156,
+    "n": 88,
+    "r2": 0.5392003747669092,
+    "rmse": 53.525381363395645,
+    "target_mean": 153.72727272727272,
+    "target_std": 78.85036566363695
+  },
+  "selected": true,
+  "state_hash": "367bad28f4fddd65a4e8dc271c7a0435dec69a5987fd265fcb89cba9ef3e4f29",
+  "status": "evaluated",
+  "usage": {
+    "input_tokens": 0,
+    "measurement": "unavailable: interactive Claude Code session",
+    "output_tokens": 0,
+    "tool_calls": 3
+  }
+}

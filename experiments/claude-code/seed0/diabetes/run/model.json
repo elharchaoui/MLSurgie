@@ -1,0 +1,104 @@
+{
+  "activations": [
+    "relu"
+  ],
+  "classes": null,
+  "format_version": 2,
+  "hidden_sizes": [
+    3
+  ],
+  "input_size": 22,
+  "limits": {
+    "max_abs_weight": 10000,
+    "max_hidden_layers": 4,
+    "max_parameters": 65536,
+    "max_width": 256
+  },
+  "output_size": 1,
+  "preprocessing": [
+    {
+      "description": "Age in years",
+      "kind": "numeric",
+      "mean": 47.841509433962266,
+      "median": 49.0,
+      "name": "age",
+      "scale": 13.125711969365364
+    },
+    {
+      "categories": [
+        "1.0",
+        "2.0"
+      ],
+      "description": "Sex, coded 1 or 2",
+      "kind": "categorical",
+      "name": "sex"
+    },
+    {
+      "description": "Body mass index",
+      "kind": "numeric",
+      "mean": 26.575849056603776,
+      "median": 25.6,
+      "name": "bmi",
+      "scale": 4.683896714280352
+    },
+    {
+      "description": "Average blood pressure",
+      "kind": "numeric",
+      "mean": 94.52569811320754,
+      "median": 93.0,
+      "name": "bp",
+      "scale": 14.3335107150446
+    },
+    {
+      "description": "Total serum cholesterol",
+      "kind": "numeric",
+      "mean": 188.76603773584907,
+      "median": 186.0,
+      "name": "s1",
+      "scale": 34.34571706234822
+    },
+    {
+      "description": "Low-density lipoproteins",
+      "kind": "numeric",
+      "mean": 115.7611320754717,
+      "median": 110.8,
+      "name": "s2",
+      "scale": 30.630090622598455
+    },
+    {
+      "description": "High-density lipoproteins",
+      "kind": "numeric",
+      "mean": 49.60943396226415,
+      "median": 47.0,
+      "name": "s3",
+      "scale": 12.391084198088947
+    },
+    {
+      "description": "Total cholesterol / HDL",
+      "kind": "numeric",
+      "mean": 4.081056603773585,
+      "median": 4.0,
+      "name": "s4",
+      "scale": 1.3692315764703793
+    },
+    {
+      "description": "Log of serum triglycerides",
+      "kind": "numeric",
+      "mean": 4.628213207547169,
+      "median": 4.5747,
+      "name": "s5",
+      "scale": 0.509406689823447
+    },
+    {
+      "description": "Blood sugar level",
+      "kind": "numeric",
+      "mean": 91.00754716981132,
+      "median": 91.0,
+      "name": "s6",
+      "scale": 11.679038617978273
+    }
+  ],
+  "state_hash": "1510facdd025a95d3ef528be1f316826eaa6f264bf9c5aa71b83cce3bc69997e",
+  "task": "regression",
+  "threshold": 0.5
+}

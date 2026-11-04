@@ -1,0 +1,45 @@
+{
+  "activations": [],
+  "base": "zero",
+  "hidden_sizes": [],
+  "operations": [
+    {
+      "op": "set",
+      "tensor": "layers.0.weight",
+      "value": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          -13.359492,
+          0.0,
+          0.0,
+          40.98406,
+          0.0,
+          4.886452,
+          0.0,
+          -5.73394,
+          0.0,
+          0.0,
+          0.0,
+          -5.576755,
+          0.0,
+          0.0,
+          0.0,
+          21.416639,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "op": "set",
+      "tensor": "layers.0.bias",
+      "value": [
+        157.857128
+      ]
+    }
+  ],
+  "rationale": "Additive linear response in target units. Baseline = support mean. Features added once each in order of strength (BMI, log-triglycerides s5, blood pressure, HDL s3, sex, glucose s6, ...); each slope is read as a two-group contrast (top 40% minus bottom 40%) of the residual left by previous features, divided by the feature contrast, then shrunk by 0.8; slopes under 3 units per SD are dropped. No least squares, no refitting passes."
+}
