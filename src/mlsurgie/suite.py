@@ -36,17 +36,19 @@ def run_suite(suite_path, make_editor, output, *, seeds=None, track=None, editor
         for seed in seeds:
             directory = output / name / f"seed-{seed}"
             directory.mkdir(parents=True)
+            opts = {**options, "seed": seed, **(editor_options or {})}
+            if "budget_overrides" in opts:
+                opts["budget"] = replace(opts["budget"], **opts.pop("budget_overrides"))
+            metric = opts["selection"].metric or table.goal.primary_metric
             cell = {"task": name, "task_type": table.goal.task, "seed": seed,
-                    "selection_metric": table.goal.primary_metric}
+                    "selection_metric": metric}
             if baselines:
-                cell["baselines"] = run_baselines(table, seed)
+                cell["baselines"] = run_baselines(table, seed, opts["budget"].max_input_features,
+                                                  selection=opts["selection"], track=opts["track"])
                 (directory / "baselines.json").write_text(json.dumps(cell["baselines"], indent=2, allow_nan=False) + "\n")
             if make_editor is not None:
                 editor = make_editor(name, seed, directory / "run")
                 try:
-                    opts = {**options, "seed": seed, **(editor_options or {})}
-                    if "budget_overrides" in opts:
-                        opts["budget"] = replace(opts["budget"], **opts.pop("budget_overrides"))
                     result = build(table=table, editor=editor, output=directory / "run", **opts)
                 finally:
                     if hasattr(editor, "close"):

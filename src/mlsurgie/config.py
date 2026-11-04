@@ -5,10 +5,9 @@ from pathlib import Path
 from .contracts import Budget, Feature, Goal
 from .data import Table
 from .protocol import FeedbackPolicy, SelectionRule, Track
-from .tracks import anonymize
 
 ALLOWED = {"name", "notes", "dataset", "goal", "features", "budget", "seed", "group_column",
-           "initial_program", "feedback", "selection"}
+           "initial_program", "initial_preprocessing", "feedback", "selection"}
 
 
 def load_task(path, dataset=None, track=None):
@@ -28,10 +27,10 @@ def load_task(path, dataset=None, track=None):
     initial = None
     if config.get("initial_program"):
         initial = json.loads((path.parent / config["initial_program"]).read_text())
-    if track.names == "anonymized":
-        table = anonymize(table)
     options = {"budget": Budget(**config.get("budget", {})), "seed": config.get("seed", 42),
                "feedback": FeedbackPolicy(**config.get("feedback", {})),
                "selection": SelectionRule(**config.get("selection", {})),
-               "track": track, "initial_program": initial}
+               "track": track, "initial_program": initial,
+               "initial_preprocessing": (json.loads((path.parent / config["initial_preprocessing"]).read_text())
+                                         if config.get("initial_preprocessing") else None)}
     return table, options, config

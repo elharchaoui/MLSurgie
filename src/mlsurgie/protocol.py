@@ -23,7 +23,7 @@ from .artifacts import BuildResult, Predictor, save_diff, save_model, save_repor
 from .contracts import METRICS, Budget, improves, reaches
 from .data import Preprocessor, split_table
 from .metrics import objective
-from .network import apply_program, program_guide
+from .network import apply_program, program_guide, rebase_numeric_program
 from .version import VERSION
 
 
@@ -79,7 +79,7 @@ LIMITATIONS = [
 
 
 def build(*, table, editor, output, budget=None, seed=42, dynamic_architecture=False,
-          isolated_evaluation=False, feedback=None, selection=None, track=None, initial_program=None):
+          isolated_evaluation=False, feedback=None, selection=None, track=None, initial_program=None, initial_preprocessing=None):
     """Construct a network by direct weight programs; no numerical weight fitting by the framework.
 
     The built-in editors see only JSON contexts (or prepared files, for the agent harness).
@@ -91,6 +91,11 @@ def build(*, table, editor, output, budget=None, seed=42, dynamic_architecture=F
     feedback = feedback or FeedbackPolicy()
     selection = selection or SelectionRule()
     track = track or Track()
+    if initial_preprocessing is not None and [p["name"] for p in initial_preprocessing] != [f.name for f in table.features]:
+        raise ValueError("Historical preprocessing features must match the task in order")
+    if track.names == "anonymized":
+        from .tracks import anonymize
+        table = anonymize(table)
     goal = table.goal
     metric = selection.metric or goal.primary_metric
     if metric not in METRICS[goal.task]:
@@ -101,6 +106,10 @@ def build(*, table, editor, output, budget=None, seed=42, dynamic_architecture=F
     splits = split_table(table, seed)
     support_rows = [table.rows[int(i)] for i in splits["support"]]
     pre = Preprocessor.from_support(support_rows, table.features, budget.max_input_features)
+    if initial_preprocessing is not None:
+        if initial_program is None:
+            raise ValueError("initial_preprocessing requires initial_program")
+        initial_program = rebase_numeric_program(initial_program, initial_preprocessing, pre.state, budget, out_size)
     xs = pre.transform(support_rows)
     ys = table.labels(splits["support"])
     development_rows = [table.rows[int(i)] for i in splits["development"]]
@@ -130,6 +139,7 @@ def build(*, table, editor, output, budget=None, seed=42, dynamic_architecture=F
         "protocol_components": protocol,
         "dynamic_architecture": dynamic_architecture,
         "isolated_evaluation": isolated_evaluation,
+        "initial_preprocessing": initial_preprocessing,
     }
     write_json(output / "manifest.json", manifest)
     # Editors never learn even the name of a clustering reference column.

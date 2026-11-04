@@ -1,0 +1,50 @@
+[
+  {
+    "name": "annual_spend",
+    "kind": "numeric",
+    "description": "",
+    "median": 3005.245,
+    "mean": 3195.7323075,
+    "scale": 1724.8782005966539
+  },
+  {
+    "name": "visits_per_month",
+    "kind": "numeric",
+    "description": "",
+    "median": 4.6,
+    "mean": 5.840585,
+    "scale": 4.28270778921175
+  },
+  {
+    "name": "avg_basket",
+    "kind": "numeric",
+    "description": "",
+    "median": 36.575,
+    "mean": 67.8994075,
+    "scale": 73.83876197651166
+  },
+  {
+    "name": "days_since_last_visit",
+    "kind": "numeric",
+    "description": "",
+    "median": 10.0,
+    "mean": 13.88475,
+    "scale": 13.499239513302221
+  },
+  {
+    "name": "online_share",
+    "kind": "numeric",
+    "description": "",
+    "median": 0.188,
+    "mean": 0.32298350000000003,
+    "scale": 0.31285981481767516
+  },
+  {
+    "name": "age",
+    "kind": "numeric",
+    "description": "",
+    "median": 41.0,
+    "mean": 41.71625,
+    "scale": 12.465742494432492
+  }
+]

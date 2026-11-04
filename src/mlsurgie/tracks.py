@@ -13,7 +13,7 @@ def anonymize(table):
     for f in table.features:
         if f.kind == "categorical":
             values = sorted({str(r[f.name]) for r in table.rows if r[f.name] not in (None, "")})
-            categories[f.name] = {v: f"v{j + 1}" for j, v in enumerate(values)}
+            categories[f.name] = {v: f"v{j + 1:0{len(str(len(values)))}d}" for j, v in enumerate(values)}
     goal = table.goal
     target = "target" if goal.target else None
     reference = "reference" if goal.reference_column else None
@@ -21,7 +21,7 @@ def anonymize(table):
     positive = goal.positive_label
     if goal.task in {"binary", "multiclass"}:
         values = sorted({str(r[goal.target]) for r in table.rows})
-        labels = {v: f"c{j + 1}" for j, v in enumerate(values)}
+        labels = {v: f"c{j + 1:0{len(str(len(values)))}d}" for j, v in enumerate(values)}
         positive = labels.get(goal.positive_label, goal.positive_label) if goal.task == "binary" else "1"
     rows = []
     for row in table.rows:

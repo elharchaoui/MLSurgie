@@ -7,7 +7,7 @@ scored once on the final test rows. Requires scikit-learn (pip install -e '.[bas
 """
 import numpy as np
 
-from .contracts import improves
+from .contracts import METRICS, improves
 from .data import Preprocessor, split_table
 from .metrics import score, score_clustering, score_multiclass, score_regression
 
@@ -82,10 +82,17 @@ def goal_classes(model):
     return int(model._mlsurgie_classes)
 
 
-def run_baselines(table, seed=42, max_input_features=256):
+def run_baselines(table, seed=42, max_input_features=256, *, selection=None, track=None):
     """Return {name: {"hyperparameters", "development", "final_test", "size"}} on the protocol split."""
     _require_sklearn()
+    if track is not None and track.names == "anonymized":
+        from .tracks import anonymize
+        table = anonymize(table)
     goal = table.goal
+    metric = (selection.metric if selection else None) or goal.primary_metric
+    min_delta = selection.min_delta if selection else 0.0
+    if metric not in METRICS[goal.task]:
+        raise ValueError(f"Selection metric {metric} is not available for {goal.task}")
     classes = table.validate()
     splits = split_table(table, seed)
     rows = {k: [table.rows[int(i)] for i in v] for k, v in splits.items()}
@@ -93,7 +100,6 @@ def run_baselines(table, seed=42, max_input_features=256):
     x = {k: pre.transform(v).astype(float) for k, v in rows.items()}
     clustering = goal.task == "clustering"
     y = {k: table.labels(v) for k, v in splits.items()}
-    metric = goal.primary_metric
     results = {}
     for name, grid in _candidates(goal.task, seed).items():
         best = None
@@ -108,10 +114,10 @@ def run_baselines(table, seed=42, max_input_features=256):
                 model._mlsurgie_classes = len(classes)
             # Clustering development metrics never use reference labels.
             development = _metrics(goal, model, x["development"], None if clustering else y["development"])
-            if best is None or improves(metric, development[metric], best[1][metric]):
+            if best is None or improves(metric, development[metric], best[1][metric], min_delta):
                 best = (model, development)
         model, development = best
         params = {k: v for k, v in model.get_params().items() if k in {"C", "alpha", "min_samples_leaf", "n_clusters", "n_components"}}
-        results[name] = {"hyperparameters": params, "development": development,
+        results[name] = {"selection_metric": metric, "min_delta": min_delta, "hyperparameters": params, "development": development,
                          "final_test": _metrics(goal, model, x["test"], y["test"]), "size": model_size(model)}
     return results

@@ -121,7 +121,17 @@ def silhouette(x, assignment, limit=2000, seed=0):
     labels = np.unique(assignment)
     if len(labels) < 2:
         return None
-    distance = np.sqrt(np.maximum(((x[:, None, :] - x[None, :, :]) ** 2).sum(-1), 0))
+    # Keep pairwise work two-dimensional: the broadcast [n, n, features] can
+    # exceed 8 GB even within the default feature and sample limits.
+    x = x - x.mean(0)  # reduce cancellation in the squared-distance identity
+    norms = np.einsum("ij,ij->i", x, x)
+    distance = x @ x.T
+    distance *= -2
+    distance += norms[:, None]
+    distance += norms[None, :]
+    np.maximum(distance, 0, out=distance)
+    np.sqrt(distance, out=distance)
+    np.fill_diagonal(distance, 0)
     values = np.zeros(len(x))
     for i in range(len(x)):
         own = assignment == assignment[i]

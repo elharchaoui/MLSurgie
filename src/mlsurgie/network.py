@@ -108,6 +108,34 @@ class Network(nn.Module):
                 "parameters": {k: v.tolist() for k, v in self.arrays().items()}}
 
 
+def rebase_numeric_program(program, historical, current, budget, output_size=1):
+    """Preserve an imported model's raw-input behavior under new numeric encoding.
+
+    Only an affine change of coordinates, including median imputation, is applied;
+    no weights are fitted. Feature order must match the historical artifact.
+    The returned ordinary IR is recorded at iteration zero and replays independently.
+    """
+    if len(historical) != len(current) or any(p["kind"] != "numeric" for p in [*historical, *current]):
+        raise ValueError("Historical preprocessing rebasing requires matching numeric features in order")
+    model = apply_program(program, 2 * len(historical), budget, output_size=output_size)
+    arrays = model.arrays()
+    old_weight = arrays["layers.0.weight"].astype(float)
+    weight = old_weight.copy()
+    bias = arrays["layers.0.bias"].astype(float)
+    for i, (old, new) in enumerate(zip(historical, current)):
+        column = 2 * i
+        weight[:, column] = old_weight[:, column] * new["scale"] / old["scale"]
+        weight[:, column + 1] += old_weight[:, column] * (old["median"] - new["median"]) / old["scale"]
+        bias += old_weight[:, column] * (new["mean"] - old["mean"]) / old["scale"]
+    arrays.update({"layers.0.weight": weight, "layers.0.bias": bias})
+    result = {"base": "zero", "hidden_sizes": model.hidden_sizes, "activations": model.activations,
+              "rationale": program["rationale"] + " Rebased from historical numeric preprocessing without fitting.",
+              "operations": [{"op": "set", "tensor": name, "value": value.tolist()} for name, value in arrays.items()]}
+    # Validate transformed tensors against the same construction limits.
+    apply_program(result, 2 * len(current), budget, output_size=output_size)
+    return result
+
+
 def apply_program(program, input_size, budget, best=None, frozen_architecture=None, output_size=1):
     if not isinstance(program, dict):
         raise ValueError("Program must be a JSON object")

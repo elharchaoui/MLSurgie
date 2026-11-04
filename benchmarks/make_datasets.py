@@ -5,6 +5,8 @@ corpus). Real sets come from scikit-learn's bundled copies of public UCI dataset
 Run: python benchmarks/make_datasets.py   (requires scikit-learn)
 """
 import csv
+import hashlib
+import json
 from pathlib import Path
 
 import numpy as np
@@ -15,7 +17,7 @@ OUT = Path(__file__).resolve().parent / "data"
 def write(name, header, rows):
     OUT.mkdir(exist_ok=True)
     with (OUT / name).open("w", newline="") as handle:
-        writer = csv.writer(handle)
+        writer = csv.writer(handle, lineterminator="\n")
         writer.writerow(header)
         writer.writerows(rows)
     print(f"{name}: {len(rows)} rows")
@@ -78,7 +80,7 @@ SEGMENTS = {  # log-space means: spend, visits/month, basket, days since last vi
 }
 
 
-def segments(n=1600, seed=11):
+def segments(n=1600, seed=11, *, write_data=True):
     rng = np.random.default_rng(seed)
     names = list(SEGMENTS)
     which = rng.choice(len(names), n, p=[.3, .3, .15, .25])
@@ -89,8 +91,10 @@ def segments(n=1600, seed=11):
         share = float(np.clip(rng.normal(online, .08), 0, 1))
         age = int(np.clip(rng.normal(42, 13), 18, 90))  # unrelated to segment
         rows.append([round(spend, 2), round(visits, 2), round(basket, 2), int(round(recency)), round(share, 3), age, names[k]])
-    write("segments.csv", ["annual_spend", "visits_per_month", "avg_basket", "days_since_last_visit",
-                           "online_share", "age", "segment"], rows)
+    if write_data:
+        write("segments.csv", ["annual_spend", "visits_per_month", "avg_basket", "days_since_last_visit",
+                               "online_share", "age", "segment"], rows)
+    return rows
 
 
 def sklearn_sets():
@@ -113,3 +117,5 @@ if __name__ == "__main__":
     fraud()
     segments()
     sklearn_sets()
+    checksums = {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(OUT.glob("*.csv"))}
+    (OUT / "checksums.json").write_text(json.dumps(checksums, indent=2) + "\n")

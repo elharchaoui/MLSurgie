@@ -212,7 +212,7 @@ def test_benchmark_tasks_load_and_baselines_run(tmp_path):
     from mlsurgie.config import load_task
     from mlsurgie.suite import run_suite
     for path in sorted((ROOT / "benchmarks" / "tasks").glob("*.json")):
-        if path.name.endswith(".program.json"):
+        if path.name.endswith((".program.json", ".preprocessing.json")):
             continue
         table, options, config = load_task(path)
         table.validate()

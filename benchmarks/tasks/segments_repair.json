@@ -50,5 +50,6 @@
     "max_editor_tokens": 400000,
     "max_output_tokens": 16384
   },
-  "initial_program": "segments_repair.program.json"
+  "initial_program": "segments_repair.program.json",
+  "initial_preprocessing": "segments_repair.preprocessing.json"
 }

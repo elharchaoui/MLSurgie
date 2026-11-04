@@ -110,8 +110,9 @@ def main():
         elif args.command == "baselines":
             from .baselines import run_baselines
             table, options, _ = load_task(args.config, args.dataset, Track(args.names, args.policy))
-            results = run_baselines(table, options["seed"] if args.seed is None else args.seed)
-            metric = table.goal.primary_metric
+            results = run_baselines(table, options["seed"] if args.seed is None else args.seed,
+                                    options["budget"].max_input_features, selection=options["selection"], track=options["track"])
+            metric = options["selection"].metric or table.goal.primary_metric
             print(json.dumps({name: {"final_test_" + metric: r["final_test"][metric],
                                      "hyperparameters": r["hyperparameters"], "size": r["size"]}
                               for name, r in results.items()}, indent=2))
